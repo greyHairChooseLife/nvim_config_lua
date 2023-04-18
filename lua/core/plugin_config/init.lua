@@ -1,0 +1,12 @@
+-- require("core.plugin_config.dracula")
+require("core.plugin_config.tokyonight")
+require("core.plugin_config.nvim-tree")
+require("core.plugin_config.treesitter")
+require("core.plugin_config.telescope")
+require("core.plugin_config.coc")
+require("core.plugin_config.calendar")
+require("core.plugin_config.startify")
+require("core.plugin_config.vimwiki")
+require("core.plugin_config.gh")
+require("core.plugin_config.colorizer")
+
