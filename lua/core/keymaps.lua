@@ -5,6 +5,7 @@ vim.keymap.set('n', ',q', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 �
 vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
 
 vim.keymap.set('n', '<leader><leader>q', ':q!<CR>') -- 
+vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose<CR>') -- 
 
 vim.keymap.set('n', '<leader><leader>s', ':Startify<CR>') -- paste last thing yanked, not deleted
