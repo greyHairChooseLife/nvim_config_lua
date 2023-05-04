@@ -59,6 +59,12 @@ return require('packer').startup(function(use)
   use "junegunn/goyo.vim"
   use "junegunn/vim-easy-align"
 
+  --use 'nvim-pack/nvim-spectre'
+	use { 
+		'nvim-pack/nvim-spectre', 
+		requires = { {'nvim-lua/plenary.nvim'} }
+	}
+
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
 	if packer_bootstrap then     

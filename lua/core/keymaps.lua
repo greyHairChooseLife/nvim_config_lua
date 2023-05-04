@@ -18,6 +18,7 @@ vim.keymap.set('n', '<leader><leader>gh', ':GV<CR>')
 vim.keymap.set('n', '<leader><leader>ghf', ':GV!<CR>')  -- current file only
 
 vim.keymap.set('n', '<leader><leader>GG', ':G<CR>') 
+vim.keymap.set('n', '<leader><leader>vd', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader><leader>Gre', ':GHOpenPR<CR>') 
 vim.keymap.set('n', '<leader><leader>Gpr', ':GHOpenToPR<CR>') 
 vim.keymap.set('n', '<leader><leader>Giss', ':GHOpenIssue<CR>') 
@@ -25,8 +26,21 @@ vim.keymap.set('n', '<leader><leader>Giss', ':GHOpenIssue<CR>')
 vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
 vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 
+
+
+vim.keymap.set('n', '<leader><leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('v', '<leader><leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+    desc = "Search current visual block"
+})
+vim.keymap.set('n', '<leader><leader>spf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+    desc = "Search on current file"
+})
+
 -- window to tab
-vim.keymap.set('n', '<A-t>', '<C-w>T')
+-- vim.keymap.set('n', '<A-t>', '<C-w>T')
+vim.keymap.set('n', '<leader><leader>tt', '<C-w>T')
 
 -- tap change
 vim.keymap.set('n', '<A-p>', 'gt')
@@ -45,3 +59,8 @@ vim.keymap.set('n', '<A-L>', ':wincmd L<CR>')
 
 vim.keymap.set('n', '<A-R>', ':resize ')
 vim.keymap.set('n', '<A-r>', ':vertical resize ')
+
+vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", {})
+vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", {})
+vim.keymap.set("n", "<A-Down>", ":horizontal resize -2<CR>", {})
+vim.keymap.set("n", "<A-Up>", ":horizontal resize +2<CR>", {})
