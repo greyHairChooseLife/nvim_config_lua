@@ -16,6 +16,3 @@ vim.g.startify_lists = {
 
 -- ASCII ART
 vim.g.startify_custom_header = {}
-
-
-vim.keymap.set('n', '<leader>s', ':Startify<CR>', {silent = true})
