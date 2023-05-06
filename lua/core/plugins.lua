@@ -53,6 +53,11 @@ return require('packer').startup(function(use)
 
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 
+  use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
   use "norcalli/nvim-colorizer.lua"
 
   use "junegunn/goyo.vim"
@@ -65,6 +70,8 @@ return require('packer').startup(function(use)
 	}
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
