@@ -13,7 +13,7 @@ function ShowCursor()
       ]])
   end
 end
-vim.cmd('command ShowCursor lua ShowCursor()')
+vim.cmd('command! ShowCursor lua ShowCursor()')
 
 function ExpandGlow()
   vim.cmd([[
@@ -22,4 +22,17 @@ function ExpandGlow()
     vertical resize 999'
   ]])
 end
-vim.cmd('command GlowFull lua ExpandGlow()')
+vim.cmd('command! GlowFull lua ExpandGlow()')
+
+
+function GGOpenPRs() vim.cmd('GHOpenPR') end
+function GGstartReview() vim.cmd('GHStartReview') end
+function GGsubmitReview() vim.cmd('GHSubmitReview') end
+function GGdeleteReview() vim.cmd('GHDeleteReview') end
+function GGcomment() vim.cmd('GHCreateThread') end
+
+vim.cmd('command! GGopenPRs lua GGOpenPRs()')
+vim.cmd('command! GGstartReview lua GGstartReview()')
+vim.cmd('command! GGsubmitReview lua GGsubmitReview()')
+vim.cmd('command! GGdeleteReview lua GGdeleteReview()')
+vim.cmd('command! GGcomment lua GGcomment()')

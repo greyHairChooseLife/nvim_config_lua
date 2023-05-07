@@ -29,22 +29,97 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'ee',     api.tree.expand_all,                   opts('Expand All'))
   vim.keymap.set('n', 'cc',     api.tree.collapse_all,                opts('Collapse'))
   vim.keymap.set('n', 'yy',     api.fs.copy.relative_path,            opts('Copy Relative Path'))
-  vim.keymap.set('n', 'ayy',    api.fs.copy.absolute_path,            opts('Copy Absolute Path'))
-  vim.keymap.set('n', 'nyy',     api.fs.copy.filename,                opts('Copy Name'))
+  vim.keymap.set('n', 'yya',    api.fs.copy.absolute_path,            opts('Copy Absolute Path'))
+  vim.keymap.set('n', 'yyf',     api.fs.copy.filename,                opts('Copy Name'))
   vim.keymap.set('n', '<C-l>',     api.tree.reload,                   opts('Refresh'))
 end
-
 
 -- OR setup with some options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
-  renderer = {
-    group_empty = true,
-  },
   filters = {
     dotfiles = true,
   },
-  --auto_close = true,
+  renderer = {
+    group_empty = false,
+    highlight_git = false,
+    full_name = false,
+    highlight_opened_files = "none",
+    highlight_modified = "none",
+    icons = {
+      webdev_colors = true,
+      git_placement = "before",
+      modified_placement = "after",
+      padding = " ",
+      symlink_arrow = "➛",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+        modified = true,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        bookmark = "",
+        modified = "●",
+        folder = {
+          arrow_closed = "",
+          arrow_open = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+        git = {
+          -- unstaged = "✗",
+          -- staged = "✓",
+          -- unmerged = "",
+          -- renamed = "➜",
+          -- untracked = "★",
+          -- deleted = "",
+          -- ignored = "◌",
+          unstaged = ")",
+          staged = ")",
+          unmerged = ")",
+          renamed = "➜)",
+          untracked = ")",
+          deleted = "󰛌)",
+          ignored = ")",
+        },
+      },
+    },
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    show_on_dirs = true,
+    show_on_open_dirs = false,
+    timeout = 400,
+  },
+  update_focused_file = {
+    enable = true,
+    update_root = false,
+    ignore_list = {},
+  },
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+    show_on_open_dirs = false,
+    debounce_delay = 50,
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+      max = vim.diagnostic.severity.ERROR,
+    },
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  },
   on_attach = my_on_attach
-  --remove_keymaps = true
 })

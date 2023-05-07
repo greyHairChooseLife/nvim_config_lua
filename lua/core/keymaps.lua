@@ -14,10 +14,6 @@ vim.keymap.set('n', '<leader><leader>f', builtin.find_files, {}) -- telescope
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
-vim.keymap.set('n', '<leader><leader>Gre', ':GHOpenPR<CR>') 
-vim.keymap.set('n', '<leader><leader>Gpr', ':GHOpenToPR<CR>') 
-vim.keymap.set('n', '<leader><leader>Giss', ':GHOpenIssue<CR>') 
-
 vim.keymap.set('n', '<leader><leader>GG', ':G<CR>') 
 vim.keymap.set('n', '<leader><leader>vd', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader><leader>gh', ':GV<CR>') 
@@ -67,6 +63,11 @@ vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", {})
 vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", {})
 vim.keymap.set("n", "<A-Down>", ":horizontal resize -2<CR>", {})
 vim.keymap.set("n", "<A-Up>", ":horizontal resize +2<CR>", {})
+
+vim.keymap.set("n", "<A-S-Left>", ":vertical resize -8<CR>", {})
+vim.keymap.set("n", "<A-S-Right>", ":vertical resize +8<CR>", {})
+vim.keymap.set("n", "<A-S-Down>", ":horizontal resize -8<CR>", {})
+vim.keymap.set("n", "<A-S-Up>", ":horizontal resize +8<CR>", {})
 
 vim.keymap.set('n', '<A-n>', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-t>', ':tabnew<CR>')

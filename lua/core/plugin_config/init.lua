@@ -8,4 +8,7 @@ require("core.plugin_config.startify")
 require("core.plugin_config.vimwiki")
 require("core.plugin_config.gh")
 require("core.plugin_config.colorizer")
-
+require("core.plugin_config.lualine")
+require("core.plugin_config.spectre")
+require("core.plugin_config.spectre")
+require("core.plugin_config.devicons")

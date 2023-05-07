@@ -35,8 +35,6 @@ return require('packer').startup(function(use)
 	use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax 
 	--use 'jparise/vim-graphql'      -- GraphQL syntax 
 
---	-- filer
---	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   use 'itchyny/calendar.vim'
 
 	use 'mhinz/vim-startify'
@@ -48,7 +46,7 @@ return require('packer').startup(function(use)
 
   use {
     'ldelossa/gh.nvim',
-    requires = { { 'ldelossa/litee.nvim' } }
+    requires = { { 'ldelossa/litee.nvim' }, { 'nvim-tree/nvim-web-devicons', opt = true } }
   }
 
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
@@ -63,7 +61,6 @@ return require('packer').startup(function(use)
   use "junegunn/goyo.vim"
   use "junegunn/vim-easy-align"
 
-  --use 'nvim-pack/nvim-spectre'
 	use { 
 		'nvim-pack/nvim-spectre', 
 		requires = { {'nvim-lua/plenary.nvim'} }
@@ -71,6 +68,10 @@ return require('packer').startup(function(use)
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
 
 
 	-- Automatically set up your configuration after cloning packer.nvim   
