@@ -3,7 +3,7 @@ require('litee.lib').setup({
       icon_set = "nerd",
     },
   panel = {
-    orientation = "right",
+    orientation = "left",
     panel_size = 30,
   },
 })
@@ -33,7 +33,7 @@ require('litee.gh').setup({
     collapse = "zc",
     -- when cursor is over a "#1234" formatted issue or PR, open its details
     -- and comments in a new tab.
-    goto_issue = "gd",
+    goto_issue = "<CR>",
     -- show any details about a node, typically, this reveals commit messages
     -- and submitted review bodys.
     details = "d",
@@ -47,6 +47,10 @@ require('litee.gh').setup({
     -- inside a gh.nvim panel, if possible, open the node's web URL in your
     -- browser. useful particularily for digging into external failed CI
     -- checks.
-    goto_web = "gx"
+    goto_web = "gw", -- go web
+        -- if selectable, select the object under the cursor for additional operations.
+        select = "gs",
+        -- if selectable, clear all selected items.
+        clear_selection = "gss",
   }
 })

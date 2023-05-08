@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader><leader>gh', ':GV<CR>')
 vim.keymap.set('n', '<leader><leader>ghf', ':GV!<CR>')  -- current file only
 
 vim.keymap.set('n', '<leader><leader>rea', ':DiffviewOpen origin/main...HEAD --imply-local<CR>') 
-vim.keymap.set('n', '<leader><leader>reh', ':DiffviewFileHistory --range=origin/main..HEAD<CR>') 
+vim.keymap.set('n', '<leader><leader>reh', ':DiffviewFileHistory --range=origin/main...HEAD<CR>') 
 vim.keymap.set('n', '<leader><leader>ref', ':DiffviewFileHistory %<CR>') 
 
 
