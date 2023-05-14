@@ -28,12 +28,12 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope-ui-select.nvim'
 
   use { 'neoclide/coc.nvim', branch='release' }
-  -- manually: CocInstall coc-tsserver, coc-pairs, coc-css, coc-html, coc-json, coc-prettier, coc-word
+  -- manually: CocInstall coc-tsserver, coc-pairs, coc-css, coc-html, coc-json, coc-prettier, coc-word, coc-graphql
 
 	use 'pangloss/vim-javascript'    -- JavaScript support
 	use 'leafgarland/typescript-vim' -- TypeScript syntax 
 	use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax 
-	--use 'jparise/vim-graphql'      -- GraphQL syntax 
+	use 'jparise/vim-graphql'      -- GraphQL syntax 
 
   use 'itchyny/calendar.vim'
 
