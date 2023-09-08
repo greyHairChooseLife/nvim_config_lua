@@ -9,6 +9,13 @@ vim.opt.swapfile = false;
 vim.opt.tabstop = 2;
 vim.opt.shiftwidth = 2;
 
+vim.diagnostic.config({
+  underline = true,
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+})
+
 vim.opt.foldmethod = "manual"
 --vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
