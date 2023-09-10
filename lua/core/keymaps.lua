@@ -74,3 +74,5 @@ vim.keymap.set("n", "<A-S-Up>", ":horizontal resize +8<CR>", {})
 
 vim.keymap.set('n', '<A-n>', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-t>', ':tabnew<CR>')
+
+vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
