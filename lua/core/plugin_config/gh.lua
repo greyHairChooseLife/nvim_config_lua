@@ -54,3 +54,15 @@ require('litee.gh').setup({
         clear_selection = "gss",
   }
 })
+
+function GGOpenPRs() vim.cmd('GHOpenPR') end
+function GGstartReview() vim.cmd('GHStartReview') end
+function GGsubmitReview() vim.cmd('GHSubmitReview') end
+function GGdeleteReview() vim.cmd('GHDeleteReview') end
+function GGcomment() vim.cmd('GHCreateThread') end
+
+vim.cmd('command! GGopenPRs lua GGOpenPRs()')
+vim.cmd('command! GGstartReview lua GGstartReview()')
+vim.cmd('command! GGsubmitReview lua GGsubmitReview()')
+vim.cmd('command! GGdeleteReview lua GGdeleteReview()')
+vim.cmd('command! GGcomment lua GGcomment()')
