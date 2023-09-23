@@ -76,3 +76,6 @@ vim.keymap.set('n', '<A-n>', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-t>', ':tabnew<CR>')
 
 vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
+
+-- flutter-tools: toggle widget outline 
+vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>')
