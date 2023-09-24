@@ -79,3 +79,6 @@ vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
 
 -- flutter-tools: toggle widget outline 
 vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>')
+
+-- change word under cursor globally
+vim.keymap.set("n", "<Leader>C", [[:%s/<C-r><C-w>//g<Left><Left>]])
