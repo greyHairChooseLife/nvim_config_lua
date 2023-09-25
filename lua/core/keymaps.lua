@@ -59,8 +59,8 @@ vim.keymap.set('n', '<A-J>', ':wincmd J<CR>')
 vim.keymap.set('n', '<A-K>', ':wincmd K<CR>')
 vim.keymap.set('n', '<A-L>', ':wincmd L<CR>')
 
-vim.keymap.set('n', '<A-R>', ':resize ')
-vim.keymap.set('n', '<A-r>', ':vertical resize ')
+vim.keymap.set('n', '<A-R>h', ':resize ')
+vim.keymap.set('n', '<A-R>v', ':vertical resize ')
 
 vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", {})
 vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", {})
@@ -83,3 +83,6 @@ vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>')
 
 -- change word under cursor globally
 vim.keymap.set("n", "<Leader>C", [[:%s/<C-r><C-w>//g<Left><Left>]])
+
+-- get docs of K as independently
+vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
