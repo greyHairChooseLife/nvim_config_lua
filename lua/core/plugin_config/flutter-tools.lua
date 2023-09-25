@@ -35,3 +35,9 @@ vim.cmd('command! FTdeVtool lua openFlutterDevTools()')
 
 function openVisualDebug() vim.cmd('FlutterVisualDebug') end
 vim.cmd('command! FTvisualDebug lua openVisualDebug()')
+
+function copyDevToolUrl() vim.cmd('FlutterCopyProfilerUrl') end
+vim.cmd('command! FTcopyDevToolUrl lua copyDevToolUrl()')
+
+function clearLog() vim.cmd('FlutterLogClear') end
+vim.cmd('command! FTclearLog lua clearLog()')
