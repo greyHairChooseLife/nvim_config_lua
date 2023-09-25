@@ -13,3 +13,5 @@ require("core.plugin_config.lualine")
 require("core.plugin_config.devicons")
 require("core.plugin_config.octo")
 require("core.plugin_config.flutter-tools")
+require("core.plugin_config.winshift")
+
