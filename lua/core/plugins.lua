@@ -60,10 +60,11 @@ return require('packer').startup(function(use)
   use "junegunn/goyo.vim"
   use "junegunn/vim-easy-align"
 
-	use { 
-		'nvim-pack/nvim-spectre', 
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+  --	project 내에서 동일한 단어를 일괄 변경하기 위해서였는데, 실제로 잘 쓰지 않고 쓰더라도 오류가 나더라. %s/old/new 를 응용한 keymap으로 임시 대체한다.
+--	use { 
+--		'nvim-pack/nvim-spectre', 
+--		requires = { {'nvim-lua/plenary.nvim'} }
+--	}
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
