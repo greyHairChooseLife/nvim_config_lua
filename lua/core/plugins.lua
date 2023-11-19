@@ -96,6 +96,18 @@ return require('packer').startup(function(use)
 
   use 'sindrets/winshift.nvim'
 
+  use({
+    "jackMort/ChatGPT.nvim",
+      config = function()
+        require("chatgpt").setup()
+      end,
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+  })
+
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
 	if packer_bootstrap then     
