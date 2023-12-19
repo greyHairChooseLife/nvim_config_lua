@@ -1,6 +1,7 @@
 vim.g.mapleader = " " -- <leader> as Space
 
 vim.keymap.set('n', ',q', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
+vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일하게
 
 vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
 
