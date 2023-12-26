@@ -43,7 +43,8 @@ vim.keymap.set('n', '<leader><leader>spf', '<cmd>lua require("spectre").open_fil
 })
 
 -- window to tab
-vim.keymap.set('n', '<leader><leader>tt', '<C-w>T')
+vim.keymap.set('n', '<leader><leader>mt', '<C-w>T')
+vim.keymap.set('n', '<leader><leader>st', ':sp<CR><C-w>T')
 
 -- tap change
 vim.keymap.set('n', '<A-p>', 'gt')
