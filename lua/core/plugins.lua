@@ -73,17 +73,17 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
-  use {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function ()
-      require"octo".setup()
-    end
-  }
+--  use {
+--    'pwntester/octo.nvim',
+--    requires = {
+--      'nvim-lua/plenary.nvim',
+--      'nvim-telescope/telescope.nvim',
+--      'kyazdani42/nvim-web-devicons',
+--    },
+--    config = function ()
+--      require"octo".setup()
+--    end
+--  }
 
   use 'github/copilot.vim'
 
