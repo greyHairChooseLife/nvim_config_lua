@@ -14,7 +14,11 @@ vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') --
 
 vim.keymap.set('n', '<leader><leader>d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader><leader>f', builtin.find_files, {}) -- telescope
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
@@ -79,7 +83,7 @@ vim.keymap.set("n", "<A-S-Right>", ":vertical resize +8<CR>", {})
 vim.keymap.set("n", "<A-S-Down>", ":horizontal resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Up>", ":horizontal resize +8<CR>", {})
 
-vim.keymap.set('n', '<A-n>h', ':rightbelow new<CR>')
+vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-t>', ':tabnew<CR>')
 
