@@ -101,3 +101,6 @@ vim.keymap.set("n", "<Leader>C", [[:%s/<C-r><C-w>//g<Left><Left>]])
 
 -- get docs of K as independently
 vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
+
+-- focus on nvim-tree right away
+vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>")
