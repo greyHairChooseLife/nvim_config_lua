@@ -8,18 +8,19 @@ local colors = {
   yellow = '#e5c07b',
   wwhite = '#abb2bf',
   white = '#ffffff',
-  black = '#282c34',
+  bblack = '#282c34',
+  black = '#000000',
   grey = '#5c6370',
 }
 
 local my_theme = {
   normal = {
-    a = { fg = colors.black, bg = colors.blue, gui = 'bold' },
+    a = { fg = colors.yellow, bg = colors.black, gui = 'bold' },
     b = { fg = colors.white, bg = colors.black },
-    c = { fg = colors.blue, bg = colors.black },
+    c = { fg = colors.black, bg = colors.green },
     x = { fg = colors.white, bg = colors.black },
-    y = { fg = colors.white, bg = colors.black },
-    z = { fg = colors.blue, bg = colors.black },
+    y = { fg = colors.grey, bg = colors.black },
+    z = { fg = colors.yellow, bg = colors.black },
   },
   inactive = {
     a = { fg = colors.yellow, bg = colors.black },
