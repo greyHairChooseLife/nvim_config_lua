@@ -104,3 +104,6 @@ vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_d
 
 -- focus on nvim-tree right away
 vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>")
+-- splitting easily
+vim.keymap.set("n", ",sp", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)")
+vim.keymap.set("n", ",vs", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
