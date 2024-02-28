@@ -11,7 +11,7 @@ vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
 vim.keymap.set('n', '<leader><leader>q', ':q!<CR>') -- 
 vim.keymap.set('n', ',q', ':q<CR>') -- 
 vim.keymap.set('n', ',w', ':w<CR>') -- 
-vim.keymap.set('n', ',wq', ':wq<CR>') -- 
+vim.keymap.set('n', ',e', ':wq<CR>') -- 
 vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') -- 
 
