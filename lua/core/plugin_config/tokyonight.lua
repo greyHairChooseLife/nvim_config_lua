@@ -6,7 +6,7 @@ require("tokyonight").setup({
     colors.bg_float = "#000000"
     colors.bg_highlight = "#545c7e"
     -- colors.bg_popup = colors.error
-    colors.bg_search = "#2200CC"
+    colors.bg_search = "#1abc9c"
                                                                     --   bg_sidebar = "#1f2335",
     colors.bg_statusline = colors.red1
     colors.bg_visual = "#4D6B89"

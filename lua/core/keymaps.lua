@@ -8,11 +8,12 @@ vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
 vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
 vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
 
-vim.keymap.set('n', '<leader><leader>q', ':q!<CR>') -- 
-vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') -- 
+vim.keymap.set('n', '<leader>qq', ':q!<CR>') -- 
+vim.keymap.set('n', '<leader>wq', ':wq<CR>') -- 
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') -- 
 
-vim.keymap.set('n', '<leader><leader>d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
+vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
 
 local builtin = require('telescope.builtin')
@@ -105,5 +106,9 @@ vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])
 vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
 
 -- splitting easily
-vim.keymap.set("n", ",sp", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)")
-vim.keymap.set("n", ",vs", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
+vim.keymap.set("n", ",ss", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)")
+vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
+
+-- gitsigns shortcuts
+-- vim.keymap.set("n", ",s", ":Gitsigns toggle_linehl<CR>:Gitsigns toggle_deleted<CR>")
+vim.keymap.set("n", ",s", ":Gitsigns toggle_deleted<CR>")

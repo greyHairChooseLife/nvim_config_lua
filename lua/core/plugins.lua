@@ -10,6 +10,14 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
+vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])
+vim.cmd([[:highlight CustomSignsChange guifg=#ff007c]])
+vim.cmd([[:highlight CustomSignsChangeBg guibg=#e0af68]])
+vim.cmd([[:highlight CustomSignsDelete guifg=#e06c75]])    
+vim.cmd([[:highlight CustomSignsDeleteBg guibg=#e06c75]])    
+
+
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'  
   use 'folke/tokyonight.nvim'
@@ -85,15 +93,15 @@ return require('packer').startup(function(use)
 --    end
 --  }
 
---  use 'github/copilot.vim'
-  use {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
-  }
+  use 'github/copilot.vim'
+--  use {
+--    "zbirenbaum/copilot.lua",
+--    cmd = "Copilot",
+--    event = "InsertEnter",
+--    config = function()
+--      require("copilot").setup({})
+--    end,
+--  }
 
   use {
       'akinsho/flutter-tools.nvim',
@@ -112,6 +120,34 @@ return require('packer').startup(function(use)
         "nvim-telescope/telescope.nvim"
       }
   })
+--☇⚊✔⛖⛖☞✍✍✍✂✂✎✎▼▼▼⮯⮯♲♲
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim' 
+    },
+    config = function()
+      require('gitsigns').setup({
+        signs = {
+          add          = {
+            hl = 'CustomSignsAdd',
+            linehl = 'CustomSignsAddBg',
+            text = '▍' },
+          change       = {
+            hl = 'CustomSignsChange',
+            linehl = 'CustomSignsChangeBg',
+            text = '▍' },
+          delete       = {
+            hl = 'CustomSignsDelete',
+            text = '▼' },
+          topdelete    = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked    = { text = '┆' },
+        },
+        update_debounce = 30,
+      })
+    end
+  }
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
