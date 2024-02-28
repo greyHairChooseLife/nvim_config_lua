@@ -1,6 +1,6 @@
 vim.g.mapleader = "\\" -- <leader> as Space
 
-vim.keymap.set('n', ',.', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
+vim.keymap.set('n', ',c', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
 vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일하게
 
 vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
@@ -20,13 +20,13 @@ vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
 
 local builtin = require('telescope.builtin')
 --vim.keymap.set('n', '<leader>fft', builtin.filetypes, {})
-vim.keymap.set('n', ',ff', builtin.find_files, {})
-vim.keymap.set('n', ',fw', builtin.live_grep, {})
-vim.keymap.set('n', ',fc', builtin.grep_string, {})
-vim.keymap.set('n', ',fm', builtin.marks, {})
-vim.keymap.set('n', ',fb', builtin.buffers, {})
-vim.keymap.set('n', ',fs', builtin.git_stash, {})
-vim.keymap.set('n', ',fh', builtin.help_tags, {})
+vim.keymap.set('n', ',.f', builtin.find_files, {})
+vim.keymap.set('n', ',.w', builtin.live_grep, {})
+vim.keymap.set('n', ',.c', builtin.grep_string, {})
+vim.keymap.set('n', ',.m', builtin.marks, {})
+vim.keymap.set('n', ',.b', builtin.buffers, {})
+vim.keymap.set('n', ',.s', builtin.git_stash, {})
+vim.keymap.set('n', ',.h', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
