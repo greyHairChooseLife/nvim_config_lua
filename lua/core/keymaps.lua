@@ -8,28 +8,29 @@ vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
 vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
 vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
 
-vim.keymap.set('n', '<leader>qq', ':q!<CR>') -- 
-vim.keymap.set('n', '<leader>wq', ':wq<CR>') -- 
-vim.keymap.set('n', '<leader>Q', ':qa!<CR>') -- 
+vim.keymap.set('n', '<leader><leader>q', ':q!<CR>') -- 
+vim.keymap.set('n', '<leader><leader>w', ':w<CR>') -- 
+vim.keymap.set('n', '<leader><leader>wq', ':wq<CR>') -- 
+vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') -- 
 
 vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 --vim.keymap.set('n', '<leader>fft', builtin.filetypes, {})
-vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fc', builtin.grep_string, {})
-vim.keymap.set('n', '<leader>fm', builtin.marks, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fs', builtin.git_stash, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', ',ff', builtin.find_files, {})
+vim.keymap.set('n', ',fw', builtin.live_grep, {})
+vim.keymap.set('n', ',fc', builtin.grep_string, {})
+vim.keymap.set('n', ',fm', builtin.marks, {})
+vim.keymap.set('n', ',fb', builtin.buffers, {})
+vim.keymap.set('n', ',fs', builtin.git_stash, {})
+vim.keymap.set('n', ',fh', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
-vim.keymap.set('n', '<leader>vd', ':Gvdiffsplit<CR>') 
+vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader><leader>gg', ':G<CR>') 
 vim.keymap.set('n', '<leader><leader>gh', ':GV<CR>') 
 vim.keymap.set('n', '<leader><leader>ghf', ':GV!<CR>')  -- current file only
@@ -54,8 +55,8 @@ vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 --})
 
 -- window to tab
-vim.keymap.set('n', '<leader><leader>mt', '<C-w>T')
-vim.keymap.set('n', '<leader><leader>st', ':sp<CR><C-w>T')
+vim.keymap.set('n', ',mt', '<C-w>T')
+vim.keymap.set('n', ',st', ':sp<CR><C-w>T')
 
 -- tap change
 vim.keymap.set('n', '<A-p>', 'gt')
