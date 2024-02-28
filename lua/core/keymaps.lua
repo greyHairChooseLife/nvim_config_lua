@@ -1,4 +1,4 @@
-vim.g.mapleader = " " -- <leader> as Space
+vim.g.mapleader = "\\" -- <leader> as Space
 
 vim.keymap.set('n', ',q', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
 vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일하게
@@ -13,9 +13,11 @@ vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') --
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') -- 
 
 vim.keymap.set('n', '<leader><leader>d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
+vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fft', builtin.filetypes, {})
+--vim.keymap.set('n', '<leader>fft', builtin.filetypes, {})
 vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fc', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>fm', builtin.marks, {})
@@ -26,10 +28,10 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
-vim.keymap.set('n', '<leader><leader>GG', ':G<CR>') 
-vim.keymap.set('n', '<leader><leader>vd', ':Gvdiffsplit<CR>') 
-vim.keymap.set('n', '<leader><leader>Gh', ':GV<CR>') 
-vim.keymap.set('n', '<leader><leader>Ghf', ':GV!<CR>')  -- current file only
+vim.keymap.set('n', '<leader>vd', ':Gvdiffsplit<CR>') 
+vim.keymap.set('n', '<leader><leader>gg', ':G<CR>') 
+vim.keymap.set('n', '<leader><leader>gh', ':GV<CR>') 
+vim.keymap.set('n', '<leader><leader>ghf', ':GV!<CR>')  -- current file only
 
 vim.keymap.set('n', '<leader><leader>rea', ':DiffviewOpen origin/main...HEAD --imply-local<CR>') 
 vim.keymap.set('n', '<leader><leader>reh', ':DiffviewFileHistory --range=origin/main...HEAD<CR>') 
@@ -40,15 +42,15 @@ vim.keymap.set('n', '<leader><leader>ref', ':DiffviewFileHistory %<CR>')
 vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
 vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 
-vim.keymap.set('n', '<leader><leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-    desc = "Search current word"
-})
-vim.keymap.set('v', '<leader><leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-    desc = "Search current visual block"
-})
-vim.keymap.set('n', '<leader><leader>spf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-    desc = "Search on current file"
-})
+--vim.keymap.set('n', '<leader><leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+--    desc = "Search current word"
+--})
+--vim.keymap.set('v', '<leader><leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+--    desc = "Search current visual block"
+--})
+--vim.keymap.set('n', '<leader><leader>spf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+--    desc = "Search on current file"
+--})
 
 -- window to tab
 vim.keymap.set('n', '<leader><leader>mt', '<C-w>T')
@@ -97,13 +99,11 @@ vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>')
 
 -- change word under cursor globally
-vim.keymap.set("n", "<Leader>C", [[:%s/<C-r><C-w>//g<Left><Left>]])
+vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])
 
 -- get docs of K as independently
 vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
 
--- focus on nvim-tree right away
-vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>")
 -- splitting easily
 vim.keymap.set("n", ",sp", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)")
 vim.keymap.set("n", ",vs", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")

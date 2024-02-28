@@ -39,6 +39,9 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   filters = {
     dotfiles = true,
+    custom = {
+      "node_modules",
+    },
   },
   renderer = {
     group_empty = false,
