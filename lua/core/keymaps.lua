@@ -8,11 +8,10 @@ vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
 vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
 vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
 
-vim.keymap.set('n', ',q', ':q<CR>') -- 
-vim.keymap.set('n', ',w', ':w<CR>') -- 
-vim.keymap.set('n', ',e', ':wq<CR>') -- 
-vim.keymap.set('n', ',tq', ':tabclose!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>q', ':q!<CR>') -- 
+vim.keymap.set('n', '<leader><leader>w', ':w<CR>') -- 
+vim.keymap.set('n', '<leader><leader>e', ':wq<CR>') -- 
+vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') -- 
 
 vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
@@ -32,9 +31,9 @@ vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
 vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>') 
-vim.keymap.set('n', '<leader><leader>gg', ':G<CR>') 
-vim.keymap.set('n', '<leader><leader>gh', ':GV<CR>') 
-vim.keymap.set('n', '<leader><leader>ghf', ':GV!<CR>')  -- current file only
+vim.keymap.set('n', '<leader>gg', ':G<CR>') 
+vim.keymap.set('n', '<leader>gh', ':GV<CR>') 
+vim.keymap.set('n', '<leader>ghf', ':GV!<CR>')  -- current file only
 
 vim.keymap.set('n', '<leader><leader>rea', ':DiffviewOpen origin/main...HEAD --imply-local<CR>') 
 vim.keymap.set('n', '<leader><leader>reh', ':DiffviewFileHistory --range=origin/main...HEAD<CR>') 
