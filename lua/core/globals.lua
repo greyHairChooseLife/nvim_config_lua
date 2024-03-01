@@ -23,3 +23,6 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Set the line number color
 vim.cmd("highlight LineNr guifg=grey ctermfg=red")
+vim.cmd("highlight TabLine guibg=black")
+vim.cmd("highlight TabLineFill guibg=#24283b")
+vim.cmd("highlight TabLineSel guibg=#98c379")
