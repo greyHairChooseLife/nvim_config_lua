@@ -1,4 +1,4 @@
-require("copilot").setup({
+require("copilot).setup({
   panel = {
     enabled = true,
     auto_refresh = false,
@@ -16,7 +16,7 @@ require("copilot").setup({
   },
   suggestion = {
     enabled = true,
-    auto_trigger = true,
+    auto_trigger = false,
     debounce = 75,
     keymap = {
       accept = "<M-CR>",
@@ -29,7 +29,7 @@ require("copilot").setup({
   },
   filetypes = {
     yaml = false,
-    markdown = false,
+    markdown = true,
     help = false,
     gitcommit = true,
     gitrebase = false,
