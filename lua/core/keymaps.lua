@@ -18,7 +18,6 @@ vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing ya
 vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
 
 local builtin = require('telescope.builtin')
---vim.keymap.set('n', '<leader>fft', builtin.filetypes, {})
 vim.keymap.set('n', ',.f', builtin.find_files, {})
 vim.keymap.set('n', ',.w', builtin.live_grep, {})
 vim.keymap.set('n', ',.c', builtin.grep_string, {})
