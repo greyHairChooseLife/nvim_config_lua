@@ -1,4 +1,4 @@
-require("copilot).setup({
+require("copilot").setup({
   panel = {
     enabled = true,
     auto_refresh = false,
