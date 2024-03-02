@@ -58,8 +58,10 @@ vim.keymap.set('n', ',mt', '<C-w>T')
 vim.keymap.set('n', ',st', ':sp<CR><C-w>T')
 
 -- tap change
-vim.keymap.set('n', '<A-p>', 'gt')
-vim.keymap.set('n', '<A-o>', 'gT')
+--vim.keymap.set('n', '<A-p>', 'gt')
+--vim.keymap.set('n', '<A-o>', 'gT')
+vim.keymap.set('n', '<Tab>', 'gt')
+vim.keymap.set('n', '<S-Tab>', 'gT')
 
 -- window controll
 vim.keymap.set('n', '<A-h>', ':wincmd h<CR>')
