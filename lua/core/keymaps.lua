@@ -1,6 +1,6 @@
 vim.g.mapleader = "\\" -- <leader> as Space
 
-vim.keymap.set('n', ',l', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
+vim.keymap.set('n', ',m', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
 vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일하게
 
 vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
@@ -24,12 +24,13 @@ vim.keymap.set('n', ',.c', builtin.grep_string, {})
 vim.keymap.set('n', ',.m', builtin.marks, {})
 vim.keymap.set('n', ',.b', builtin.buffers, {})
 vim.keymap.set('n', ',.s', builtin.git_stash, {})
+vim.keymap.set('n', ',.g', builtin.git_status, {})
 vim.keymap.set('n', ',.h', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
-vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>') 
+vim.keymap.set('n', ',dv', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader>gg', ':G<CR>') 
 vim.keymap.set('n', '<leader>gh', ':GV<CR>') 
 vim.keymap.set('n', '<leader>ghf', ':GV!<CR>')  -- current file only
@@ -113,4 +114,4 @@ vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
 
 -- gitsigns shortcuts
 -- vim.keymap.set("n", ",s", ":Gitsigns toggle_linehl<CR>:Gitsigns toggle_deleted<CR>")
-vim.keymap.set("n", "<leader><leader>c", ":Gitsigns toggle_deleted<CR>")
+vim.keymap.set("n", "<leader><leader>s", ":Gitsigns toggle_deleted<CR>")
