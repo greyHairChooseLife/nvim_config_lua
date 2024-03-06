@@ -83,7 +83,7 @@ function ToggleQFList()
   end
 end
 
-vim.api.nvim_set_keymap('n', ',q', ':lua ToggleQFList()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ',,q', ':lua ToggleQFList()<CR>', { noremap = true, silent = true })
 
 -- Quickfix 리스트 순환 이동
 vim.keymap.set('n', '<C-n>', function()

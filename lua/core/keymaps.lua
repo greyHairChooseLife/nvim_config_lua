@@ -1,6 +1,6 @@
 vim.g.mapleader = "\\" -- <leader> as Space
 
-vim.keymap.set('n', ',m', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
+vim.keymap.set('n', ',q', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
 vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일하게
 
 vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
@@ -30,7 +30,7 @@ vim.keymap.set('n', ',.h', builtin.help_tags, {})
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
-vim.keymap.set('n', ',dv', ':Gvdiffsplit<CR>') 
+vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader>gg', ':G<CR>') 
 vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>') 
 vim.keymap.set('n', '<leader>glf', ':GV!<CR>')  -- current file only
