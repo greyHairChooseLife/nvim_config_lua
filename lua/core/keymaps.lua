@@ -16,7 +16,8 @@ vim.keymap.set('n', '<leader><leader>e', ':mkview<CR>:wq<CR>') --
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>') -- 
 
 vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
-vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
+--vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
+-- diffview 쪽이랑 통합했다. 조건부로 동작
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', ',.f', builtin.find_files, {})
@@ -40,6 +41,7 @@ vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=origin')
 vim.keymap.set('n', '<leader>rec', ':DiffviewFileHistory --range=origin/main...HEAD<CR>') 
 vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>') 
 vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>') 
+vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>') 
 
 
 
@@ -120,3 +122,27 @@ vim.keymap.set("n", "<leader><leader>s", ":Gitsigns toggle_deleted<CR>")
 
 -- easy visual block for word
 vim.keymap.set("n", "vv", "viw")
+
+
+function DiffviewFilePanelFocusConditional()
+  local buffers = vim.api.nvim_list_bufs()
+  local diffviewOpen = false
+
+  for _, buf in ipairs(buffers) do
+    local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+    if ft == 'DiffviewFiles' then
+      diffviewOpen = true
+      break
+    end
+  end
+
+  if diffviewOpen then
+    vim.cmd('DiffviewFocusFiles')
+  else
+    -- Diffview가 열려 있지 않을 경우, NvimTreeFocus 명령을 실행합니다.
+    vim.cmd('NvimTreeFocus')
+  end
+end
+
+-- 기존의 NvimTree로 이동하는 키 매핑을 대체합니다.
+vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, {silent = true, noremap = true})
