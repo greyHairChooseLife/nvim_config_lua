@@ -158,8 +158,8 @@ keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', o
 
 -- Use CTRL-S for selections ranges
 -- Requires 'textDocument/selectionRange' support of language server
-keyset("n", ",s", "<Plug>(coc-range-select)", {silent = true})
-keyset("x", ",s", "<Plug>(coc-range-select)", {silent = true})
+keyset("n", ",a", "<Plug>(coc-range-select)", {silent = true})
+keyset("x", ",a", "<Plug>(coc-range-select)", {silent = true})
 
 
 -- Add `:Format` command to format current buffer

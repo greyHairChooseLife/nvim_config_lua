@@ -116,3 +116,6 @@ vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
 -- gitsigns shortcuts
 -- vim.keymap.set("n", ",s", ":Gitsigns toggle_linehl<CR>:Gitsigns toggle_deleted<CR>")
 vim.keymap.set("n", "<leader><leader>s", ":Gitsigns toggle_deleted<CR>")
+
+-- easy visual block for word
+vim.keymap.set("n", "vv", "viw")

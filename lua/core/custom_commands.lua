@@ -120,3 +120,22 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.cursorline = true
   end
 })
+
+-- telescope custom commands, visual select search
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+vim.keymap.set('v', ',.c', function()
+	local text = vim.getVisualSelection()
+	require('telescope.builtin').live_grep({ default_text = text })
+end, { noremap = true, silent = true })
