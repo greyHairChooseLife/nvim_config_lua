@@ -20,13 +20,7 @@ vim.cmd([[:highlight CustomSignsDeleteBg guibg=#e06c75]])
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'  
-  use 'folke/tokyonight.nvim'
 	use 'nvim-tree/nvim-tree.lua'
-	use 'nvim-tree/nvim-web-devicons'
-    	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
 	use { 
 		'nvim-telescope/telescope.nvim', 
 		tag = '0.1.5',
@@ -34,20 +28,8 @@ return require('packer').startup(function(use)
 	}
   use 'nvim-telescope/telescope-ui-select.nvim'
 
-	use 'pangloss/vim-javascript'    -- JavaScript support
-	use 'leafgarland/typescript-vim' -- TypeScript syntax 
-	use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax 
-	use 'jparise/vim-graphql'      -- GraphQL syntax 
-
   use 'tpope/vim-fugitive'
 	use 'junegunn/gv.vim'
-
-  use {
-    'ldelossa/gh.nvim',
-    requires = { { 'ldelossa/litee.nvim' }, { 'nvim-tree/nvim-web-devicons', opt = true } }
-  }
-
-  use "norcalli/nvim-colorizer.lua"
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
@@ -56,34 +38,6 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use 'sindrets/winshift.nvim'
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim' 
-    },
-    config = function()
-      require('gitsigns').setup({
-        signs = {
-          add          = {
-            hl = 'CustomSignsAdd',
-            linehl = 'CustomSignsAddBg',
-            text = '▍' },
-          change       = {
-            hl = 'CustomSignsChange',
-            linehl = 'CustomSignsChangeBg',
-            text = '▍' },
-          delete       = {
-            hl = 'CustomSignsDelete',
-            text = '▼' },
-          topdelete    = { text = '‾' },
-          changedelete = { text = '~' },
-          untracked    = { text = '┆' },
-        },
-        update_debounce = 30,
-      })
-    end
-  }
 
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()

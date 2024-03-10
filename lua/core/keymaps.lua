@@ -29,9 +29,6 @@ vim.keymap.set('n', ',.s', builtin.git_stash, {})
 vim.keymap.set('n', ',.g', builtin.git_status, {})
 vim.keymap.set('n', ',.h', builtin.help_tags, {})
 
-vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
-vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
-
 vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>') 
 vim.keymap.set('n', '<leader>glf', ':GV!<CR>')  -- current file only
@@ -44,19 +41,6 @@ vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
 vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>') 
 
 
-
-vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
-vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
-
---vim.keymap.set('n', '<leader><leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
---    desc = "Search current word"
---})
---vim.keymap.set('v', '<leader><leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
---    desc = "Search current visual block"
---})
---vim.keymap.set('n', '<leader><leader>spf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
---    desc = "Search on current file"
---})
 
 -- window to tab
 vim.keymap.set('n', ',mt', '<C-w>T')
@@ -101,8 +85,6 @@ vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>t', ':tabnew<CR>')
 
-vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
-
 
 -- change word under cursor globally
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])
@@ -112,8 +94,6 @@ vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_d
 
 -- gitsigns shortcuts
 -- vim.keymap.set("n", ",s", ":Gitsigns toggle_linehl<CR>:Gitsigns toggle_deleted<CR>")
-vim.keymap.set("n", "<leader><leader>s", ":Gitsigns toggle_deleted<CR>")
-
 -- easy visual block for word
 vim.keymap.set("n", "vv", "viw")
 

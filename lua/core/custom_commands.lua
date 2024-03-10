@@ -23,8 +23,6 @@ function ExpandGlow()
   ]])
 end
 
-vim.cmd('command! GlowFull lua ExpandGlow()')
-
 -- Quickfix 항목 제거 함수 정의
 function RemoveQFItem()
   local curqfidx = vim.fn.line('.') - 1
