@@ -31,8 +31,6 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
 	use 'junegunn/gv.vim'
 
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
