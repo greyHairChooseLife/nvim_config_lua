@@ -37,10 +37,6 @@ return require('packer').startup(function(use)
   }
   use 'sindrets/winshift.nvim'
 
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
-  end}
-
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
 	if packer_bootstrap then     
