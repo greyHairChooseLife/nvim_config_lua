@@ -103,18 +103,12 @@ vim.keymap.set('n', '<A-n>t', ':tabnew<CR>')
 
 vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
 
--- flutter-tools: toggle widget outline 
-vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>')
 
 -- change word under cursor globally
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])
 
 -- get docs of K as independently
 vim.keymap.set("n", "<Leader><Leader>K", ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
-
--- splitting easily
-vim.keymap.set("n", ",ss", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)")
-vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
 
 -- gitsigns shortcuts
 -- vim.keymap.set("n", ",s", ":Gitsigns toggle_linehl<CR>:Gitsigns toggle_deleted<CR>")
