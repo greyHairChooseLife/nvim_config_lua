@@ -209,12 +209,14 @@ return require('packer').startup(function(use)
   --pacman -S kitty
   use '3rd/image.nvim'
  
-  use {
-      'antonk52/markdowny.nvim',
-      config = function()
-          require('markdowny').setup({filetypes = {'markdown'}})
-      end
-  }
+  use {'antonk52/markdowny.nvim', config = function()
+    require('markdowny').setup({filetypes = {'markdown'}})
+  end}
+
+  -- https://github.com/hedyhli/outline.nvim
+  use {'hedyhli/outline.nvim', config = function()
+    require("outline").setup({})
+  end}
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
