@@ -209,7 +209,12 @@ return require('packer').startup(function(use)
   --pacman -S kitty
   use '3rd/image.nvim'
  
- -- use 'sunjon/shade.nvim' -- shade inactive windows
+  use {
+      'antonk52/markdowny.nvim',
+      config = function()
+          require('markdowny').setup({filetypes = {'markdown'}})
+      end
+  }
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 

@@ -118,7 +118,7 @@ keyset("x", ",.av", "<Plug>(coc-codeaction-selected)", opts) -- Remap keys for a
 keyset("n", ",.as", "<Plug>(coc-codeaction-source)", opts) -- Remap keys for apply code actions affect whole buffer.
 
 -- Remap keys for applying codeActions to the current buffer
---keyset("n", "<leader>ac", "<Plug>(coc-codeaction)", opts)
+keyset("n", ",.aa", "<Plug>(coc-codeaction)", opts)
 -- Apply the most preferred quickfix action on the current line.
 --keyset("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
 

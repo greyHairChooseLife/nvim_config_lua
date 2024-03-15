@@ -1,4 +1,5 @@
 {
   "coc.preferences.formatOnSave": true,
-  "flutter.lsp.initialization.closingLabels": false
+  "flutter.lsp.initialization.closingLabels": false,
+  "markdownlint.onChange": true
 }

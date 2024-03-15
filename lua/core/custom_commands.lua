@@ -139,3 +139,10 @@ vim.keymap.set('v', ',.c', function()
 	local text = vim.getVisualSelection()
 	require('telescope.builtin').live_grep({ default_text = text })
 end, { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.api.nvim_buf_set_keymap(0, 'n', 'PP', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
+    end,
+})
