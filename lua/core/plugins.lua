@@ -196,6 +196,19 @@ return require('packer').startup(function(use)
     require("toggleterm").setup()
   end}
 
+  use 'onsails/lspkind.nvim'
+
+  --image renderer
+  --dependencies
+  --pacman -S imagemagick
+  --pacman -S luarocks
+  --luarocks --lua-version 5.1 install --local magick
+  -- Example for configuring Neovim to load user-installed installed Lua rocks:
+  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+  --pacman -S kitty
+  use '3rd/image.nvim'
+ 
  -- use 'sunjon/shade.nvim' -- shade inactive windows
 
 	-- Automatically set up your configuration after cloning packer.nvim   
