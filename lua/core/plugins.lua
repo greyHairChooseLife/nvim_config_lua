@@ -217,6 +217,14 @@ return require('packer').startup(function(use)
   use {'hedyhli/outline.nvim', config = function()
     require("outline").setup({})
   end}
+  
+  -- https://github.com/numToStr/Comment.nvim?tab=readme-ov-file
+  use {'numToStr/Comment.nvim', config = function()
+    require('Comment').setup()
+  end}
+  --use {'JoosepAlviste/nvim-ts-context-commentstring'}
+  --block comment 달면 되는데 꼭 설치해야할까? 일단 미루자.
+  
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
