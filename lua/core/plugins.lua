@@ -17,6 +17,9 @@ vim.cmd([[:highlight CustomSignsChangeBg guibg=#e0af68]])
 vim.cmd([[:highlight CustomSignsDelete guifg=#e06c75]])    
 vim.cmd([[:highlight CustomSignsDeleteBg guibg=#e06c75]])    
 
+vim.cmd("highlight OutlineCurrent guifg=#e5c07b guibg=#3e4452")
+vim.cmd("highlight MyOutlineNormal guibg=#2e2e2e")
+
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'  
@@ -214,9 +217,11 @@ return require('packer').startup(function(use)
   end}
 
   -- https://github.com/hedyhli/outline.nvim
-  use {'hedyhli/outline.nvim', config = function()
-    require("outline").setup({})
-  end}
+  use {'hedyhli/outline.nvim'
+  -- , config = function()
+  -- require("outline").setup({})
+  -- end
+  }
   
   -- https://github.com/numToStr/Comment.nvim?tab=readme-ov-file
   use {'numToStr/Comment.nvim', config = function()

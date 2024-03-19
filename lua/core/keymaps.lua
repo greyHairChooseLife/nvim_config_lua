@@ -146,3 +146,7 @@ end
 
 -- 기존의 NvimTree로 이동하는 키 매핑을 대체합니다.
 vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, {silent = true, noremap = true})
+
+
+vim.keymap.set({'n', 'x'}, ',,o', ":Outline<CR>")
+vim.keymap.set({'n', 'x'}, ',o', ":OutlineFocusOutline<CR>")
