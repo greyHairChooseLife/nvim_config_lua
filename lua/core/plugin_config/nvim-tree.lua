@@ -49,6 +49,7 @@ require("nvim-tree").setup({
     },
   },
   renderer = {
+    add_trailing = true,
     group_empty = false,
     highlight_git = false,
     full_name = false,
@@ -129,5 +130,18 @@ require("nvim-tree").setup({
       error = "",
     },
   },
-  on_attach = my_on_attach
+  on_attach = my_on_attach,
+  auto_reload_on_write = true,
+  modified = {
+    enable = true,
+    show_on_dirs = true,
+    show_on_open_dirs = false,
+  },
+  actions = {
+    change_dir = {
+      enable = true,
+      global = true,
+      restrict_above_cwd = false,
+    },
+  }
 })
