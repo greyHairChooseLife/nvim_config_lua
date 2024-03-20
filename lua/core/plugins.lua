@@ -230,6 +230,9 @@ return require('packer').startup(function(use)
   --use {'JoosepAlviste/nvim-ts-context-commentstring'}
   --block comment 달면 되는데 꼭 설치해야할까? 일단 미루자.
   
+  -- https://github.com/ggandor/leap.nvim
+  use {'ggandor/leap.nvim'}
+  require('leap').create_default_mappings()
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
