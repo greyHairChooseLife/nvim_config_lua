@@ -150,3 +150,7 @@ vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, {silent = true, nor
 
 vim.keymap.set({'n', 'x'}, ',,o', ":Outline<CR>")
 vim.keymap.set({'n', 'x'}, ',o', ":OutlineFocusOutline<CR>")
+
+vim.keymap.set("n", ",.S", require("auto-session.session-lens").search_session, {
+  noremap = true,
+})

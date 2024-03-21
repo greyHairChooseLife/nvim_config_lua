@@ -47,7 +47,7 @@ return require('packer').startup(function(use)
 
   use 'itchyny/calendar.vim'
 
-	use 'mhinz/vim-startify'
+	-- use 'mhinz/vim-startify'
 
 	use 'vimwiki/vimwiki'
 
@@ -233,6 +233,24 @@ return require('packer').startup(function(use)
   -- https://github.com/ggandor/leap.nvim
   use {'ggandor/leap.nvim'}
   require('leap').create_default_mappings()
+
+  -- https://github.com/rmagatti/auto-session
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/test", "~/Downloads", "/*"},
+        session_lens = {
+          -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+          buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+      }
+    end
+  }
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 
