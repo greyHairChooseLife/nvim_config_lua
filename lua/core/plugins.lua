@@ -248,9 +248,21 @@ return require('packer').startup(function(use)
           theme_conf = { border = true },
           previewer = false,
         },
+        auto_save_enabled = false
       }
     end
   }
+
+  use {
+    'rmagatti/session-lens',
+    requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+    config = function()
+      require('session-lens').setup({
+        path_display = {'shorten'},
+      })
+    end
+  }
+  -- 라이브러리 뒤져봤더니, floating 메뉴에서 세션 삭제하는 기본 키맵이 <C-d>다.
 
 	-- Automatically set up your configuration after cloning packer.nvim   
 	-- Put this at the end after all plugins 

@@ -27,4 +27,7 @@ vim.cmd("highlight TabLine guibg=black")
 vim.cmd("highlight TabLineFill guibg=#24283b")
 vim.cmd("highlight TabLineSel guibg=#98c379")
 
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = false
