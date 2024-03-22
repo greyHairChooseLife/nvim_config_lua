@@ -19,6 +19,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'K', api.node.show_info_popup,                  opts('Info'))
   vim.keymap.set('n', 'o', api.node.open.preview,                     opts('Open Preview'))
   vim.keymap.set('n', 'O',     api.node.open.edit,                    opts('Open'))
+  vim.keymap.set('n', 'L',     api.node.open.vertical,                opts('Open'))
   vim.keymap.set('n', 'N',     api.fs.create,                         opts('Create'))
   vim.keymap.set('n', 'D',     api.fs.trash,                          opts('Trash'))
   vim.keymap.set('n', 'X',     api.fs.cut,                            opts('Cut'))
@@ -45,7 +46,7 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
     custom = {
-      "node_modules",
+      -- "node_modules",
     },
   },
   renderer = {
@@ -111,7 +112,7 @@ require("nvim-tree").setup({
   },
   update_focused_file = {
     enable = true,
-    update_root = false,
+    update_root = true,
     ignore_list = {},
   },
   diagnostics = {
