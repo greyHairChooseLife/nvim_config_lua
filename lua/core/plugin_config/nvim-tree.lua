@@ -33,6 +33,8 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'M',       api.tree.toggle_no_bookmark_filter,  opts('Toggle Filter: No Bookmark'))
   vim.keymap.set('n', 'bD',      api.marks.bulk.trash,                opts('Trash Bookmarked'))
   vim.keymap.set('n', 'bmv',     api.marks.bulk.move,                 opts('Move Bookmarked'))
+  vim.keymap.set('n', '<BS>',    api.node.navigate.parent_close,      opts('Close Directory'))
+  vim.keymap.set('n', 'p',       api.node.navigate.parent,            opts('Parent Directory'))
 
   vim.keymap.set('n', 'ee',     api.tree.expand_all,                   opts('Expand All'))
   vim.keymap.set('n', 'cc',     api.tree.collapse_all,                opts('Collapse'))
@@ -52,7 +54,7 @@ require("nvim-tree").setup({
     },
   },
   renderer = {
-    add_trailing = true,
+    add_trailing = false,
     group_empty = false,
     highlight_git = false,
     full_name = false,
@@ -142,9 +144,9 @@ require("nvim-tree").setup({
   },
   actions = {
     change_dir = {
-      enable = true,
-      global = true,
-      restrict_above_cwd = false,
+      enable = false,
+      global = false,
+      restrict_above_cwd = true,
     },
   }
 })
