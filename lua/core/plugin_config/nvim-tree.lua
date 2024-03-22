@@ -11,25 +11,6 @@ local function my_on_attach(bufnr)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
-  local function open_in_new_vertical_split_focus_stay()
-    -- 현재 선택된 노드(파일)의 경로를 얻습니다.
-    local node = api.tree.get_node_under_cursor()
-    -- 새로운 수직 분할을 만듭니다.
-    vim.cmd('vert rightbelow new')
-    -- 새로운 분할에서 파일을 엽니다.
-    vim.cmd('edit ' .. node.absolute_path)
-    api.tree.focus()
-  end
-
-  local function open_in_new_vertical_split()
-    -- 현재 선택된 노드(파일)의 경로를 얻습니다.
-    local node = api.tree.get_node_under_cursor()
-    -- 새로운 수직 분할을 만듭니다.
-    vim.cmd('vert rightbelow new')
-    -- 새로운 분할에서 파일을 엽니다.
-    vim.cmd('edit ' .. node.absolute_path)
-  end
-
   -- put some default mappings here
   -- user mappings
   vim.keymap.set('n', 'g?',    api.tree.toggle_help,                  opts('Help'))
@@ -39,8 +20,8 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'K', api.node.show_info_popup,                  opts('Info'))
   vim.keymap.set('n', 'o', api.node.open.preview,                     opts('Open Preview'))
   vim.keymap.set('n', 'O',     api.node.open.edit,                    opts('Open'))
-  vim.keymap.set('n', 'l', open_in_new_vertical_split_focus_stay, {desc = 'Open in new vertical split'})
-  vim.keymap.set('n', 'L', open_in_new_vertical_split, {desc = 'Open in new vertical split'})
+  -- vim.keymap.set('n', 'l', open_in_new_vertical_split_focus_stay, {desc = 'Open in new vertical split'})
+  -- vim.keymap.set('n', 'L', open_in_new_vertical_split, {desc = 'Open in new vertical split'})
   vim.keymap.set('n', 'N',     api.fs.create,                         opts('Create'))
   vim.keymap.set('n', 'D',     api.fs.trash,                          opts('Trash'))
   vim.keymap.set('n', 'X',     api.fs.cut,                            opts('Cut'))
