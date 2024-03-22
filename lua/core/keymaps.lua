@@ -1,5 +1,5 @@
 vim.g.mapleader = "\\" -- <leader> as Space
-
+--
 vim.keymap.set('n', ',q', ':nohlsearch<CR>', {silent = true}) -- 검색 기록 제거
 vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일하게
 
@@ -30,7 +30,7 @@ vim.keymap.set('n', ',.g', builtin.git_status, {})
 vim.keymap.set('n', ',.h', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
-vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
+-- vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>') 
 
 vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>') 
 vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>') 
@@ -160,3 +160,5 @@ vim.keymap.set({'n', 'x', 'o'}, ',L',  '<Plug>(leap-backward)')
 vim.keymap.set({'n', 'x', 'o'}, ',gl', '<Plug>(leap-from-window)')
 
 vim.keymap.set("n", "<leader><leader>s", ":SessionSave<CR>")
+
+vim.keymap.set({'n', 'x', 'o'}, 'zo', 'za')
