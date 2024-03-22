@@ -232,7 +232,7 @@ return require('packer').startup(function(use)
   
   -- https://github.com/ggandor/leap.nvim
   use {'ggandor/leap.nvim'}
-  require('leap').create_default_mappings()
+  -- require('leap').create_default_mappings()
 
   -- https://github.com/rmagatti/auto-session
   use {

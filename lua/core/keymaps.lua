@@ -5,8 +5,8 @@ vim.keymap.set('n', ',r', ':wincmd =<CR>', {silent = true}) -- 창 크기 동일
 
 vim.keymap.set({'n', 'x'}, ',p', '"0p') -- paste last thing yanked, not deleted
 
-vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
-vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
+-- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
+-- vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
 
 vim.keymap.set('n', '<leader><leader>q', ':q!<CR>') -- 
 vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>') -- 
@@ -154,3 +154,7 @@ vim.keymap.set({'n', 'x'}, ',o', ":OutlineFocusOutline<CR>")
 vim.keymap.set("n", ",.S", require("auto-session.session-lens").search_session, {
   noremap = true,
 })
+
+vim.keymap.set({'n', 'x', 'o'}, ',l',  '<Plug>(leap-forward)')
+vim.keymap.set({'n', 'x', 'o'}, ',L',  '<Plug>(leap-backward)')
+vim.keymap.set({'n', 'x', 'o'}, ',gl', '<Plug>(leap-from-window)')
