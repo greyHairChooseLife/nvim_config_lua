@@ -144,5 +144,22 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
         vim.api.nvim_buf_set_keymap(0, 'n', 'PP', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
+
+        -- 아래와 같이 시도했으나, 넘 복잡해서인지 잘 안된다. 그냥 antonk52/markdowny.nvim 플러그인을 아래 코드라인처럼 수정했다.
+        
+-- -- surround visual block with '=='
+-- vim.api.nvim_buf_set_keymap(0, 'v', '<C-d>', '<Esc>`>a\\~\\~\'<Esc>`<i\\~\\~\'<Esc>E', {noremap = true, silent = true})
+
+-- antonk52/markdowny.nvim
+-- function M.mark()
+--   inline_surround('==', '==')
+-- end
+--
+-- function M.tilde()
+--   inline_surround('~~', '~~')
+-- end
+-- vim.keymap.set('v', '<C-d>', ":lua require('markdowny').tilde()<cr>", { buffer = 0, silent = true })
+-- vim.keymap.set('v', '<C-h>', ":lua require('markdowny').mark()<cr>", { buffer = 0, silent = true })
+
     end,
 })

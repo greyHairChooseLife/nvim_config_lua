@@ -145,8 +145,8 @@ require("nvim-tree").setup({
   actions = {
     change_dir = {
       enable = true,
-      global = false,
-      restrict_above_cwd = true,
+      global = true,
+      restrict_above_cwd = false,
     },
   }
 })
