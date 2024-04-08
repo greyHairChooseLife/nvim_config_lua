@@ -164,11 +164,43 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+function LogTimeOnBuffer()
+  vim.api.nvim_command("r !date | awk '{print $5}'")
+end
+
 function RunBufferWithSh()
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command('write! ' .. temp_file)
   vim.api.nvim_command('setlocal buftype=nofile')
-  vim.api.nvim_command('new | setlocal buftype=nofile | read !sh ' .. temp_file)
+  if vim.fn.winnr('$') == 1 then
+    vim.api.nvim_command('vert belowright new')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  else
+    vim.api.nvim_command('wincmd w | new')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  end
+  vim.fn.delete(temp_file)
+end
+
+function RunBufferWithShCover()
+  local temp_file = vim.fn.tempname()
+  vim.api.nvim_command('write! ' .. temp_file)
+  vim.api.nvim_command('setlocal buftype=nofile')
+  if vim.fn.winnr('$') == 1 then
+    vim.api.nvim_command('vert belowright new')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  else
+    vim.api.nvim_command('wincmd w | %delete')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  end
   vim.fn.delete(temp_file)
 end
 
@@ -179,9 +211,43 @@ function RunSelectedLinesWithSh()
   local end_line = end_pos[2]
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
-  vim.api.nvim_command('new | setlocal buftype=nofile | read !sh ' .. temp_file)
+  if vim.fn.winnr('$') == 1 then
+    vim.api.nvim_command('vert belowright new')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  else
+    vim.api.nvim_command('wincmd w | new')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  end
   vim.fn.delete(temp_file)
 end
 
-vim.api.nvim_set_keymap('n', ',R', ':lua RunBufferWithSh()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', ',R', ':lua RunSelectedLinesWithSh()<CR>', { noremap = true, silent = true })
+function RunSelectedLinesWithShCover()
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+  local start_line = start_pos[2]
+  local end_line = end_pos[2]
+  local temp_file = vim.fn.tempname()
+  vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
+  if vim.fn.winnr('$') == 1 then
+    vim.api.nvim_command('vert belowright new')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  else
+    vim.api.nvim_command('wincmd w | %delete')
+    vim.api.nvim_command(
+      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  end
+  vim.fn.delete(temp_file)
+end
+
+vim.api.nvim_set_keymap('n', ',R', ':lua RunBufferWithSh()<CR> :wincmd h<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ',cR', ':lua RunBufferWithShCover()<CR> :wincmd h<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',R', ':lua RunSelectedLinesWithSh()<CR> :wincmd h<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',cR', ':lua RunSelectedLinesWithShCover()<CR> :wincmd h<CR>',
+  { noremap = true, silent = true })
