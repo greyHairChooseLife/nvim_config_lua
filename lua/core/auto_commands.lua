@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.cmd('edit ' .. node.absolute_path)
         vim.cmd('NvimTreeFocus')
       end,
-      {buffer = true, desc = 'Open in new vertical split'}
+      { buffer = true, desc = 'Open in new vertical split' }
     )
   end
 })
@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.cmd('vert rightbelow new')
         vim.cmd('edit ' .. node.absolute_path)
       end,
-      {buffer = true, desc = 'Open in new vertical split'}
+      { buffer = true, desc = 'Open in new vertical split' }
     )
   end
 })

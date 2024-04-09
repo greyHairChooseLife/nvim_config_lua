@@ -1,7 +1,7 @@
 require('litee.lib').setup({
   tree = {
-      icon_set = "nerd",
-    },
+    icon_set = "nerd",
+  },
   panel = {
     orientation = "left",
     panel_size = 30,
@@ -9,20 +9,20 @@ require('litee.lib').setup({
 })
 require('litee.gh').setup({
   -- deprecated, around for compatability for now.
-  jump_mode   = "invoking",
+  jump_mode             = "invoking",
   -- remap the arrow keys to resize any litee.nvim windows.
-  map_resize_keys = false,
+  map_resize_keys       = false,
   -- do not map any keys inside any gh.nvim buffers.
-  disable_keymaps = false,
+  disable_keymaps       = false,
   -- the icon set to use.
-  icon_set = "nerd",
+  icon_set              = "nerd",
   -- any custom icons to use.
-  icon_set_custom = nil,
+  icon_set_custom       = nil,
   -- whether to register the @username and #issue_number omnifunc completion
   -- in buffers which start with .git/
   git_buffer_completion = true,
   -- defines keymaps in gh.nvim buffers.
-  keymaps = {
+  keymaps               = {
     -- when inside a gh.nvim panel, this key will open a node if it has
     -- any futher functionality. for example, hitting <CR> on a commit node
     -- will open the commit's changed files in a new gh.nvim panel.
@@ -48,17 +48,21 @@ require('litee.gh').setup({
     -- browser. useful particularily for digging into external failed CI
     -- checks.
     goto_web = "gw", -- go web
-        -- if selectable, select the object under the cursor for additional operations.
-        select = "gs",
-        -- if selectable, clear all selected items.
-        clear_selection = "gss",
+    -- if selectable, select the object under the cursor for additional operations.
+    select = "gs",
+    -- if selectable, clear all selected items.
+    clear_selection = "gss",
   }
 })
 
 function GGOpenPRs() vim.cmd('GHOpenPR') end
+
 function GGstartReview() vim.cmd('GHStartReview') end
+
 function GGsubmitReview() vim.cmd('GHSubmitReview') end
+
 function GGdeleteReview() vim.cmd('GHDeleteReview') end
+
 function GGcomment() vim.cmd('GHCreateThread') end
 
 vim.cmd('command! GGopenPRs lua GGOpenPRs()')

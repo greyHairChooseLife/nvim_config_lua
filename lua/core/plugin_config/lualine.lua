@@ -36,8 +36,8 @@ require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = my_theme,
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -52,12 +52,12 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'filename'},
-    lualine_b = {'diagnostics'},
-    lualine_c = {'progress'},
+    lualine_a = { 'filename' },
+    lualine_b = { 'diagnostics' },
+    lualine_c = { 'progress' },
     lualine_x = {},
-    lualine_y = {{'filetype', colored = true, icon_only = true}},
-    lualine_z = { 
+    lualine_y = { { 'filetype', colored = true, icon_only = true } },
+    lualine_z = {
       {
         'diff',
         diff_color = {
@@ -65,7 +65,7 @@ require('lualine').setup {
           modified = { fg = colors.yellow },
           removed = { fg = colors.red }
         },
-        symbols = { 
+        symbols = {
           added = '+ ',
           modified = '󰔷 ',
           removed = '- '
@@ -74,12 +74,12 @@ require('lualine').setup {
     }
   },
   inactive_sections = {
-    lualine_a = {'filename'},
-    lualine_b = {'diagnostics'},
+    lualine_a = { 'filename' },
+    lualine_b = { 'diagnostics' },
     lualine_c = {},
     lualine_x = {},
     lualine_y = {
-      {'filetype', colored = true, icon_only = true}
+      { 'filetype', colored = true, icon_only = true }
     },
     lualine_z = {
       {
@@ -89,7 +89,7 @@ require('lualine').setup {
           modified = { fg = colors.yellow },
           removed = { fg = colors.red }
         },
-        symbols = { 
+        symbols = {
           added = '+ ',
           modified = '󰔷 ',
           removed = '- '

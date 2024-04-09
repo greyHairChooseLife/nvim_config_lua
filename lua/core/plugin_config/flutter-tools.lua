@@ -2,10 +2,10 @@ require("flutter-tools").setup {
   widget_guides = {
     enabled = true,
   },
--- it restricts a size of the outline like shit
---  outline = {
---    auto_open = false, 
---  },
+  -- it restricts a size of the outline like shit
+  --  outline = {
+  --    auto_open = false,
+  --  },
   closing_tags = {
     highlight = "ErrorMsg",
     prefix = "▾ ",
@@ -19,25 +19,33 @@ require("flutter-tools").setup {
 } -- use defaults
 
 function toggleFlutterToolsOutline() vim.cmd('FlutterOutlineToggle') end
+
 vim.cmd('command! FTouTline lua toggleFlutterToolsOutline()')
 
 function openFlutterEmulator() vim.cmd('FlutterEmulators') end
+
 vim.cmd('command! FTemuLator lua openFlutterEmulator()')
 
 function runFlutter() vim.cmd('FlutterRun') end
+
 vim.cmd('command! FTruN lua runFlutter()')
 
 function restartFlutter() vim.cmd('FlutterRestart') end
+
 vim.cmd('command! FTresTart lua restartFlutter()')
 
 function openFlutterDevTools() vim.cmd('FlutterOpenDevTools') end
+
 vim.cmd('command! FTdeVtool lua openFlutterDevTools()')
 
 function openVisualDebug() vim.cmd('FlutterVisualDebug') end
+
 vim.cmd('command! FTvisualDebug lua openVisualDebug()')
 
 function copyDevToolUrl() vim.cmd('FlutterCopyProfilerUrl') end
+
 vim.cmd('command! FTcopyDevToolUrl lua copyDevToolUrl()')
 
 function clearLog() vim.cmd('FlutterLogClear') end
+
 vim.cmd('command! FTclearLog lua clearLog()')
