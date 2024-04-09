@@ -164,3 +164,5 @@ vim.keymap.set({ 'n', 'x', 'o' }, ',gl', '<Plug>(leap-from-window)')
 vim.keymap.set("n", "<leader><leader>s", ":SessionSave<CR>")
 
 vim.keymap.set({ 'n', 'x', 'o' }, 'zo', 'za')
+
+vim.keymap.set({ 'n', 'x' }, '<F2>', ':IBLToggle<CR>')

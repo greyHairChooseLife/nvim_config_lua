@@ -41,10 +41,10 @@ return require('packer').startup(function(use)
   use { 'neoclide/coc.nvim', branch = 'release' }
   -- manually: CocInstall coc-tsserver, coc-pairs, coc-css, coc-html, coc-json, coc-prettier, coc-word, coc-graphql
 
-  use 'pangloss/vim-javascript'   -- JavaScript support
+  use 'pangloss/vim-javascript'    -- JavaScript support
   use 'leafgarland/typescript-vim' -- TypeScript syntax
-  use 'maxmellon/vim-jsx-pretty'  -- JS and JSX syntax
-  use 'jparise/vim-graphql'       -- GraphQL syntax
+  use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
+  use 'jparise/vim-graphql'        -- GraphQL syntax
 
   use 'itchyny/calendar.vim'
 
@@ -267,6 +267,8 @@ return require('packer').startup(function(use)
     end
   }
   -- 라이브러리 뒤져봤더니, floating 메뉴에서 세션 삭제하는 기본 키맵이 <C-d>다.
+
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
