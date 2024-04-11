@@ -170,7 +170,7 @@ end
 
 function RunBufferWithSh()
   local temp_file = vim.fn.tempname()
-  vim.api.nvim_command('write! ' .. temp_file)
+  vim.api.nvim_command('silent! write! ' .. temp_file)
   vim.api.nvim_command('setlocal buftype=nofile')
 
   -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
@@ -188,7 +188,7 @@ function RunBufferWithSh()
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  vim.api.nvim_command('setlocal buftype=nofile | silent! read !sh ' .. temp_file)
 
   vim.fn.delete(temp_file)
   vim.api.nvim_set_current_win(current_win)
@@ -196,7 +196,7 @@ end
 
 function RunBufferWithShCover()
   local temp_file = vim.fn.tempname()
-  vim.api.nvim_command('write! ' .. temp_file)
+  vim.api.nvim_command('silent! write! ' .. temp_file)
   vim.api.nvim_command('setlocal buftype=nofile')
 
   -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
@@ -214,7 +214,7 @@ function RunBufferWithShCover()
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  vim.api.nvim_command('setlocal buftype=nofile | silent! read !sh ' .. temp_file)
 
   vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
@@ -226,7 +226,7 @@ function RunSelectedLinesWithSh()
   local start_line = start_pos[2]
   local end_line = end_pos[2]
   local temp_file = vim.fn.tempname()
-  vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
+  vim.api.nvim_command('silent! ' .. start_line .. ',' .. end_line .. 'write! ' .. temp_file)
 
   -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
   local current_win = vim.api.nvim_get_current_win()
@@ -243,7 +243,7 @@ function RunSelectedLinesWithSh()
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  vim.api.nvim_command('setlocal buftype=nofile | silent! read !sh ' .. temp_file)
 
   vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
@@ -255,7 +255,7 @@ function RunSelectedLinesWithShCover()
   local start_line = start_pos[2]
   local end_line = end_pos[2]
   local temp_file = vim.fn.tempname()
-  vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
+  vim.api.nvim_command('silent! ' .. start_line .. ',' .. end_line .. 'write! ' .. temp_file)
 
   -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
   local current_win = vim.api.nvim_get_current_win()
@@ -272,7 +272,7 @@ function RunSelectedLinesWithShCover()
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+  vim.api.nvim_command('setlocal buftype=nofile | silent! read !sh ' .. temp_file)
 
   vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
