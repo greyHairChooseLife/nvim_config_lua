@@ -174,15 +174,14 @@ function RunBufferWithSh()
   vim.api.nvim_command('setlocal buftype=nofile')
   if vim.fn.winnr('$') == 1 then
     vim.api.nvim_command('vert belowright new')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   else
     vim.api.nvim_command('wincmd w | new')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   end
+
+  vim.api.nvim_command(
+    [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+
   vim.fn.delete(temp_file)
 end
 
@@ -192,15 +191,14 @@ function RunBufferWithShCover()
   vim.api.nvim_command('setlocal buftype=nofile')
   if vim.fn.winnr('$') == 1 then
     vim.api.nvim_command('vert belowright new')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   else
     vim.api.nvim_command('wincmd w | %delete')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   end
+
+  vim.api.nvim_command(
+    [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+
   vim.fn.delete(temp_file)
 end
 
@@ -213,15 +211,14 @@ function RunSelectedLinesWithSh()
   vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
   if vim.fn.winnr('$') == 1 then
     vim.api.nvim_command('vert belowright new')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   else
     vim.api.nvim_command('wincmd w | new')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   end
+
+  vim.api.nvim_command(
+    [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+
   vim.fn.delete(temp_file)
 end
 
@@ -234,15 +231,14 @@ function RunSelectedLinesWithShCover()
   vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
   if vim.fn.winnr('$') == 1 then
     vim.api.nvim_command('vert belowright new')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   else
     vim.api.nvim_command('wincmd w | %delete')
-    vim.api.nvim_command(
-      [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
-    vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
   end
+
+  vim.api.nvim_command(
+    [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
+  vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
+
   vim.fn.delete(temp_file)
 end
 
