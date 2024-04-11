@@ -172,10 +172,18 @@ function RunBufferWithSh()
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command('write! ' .. temp_file)
   vim.api.nvim_command('setlocal buftype=nofile')
-  if vim.fn.winnr('$') == 1 then
+
+  -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
+  local current_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_command('wincmd l')
+  local new_win = vim.api.nvim_get_current_win()
+
+  -- 포커스가 바뀌지 않았다면, 현재 우측 끝임
+  if current_win == new_win then
     vim.api.nvim_command('vert belowright new')
   else
-    vim.api.nvim_command('wincmd w | new')
+    vim.api.nvim_set_current_win(current_win)
+    vim.api.nvim_command('wincmd l | new')
   end
 
   vim.api.nvim_command(
@@ -183,22 +191,32 @@ function RunBufferWithSh()
   vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
 
   vim.fn.delete(temp_file)
+  vim.api.nvim_set_current_win(current_win)
 end
 
 function RunBufferWithShCover()
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command('write! ' .. temp_file)
   vim.api.nvim_command('setlocal buftype=nofile')
-  if vim.fn.winnr('$') == 1 then
+
+  -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
+  local current_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_command('wincmd l')
+  local new_win = vim.api.nvim_get_current_win()
+
+  -- 포커스가 바뀌지 않았다면, 현재 우측 끝임
+  if current_win == new_win then
     vim.api.nvim_command('vert belowright new')
   else
-    vim.api.nvim_command('wincmd w | %delete')
+    vim.api.nvim_set_current_win(current_win)
+    vim.api.nvim_command('wincmd l | %delete')
   end
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
   vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
 
+  vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
 end
 
@@ -209,16 +227,25 @@ function RunSelectedLinesWithSh()
   local end_line = end_pos[2]
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
-  if vim.fn.winnr('$') == 1 then
+
+  -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
+  local current_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_command('wincmd l')
+  local new_win = vim.api.nvim_get_current_win()
+
+  -- 포커스가 바뀌지 않았다면, 현재 우측 끝임
+  if current_win == new_win then
     vim.api.nvim_command('vert belowright new')
   else
-    vim.api.nvim_command('wincmd w | new')
+    vim.api.nvim_set_current_win(current_win)
+    vim.api.nvim_command('wincmd l | new')
   end
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
   vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
 
+  vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
 end
 
@@ -229,21 +256,29 @@ function RunSelectedLinesWithShCover()
   local end_line = end_pos[2]
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command(start_line .. ',' .. end_line .. 'write! ' .. temp_file)
-  if vim.fn.winnr('$') == 1 then
+
+  -- 현재 윈도우의 id와 우측 포커싱 후 id 확인
+  local current_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_command('wincmd l')
+  local new_win = vim.api.nvim_get_current_win()
+
+  -- 포커스가 바뀌지 않았다면, 현재 우측 끝임
+  if current_win == new_win then
     vim.api.nvim_command('vert belowright new')
   else
-    vim.api.nvim_command('wincmd w | %delete')
+    vim.api.nvim_set_current_win(current_win)
+    vim.api.nvim_command('wincmd l | %delete')
   end
 
   vim.api.nvim_command(
     [[r !date "+\%T" | awk '{line="=========================="; print line "\n===== time: " $1 " =====\n" line}']])
   vim.api.nvim_command('setlocal buftype=nofile | read !sh ' .. temp_file)
 
+  vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
 end
 
-vim.api.nvim_set_keymap('n', ',R', ':lua RunBufferWithSh()<CR> :wincmd h<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ',cR', ':lua RunBufferWithShCover()<CR> :wincmd h<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', ',R', ':lua RunSelectedLinesWithSh()<CR> :wincmd h<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', ',cR', ':lua RunSelectedLinesWithShCover()<CR> :wincmd h<CR>',
-  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ',R', ':lua RunBufferWithSh()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ',cR', ':lua RunBufferWithShCover()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',R', ':lua RunSelectedLinesWithSh()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', ',cR', ':lua RunSelectedLinesWithShCover()<CR>', { noremap = true, silent = true })
