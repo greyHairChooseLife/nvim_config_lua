@@ -22,6 +22,7 @@ vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>')      -- paste last thi
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', ',.f', builtin.find_files, {})
 vim.keymap.set('n', ',.w', builtin.live_grep, {})
+vim.keymap.set('v', ',.w', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>', {})
 vim.keymap.set('n', ',.c', builtin.grep_string, {})
 vim.keymap.set('n', ',.m', builtin.marks, {})
 vim.keymap.set('n', ',.b', builtin.buffers, {})
@@ -29,6 +30,33 @@ vim.keymap.set('n', ',.s', builtin.git_stash, {})
 vim.keymap.set('n', ',.g', builtin.git_status, {})
 vim.keymap.set('n', ',.h', builtin.help_tags, {})
 vim.keymap.set('n', ',.r', builtin.registers, {})
+
+vim.keymap.set('n', ',..w', function()
+  local scope = vim.fn.expand('%:p')
+  builtin.live_grep {
+    search_dirs = { scope }
+  }
+end) -- Regex search current file
+
+vim.keymap.set('v', ',..w', function()
+  local scope = vim.fn.expand('%:p')
+
+  vim.cmd('normal! y')
+  local text = vim.fn.getreg('0')
+
+  builtin.live_grep {
+    search_dirs = { scope },
+    default_text = text
+  }
+end)
+
+vim.keymap.set('n', ',..c', function()
+  local scope = vim.fn.expand('%:p')
+
+  builtin.grep_string {
+    search_dirs = { scope }
+  }
+end, {})
 
 vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
 -- vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>')
