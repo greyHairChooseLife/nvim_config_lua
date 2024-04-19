@@ -38,8 +38,8 @@ local function my_on_attach(bufnr)
 
   vim.keymap.set('n', 'ee', api.tree.expand_all, opts('Expand All'))
   vim.keymap.set('n', 'cc', api.tree.collapse_all, opts('Collapse'))
-  vim.keymap.set('n', 'yy', api.fs.copy.relative_path, opts('Copy Relative Path'))
   vim.keymap.set('n', 'yya', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
+  vim.keymap.set('n', 'yyr', api.fs.copy.relative_path, opts('Copy Relative Path'))
   vim.keymap.set('n', 'yyf', api.fs.copy.filename, opts('Copy Name'))
   vim.keymap.set('n', '<C-l>', api.tree.reload, opts('Refresh'))
 end
