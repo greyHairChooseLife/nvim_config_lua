@@ -1,5 +1,6 @@
 {
   "coc.preferences.formatOnSave": true,
+  "prettier.prettierPath": "./node_modules/prettier",
   "flutter.lsp.initialization.closingLabels": false,
   "markdownlint.onChange": true,
   "sumneko-lua.enableNvimLuaDev": true
