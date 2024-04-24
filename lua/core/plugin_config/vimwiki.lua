@@ -14,7 +14,7 @@ vim.g.vimwiki_global_ext = 0
 
 vim.g.vimwiki_list = {
   {
-    path = "~/Documents/vimwiki/",
+    path = "~/Documents/vimwiki-notes/notes/",
     -- path_html = "~/Documents/vimwiki/",
     syntax = "markdown",
     ext = ".md",
