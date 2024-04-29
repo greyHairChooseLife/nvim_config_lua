@@ -47,3 +47,11 @@ vim.api.nvim_create_autocmd('FileType', {
     )
   end
 })
+
+-- markdown은 108자로 자동 줄바꿈
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.bo.textwidth = 108
+  end
+})
