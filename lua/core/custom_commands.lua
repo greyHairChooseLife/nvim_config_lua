@@ -266,3 +266,11 @@ vim.api.nvim_set_keymap('n', ',R', ':lua RunBufferWithSh()<CR>', { noremap = tru
 vim.api.nvim_set_keymap('n', ',cR', ':lua RunBufferWithShCover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', ',R', ':lua RunSelectedLinesWithSh()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', ',cR', ':lua RunSelectedLinesWithShCover()<CR>', { noremap = true, silent = true })
+
+local function save_current_buffer_path()
+  local path = vim.fn.expand('%:p:h') -- 현재 버퍼의 전체 경로 얻기
+  vim.fn.setreg('+', path)            -- 클립보드에 경로 복사
+  print("Buffer path saved to clipboard")
+end
+
+vim.api.nvim_create_user_command('SaveCurrentBufferPath', save_current_buffer_path, { nargs = 0 })
