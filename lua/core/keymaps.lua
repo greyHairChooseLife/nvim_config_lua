@@ -207,13 +207,13 @@ vim.keymap.set({ 'n' }, ',,p', '"*p') -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", '*N')    -- search current word
 
 -- insert mode 날짜 찍기
-vim.keymap.set('i', 'gd', function()
+vim.keymap.set('i', ',d', function()
   local result = vim.fn.system('date | sed "s/. /-/3" | cut -d"-" -f1 | sed "s/. /-/g"')
   result = result:gsub("\n$", "")
   vim.api.nvim_put({ result }, 'c', false, true)
 end, { noremap = true, silent = true })
 
-vim.keymap.set('i', 'gD', function()
+vim.keymap.set('i', ',D', function()
   local result = vim.fn.system('date')
   result = result:gsub("\n$", "")
   vim.api.nvim_put({ result }, 'c', false, true)
