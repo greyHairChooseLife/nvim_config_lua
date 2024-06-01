@@ -3,7 +3,7 @@ vim.g.mapleader = "\\"                                          -- <leader> as S
 vim.keymap.set('n', ',q', ':nohlsearch<CR>', { silent = true }) -- 검색 기록 제거
 vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })   -- 창 크기 동일하게
 
-vim.keymap.set({ 'n', 'x' }, ',p', '"0p')                       -- paste last thing yanked, not deleted
+vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                       -- paste last thing yanked, not deleted
 
 -- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
 -- vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
@@ -183,19 +183,25 @@ end
 vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, noremap = true })
 
 
-vim.keymap.set({ 'n', 'x' }, ',,o', ":Outline<CR>")
-vim.keymap.set({ 'n', 'x' }, ',o', ":OutlineFocusOutline<CR>")
+vim.keymap.set({ 'n' }, ',,o', ":Outline<CR>")
+vim.keymap.set({ 'n' }, ',o', ":OutlineFocusOutline<CR>")
 
 vim.keymap.set("n", ",.S", require("auto-session.session-lens").search_session, {
   noremap = true,
 })
 
-vim.keymap.set({ 'n', 'x', 'o' }, ',l', '<Plug>(leap-forward)')
-vim.keymap.set({ 'n', 'x', 'o' }, ',L', '<Plug>(leap-backward)')
-vim.keymap.set({ 'n', 'x', 'o' }, ',gl', '<Plug>(leap-from-window)')
+vim.keymap.set({ 'n', 'v' }, ',l', '<Plug>(leap-forward)')
+vim.keymap.set({ 'n', 'v' }, ',L', '<Plug>(leap-backward)')
+vim.keymap.set({ 'n' }, ',gl', '<Plug>(leap-from-window)')
 
 vim.keymap.set("n", "<leader><leader>s", ":SessionSave<CR>")
 
-vim.keymap.set({ 'n', 'x', 'o' }, 'zo', 'za')
+vim.keymap.set({ 'n', 'v' }, 'zo', 'za')
 
-vim.keymap.set({ 'n', 'x' }, '<F2>', ':IBLToggle<CR>')
+vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
+
+vim.keymap.set({ 'n', 'v' }, 'gH', '0')
+vim.keymap.set({ 'n', 'v' }, 'gh', '^')
+vim.keymap.set({ 'n', 'v' }, 'gl', '$')
+vim.keymap.set({ 'n' }, ',,p', '"*p')
+vim.keymap.set({ 'n' }, "'", '*N')
