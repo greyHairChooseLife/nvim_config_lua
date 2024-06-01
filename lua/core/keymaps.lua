@@ -203,5 +203,5 @@ vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
 vim.keymap.set({ 'n', 'v' }, 'gH', '0')
 vim.keymap.set({ 'n', 'v' }, 'gh', '^')
 vim.keymap.set({ 'n', 'v' }, 'gl', '$')
-vim.keymap.set({ 'n' }, ',,p', '"*p')
-vim.keymap.set({ 'n' }, "'", '*N')
+vim.keymap.set({ 'n' }, ',,p', '"*p') -- easy-paste system clipboard
+vim.keymap.set({ 'n' }, "'", '*N')    -- search current word

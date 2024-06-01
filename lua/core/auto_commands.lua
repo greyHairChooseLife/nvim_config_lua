@@ -55,3 +55,31 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.textwidth = 108
   end
 })
+
+-- highlight yanked area
+vim.api.nvim_exec([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="Visual", timeout=250}
+  augroup END
+]], false)
+
+-- 마지막 커서 위치로 이동
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    if mark[1] > 0 and mark[1] <= vim.fn.line("$") then
+      vim.api.nvim_win_set_cursor(0, mark)
+    end
+  end,
+})
+
+-- 파일 저장시 공백 제거
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd([[%s/\s\+$//e]])
+    vim.api.nvim_win_set_cursor(0, pos)
+  end,
+})
