@@ -195,21 +195,10 @@ return require('packer').startup(function(use)
         --   untracked    = { text = '┆' },
         -- },
         signs = {
-          add          = {
-            hl = 'CustomSignsAdd',
-            linehl = 'CustomSignsAddBg',
-            text = '+'
-          },
-          change       = {
-            hl = 'CustomSignsChange',
-            linehl = 'CustomSignsChangeBg',
-            text = '~'
-          },
-          delete       = {
-            hl = 'CustomSignsDelete',
-            text = '_'
-          },
-          topdelete    = { text = '‾' },
+          add          = { hl = 'DevIconQt', text = '+' },
+          change       = { hl = 'DevIconGuix', text = '~' },
+          delete       = { hl = 'DevIconFreeCADConfig', text = '_' },
+          topdelete    = { hl = 'DevIconFreeCADConfig', text = '‾' },
           changedelete = { text = '~' },
           untracked    = { text = '┆' },
         },
