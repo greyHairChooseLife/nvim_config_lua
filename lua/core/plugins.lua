@@ -175,20 +175,39 @@ return require('packer').startup(function(use)
     },
     config = function()
       require('gitsigns').setup({
+        -- signs = {
+        --   add          = {
+        --     hl = 'CustomSignsAdd',
+        --     linehl = 'CustomSignsAddBg',
+        --     text = '▍'
+        --   },
+        --   change       = {
+        --     hl = 'CustomSignsChange',
+        --     linehl = 'CustomSignsChangeBg',
+        --     text = '▍'
+        --   },
+        --   delete       = {
+        --     hl = 'CustomSignsDelete',
+        --     text = '▼'
+        --   },
+        --   topdelete    = { text = '‾' },
+        --   changedelete = { text = '~' },
+        --   untracked    = { text = '┆' },
+        -- },
         signs = {
           add          = {
             hl = 'CustomSignsAdd',
             linehl = 'CustomSignsAddBg',
-            text = '▍'
+            text = '+'
           },
           change       = {
             hl = 'CustomSignsChange',
             linehl = 'CustomSignsChangeBg',
-            text = '▍'
+            text = '~'
           },
           delete       = {
             hl = 'CustomSignsDelete',
-            text = '▼'
+            text = '_'
           },
           topdelete    = { text = '‾' },
           changedelete = { text = '~' },

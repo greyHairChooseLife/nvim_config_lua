@@ -52,7 +52,7 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = { 'filename' },
+    lualine_a = { 'branch', 'filename' },
     lualine_b = { 'diagnostics' },
     lualine_c = { 'progress' },
     lualine_x = {},
