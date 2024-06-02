@@ -297,6 +297,16 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- TODO:
+  -- for surrounder
+  -- 1. tpope/vim-surround
+
+  -- TODO:
+  -- for Database
+  -- 1. kristijanhusak/vim-dadbod-ui
+  -- 2. kristijanhusak/vim-dadbod-completion
+  -- 3. tpope/vim-dadbod
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
