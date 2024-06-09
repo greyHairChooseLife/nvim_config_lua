@@ -42,7 +42,7 @@ vim.cmd [[
   highlight VimwikiList gui=italic
 
   " 코드 블록 색상 설정
-  " highlight VimwikiCode guibg=#5F5F5F guifg=#ffffff
+  highlight VimwikiCode guibg=#5F5F5F guifg=#ffffff
 
   " 강조 텍스트 색상 설정
   highlight VimwikiBold guifg=#DCDCAA gui=bold
