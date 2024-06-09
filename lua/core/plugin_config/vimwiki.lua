@@ -29,11 +29,11 @@ vim.g.vimwiki_list = {
 vim.cmd [[
   " 헤더 색상 설정
   highlight VimwikiHeader1 guifg=#ffffff guibg=#007F7F gui=bold
-  highlight VimwikiHeader2 guifg=#5169E1 gui=bold,underline
-  highlight VimwikiHeader3 guifg=#7aa2f7 gui=bold,underline
-  highlight VimwikiHeader4 guifg=#7aa2f7 gui=underline
-  highlight VimwikiHeader5 guifg=#7aa2f7 gui=underline
-  highlight VimwikiHeader6 gui=underline
+  highlight VimwikiHeader2 guifg=#5169E1 gui=bold
+  highlight VimwikiHeader3 guifg=#7aa2f7 gui=bold
+  highlight VimwikiHeader4 guifg=#7aa2f7
+  highlight VimwikiHeader5 guifg=#7aa2f7
+  " highlight VimwikiHeader6
 
   " 링크 색상 설정
   highlight VimwikiLink guifg=#FFFF00
@@ -45,7 +45,7 @@ vim.cmd [[
   highlight VimwikiCode guibg=#5F5F5F guifg=#ffffff
 
   " 강조 텍스트 색상 설정
-  highlight VimwikiBold guifg=#DCDCAA gui=bold
+  highlight VimwikiBold gui=bold,underline
   highlight VimwikiItalic guifg=#DCDCAA gui=italic
 
   " ToDo 항목 색상 설정
