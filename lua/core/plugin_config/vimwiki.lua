@@ -29,7 +29,7 @@ vim.g.vimwiki_list = {
 vim.cmd [[
   " 헤더 색상 설정
   highlight VimwikiHeader1 guifg=#007F7F gui=bold,underline
-  highlight VimwikiHeader2 guifg=#7aa2f7 gui=bold,underline
+  highlight VimwikiHeader2 guifg=#5169E1 gui=bold,underline
   highlight VimwikiHeader3 guifg=#7aa2f7 gui=bold,underline
   highlight VimwikiHeader4 guifg=#7aa2f7 gui=underline
   highlight VimwikiHeader5 guifg=#7aa2f7 gui=underline
