@@ -286,6 +286,8 @@ return require('packer').startup(function(use)
     end
   }
 
+  use { 'nvim-telescope/telescope-hop.nvim' }
+
   -- TODO:
   -- for surrounder
   -- 1. tpope/vim-surround

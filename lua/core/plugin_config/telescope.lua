@@ -1,34 +1,44 @@
--- local builtin = require('telescope.builtin')
-
--- vim.keymap.set('n', '<c-p>', builtin.find_files, {})
--- vim.keymap.set('n', '<Space><Space>', builtin.oldfiles, {})
--- vim.keymap.set('n', '<Space>fg', builtin.live_grep, {})
--- vim.keymap.set('n', '<Space>fh', builtin.help_tags, {})
-
-
 require("telescope").setup {
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
         -- even more opts
       }
-
-      -- pseudo code / specification for writing custom displays, like the one
-      -- for "codeactions"
-      -- specific_opts = {
-      --   [kind] = {
-      --     make_indexed = function(items) -> indexed_items, width,
-      --     make_displayer = function(widths) -> displayer
-      --     make_display = function(displayer) -> function(e)
-      --     make_ordinal = function(e) -> string
-      --   },
-      --   -- for example to disable the custom builtin "codeactions" display
-      --      do the following
-      --   codeactions = false,
-      -- }
-    }
-  }
+    },
+    hop = {
+      -- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
+      keys = { "a", "s", "d", "f", "g", "h", "j", "k", "l", ";",
+        "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
+        "A", "S", "D", "F", "G", "H", "J", "K", "L", ":",
+        "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
+        "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
+        "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?",
+      },
+      -- Highlight groups to link to signs and lines; the below configuration refers to demo
+      -- sign_hl typically only defines foreground to possibly be combined with line_hl
+      sign_hl = { "WarningMsg", "Title" },
+      -- optional, typically a table of two highlight groups that are alternated between
+      line_hl = { "CursorLine", "Normal" },
+      -- options specific to `hop_loop`
+      -- true temporarily disables Telescope selection highlighting
+      clear_selection_hl = false,
+      -- highlight hopped to entry with telescope selection highlight
+      -- note: mutually exclusive with `clear_selection_hl`
+      trace_entry = true,
+      -- jump to entry where hoop loop was started from
+      reset_selection = true,
+    },
+  },
+  defaults = {
+    mappings = {
+      i = {
+        -- IMPORTANT
+        -- either hot-reloaded or `function(prompt_bufnr) telescope.extensions.hop.hop end`
+        ["<C-g>"] = require("telescope").extensions.hop.hop,
+      },
+    },
+  },
 }
--- To get ui-select loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
+
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("hop")
