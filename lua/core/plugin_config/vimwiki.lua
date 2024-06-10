@@ -26,6 +26,16 @@ vim.g.vimwiki_list = {
   }
 }
 
+-- Set tabstop to 4 for vimwiki files
+vim.cmd([[
+  augroup VimwikiSettings
+    autocmd!
+    autocmd FileType vimwiki setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd BufRead,BufNewFile ~/Documents/dev-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
+    autocmd BufRead,BufNewFile ~/Documents/job-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
+  augroup END
+]])
+
 vim.cmd [[
   " 헤더 색상 설정
   highlight VimwikiHeader1 guifg=#ffffff guibg=#007F7F gui=bold
