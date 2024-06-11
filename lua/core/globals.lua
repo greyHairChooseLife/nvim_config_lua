@@ -35,3 +35,5 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
+
+vim.g.mapleader = "\\" -- <leader> as Space

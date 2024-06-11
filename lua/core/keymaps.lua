@@ -1,13 +1,30 @@
-vim.g.mapleader = "\\"                                          -- <leader> as Space
---
-vim.keymap.set('n', ',q', ':nohlsearch<CR>', { silent = true }) -- 검색 기록 제거
-vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })   -- 창 크기 동일하게
+-- =========================================================================
+-- =========================================================================
+--                           custom shortcuts
+-- =========================================================================
+-- =========================================================================
+-- MISC TIPS
+vim.keymap.set('n', ',q', ':nohlsearch<CR>', { silent = true })          -- 검색 기록 제거
+vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })            -- 창 크기 동일하게
+vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
+vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])             -- change word under cursor globally
+vim.keymap.set("n", ",ss", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
+vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (vertical)
+vim.keymap.set("n", "vv", "viw")                                         -- easy visual block for word
+vim.keymap.set({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
+vim.keymap.set({ 'n', 'v' }, 'gH', '0')                                  -- move cursor
+vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
+vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
+vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
+vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
 
-vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                       -- paste last thing yanked, not deleted
 
+-- FOLDING 기억하기
 -- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
 -- vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
 
+
+-- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader><leader>q', ':q!<CR>')
 vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>')
 vim.keymap.set('n', '<leader><leader>w', ':mkview<CR>:w<CR>')
@@ -15,151 +32,53 @@ vim.keymap.set('n', '<leader><leader>W', ':mkview<CR>:wa<CR>')
 vim.keymap.set('n', '<leader><leader>e', ':mkview<CR>:wq<CR>')
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>')
 
-vim.keymap.set('n', '<leader><leader>cq', ':SaveCurrentBufferPath<CR>:q!<CR>')
+vim.keymap.set('n', '<leader><leader>cq', ':SaveCurrentBufferPath<CR>:q!<CR>') -- save current buffer path and quit
 vim.keymap.set('n', '<leader><leader>cw', ':SaveCurrentBufferPath<CR>:mkview<CR>:w<CR>')
 vim.keymap.set('n', '<leader><leader>ce', ':SaveCurrentBufferPath<CR>:mkview<CR>:wq<CR>')
 vim.keymap.set('n', '<leader><leader>cc', ':SaveCurrentBufferPath<CR>')
 
-vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
---vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
--- diffview 쪽이랑 통합했다. 조건부로 동작
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', ',.f', builtin.find_files, {})
-vim.keymap.set('n', ',.w', builtin.live_grep, {})
-vim.keymap.set('v', ',.w', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>', {})
-vim.keymap.set('n', ',.c', builtin.grep_string, {})
-vim.keymap.set('n', ',.m', builtin.marks, {})
-vim.keymap.set('n', ',.b', builtin.buffers, {})
-vim.keymap.set('n', ',.s', builtin.git_stash, {})
-vim.keymap.set('n', ',.g', builtin.git_status, {})
-vim.keymap.set('n', ',.h', builtin.help_tags, {})
-vim.keymap.set('n', ',.r', builtin.registers, {})
-vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
-
-vim.keymap.set('n', ',..w', function()
-  local scope = vim.fn.expand('%:p')
-  builtin.live_grep {
-    search_dirs = { scope }
-  }
-end) -- Regex search current file
-
-vim.keymap.set('v', ',..w', function()
-  local scope = vim.fn.expand('%:p')
-
-  vim.cmd('normal! y')
-  local text = vim.fn.getreg('0')
-
-  builtin.live_grep {
-    search_dirs = { scope },
-    default_text = text
-  }
-end)
-
-vim.keymap.set('n', ',..c', function()
-  local scope = vim.fn.expand('%:p')
-
-  builtin.grep_string {
-    search_dirs = { scope }
-  }
-end, {})
-
-vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
--- vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>')
-
-vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>')
-vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>')
-vim.keymap.set('n', '<leader>glf', ':GV!<CR>') -- current file only
-
-vim.keymap.set('n', '<leader>gg', ':G<CR>')
-vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=origin')
-vim.keymap.set('n', '<leader>rec', ':DiffviewFileHistory --range=origin/main...HEAD<CR>')
-vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>')
-vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
-vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
-
-
-
+-- EASY ALIGN
 vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
 vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 
---vim.keymap.set('n', '<leader><leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
---    desc = "Search current word"
---})
---vim.keymap.set('v', '<leader><leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
---    desc = "Search current visual block"
---})
---vim.keymap.set('n', '<leader><leader>spf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
---    desc = "Search on current file"
---})
 
--- window to tab
-vim.keymap.set('n', ',mt', '<C-w>T')
-vim.keymap.set('n', ',st', ':sp<CR><C-w>T')
-
--- tap change
+-- NEW WINDOW & TAP
+vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
+vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
+vim.keymap.set('n', '<A-n>t', ':tabnew<CR>')
+-- FOCUS TAPS
 vim.keymap.set('n', '<A-p>', 'gt')
 vim.keymap.set('n', '<A-o>', 'gT')
---vim.keymap.set('n', '<Tab>', 'gt')
---vim.keymap.set('n', '<S-Tab>', 'gT')
-
--- window controll
+-- FOCUS WINDOW
 vim.keymap.set('n', '<A-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<A-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<A-k>', ':wincmd k<CR>')
 vim.keymap.set('n', '<A-l>', ':wincmd l<CR>')
-
---vim.keymap.set('n', '<A-H>', ':wincmd H<CR>')
---vim.keymap.set('n', '<A-J>', ':wincmd J<CR>')
---vim.keymap.set('n', '<A-K>', ':wincmd K<CR>')
---vim.keymap.set('n', '<A-L>', ':wincmd L<CR>')
-
+-- MOVE WINDOW POSITION
 vim.keymap.set('n', '<A-H>', '<Cmd>WinShift left<CR>')
 vim.keymap.set('n', '<A-J>', '<Cmd>WinShift down<CR>')
 vim.keymap.set('n', '<A-K>', '<Cmd>WinShift up<CR>')
 vim.keymap.set('n', '<A-L>', '<Cmd>WinShift right<CR>')
-
-vim.keymap.set('n', '<A-R>h', ':resize ')
-vim.keymap.set('n', '<A-R>v', ':vertical resize ')
-
+vim.keymap.set('n', ',mt', '<C-w>T')        -- move window to tab
+vim.keymap.set('n', ',st', ':sp<CR><C-w>T') -- copy window to tab
+-- WINDOW RESIZE
 vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", {})
 vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", {})
 vim.keymap.set("n", "<A-Down>", ":horizontal resize -2<CR>", {})
 vim.keymap.set("n", "<A-Up>", ":horizontal resize +2<CR>", {})
-
+-- WINDOW RESIZE HARD
 vim.keymap.set("n", "<A-S-Left>", ":vertical resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Right>", ":vertical resize +8<CR>", {})
 vim.keymap.set("n", "<A-S-Down>", ":horizontal resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Up>", ":horizontal resize +8<CR>", {})
-
-vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
-vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
-vim.keymap.set('n', '<A-n>t', ':tabnew<CR>')
-
-vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
-
--- flutter-tools: toggle widget outline
-vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>')
-
--- change word under cursor globally
-vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])
-
--- get docs of K as independently
-vim.keymap.set("n", "<Leader><Leader>K",
-  ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
-
--- splitting easily
-vim.keymap.set("n", ",ss", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)")
-vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)")
-
--- gitsigns shortcuts
--- vim.keymap.set("n", ",s", ":Gitsigns toggle_linehl<CR>:Gitsigns toggle_deleted<CR>")
-vim.keymap.set("n", "<leader><leader>d", ":Gitsigns toggle_deleted<CR>")
-
--- easy visual block for word
-vim.keymap.set("n", "vv", "viw")
+-- WINDOW RESIZE 고정 값으로
+-- 잘 안씀
+-- vim.keymap.set('n', '<A-R>h', ':resize ')
+-- vim.keymap.set('n', '<A-R>v', ':vertical resize ')
 
 
+-- NVIM-TREE BUFFER 또는 (조건에 따라)DIFFVIEWFILE PANEL로 즉시 이동
 function DiffviewFilePanelFocusConditional()
   local buffers = vim.api.nvim_list_bufs()
   local diffviewOpen = false
@@ -180,76 +99,138 @@ function DiffviewFilePanelFocusConditional()
   end
 end
 
--- 기존의 NvimTree로 이동하는 키 매핑을 대체합니다.
 vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, noremap = true })
 
 
+
+
+-- =========================================================================
+-- =========================================================================
+--                           plugin shortcuts
+-- =========================================================================
+-- =========================================================================
+-- NVIM-TREE
+vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
+--vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away  -> diffview 쪽이랑 통합했다. 조건부로 동작.
+
+
+-- TELESCOPE
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', ',.f', builtin.find_files, {})
+vim.keymap.set('n', ',.w', builtin.live_grep, {})
+vim.keymap.set('v', ',.w', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>', {})
+vim.keymap.set('n', ',.c', builtin.grep_string, {})
+vim.keymap.set('n', ',.m', builtin.marks, {})
+vim.keymap.set('n', ',.b', builtin.buffers, {})
+vim.keymap.set('n', ',.s', builtin.git_stash, {})
+vim.keymap.set('n', ',.g', builtin.git_status, {})
+vim.keymap.set('n', ',.h', builtin.help_tags, {})
+vim.keymap.set('n', ',.r', builtin.registers, {})
+vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
+-- 현재 버퍼에 열린 파일에서만 검색
+vim.keymap.set('n', ',..w', function()
+  local scope = vim.fn.expand('%:p')
+  builtin.live_grep {
+    search_dirs = { scope }
+  }
+end) -- Regex search current file
+vim.keymap.set('v', ',..w', function()
+  local scope = vim.fn.expand('%:p')
+
+  vim.cmd('normal! y')
+  local text = vim.fn.getreg('0')
+
+  builtin.live_grep {
+    search_dirs = { scope },
+    default_text = text
+  }
+end)
+vim.keymap.set('n', ',..c', function()
+  local scope = vim.fn.expand('%:p')
+
+  builtin.grep_string {
+    search_dirs = { scope }
+  }
+end, {})
+
+
+-- CALENDAR
+-- 안씀
+-- vim.keymap.set('n', '<leader><leader>C', ':Calendar<CR>')
+-- vim.keymap.set('n', '<leader><leader>S', ':Startify<CR>')
+
+
+-- FUGITIVE && GV && DIFFVIEW
+-- log 확인
+vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>')
+vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
+-- git status 관리
+vim.keymap.set('n', '<leader>gg', ':G<CR>')
+-- 현재 버퍼 gitdiff 확인
+vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>')
+-- git review
+-- TODO:
+-- workflow를 고려해서 재구성할 필요가 있다.
+-- 1. remote에서 fetch 한 것과 local 최신을 비교
+-- 2. 특정 커밋과 직전 커밋의 변경 내역 비교
+-- 3. PR을 받아서 (현재 최신과)비교
+-- 4. 다양한 range적용
+-- * 이것들을 임의 입력하는게 아니라 설명과 함께 telescope에서 선택할 수 있도록 하면 좋겠다. fzf처럼
+vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=origin')
+vim.keymap.set('n', '<leader>rec', ':DiffviewFileHistory --range=origin/main...HEAD<CR>')
+vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>')
+vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
+vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
+
+
+-- GITSIGNS
+vim.keymap.set("n", "<leader><leader>d", ":Gitsigns toggle_deleted<CR>") -- 삭제된 라인 코드라인에 표시
+
+
+-- OUTLINE
 vim.keymap.set({ 'n' }, ',,o', ":Outline<CR>")
 vim.keymap.set({ 'n' }, ',o', ":OutlineFocusOutline<CR>")
 
+
+-- AUTO-SESSION
+vim.keymap.set("n", "<leader><leader>s", ":SessionSave<CR>") -- save
 vim.keymap.set("n", ",.S", require("auto-session.session-lens").search_session, {
   noremap = true,
-})
+}) -- search and load
 
+
+-- LEAP
 vim.keymap.set({ 'n', 'v' }, ',l', '<Plug>(leap-forward)')
 vim.keymap.set({ 'n', 'v' }, ',L', '<Plug>(leap-backward)')
 vim.keymap.set({ 'n' }, ',gl', '<Plug>(leap-from-window)')
 
-vim.keymap.set("n", "<leader><leader>s", ":SessionSave<CR>")
 
-vim.keymap.set({ 'n', 'v' }, 'zo', 'za')
-
+-- INDENT-BLANKLINE
 vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
 
-vim.keymap.set({ 'n', 'v' }, 'gH', '0')
-vim.keymap.set({ 'n', 'v' }, 'gh', '^')
-vim.keymap.set({ 'n', 'v' }, 'gl', '$')
-vim.keymap.set({ 'n' }, ',,p', '"*p') -- easy-paste system clipboard
-vim.keymap.set({ 'n' }, "'", '*N')    -- search current word
 
--- insert mode 날짜 찍기
-vim.keymap.set('i', ',d', function()
-  local result = vim.fn.system('date | sed "s/. /-/3" | cut -d"-" -f1 | sed "s/. /-/g"')
-  result = result:gsub("\n$", "")
-  vim.api.nvim_put({ result }, 'c', false, true)
-end, { noremap = true, silent = true })
+-- VIMWIKI
+vim.keymap.set('i', ',T', '<ESC>:VimwikiTable ')
 
-vim.keymap.set('i', ',D', function()
-  local result = vim.fn.system('date')
-  result = result:gsub("\n$", "")
-  vim.api.nvim_put({ result }, 'c', false, true)
-end, { noremap = true, silent = true })
 
--- "TODO:" 등을 입력하고 주석으로 만들기
-vim.keymap.set('i', ',,T', function()
-  vim.api.nvim_feedkeys("TODO:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("o", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
-vim.keymap.set('i', ',,N', function()
-  vim.api.nvim_feedkeys("NOTE:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("o", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
-vim.keymap.set('i', ',,W', function()
-  vim.api.nvim_feedkeys("WARN:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("o", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
-vim.keymap.set('i', ',,B', function()
-  vim.api.nvim_feedkeys("BUG:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("o", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
+
+
+
+
+
+
+
+-- NOTE:
+-- 이놈들은 정확히 뭐하는건지 모르겠다.
+--
+-- vim.keymap.set('n', '<leader><leader>o', ':lua vim.lsp.buf.code_action()<CR>')
+
+
+-- NOTE:
+-- 이놈들은 당분간 안쓰는 것들
+
+-- -- FLUTTER-TOOLS
+-- vim.keymap.set('n', '<leader><leader>Fo', ':FlutterOutlineToggle<CR>') -- toggle widget outline
+-- -- GET DOCS OF K AS INDEPENDENTLY
+-- vim.keymap.set("n", "<Leader><Leader>K",
+--   ':sp<CR>:wincmd L<CR><CMD>lua _G.show_docs()<CR>:sleep 20ms<CR>:wincmd w<CR>:sp<CR>:wincmd j<CR>:q<CR>')
