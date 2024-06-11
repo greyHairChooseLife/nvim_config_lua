@@ -15,6 +15,7 @@ vim.keymap.set({ 'n', 'v' }, 'zo', 'za')                                 -- togg
 vim.keymap.set({ 'n', 'v' }, 'gH', '0')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
+vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
 
