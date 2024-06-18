@@ -28,6 +28,11 @@ require("telescope").setup {
       -- jump to entry where hoop loop was started from
       reset_selection = true,
     },
+    coc = {
+      prefer_locations = true,    -- always use Telescope locations to preview definitions/declarations/implementations etc
+      push_cursor_on_edit = true, -- save the cursor position to jump back in the future
+      timeout = 3000,             -- timeout for coc commands
+    }
   },
   defaults = {
     mappings = {
@@ -42,3 +47,4 @@ require("telescope").setup {
 
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("hop")
+require("telescope").load_extension("coc")

@@ -48,16 +48,17 @@ keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
--- keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
--- keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 keyset({ "n", "x" }, ",k", "<Plug>(coc-diagnostic-prev)", { silent = true })
 keyset({ "n", "x" }, ",j", "<Plug>(coc-diagnostic-next)", { silent = true })
 
 -- GoTo code navigation
-keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
+-- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
 keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
 keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+-- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+-- Telescope 연계
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope coc definitions<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gr', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
 
 
 -- Use K to show documentation in preview window

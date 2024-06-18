@@ -287,6 +287,7 @@ return require('packer').startup(function(use)
   }
 
   use { 'nvim-telescope/telescope-hop.nvim' }
+  use { 'fannheyward/telescope-coc.nvim' }
 
   -- TODO:
   -- for surrounder
