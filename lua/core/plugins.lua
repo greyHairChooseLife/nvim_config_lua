@@ -11,17 +11,6 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
-vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])
-vim.cmd([[:highlight CustomSignsChange guifg=#ff007c]])
-vim.cmd([[:highlight CustomSignsChangeBg guibg=#e0af68]])
-vim.cmd([[:highlight CustomSignsDelete guifg=#e06c75]])
-vim.cmd([[:highlight CustomSignsDeleteBg guibg=#e06c75]])
-
-vim.cmd("highlight OutlineCurrent guifg=#e5c07b guibg=#3e4452")
-vim.cmd("highlight MyOutlineNormal guibg=#2e2e2e")
-
-
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
@@ -52,11 +41,6 @@ return require('packer').startup(function(use)
 
   use 'vimwiki/vimwiki'
 
-  vim.cmd [[
-  highlight fugitiveUntrackedHeading guifg=#7f52ff gui=bold
-  highlight fugitiveUnstagedHeading guifg=#f1502f gui=bold
-  highlight fugitiveStagedHeading guifg=#50cd5a gui=bold
-]]
   use 'tpope/vim-fugitive'
   use 'junegunn/gv.vim'
 

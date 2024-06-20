@@ -49,6 +49,3 @@ require("outline").setup({
     down_and_jump = '<C-n>',
   }
 })
-
-vim.cmd("highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335")
-vim.cmd("highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a")

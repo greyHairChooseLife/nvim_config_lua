@@ -150,21 +150,3 @@ require("nvim-tree").setup({
     },
   }
 })
-
-vim.cmd [[
-  highlight NvimTreeFolderIcon guifg=#569CD6
-  highlight NvimTreeFolderName guifg=#569CD6
-  highlight NvimTreeOpenedFolderName guifg=#569CD6 gui=bold
-  highlight NvimTreeEmptyFolderName guifg=#569CD6
-  highlight NvimTreeSymlink guifg=#56B6C2
-  highlight NvimTreeRootFolder guifg=#C678DD
-  highlight NvimTreeGitDirty guifg=#f1502f
-  highlight NvimTreeGitStagedIcon guifg=#50cd5a
-  " highlight NvimTreeGitMerge guifg=#E5C07B
-  highlight NvimTreeGitRenamed guifg=#61AFEF
-  " highlight NvimTreeGitNew guifg=#D19A66
-  highlight NvimTreeGitNew guifg=#7f52ff
-  highlight NvimTreeGitDeleted guifg=#f1502f
-  highlight NvimTreeGitIgnored guifg=#7F848E
-  highlight NvimTreeModified guifg=#ffcc00
-]]
