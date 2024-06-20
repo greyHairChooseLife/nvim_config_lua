@@ -168,44 +168,7 @@ return require('packer').startup(function(use)
     }
   })
   --☇⚊✔⛖⛖☞✍✍✍✂✂✎✎▼▼▼⮯⮯♲♲
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      require('gitsigns').setup({
-        -- signs = {
-        --   add          = {
-        --     hl = 'CustomSignsAdd',
-        --     linehl = 'CustomSignsAddBg',
-        --     text = '▍'
-        --   },
-        --   change       = {
-        --     hl = 'CustomSignsChange',
-        --     linehl = 'CustomSignsChangeBg',
-        --     text = '▍'
-        --   },
-        --   delete       = {
-        --     hl = 'CustomSignsDelete',
-        --     text = '▼'
-        --   },
-        --   topdelete    = { text = '‾' },
-        --   changedelete = { text = '~' },
-        --   untracked    = { text = '┆' },
-        -- },
-        signs = {
-          add          = { hl = 'DevIconQt', text = '+' },
-          change       = { hl = 'DevIconGuix', text = '~' },
-          delete       = { hl = 'DevIconFreeCADConfig', text = '_' },
-          topdelete    = { hl = 'DevIconFreeCADConfig', text = '‾' },
-          changedelete = { text = '~' },
-          untracked    = { text = '┆' },
-        },
-        update_debounce = 30,
-      })
-    end
-  }
+  use { 'lewis6991/gitsigns.nvim', }
 
   use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()

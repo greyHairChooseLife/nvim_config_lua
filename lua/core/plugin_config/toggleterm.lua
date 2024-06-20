@@ -11,7 +11,7 @@ require("toggleterm").setup {
   shell = vim.o.shell,  -- change the default shell
   float_opts = {
     border = 'single',
-    width = 200,
+    width = 300,
     height = 50,
     winblend = 3,
     highlights = {
