@@ -187,6 +187,28 @@ vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
 
 -- GITSIGNS
 vim.keymap.set("n", "<leader><leader>d", ":Gitsigns toggle_deleted<CR>") -- 삭제된 라인 코드라인에 표시
+local function visual_stage()
+  local first_line = vim.fn.line('v')
+  local last_line = vim.fn.getpos('.')[2]
+  require('gitsigns').stage_hunk({ first_line, last_line })
+  -- Switch back to normal mode, there may be a cleaner way to do this
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
+end
+local function visual_reset()
+  local first_line = vim.fn.line('v')
+  local last_line = vim.fn.getpos('.')[2]
+  require('gitsigns').reset_hunk({ first_line, last_line })
+  -- Switch back to normal mode, there may be a cleaner way to do this
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
+end
+vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>Gitsigns next_hunk<CR>') -- move hunk
+vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>Gitsigns prev_hunk<CR>') -- move hunk
+vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk<CR>')       -- stage hunk
+vim.keymap.set('v', 'gsth', visual_stage)                         -- stage hunk
+vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer<CR>')     -- stage buffer
+vim.keymap.set('n', 'greh', '<cmd>Gitsigns reset_hunk<CR>')       -- reset hunk, de-active
+vim.keymap.set('v', 'greh', visual_reset)                         -- reset hunk, de-active
+vim.keymap.set('n', 'gpre', '<cmd>Gitsigns preview_hunk<CR>')     -- show diff
 
 
 -- OUTLINE
@@ -213,7 +235,6 @@ vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
 
 -- VIMWIKI
 vim.keymap.set('i', ',T', '<ESC>:VimwikiTable ')
-
 
 
 
