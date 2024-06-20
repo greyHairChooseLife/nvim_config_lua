@@ -52,6 +52,11 @@ return require('packer').startup(function(use)
 
   use 'vimwiki/vimwiki'
 
+  vim.cmd [[
+  highlight fugitiveUntrackedHeading guifg=#7f52ff gui=bold
+  highlight fugitiveUnstagedHeading guifg=#f1502f gui=bold
+  highlight fugitiveStagedHeading guifg=#50cd5a gui=bold
+]]
   use 'tpope/vim-fugitive'
   use 'junegunn/gv.vim'
 

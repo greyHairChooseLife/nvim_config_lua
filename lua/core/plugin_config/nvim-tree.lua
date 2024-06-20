@@ -163,7 +163,7 @@ vim.cmd [[
   " highlight NvimTreeGitMerge guifg=#E5C07B
   highlight NvimTreeGitRenamed guifg=#61AFEF
   " highlight NvimTreeGitNew guifg=#D19A66
-  highlight NvimTreeGitNew guifg=#ffcc00
+  highlight NvimTreeGitNew guifg=#7f52ff
   highlight NvimTreeGitDeleted guifg=#f1502f
   highlight NvimTreeGitIgnored guifg=#7F848E
   highlight NvimTreeModified guifg=#ffcc00

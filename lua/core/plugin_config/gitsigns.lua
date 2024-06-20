@@ -8,7 +8,7 @@ require('gitsigns').setup({
     delete       = { hl = 'NvimTreeGitDeleted', text = '_' },
     topdelete    = { hl = 'NvimTreeGitDeleted', text = '‾' },
     changedelete = { hl = 'NvimTreeGitDeleted', text = '~' },
-    untracked    = { hl = 'DevIconQt', text = '?' },
+    untracked    = { hl = 'NvimTreeGitNew', text = '?' },
   },
   update_debounce = 10,
   watch_gitdir = {
