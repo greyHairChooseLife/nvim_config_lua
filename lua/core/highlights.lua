@@ -92,3 +92,12 @@ vim.cmd [[
   " ToDo 항목 색상 설정
   highlight VimwikiTodo guifg=#000000 guibg=#87CEFA gui=bold
 ]]
+
+vim.cmd [[
+  highlight GitSignsAdd guifg=#40cd52
+  highlight GitSignsChange guifg=#ffcc00
+  highlight GitSignsChangedelete guifg=#f1502f
+  highlight GitSignsDelete guifg=#f1502f
+  highlight GitSignsTopdelete guifg=#f1502f
+  highlight GitSignsUntracked guifg=#7f52ff
+]]
