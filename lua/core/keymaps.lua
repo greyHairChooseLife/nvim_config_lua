@@ -203,8 +203,8 @@ local function visual_reset()
   -- Switch back to normal mode, there may be a cleaner way to do this
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
 end
-vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>Gitsigns next_hunk<CR>')                     -- move hunk
-vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>Gitsigns prev_hunk<CR>')                     -- move hunk
+vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>Gitsigns next_hunk<CR>')                     -- move hunk
+vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>Gitsigns prev_hunk<CR>')                     -- move hunk
 vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- stage hunk
 vim.keymap.set('v', 'gsth', visual_stage)                                             -- stage hunk
 vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer<CR><cmd>NvimTreeRefresh<CR>') -- stage buffer
