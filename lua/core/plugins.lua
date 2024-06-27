@@ -37,8 +37,6 @@ return require('packer').startup(function(use)
 
   use 'itchyny/calendar.vim'
 
-  -- use 'mhinz/vim-startify'
-
   use 'vimwiki/vimwiki'
 
   use 'tpope/vim-fugitive'
@@ -74,70 +72,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
-  --  use {
-  --    'pwntester/octo.nvim',
-  --    requires = {
-  --      'nvim-lua/plenary.nvim',
-  --      'nvim-telescope/telescope.nvim',
-  --      'kyazdani42/nvim-web-devicons',
-  --    },
-  --    config = function ()
-  --      require"octo".setup()
-  --    end
-  --  }
-
   use 'github/copilot.vim'
-  --  use {
-  --    "zbirenbaum/copilot.lua",
-  --    cmd = "Copilot",
-  --    event = "InsertEnter",
-  --    config = function()
-  --      require("copilot").setup({
-  --        panel = {
-  --          enabled = true,
-  --          auto_refresh = false,
-  --          keymap = {
-  --            jump_prev = "[[",
-  --            jump_next = "]]",
-  --            accept = "<CR>",
-  --            refresh = "gr",
-  --            open = "<M-CR>"
-  --          },
-  --          layout = {
-  --            position = "right", -- | top | left | right
-  --            ratio = 0.2
-  --          },
-  --        },
-  --        suggestion = {
-  --          enabled = true,
-  --          auto_trigger = true,
-  --          debounce = 20,
-  --          keymap = {
-  --            accept = "<M-CR>",
-  --            accept_word = "<M-k>",
-  --            accept_line = "<M-l>",
-  --            next = "<M-]>",
-  --            prev = "<M-[>",
-  --            dismiss = "<C-]>"
-  --          },
-  --        },
-  --        filetypes = {
-  --          yaml = false,
-  --          markdown = true,
-  --          help = false,
-  --          gitcommit = true,
-  --          gitrebase = false,
-  --          hgcommit = false,
-  --          svn = false,
-  --          cvs = false,
-  --          css = true,
-  --          ["."] = false,
-  --        },
-  --        copilot_node_command = "node", -- Node.js version must be > 18.x
-  --        server_opts_overrides = {},
-  --      })
-  --    end,
-  --  }
 
   use {
     'akinsho/flutter-tools.nvim',
@@ -231,9 +166,6 @@ return require('packer').startup(function(use)
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup()
-    end
   }
 
   use { 'nvim-telescope/telescope-hop.nvim' }
