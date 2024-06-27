@@ -23,6 +23,39 @@ require('gitsigns').setup({
     changedelete = { hl = 'GitSignsTopdelete', text = '✔' },
     untracked    = { hl = 'GitSignsUntracked', text = '✔' }
   },
+  on_attach = function()
+    local gs = package.loaded.gitsigns
+
+    -- Git 상태 변경 후 nvim-tree 갱신
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "GitSignsUpdate",
+      callback = function()
+        require('nvim-tree.api').tree.reload()
+      end,
+    })
+  end
 })
 
 vim.cmd "set statusline+={get(b:,'gitsigns_statusline',')}"
+
+
+-- =========================================================================
+-- =========================================================================
+--                          Custom Commands
+-- =========================================================================
+-- =========================================================================
+function Visual_stage()
+  local first_line = vim.fn.line('v')
+  local last_line = vim.fn.getpos('.')[2]
+  require('gitsigns').stage_hunk({ first_line, last_line })
+  -- Switch back to normal mode, there may be a cleaner way to do this
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
+end
+
+function Visual_reset()
+  local first_line = vim.fn.line('v')
+  local last_line = vim.fn.getpos('.')[2]
+  require('gitsigns').reset_hunk({ first_line, last_line })
+  -- Switch back to normal mode, there may be a cleaner way to do this
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
+end

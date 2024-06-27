@@ -39,7 +39,10 @@ vim.keymap.set('n', '<leader><leader>W', function()
   vim.cmd('wa')
   Notify('Saved all buffers', 2, { render = 'minimal' })
 end)
-vim.keymap.set('n', '<leader><leader>e', ':wq<CR>')
+vim.keymap.set('n', '<leader><leader>e', function()
+  vim.cmd('wq')
+  Notify('Saved last buffer', 2, { render = 'minimal' })
+end)
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>')
 vim.keymap.set('n', '<leader><leader>cq', function()
   Save_current_buffer_path()
@@ -202,30 +205,14 @@ vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
 
 
 -- GITSIGNS
-vim.keymap.set("n", "<leader><leader>d", ":Gitsigns toggle_word_diff<CR>") -- word diff
-local function visual_stage()
-  local first_line = vim.fn.line('v')
-  local last_line = vim.fn.getpos('.')[2]
-  require('gitsigns').stage_hunk({ first_line, last_line })
-  require('nvim-tree.api').tree.reload()
-  -- Switch back to normal mode, there may be a cleaner way to do this
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
-end
-local function visual_reset()
-  local first_line = vim.fn.line('v')
-  local last_line = vim.fn.getpos('.')[2]
-  require('gitsigns').reset_hunk({ first_line, last_line })
-  require('nvim-tree.api').tree.reload()
-  -- Switch back to normal mode, there may be a cleaner way to do this
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
-end
+vim.keymap.set("n", "<leader><leader>d", ":Gitsigns toggle_word_diff<CR>")            -- word diff
 vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>Gitsigns next_hunk<CR>')                     -- move hunk
 vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>Gitsigns prev_hunk<CR>')                     -- move hunk
 vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- stage hunk
-vim.keymap.set('v', 'gsth', visual_stage)                                             -- stage hunk
+vim.keymap.set('v', 'gsth', Visual_stage)                                             -- stage hunk
 vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer<CR><cmd>NvimTreeRefresh<CR>') -- stage buffer
 vim.keymap.set('n', 'greh', '<cmd>Gitsigns reset_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- reset hunk, de-active
-vim.keymap.set('v', 'greh', visual_reset)                                             -- reset hunk, de-active
+vim.keymap.set('v', 'greh', Visual_reset)                                             -- reset hunk, de-active
 vim.keymap.set('n', 'gpre', '<cmd>Gitsigns preview_hunk<CR>')                         -- show diff
 
 
@@ -259,7 +246,7 @@ vim.keymap.set('i', ',T', '<ESC>:VimwikiTable ')
 
 -- =========================================================================
 -- =========================================================================
---                           특정 모드로 이동
+--                           특정 모드로 진입
 -- =========================================================================
 -- =========================================================================
 vim.keymap.set('n', ',,q', QF_ToggleList, { noremap = true, silent = true })
