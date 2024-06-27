@@ -86,7 +86,7 @@ function DiffviewFilePanelFocusConditional()
   local diffviewOpen = false
 
   for _, buf in ipairs(buffers) do
-    local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+    local ft = vim.bo[buf].filetype
     if ft == 'DiffviewFiles' then
       diffviewOpen = true
       break

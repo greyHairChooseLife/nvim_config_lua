@@ -18,34 +18,21 @@ require("flutter-tools").setup {
   },
 } -- use defaults
 
-function toggleFlutterToolsOutline() vim.cmd('FlutterOutlineToggle') end
+-- 명령어와 대응하는 함수를 테이블에 저장
+local commands = {
+  { name = 'FTouTline',        cmd = 'FlutterOutlineToggle' },
+  { name = 'FTemuLator',       cmd = 'FlutterEmulators' },
+  { name = 'FTruN',            cmd = 'FlutterRun' },
+  { name = 'FTresTart',        cmd = 'FlutterRestart' },
+  { name = 'FTdeVtool',        cmd = 'FlutterOpenDevTools' },
+  { name = 'FTvisualDebug',    cmd = 'FlutterVisualDebug' },
+  { name = 'FTcopyDevToolUrl', cmd = 'FlutterCopyProfilerUrl' },
+  { name = 'FTclearLog',       cmd = 'FlutterLogClear' },
+}
 
-vim.cmd('command! FTouTline lua toggleFlutterToolsOutline()')
-
-function openFlutterEmulator() vim.cmd('FlutterEmulators') end
-
-vim.cmd('command! FTemuLator lua openFlutterEmulator()')
-
-function runFlutter() vim.cmd('FlutterRun') end
-
-vim.cmd('command! FTruN lua runFlutter()')
-
-function restartFlutter() vim.cmd('FlutterRestart') end
-
-vim.cmd('command! FTresTart lua restartFlutter()')
-
-function openFlutterDevTools() vim.cmd('FlutterOpenDevTools') end
-
-vim.cmd('command! FTdeVtool lua openFlutterDevTools()')
-
-function openVisualDebug() vim.cmd('FlutterVisualDebug') end
-
-vim.cmd('command! FTvisualDebug lua openVisualDebug()')
-
-function copyDevToolUrl() vim.cmd('FlutterCopyProfilerUrl') end
-
-vim.cmd('command! FTcopyDevToolUrl lua copyDevToolUrl()')
-
-function clearLog() vim.cmd('FlutterLogClear') end
-
-vim.cmd('command! FTclearLog lua clearLog()')
+-- 각 명령어에 대해 함수를 정의하고 명령어를 등록
+for _, ele in ipairs(commands) do
+  -- 지역 변수를 사용하여 함수 정의
+  local function_name = function() vim.cmd(ele.cmd) end
+  vim.api.nvim_create_user_command(ele.name, function_name, {})
+end

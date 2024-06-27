@@ -13,7 +13,7 @@ require("chatgpt").setup({
     },
   },
   chat = {
-    welcome_message = WELCOME_MESSAGE,
+    welcome_message = 'Hello! I am ChatGPT. How can I help you today?',
     loading_text = "Loading, please wait ...",
     question_sign = "", -- 🙂
     answer_sign = "ﮧ", -- 🤖

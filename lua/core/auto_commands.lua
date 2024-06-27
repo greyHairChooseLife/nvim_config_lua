@@ -57,12 +57,12 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- highlight yanked area
-vim.api.nvim_exec([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="Visual", timeout=100}
-  augroup END
-]], false)
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank { higroup = 'Sneak', timeout = 100 }
+  end,
+  pattern = '*',
+})
 
 -- 마지막 커서 위치로 이동
 vim.api.nvim_create_autocmd("BufReadPost", {
