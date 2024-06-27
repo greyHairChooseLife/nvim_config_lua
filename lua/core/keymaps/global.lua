@@ -31,15 +31,26 @@ vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for 
 -- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader><leader>q', ':q!<CR>')
 vim.keymap.set('n', '<leader><leader>Q', ':qa!<CR>')
-vim.keymap.set('n', '<leader><leader>w', ':mkview<CR>:w<CR>')
-vim.keymap.set('n', '<leader><leader>W', ':mkview<CR>:wa<CR>')
-vim.keymap.set('n', '<leader><leader>e', ':mkview<CR>:wq<CR>')
+vim.keymap.set('n', '<leader><leader>w', function()
+  vim.cmd('w')
+  Notify('Saved current buffer', 2, { render = 'minimal' })
+end)
+vim.keymap.set('n', '<leader><leader>W', function()
+  vim.cmd('wa')
+  Notify('Saved all buffers', 2, { render = 'minimal' })
+end)
+vim.keymap.set('n', '<leader><leader>e', ':wq<CR>')
 vim.keymap.set('n', '<leader><leader>tq', ':tabclose!<CR>')
+vim.keymap.set('n', '<leader><leader>cq', function()
+  Save_current_buffer_path()
+  vim.cmd('q')
+end)
+vim.keymap.set('n', '<leader><leader>ce', function()
+  Save_current_buffer_path()
+  vim.cmd('wq')
+end)
+vim.keymap.set('n', '<leader><leader>cc', Save_current_buffer_path)
 
-vim.keymap.set('n', '<leader><leader>cq', ':SaveCurrentBufferPath<CR>:q!<CR>') -- save current buffer path and quit
-vim.keymap.set('n', '<leader><leader>cw', ':SaveCurrentBufferPath<CR>:mkview<CR>:w<CR>')
-vim.keymap.set('n', '<leader><leader>ce', ':SaveCurrentBufferPath<CR>:mkview<CR>:wq<CR>')
-vim.keymap.set('n', '<leader><leader>cc', ':SaveCurrentBufferPath<CR>')
 
 
 -- EASY ALIGN
@@ -133,6 +144,7 @@ vim.keymap.set('n', ',.g', builtin.git_status, {})
 vim.keymap.set('n', ',.H', builtin.help_tags, {})
 vim.keymap.set('n', ',.r', builtin.registers, {})
 vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
+vim.keymap.set('v', ',.c', TelescopeSearchVisual)
 -- 현재 버퍼에 열린 파일에서만 검색
 vim.keymap.set('n', ',..w', function()
   local scope = vim.fn.expand('%:p')
@@ -250,7 +262,7 @@ vim.keymap.set('i', ',T', '<ESC>:VimwikiTable ')
 --                           특정 모드로 이동
 -- =========================================================================
 -- =========================================================================
-vim.keymap.set('n', ',,q', ToggleQFList, { noremap = true, silent = true })
+vim.keymap.set('n', ',,q', QF_ToggleList, { noremap = true, silent = true })
 
 
 

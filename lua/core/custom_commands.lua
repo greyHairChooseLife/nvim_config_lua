@@ -31,6 +31,11 @@ end
 
 vim.cmd('command! GlowFull lua ExpandGlow()')
 
+function Save_current_buffer_path()
+  local path = vim.fn.expand('%:p:h') -- 현재 버퍼의 전체 경로 얻기
+  vim.fn.setreg('+', path)            -- 클립보드에 경로 복사
+  Notify('Saved current buffer path', 2, { render = 'minimal' })
+end
 
 -- =========================================================================
 -- =========================================================================
@@ -38,7 +43,7 @@ vim.cmd('command! GlowFull lua ExpandGlow()')
 -- =========================================================================
 -- =========================================================================
 -- Quickfix list toggle 함수 정의
-function ToggleQFList()
+function QF_ToggleList()
   -- Quickfix 창이 열려있는지 확인
   local is_open = false
   for _, win in pairs(vim.fn.getwininfo()) do
@@ -56,7 +61,7 @@ function ToggleQFList()
 end
 
 -- Quickfix 항목 제거 함수 정의
-function RemoveQFItem()
+function QF_RemoveItem()
   local curqfidx = vim.fn.line('.') - 1
   local qfall = vim.fn.getqflist()
   if #qfall == 1 then
@@ -81,16 +86,19 @@ function RemoveQFItem()
 end
 
 -- Quickfix list clear all 함수 정의
-function ClearQFList()
+function QF_ClearList()
   vim.fn.setqflist({}, 'r')
   vim.api.nvim_command('cclose')
   vim.api.nvim_echo({ { "Quickfix list cleared", "MoreMsg" } }, false, {})
 end
 
 -- Quickfix 리스트 순환 이동
-vim.keymap.set('n', '<C-n>', function()
+function QF_MoveNext()
   local qf_list = vim.fn.getqflist()
-  if #qf_list == 0 then return end -- Quickfix 리스트가 비어있는 경우 아무 동작도 하지 않음
+  if #qf_list == 0 then
+    Notify("List is empty", 3, { title = "Quickfix" })
+    return
+  end -- Quickfix 리스트가 비어있는 경우 아무 동작도 하지 않음
   local qf_info = vim.fn.getqflist({ idx = 0 })
   local qf_index = qf_info.idx
   if qf_index == #qf_list then
@@ -98,12 +106,14 @@ vim.keymap.set('n', '<C-n>', function()
   else
     vim.cmd('cnext')
   end
-end, { silent = true, noremap = true })
+end
 
--- Quickfix 리스트 순환 이동
-vim.keymap.set('n', '<C-p>', function()
+function QF_MovePrev()
   local qf_list = vim.fn.getqflist()
-  if #qf_list == 0 then return end -- Quickfix 리스트가 비어있는 경우 아무 동작도 하지 않음
+  if #qf_list == 0 then
+    Notify("List is empty", 3, { title = "Quickfix" })
+    return
+  end -- Quickfix 리스트가 비어있는 경우 아무 동작도 하지 않음
   local qf_info = vim.fn.getqflist({ idx = 0 })
   local qf_index = qf_info.idx
   if qf_index == 1 then
@@ -111,7 +121,7 @@ vim.keymap.set('n', '<C-p>', function()
   else
     vim.cmd('cprev')
   end
-end, { silent = true, noremap = true })
+end
 
 -- Quickfix 윈도우 설정
 vim.api.nvim_create_autocmd("FileType", {
@@ -123,36 +133,38 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
--- telescope custom commands, visual select search
-function vim.getVisualSelection()
-  vim.cmd('noau normal! "vy"')
-  local text = vim.fn.getreg('v')
-  vim.fn.setreg('v', {})
 
-  text = string.gsub(text, "\n", "")
-  if #text > 0 then
-    return text
-  else
-    return ''
+
+
+-- =========================================================================
+-- =========================================================================
+--                           Telescope
+-- =========================================================================
+-- =========================================================================
+-- visual block만 서치하기
+function TelescopeSearchVisual()
+  local function getVisualText()
+    vim.cmd('noau normal! "vy"')
+    local text = vim.fn.getreg('v')
+    vim.fn.setreg('v', {})
+
+    text = string.gsub(text, "\n", "")
+    if #text > 0 then
+      return text
+    else
+      return ''
+    end
   end
-end
 
-vim.keymap.set('v', ',.c', function()
-  local text = vim.getVisualSelection()
+  local text = getVisualText()
   require('telescope.builtin').live_grep({ default_text = text })
-end, { noremap = true, silent = true })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.api.nvim_buf_set_keymap(0, 'n', 'PP', '<cmd>MarkdownPreview<CR>', { noremap = true, silent = true })
-  end,
-})
-
-function LogTimeOnBuffer()
-  vim.api.nvim_command("r !date | awk '{print $5}'")
 end
 
+-- =========================================================================
+-- =========================================================================
+--                           Shell command insdie Vim Buffer
+-- =========================================================================
+-- =========================================================================
 function RunBufferWithSh()
   local temp_file = vim.fn.tempname()
   vim.api.nvim_command('silent! write! ' .. temp_file)
@@ -262,16 +274,3 @@ function RunSelectedLinesWithShCover()
   vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
 end
-
-vim.api.nvim_set_keymap('n', ',R', ':lua RunBufferWithSh()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ',cR', ':lua RunBufferWithShCover()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', ',R', ':lua RunSelectedLinesWithSh()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', ',cR', ':lua RunSelectedLinesWithShCover()<CR>', { noremap = true, silent = true })
-
-local function save_current_buffer_path()
-  local path = vim.fn.expand('%:p:h') -- 현재 버퍼의 전체 경로 얻기
-  vim.fn.setreg('+', path)            -- 클립보드에 경로 복사
-  print("Buffer path saved to clipboard")
-end
-
-vim.api.nvim_create_user_command('SaveCurrentBufferPath', save_current_buffer_path, { nargs = 0 })

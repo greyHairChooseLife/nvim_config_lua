@@ -240,6 +240,8 @@ return require('packer').startup(function(use)
   use { 'fannheyward/telescope-coc.nvim' }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
+  use 'rcarriga/nvim-notify'
+
   -- TODO:
   -- for surrounder
   -- 1. tpope/vim-surround
