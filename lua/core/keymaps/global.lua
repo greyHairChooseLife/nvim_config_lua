@@ -13,12 +13,14 @@ vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)") -- go t
 vim.keymap.set("n", "vv", "viw")                                         -- easy visual block for word
 vim.keymap.set({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
 vim.keymap.set({ 'n', 'v' }, 'gH', '0')                                  -- move cursor
-vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
+vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move cursor,,q
 vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
-vim.keymap.set({ 'n', 'v' }, ',U', '<ESC>bvU')                           -- search current word
+vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                           -- search current word
+vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')                          -- for :on command
+vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for :on command
 
 
 -- FOLDING 기억하기
@@ -112,7 +114,9 @@ vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, no
 -- =========================================================================
 -- =========================================================================
 -- NVIM-TREE
-vim.keymap.set('n', ',,d', ':NvimTreeFindFileToggle<CR>') -- paste last thing yanked, not deleted
+vim.keymap.set('n', ',,d', function()
+  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+end)
 --vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away  -> diffview 쪽이랑 통합했다. 조건부로 동작.
 
 
@@ -126,7 +130,7 @@ vim.keymap.set('n', ',.m', builtin.marks, {})
 vim.keymap.set('n', ',.b', builtin.buffers, {})
 vim.keymap.set('n', ',.s', builtin.git_stash, {})
 vim.keymap.set('n', ',.g', builtin.git_status, {})
-vim.keymap.set('n', ',.h', builtin.help_tags, {})
+vim.keymap.set('n', ',.H', builtin.help_tags, {})
 vim.keymap.set('n', ',.r', builtin.registers, {})
 vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
 -- 현재 버퍼에 열린 파일에서만 검색
@@ -240,6 +244,13 @@ vim.keymap.set('i', ',T', '<ESC>:VimwikiTable ')
 
 
 
+
+-- =========================================================================
+-- =========================================================================
+--                           특정 모드로 이동
+-- =========================================================================
+-- =========================================================================
+vim.keymap.set('n', ',,q', ToggleQFList, { noremap = true, silent = true })
 
 
 

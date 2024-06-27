@@ -1,3 +1,8 @@
+-- =========================================================================
+-- =========================================================================
+--                           general
+-- =========================================================================
+-- =========================================================================
 function ShowCursor()
   if vim.o.cursorline then
     vim.o.cursorline = false
@@ -26,6 +31,30 @@ end
 
 vim.cmd('command! GlowFull lua ExpandGlow()')
 
+
+-- =========================================================================
+-- =========================================================================
+--                           Quick Fix
+-- =========================================================================
+-- =========================================================================
+-- Quickfix list toggle 함수 정의
+function ToggleQFList()
+  -- Quickfix 창이 열려있는지 확인
+  local is_open = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      is_open = true
+      break
+    end
+  end
+
+  if is_open then
+    vim.api.nvim_command('cclose')
+  else
+    vim.api.nvim_command('copen')
+  end
+end
+
 -- Quickfix 항목 제거 함수 정의
 function RemoveQFItem()
   local curqfidx = vim.fn.line('.') - 1
@@ -51,40 +80,12 @@ function RemoveQFItem()
   end
 end
 
-vim.cmd [[
-  autocmd FileType qf nnoremap <buffer> dd :lua RemoveQFItem()<CR>
-]]
-
 -- Quickfix list clear all 함수 정의
 function ClearQFList()
   vim.fn.setqflist({}, 'r')
   vim.api.nvim_command('cclose')
   vim.api.nvim_echo({ { "Quickfix list cleared", "MoreMsg" } }, false, {})
 end
-
-vim.cmd [[
-  autocmd FileType qf nnoremap <buffer> DD :lua ClearQFList()<CR>
-]]
-
--- Quickfix list toggle 함수 정의
-function ToggleQFList()
-  -- Quickfix 창이 열려있는지 확인
-  local is_open = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win.quickfix == 1 then
-      is_open = true
-      break
-    end
-  end
-
-  if is_open then
-    vim.api.nvim_command('cclose')
-  else
-    vim.api.nvim_command('copen')
-  end
-end
-
-vim.api.nvim_set_keymap('n', ',,q', ':lua ToggleQFList()<CR>', { noremap = true, silent = true })
 
 -- Quickfix 리스트 순환 이동
 vim.keymap.set('n', '<C-n>', function()
