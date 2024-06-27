@@ -188,7 +188,7 @@ vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
 -- git status 관리
 vim.keymap.set('n', '<leader>gg', ':G<CR>')
 -- 현재 버퍼 gitdiff 확인
-vim.keymap.set('n', ',vd', ':Gvdiffsplit<CR>')
+vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')
 -- git review
 -- TODO:
 -- workflow를 고려해서 재구성할 필요가 있다.
