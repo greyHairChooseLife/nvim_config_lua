@@ -64,7 +64,7 @@ vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 -- NEW WINDOW & TAP
 vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
-vim.keymap.set('n', '<A-n>t', ':tabnew<CR>')
+vim.keymap.set('n', '<A-n>t', NewTabWithPrompt)
 -- FOCUS TAPS
 vim.keymap.set('n', '<A-p>', 'gt')
 vim.keymap.set('n', '<A-o>', 'gT')

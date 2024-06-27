@@ -48,3 +48,4 @@ gh.nvim plugin이 루아 아니면 설치 및 설정이 너무 어려웠다. 그
 
 - [public doc](!https://www.lua.org/manual/5.3/)
 - [neovim doc for lua api](!https://neovim.io/doc/user/options.html)
+- [lkj](https://www.nerdfonts.com/cheat-sheet)

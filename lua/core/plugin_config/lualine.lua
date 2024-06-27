@@ -67,7 +67,8 @@ require('lualine').setup {
         },
         symbols = {
           added = '+ ',
-          modified = '󰔷 ',
+          -- modified = '󰔷 ',
+          modified = '~ ',
           removed = '- '
         },
       },
@@ -91,7 +92,8 @@ require('lualine').setup {
         },
         symbols = {
           added = '+ ',
-          modified = '󰔷 ',
+          -- modified = '󰔷 ',
+          modified = '~ ',
           removed = '- '
         },
       },

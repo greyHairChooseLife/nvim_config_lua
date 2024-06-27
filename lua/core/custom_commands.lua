@@ -274,3 +274,61 @@ function RunSelectedLinesWithShCover()
   vim.api.nvim_set_current_win(current_win)
   vim.fn.delete(temp_file)
 end
+
+-- =========================================================================
+-- =========================================================================
+--                           Custom Tabline
+-- =========================================================================
+-- =========================================================================
+-- 사용자 정의 tabline 함수
+function MyTabLine()
+  local s = ''
+  local sep = '%#TabLineSelFg#' -- 탭 구분자
+  local max_width = 20 -- 탭의 최대 너비
+
+  for i = 1, vim.fn.tabpagenr('$') do
+    local tabname = vim.fn.gettabvar(i, 'tabname', 'Tab ' .. i)
+
+    -- 탭 이름이 최대 너비보다 길 경우 잘라냄
+    if #tabname > max_width then
+      tabname = string.sub(tabname, 1, max_width - 3) .. '...'
+    end
+
+    -- 탭 이름을 가운데 정렬
+    local padding = math.max(0, (max_width - #tabname) / 2)
+    tabname = string.rep(' ', padding) .. tabname .. string.rep(' ', max_width - #tabname - padding)
+
+    -- 현재 탭 페이지를 강조 표시
+    if i == vim.fn.tabpagenr() then
+      s = s ..
+          '%' .. i .. 'T' ..
+          '%#TabLineSelBg#' ..
+          '%#TabLineSelBg# ' .. tabname .. ' %#TabLineSelFg#' .. '%#TabLineFill#'
+    else
+      s = s .. '%' .. i .. 'T' .. ' ' .. tabname .. ' '
+    end
+
+    if i < vim.fn.tabpagenr('$') + 1 then
+      s = s .. sep
+    end
+  end
+
+  s = s .. '%#TabLineFill#' .. '%='
+
+  return s
+end
+
+-- tabline 설정
+vim.o.tabline = '%!v:lua.MyTabLine()'
+
+function NewTabWithPrompt()
+  -- 입력 프롬프트 표시
+  local tabname = vim.fn.input('Enter tab name: ')
+  if tabname == '' then
+    tabname = 'Tab ' .. vim.fn.tabpagenr('$') + 1
+  end
+  -- 새로운 탭 생성 및 이름 설정
+  vim.cmd('tabnew')
+  local tabnr = vim.fn.tabpagenr()
+  vim.fn.settabvar(tabnr, 'tabname', tabname)
+end
