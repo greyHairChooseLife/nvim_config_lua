@@ -11,7 +11,7 @@ require("notify").setup {
   level = 2,
   minimum_width = 50,
   render = "default",
-  stages = "fade_in_slide_out",
+  stages = "static",
   time_formats = {
     notification = "%H:%M",
     notification_history = "%FT%T"
