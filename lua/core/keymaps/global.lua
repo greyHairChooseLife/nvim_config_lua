@@ -21,7 +21,7 @@ vim.keymap.set({ 'n' }, "'", '*N')                                       -- sear
 vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                           -- search current word
 vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')                          -- for :on command
 vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for :on command
-
+vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 
 -- FOLDING 기억하기
 -- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view

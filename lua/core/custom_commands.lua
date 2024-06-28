@@ -37,6 +37,18 @@ function Save_current_buffer_path()
   Notify('Saved current buffer path', 2, { render = 'minimal' })
 end
 
+-- 플로팅 윈도우로 포커스를 이동하는 Lua 함수
+function FocusFloatingWindow()
+  local wins = vim.api.nvim_list_wins()
+  for _, win in ipairs(wins) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.focusable and config.relative ~= '' then
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+end
+
 -- =========================================================================
 -- =========================================================================
 --                           Quick Fix
