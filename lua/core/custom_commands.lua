@@ -34,7 +34,7 @@ vim.cmd('command! GlowFull lua ExpandGlow()')
 function Save_current_buffer_path()
   local path = vim.fn.expand('%:p:h') -- 현재 버퍼의 전체 경로 얻기
   vim.fn.setreg('+', path)            -- 클립보드에 경로 복사
-  Notify('Saved current buffer path', 2, { render = 'minimal' })
+  -- Notify('Saved current buffer path', 2, { render = 'minimal' })
 end
 
 -- 플로팅 윈도우로 포커스를 이동하는 Lua 함수
@@ -108,7 +108,7 @@ end
 function QF_MoveNext()
   local qf_list = vim.fn.getqflist()
   if #qf_list == 0 then
-    Notify("List is empty", 3, { title = "Quickfix" })
+    -- Notify("List is empty", 3, { title = "Quickfix" })
     return
   end -- Quickfix 리스트가 비어있는 경우 아무 동작도 하지 않음
   local qf_info = vim.fn.getqflist({ idx = 0 })
@@ -123,7 +123,7 @@ end
 function QF_MovePrev()
   local qf_list = vim.fn.getqflist()
   if #qf_list == 0 then
-    Notify("List is empty", 3, { title = "Quickfix" })
+    -- Notify("List is empty", 3, { title = "Quickfix" })
     return
   end -- Quickfix 리스트가 비어있는 경우 아무 동작도 하지 않음
   local qf_info = vim.fn.getqflist({ idx = 0 })

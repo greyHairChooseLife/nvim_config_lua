@@ -20,4 +20,4 @@ require("notify").setup {
   top_down = true
 }
 
-Notify = require('notify')
+-- Notify = require('notify')

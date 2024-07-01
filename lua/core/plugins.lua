@@ -171,7 +171,7 @@ return require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-hop.nvim' }
   use { 'fannheyward/telescope-coc.nvim' }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'rcarriga/nvim-notify'
+  -- use 'rcarriga/nvim-notify'
 
   -- TODO:
   -- for surrounder
