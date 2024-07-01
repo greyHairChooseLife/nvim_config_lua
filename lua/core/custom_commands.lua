@@ -342,5 +342,5 @@ function NewTabWithPrompt()
   -- 새로운 탭 생성 및 이름 설정
   vim.cmd('tabnew')
   local tabnr = vim.fn.tabpagenr()
-  vim.fn.settabvar(tabnr, 'tabname', tabname)
+vim.fn.settabvar(tabnr, 'tabname', tabname)
 end
