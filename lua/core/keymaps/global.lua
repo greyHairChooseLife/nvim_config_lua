@@ -22,6 +22,7 @@ vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                           -- sear
 vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')                          -- for :on command
 vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for :on command
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
 -- FOLDING 기억하기
 -- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
