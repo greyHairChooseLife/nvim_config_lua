@@ -295,8 +295,9 @@ end
 -- 사용자 정의 tabline 함수
 function MyTabLine()
   local s = ''
-  local sep = '%#TabLineSelFg#' -- 탭 구분자
-  local max_width = 20 -- 탭의 최대 너비
+  -- local sep = '%#TabLineSelBorder#' -- 탭 구분자
+  local sep = '%#TabLineSelBorder# ' -- 탭 구분자
+  local max_width = 20               -- 탭의 최대 너비
 
   for i = 1, vim.fn.tabpagenr('$') do
     local tabname = vim.fn.gettabvar(i, 'tabname', 'Tab ' .. i)
@@ -310,14 +311,15 @@ function MyTabLine()
     local padding = math.max(0, (max_width - #tabname) / 2)
     tabname = string.rep(' ', padding) .. tabname .. string.rep(' ', max_width - #tabname - padding)
 
-    -- 현재 탭 페이지를 강조 표시
+    -- 현재 탭 페이지를 강조 표시     󱐋
     if i == vim.fn.tabpagenr() then
       s = s ..
           '%' .. i .. 'T' ..
           '%#TabLineSelBg#' ..
-          '%#TabLineSelBg# ' .. tabname .. ' %#TabLineSelFg#' .. '%#TabLineFill#'
+          '%#TabLineSelBg#' .. tabname .. ' %#TabLineSelBorder#' .. '%#TabLineFill#'
+      -- '%#TabLineSelBg# ' .. tabname .. ' %#TabLineSelBorder#' .. '%#TabLineFill#'
     else
-      s = s .. '%' .. i .. 'T' .. ' ' .. tabname .. ' '
+      s = s .. '%' .. i .. 'T' .. '%#TabLineNotSel#' .. ' ' .. tabname .. ' '
     end
 
     if i < vim.fn.tabpagenr('$') + 1 then
@@ -342,5 +344,41 @@ function NewTabWithPrompt()
   -- 새로운 탭 생성 및 이름 설정
   vim.cmd('tabnew')
   local tabnr = vim.fn.tabpagenr()
-vim.fn.settabvar(tabnr, 'tabname', tabname)
+  vim.fn.settabvar(tabnr, 'tabname', tabname)
+end
+
+function RenameCurrentTab()
+  -- 현재 탭 번호를 가져옵니다
+  local tabnr = vim.fn.tabpagenr()
+
+  -- 입력 프롬프트를 표시하여 새 탭 이름을 입력받습니다
+  local tabname = vim.fn.input('Enter new tab name: ')
+  if tabname == '' then
+    tabname = 'Tab ' .. tabnr
+  end
+
+  -- 현재 탭의 이름을 설정합니다
+  vim.fn.settabvar(tabnr, 'tabname', tabname)
+  -- 탭라인을 업데이트합니다
+  vim.cmd('redrawtabline')
+end
+
+function MoveTabLeft()
+  local current_tab = vim.fn.tabpagenr()
+  if current_tab == 1 then
+    vim.cmd('tabmove $')
+  elseif
+      current_tab > 1 then
+    vim.cmd('tabmove ' .. (current_tab - 2))
+  end
+end
+
+function MoveTabRight()
+  local current_tab = vim.fn.tabpagenr()
+  local total_tabs = vim.fn.tabpagenr('$')
+  if current_tab < total_tabs then
+    vim.cmd('tabmove ' .. current_tab + 1)
+  else
+    vim.cmd('tabmove 0')
+  end
 end

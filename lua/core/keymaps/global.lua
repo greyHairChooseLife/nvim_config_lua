@@ -65,6 +65,9 @@ vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>t', NewTabWithPrompt)
+vim.keymap.set('n', '<A-r>', RenameCurrentTab)
+vim.keymap.set('n', '<A-m>l', MoveTabRight)
+vim.keymap.set('n', '<A-m>h', MoveTabLeft)
 -- FOCUS TAPS
 vim.keymap.set('n', '<A-p>', 'gt')
 vim.keymap.set('n', '<A-o>', 'gT')
@@ -210,7 +213,7 @@ vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>Gitsigns next_hunk<CR>')               
 vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>Gitsigns prev_hunk<CR>')                     -- move hunk
 vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- stage hunk
 vim.keymap.set('v', 'gsth', Visual_stage)                                             -- stage hunk
-vim.keymap.set('v', 'gstH', Visual_undo_stage)                                             -- stage hunk
+vim.keymap.set('v', 'gstH', Visual_undo_stage)                                        -- stage hunk
 vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer<CR><cmd>NvimTreeRefresh<CR>') -- stage buffer
 vim.keymap.set('n', 'greh', '<cmd>Gitsigns reset_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- reset hunk, de-active
 vim.keymap.set('v', 'greh', Visual_reset)                                             -- reset hunk, de-active
