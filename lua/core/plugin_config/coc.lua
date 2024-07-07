@@ -146,16 +146,17 @@ keyset("o", "ac", "<Plug>(coc-classobj-a)", opts)
 
 
 -- Remap <C-f> and <C-b> to scroll float windows/popups
+-- Remap <A-p> and <C-n> to scroll float windows/popups
 ---@diagnostic disable-next-line: redefined-local
 local opts = { silent = true, nowait = true, expr = true }
-keyset("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
-keyset("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
-keyset("i", "<C-f>",
+keyset("n", "<A-n>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<A-n>"', opts)
+keyset("n", "<A-p>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-p>"', opts)
+keyset("i", "<A-n>",
   'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
-keyset("i", "<C-b>",
+keyset("i", "<A-p>",
   'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
-keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
-keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+keyset("v", "<A-n>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<A-n>"', opts)
+keyset("v", "<A-p>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-p>"', opts)
 
 
 -- Use CTRL-S for selections ranges
@@ -163,6 +164,8 @@ keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', o
 keyset("n", ",a", "<Plug>(coc-range-select)", { silent = true })
 keyset("x", ",a", "<Plug>(coc-range-select)", { silent = true })
 
+-- BUG: 왜 안됨?
+-- keyset("n", "<space>e", ":CocList extensions<cr>", opts)
 
 -- Add `:Format` command to format current buffer
 vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})

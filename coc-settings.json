@@ -3,5 +3,34 @@
   "prettier.prettierPath": "./node_modules/prettier",
   "flutter.lsp.initialization.closingLabels": false,
   "markdownlint.onChange": true,
-  "sumneko-lua.enableNvimLuaDev": true
+  "sumneko-lua.enableNvimLuaDev": false,
+
+  "coc.source.css.filetypes": ["css", "scss", "less"],
+  "coc.source.docker.filetypes": ["dockerfile"],
+  "coc.source.flutter.filetypes": ["dart"],
+  "coc.source.html.filetypes": ["html"],
+  "coc.source.json.filetypes": ["json"],
+  "coc.source.pairs.filetypes": [],
+  "coc.source.prettier.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "css",
+    "scss",
+    "less",
+    "html",
+    "json",
+    "markdown"
+  ],
+  "coc.source.sh.filetypes": ["sh", "bash"],
+  "coc.source.sumneko-lua.filetypes": ["lua"],
+  "coc.source.tsserver.filetypes": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact"
+  ],
+  "coc.source.word.filetypes": ["markdown", "text"],
+  "coc.source.yaml.filetypes": ["yaml", "yml"]
 }
