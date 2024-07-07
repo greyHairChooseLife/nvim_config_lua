@@ -13,7 +13,7 @@ vim.keymap.set("n", ",sv", ":vs<CR>:wincmd w<CR><Plug>(coc-definition)") -- go t
 vim.keymap.set("n", "vv", "viw")                                         -- easy visual block for word
 vim.keymap.set({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
 vim.keymap.set({ 'n', 'v' }, 'gH', '0')                                  -- move cursor
-vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move cursor,,q
+vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
@@ -23,6 +23,16 @@ vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')                          -- for 
 vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for :on command
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
+
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "p", '"_dP') -- paste without yanking in visual mode
+
+-- 선택한 줄 이동
+-- vim.keymap.set("v", "<A-k>", ":m .-2<CR>==gv")
+-- vim.keymap.set("v", "<A-j>", ":m .+1<CR>==gv")
+vim.keymap.set('x', '<A-k>', ':move \'<-2<CR>gv-gv')
+vim.keymap.set('x', '<A-j>', ':move \'>+1<CR>gv-gv')
 
 
 -- 디버깅
