@@ -24,6 +24,12 @@ vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for 
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
+
+-- 디버깅
+vim.keymap.set('i', 'cl<cr>', Insert_console_log, { noremap = true, silent = true })
+vim.keymap.set('v', 'cl<cr>', ":<C-U>lua Insert_console_log_Visual()<CR>", { noremap = true, silent = true })
+
+
 -- FOLDING 기억하기
 -- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
 -- vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view

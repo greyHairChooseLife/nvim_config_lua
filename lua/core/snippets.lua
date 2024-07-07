@@ -44,3 +44,62 @@ vim.keymap.set('i', ',,B', function()
     vim.api.nvim_feedkeys("o", "n", true)
   end, 1) -- 최소한의 딜레이
 end)
+
+
+-- 커스텀 커맨드 정의
+function Insert_console_log()
+  local file_path = vim.fn.expand('%:~:.') -- 상대경로
+  local line_number = vim.fn.line('.')
+  local log_message = string.format("console.log('File: %s, Line: %d \\n', );", file_path, line_number)
+
+  -- 현재 커서 위치 가져오기
+  local current_pos = vim.api.nvim_win_get_cursor(0)
+
+  -- 메시지 삽입
+  vim.api.nvim_put({ log_message }, 'c', true, true)
+
+  -- 커서 위치를 ',' 뒤의 다음 줄로 이동
+  vim.api.nvim_win_set_cursor(0, { current_pos[1], current_pos[2] + #log_message - 2 })
+end
+
+-- 비주얼 모드에서 선택한 텍스트 가져오기
+local function get_visual_selection()
+  local _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
+  local _, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
+  if csrow == cerow then
+    return string.sub(vim.fn.getline(csrow), cscol, cecol)
+  else
+    local lines = vim.fn.getline(csrow, cerow)
+    lines[1] = string.sub(lines[1], cscol, -1)
+    lines[#lines] = string.sub(lines[#lines], 1, cecol)
+    return table.concat(lines, '\n')
+  end
+end
+
+-- 커스텀 커맨드 정의
+function Insert_console_log_Visual()
+  local file_path = vim.fn.expand('%:~:.') -- 상대경로
+  local line_number = vim.fn.line('.')
+
+  -- 비주얼 모드에서 선택된 텍스트 가져오기
+  local visual_selection = get_visual_selection()
+
+  -- `console.log` 메시지 생성
+  local log_message = string.format("console.log('File: %s, Line: %d \\n', '%s: ', %s);", file_path, line_number,
+    visual_selection, visual_selection)
+
+  -- 현재 커서 위치 가져오기
+  local current_pos = vim.api.nvim_win_get_cursor(0)
+
+  -- 비주얼 모드 종료
+  vim.api.nvim_input('<Esc>')
+
+  -- 비주얼 모드에서 선택한 텍스트 뒤에 메시지 삽입
+  vim.api.nvim_put({ log_message }, 'l', true, true)
+
+  -- 커서 위치를 선택한 텍스트 뒤의 ',' 뒤로 이동하고 인서트 모드로 전환
+  local new_row = current_pos[1] + 1
+  local new_col = #log_message - 2 -- ); 앞의 위치로 이동
+  vim.api.nvim_win_set_cursor(0, { new_row, new_col })
+  vim.api.nvim_input('i')
+end
