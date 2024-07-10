@@ -32,5 +32,6 @@
     "javascriptreact"
   ],
   "coc.source.word.filetypes": ["markdown", "text"],
-  "coc.source.yaml.filetypes": ["yaml", "yml"]
+  "coc.source.yaml.filetypes": ["yaml", "yml"],
+  "coc.source.python.filetypes": ["python"]
 }

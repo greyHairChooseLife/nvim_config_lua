@@ -61,15 +61,16 @@ vim.keymap.set('n', '<leader>e', function()
   -- Notify('Saved last buffer', 2, { render = 'minimal' })
 end)
 vim.keymap.set('n', '<leader>tq', ':tabclose!<CR>')
-vim.keymap.set('n', '<leader>cq', function()
-  Save_current_buffer_path()
-  vim.cmd('q')
-end)
-vim.keymap.set('n', '<leader>ce', function()
-  Save_current_buffer_path()
-  vim.cmd('wq')
-end)
-vim.keymap.set('n', '<leader>cc', Save_current_buffer_path)
+-- 사실상 안쓰더라
+-- vim.keymap.set('n', '<leader>cq', function()
+--   Save_current_buffer_path()
+--   vim.cmd('q')
+-- end)
+-- vim.keymap.set('n', '<leader>ce', function()
+--   Save_current_buffer_path()
+--   vim.cmd('wq')
+-- end)
+vim.keymap.set('n', '<leader>cp', Save_current_buffer_path)
 
 
 
@@ -207,6 +208,8 @@ vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>')
 vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
 -- git status 관리
 vim.keymap.set('n', '<leader>gg', ':G<CR>')
+-- 즉시 커밋
+vim.keymap.set('n', '<leader>cc', ':G commit<CR>')
 -- 현재 버퍼 gitdiff 확인
 vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')
 -- git review
