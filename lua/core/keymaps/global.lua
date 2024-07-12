@@ -4,8 +4,12 @@
 -- =========================================================================
 -- =========================================================================
 -- MISC TIPS
-vim.keymap.set('n', ',q', ':nohlsearch<CR>', { silent = true })          -- 검색 기록 제거
-vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })            -- 창 크기 동일하게
+vim.keymap.set('n', ',q', ':nohlsearch<CR>', { silent = true }) -- 검색 기록 제거
+-- vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })            -- 창 크기 동일하게
+vim.keymap.set('n', ',r', function()
+  vim.cmd('wincmd =');
+  vim.cmd('NvimTreeRefresh')
+end)                                                                     -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])             -- change word under cursor globally
 vim.keymap.set("n", ",ss", ":sp<CR>:wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
