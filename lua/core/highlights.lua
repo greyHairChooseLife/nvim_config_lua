@@ -29,7 +29,7 @@ vim.cmd("highlight TabLineSelBg guibg=#98c379 guifg=#1d202f")
 vim.cmd("highlight TabLineSelBorder guifg=#98c379")
 vim.cmd("highlight Search guibg=#FFFF00 guifg=#1d202f")
 vim.cmd("highlight CurSearch gui=bold guibg=#0000FF guifg=white")
-vim.cmd("highlight Visual guibg=#4169EE")
+vim.cmd("highlight Visual guibg=#3e4452")
 vim.cmd("highlight CursorLine guibg=#3e4452")
 
 vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
