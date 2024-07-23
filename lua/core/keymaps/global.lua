@@ -44,11 +44,6 @@ vim.keymap.set('i', 'cl<cr>', Insert_console_log, { noremap = true, silent = tru
 vim.keymap.set('v', 'cl<cr>', ":<C-U>lua Insert_console_log_Visual()<CR>", { noremap = true, silent = true })
 
 
--- FOLDING 기억하기
--- vim.keymap.set('n', ',mv', ':mkview<CR>') -- make view
--- vim.keymap.set('n', ',lv', ':loadview<CR>') -- load view
-
-
 -- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader>q', ':q!<CR>')
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
@@ -67,6 +62,15 @@ end)
 vim.keymap.set('n', '<leader>tq', ':tabclose!<CR>')
 vim.keymap.set('n', '<leader>cp', Save_current_buffer_path)
 
+
+-- fold는 항상  mkview
+vim.keymap.set('n', 'zc', 'zc:mkview<CR>')
+vim.keymap.set('n', 'zo', 'zo:mkview<CR>')
+vim.keymap.set('n', 'zO', 'zO:mkview<CR>')
+vim.keymap.set('n', 'zm', 'zm:mkview<CR>')
+vim.keymap.set('n', 'zM', 'zM:mkview<CR>')
+vim.keymap.set('n', 'zr', 'zr:mkview<CR>')
+vim.keymap.set('n', 'zR', 'zR:mkview<CR>')
 
 
 -- EASY ALIGN

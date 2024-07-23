@@ -83,3 +83,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.api.nvim_win_set_cursor(0, pos)
   end,
 })
+
+
+-- 파일 열면 loadview
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("silent! loadview")
+  end,
+})
