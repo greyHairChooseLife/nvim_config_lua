@@ -167,12 +167,14 @@ vim.keymap.set('v', ',.w', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>',
 vim.keymap.set('n', ',.c', builtin.grep_string, {})
 vim.keymap.set('n', ',.m', builtin.marks, {})
 vim.keymap.set('n', ',.b', builtin.buffers, {})
-vim.keymap.set('n', ',.s', builtin.git_stash, {})
-vim.keymap.set('n', ',.g', builtin.git_status, {})
 vim.keymap.set('n', ',.H', builtin.help_tags, {})
 vim.keymap.set('n', ',.r', builtin.registers, {})
 vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
 vim.keymap.set('v', ',.c', TelescopeSearchVisual)
+vim.keymap.set('n', ',.gsts', builtin.git_stash, {})
+vim.keymap.set('n', ',.gstt', builtin.git_status, {})
+vim.keymap.set('n', ',.gsco', builtin.git_commits, {})
+vim.keymap.set('n', ',.gsbr', builtin.git_branches, {})
 -- 현재 버퍼에 열린 파일에서만 검색
 vim.keymap.set('n', ',..w', function()
   local scope = vim.fn.expand('%:p')
@@ -214,6 +216,7 @@ vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
 vim.keymap.set('n', '<leader>gg', ':G<CR>')
 -- 즉시 커밋
 vim.keymap.set('n', '<leader>cc', ':G commit<CR>')
+vim.keymap.set('n', '<leader>ce', ':G commit --amend<CR>')
 -- 현재 버퍼 gitdiff 확인
 vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')
 -- git review
