@@ -5,6 +5,7 @@ require('gitsigns').setup({
   },
   auto_attach = true,
   attach_to_untracked = true,
+  sign_priority = 15,
 
   signs = {
     add          = { text = '+' },
