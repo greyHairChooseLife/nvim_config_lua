@@ -4,7 +4,7 @@
 -- =========================================================================
 -- =========================================================================
 -- MISC TIPS
-vim.keymap.set('n', ',q', ':nohlsearch<CR>', { silent = true }) -- 검색 기록 제거
+vim.keymap.set('n', ',q', ':nohlsearch<CR>:echon<CR>', { silent = true }) -- 검색 기록 제거
 -- vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })            -- 창 크기 동일하게
 vim.keymap.set('n', ',r', function()
   vim.cmd('wincmd =');
@@ -49,15 +49,16 @@ vim.keymap.set('n', '<leader>q', ':q!<CR>')
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
 vim.keymap.set('n', '<leader>w', function()
   vim.cmd('w')
-  vim.notify('Saved current buffers', 2, { render = 'minimal' })
+  vim.notify('Saved current buffers', 3, { render = 'minimal' })
+  vim.cmd('echon')
 end)
 vim.keymap.set('n', '<leader>W', function()
   vim.cmd('wa')
-  vim.notify('Saved all buffers', 2, { render = 'minimal' })
+  vim.notify('Saved all buffers', 3, { render = 'minimal' })
 end)
 vim.keymap.set('n', '<leader>e', function()
   vim.cmd('wq')
-  vim.notify('Saved last buffers', 2, { render = 'minimal' })
+  vim.notify('Saved last buffers', 3, { render = 'minimal' })
 end)
 vim.keymap.set('n', '<leader>tq', ':tabclose!<CR>')
 vim.keymap.set('n', '<leader>cp', Save_current_buffer_path)
