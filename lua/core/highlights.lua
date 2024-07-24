@@ -29,8 +29,8 @@ vim.cmd("highlight TabLineSelBg guibg=#98c379 guifg=#1d202f")
 vim.cmd("highlight TabLineSelBorder guifg=#98c379")
 vim.cmd("highlight Search guibg=#FFFF00 guifg=#1d202f")
 vim.cmd("highlight CurSearch gui=bold guibg=#0000FF guifg=white")
-vim.cmd("highlight Visual guibg=#3e4452")
-vim.cmd("highlight CursorLine guibg=#3e4452")
+vim.cmd("highlight Visual guibg=#4d6652 guifg=NONE")
+vim.cmd("highlight CursorLine guibg=#4d6652 guifg=NONE")
 
 vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
 vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])
@@ -52,8 +52,8 @@ vim.cmd("highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335")
 vim.cmd("highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a")
 
 vim.cmd [[
-  highlight NvimTreeFolderIcon guifg=#569CD6
-  highlight NvimTreeFolderName guifg=#569CD6
+  highlight NvimTreeFolderIcon guifg=#ffcc00
+  highlight NvimTreeFolderName guifg=#569CD6 gui=bold
   highlight NvimTreeOpenedFolderName guifg=#569CD6 gui=bold
   highlight NvimTreeEmptyFolderName guifg=#569CD6
   highlight NvimTreeSymlink guifg=#56B6C2
@@ -98,8 +98,15 @@ vim.cmd [[
 vim.cmd [[
   highlight GitSignsAdd guifg=#40cd52
   highlight GitSignsChange guifg=#ffcc00
+  highlight GitSignsAddLn guibg=#1a472a guifg=NONE
+  highlight GitSignsChangeLn guibg=#867300 guifg=NONE
   highlight GitSignsChangedelete guifg=#f1502f
   highlight GitSignsDelete guifg=#f1502f
   highlight GitSignsTopdelete guifg=#f1502f
   highlight GitSignsUntracked guifg=#7f52ff
+]]
+
+vim.cmd [[
+  highlight DiffAdd guibg=#1a472a guifg=NONE
+  highlight DiffChange guibg=#867300 guifg=NONE
 ]]

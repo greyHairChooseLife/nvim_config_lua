@@ -242,6 +242,7 @@ vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>')
 vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
 vim.keymap.set('n', '<leader>reF', ':DiffviewFileHistory --range=HEAD...FETCH_HEAD<CR>')
 vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
+vim.keymap.set('n', '<leader>rew', ':DiffviewOpen<CR>')
 
 
 -- GITSIGNS
