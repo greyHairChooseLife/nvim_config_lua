@@ -46,11 +46,12 @@ vim.keymap.set('i', ',,D', function()
 end)
 
 
--- 커스텀 커맨드 정의
+-- console.log
 function Insert_console_log()
   local file_path = vim.fn.expand('%:~:.') -- 상대경로
   local line_number = vim.fn.line('.')
-  local log_message = string.format("console.log('File: %s, Line: %d \\n', );", file_path, line_number)
+  -- local log_message = string.format("console.log('File: %s, Line: %d \\n', );", file_path, line_number)
+  local log_message = string.format("console.log();", file_path, line_number)
 
   -- 현재 커서 위치 가져오기
   local current_pos = vim.api.nvim_win_get_cursor(0)
@@ -76,7 +77,7 @@ local function get_visual_selection()
   end
 end
 
--- 커스텀 커맨드 정의
+-- console.log visual
 function Insert_console_log_Visual()
   local file_path = vim.fn.expand('%:~:.') -- 상대경로
   local line_number = vim.fn.line('.')
