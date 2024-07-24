@@ -46,6 +46,7 @@ vim.keymap.set('v', 'cl<cr>', ":<C-U>lua Insert_console_log_Visual()<CR>", { nor
 
 -- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader>q', ':q!<CR>')
+vim.keymap.set('n', '<leader>bq', ':bd!<CR>') -- close buffer, saving memory
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
 vim.keymap.set('n', '<leader>w', function()
   vim.cmd('w')
@@ -79,16 +80,25 @@ vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
 vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 
 
--- NEW WINDOW & TAP
+-- NEW WINDOW & TAB
 vim.keymap.set('n', '<A-n>x', ':rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>v', ':vert rightbelow new<CR>')
 vim.keymap.set('n', '<A-n>t', NewTabWithPrompt)
 vim.keymap.set('n', '<A-r>', RenameCurrentTab)
 vim.keymap.set('n', '<A-m>l', MoveTabRight)
 vim.keymap.set('n', '<A-m>h', MoveTabLeft)
--- FOCUS TAPS
+-- FOCUS TABS
 vim.keymap.set('n', '<A-p>', 'gt')
 vim.keymap.set('n', '<A-o>', 'gT')
+vim.keymap.set('n', '<A-1>', '1gt')
+vim.keymap.set('n', '<A-2>', '2gt')
+vim.keymap.set('n', '<A-3>', '3gt')
+vim.keymap.set('n', '<A-4>', '4gt')
+vim.keymap.set('n', '<A-5>', '5gt')
+vim.keymap.set('n', '<A-6>', '6gt')
+vim.keymap.set('n', '<A-7>', '7gt')
+vim.keymap.set('n', '<A-8>', '8gt')
+vim.keymap.set('n', '<A-9>', '9gt')
 -- FOCUS WINDOW
 vim.keymap.set('n', '<A-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<A-j>', ':wincmd j<CR>')
@@ -115,6 +125,9 @@ vim.keymap.set("n", "<A-S-Up>", ":horizontal resize +8<CR>", {})
 -- 잘 안씀
 -- vim.keymap.set('n', '<A-R>h', ':resize ')
 -- vim.keymap.set('n', '<A-R>v', ':vertical resize ')
+-- BUFFER FOCUS
+vim.keymap.set('n', "<A-'>", ':bnext<CR>', { silent = true })
+vim.keymap.set('n', '<A-;>', ':bprevious<CR>', { silent = true })
 
 
 -- NVIM-TREE BUFFER 또는 (조건에 따라)DIFFVIEWFILE PANEL로 즉시 이동
@@ -169,8 +182,8 @@ vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
 vim.keymap.set('v', ',.c', TelescopeSearchVisual)
 vim.keymap.set('n', ',.gsts', builtin.git_stash, {})
 vim.keymap.set('n', ',.gstt', builtin.git_status, {})
-vim.keymap.set('n', ',.gsco', builtin.git_commits, {})
-vim.keymap.set('n', ',.gsbr', builtin.git_branches, {})
+vim.keymap.set('n', ',.gco', builtin.git_commits, {})
+vim.keymap.set('n', ',.gbr', builtin.git_branches, {})
 -- 현재 버퍼에 열린 파일에서만 검색
 vim.keymap.set('n', ',..w', function()
   local scope = vim.fn.expand('%:p')
@@ -227,6 +240,7 @@ vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=origin')
 vim.keymap.set('n', '<leader>rec', ':DiffviewFileHistory --range=origin/main...HEAD<CR>')
 vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>')
 vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
+vim.keymap.set('n', '<leader>reF', ':DiffviewFileHistory --range=HEAD...FETCH_HEAD<CR>')
 vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
 
 

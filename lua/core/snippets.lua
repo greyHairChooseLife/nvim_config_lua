@@ -36,7 +36,7 @@ vim.keymap.set('i', ',,W', function()
     vim.api.nvim_feedkeys("A", "n", true)
   end, 1) -- 최소한의 딜레이
 end)
-vim.keymap.set('i', ',,B', function()
+vim.keymap.set('i', ',,D', function()
   vim.api.nvim_feedkeys("DEBUG: ", "n", true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
   vim.defer_fn(function()
