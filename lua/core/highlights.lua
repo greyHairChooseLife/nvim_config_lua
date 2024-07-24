@@ -52,6 +52,8 @@ vim.cmd("highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335")
 vim.cmd("highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a")
 
 vim.cmd [[
+  highlight NvimTreeNormal guibg=#333342 guifg=NONE
+  highlight NvimTreeNormalNC guibg=#333342 guifg=NONE
   highlight NvimTreeFolderIcon guifg=#ffcc00
   highlight NvimTreeFolderName guifg=#569CD6 gui=bold
   highlight NvimTreeOpenedFolderName guifg=#569CD6 gui=bold
