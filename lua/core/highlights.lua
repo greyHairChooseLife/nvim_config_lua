@@ -106,6 +106,7 @@ vim.cmd [[
   highlight GitSignsUntracked guifg=#7f52ff
 ]]
 
+-- Gvdiff, diffview
 vim.cmd [[
   highlight DiffAdd guibg=#1a472a guifg=NONE
   highlight DiffChange guibg=#867300 guifg=NONE
