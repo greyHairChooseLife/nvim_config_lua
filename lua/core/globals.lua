@@ -27,3 +27,6 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
 
 vim.g.mapleader = "\\" -- <leader> as Space
+
+-- Set fillchars
+vim.o.fillchars = 'vert:┃'
