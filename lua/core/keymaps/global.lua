@@ -246,7 +246,10 @@ vim.keymap.set('n', '<leader>rew', ':DiffviewOpen<CR>')
 
 
 -- GITSIGNS
-vim.keymap.set("n", "<leader><leader>d", ":Gitsigns toggle_word_diff<CR>")            -- word diff
+vim.keymap.set("n", "<leader><leader>d", function()
+  vim.cmd('Gitsigns toggle_word_diff')
+  vim.cmd('Gitsigns toggle_linehl')
+end)
 vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>Gitsigns next_hunk<CR>')                     -- move hunk
 vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>Gitsigns prev_hunk<CR>')                     -- move hunk
 vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- stage hunk

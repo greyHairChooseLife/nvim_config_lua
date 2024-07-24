@@ -104,6 +104,14 @@ vim.cmd [[
   highlight GitSignsDelete guifg=#f1502f
   highlight GitSignsTopdelete guifg=#f1502f
   highlight GitSignsUntracked guifg=#7f52ff
+
+  " 제대로 작동을 안하는거같어...
+  highlight GitSignsAddInline guibg=#32CD32 guifg=NONE
+  highlight GitSignsChangeInline guibg=#FFFF00 guifg=NONE
+  highlight GitSignsDeleteInline guibg=#800000 guifg=NONE
+  highlight GitSignsAddLnInline guibg=#32CD32 guifg=NONE
+  highlight GitSignsChangeLnInline guibg=#FFFF00 guifg=NONE
+  highlight GitSignsDeleteLnInline guibg=#800000 guifg=NONE
 ]]
 
 -- Gvdiff, diffview
