@@ -219,7 +219,12 @@ end, {})
 
 -- FUGITIVE && GV && DIFFVIEW
 -- log 확인
-vim.keymap.set('n', '<leader>glg', ':GV --graph<CR>')
+-- vim.keymap.set('n', '<leader>glg', ':GV<CR>')
+-- vim.keymap.set('n', '<leader>gla', ':GV --all<CR>')
+vim.keymap.set('n', '<leader>glg<Space>',
+  ':G log --graph --oneline --color=never --date=short --format="%cd %h%d %s (%an)"<CR>')
+vim.keymap.set('n', '<leader>glga', ':G log --all --graph --oneline<CR>')
+
 vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
 -- git status 관리
 vim.keymap.set('n', '<leader>gg', ':G<CR>')
@@ -236,7 +241,7 @@ vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')
 -- 3. PR을 받아서 (현재 최신과)비교
 -- 4. 다양한 range적용
 -- * 이것들을 임의 입력하는게 아니라 설명과 함께 telescope에서 선택할 수 있도록 하면 좋겠다. fzf처럼
-vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=origin')
+vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=')
 vim.keymap.set('n', '<leader>rec', ':DiffviewFileHistory --range=origin/main...HEAD<CR>')
 vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>')
 vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
