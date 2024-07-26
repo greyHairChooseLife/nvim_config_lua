@@ -175,11 +175,9 @@ return require('packer').startup(function(use)
   -- use 'rcarriga/nvim-notify'
 
 
-  -- TODO:
-  -- for Database
-  -- 1. kristijanhusak/vim-dadbod-ui
-  -- 2. kristijanhusak/vim-dadbod-completion
-  -- 3. tpope/vim-dadbod
+  use { "tpope/vim-dadbod" }
+  use { "kristijanhusak/vim-dadbod-ui" }
+  use { "kristijanhusak/vim-dadbod-completion" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

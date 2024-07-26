@@ -33,5 +33,10 @@
   ],
   "coc.source.word.filetypes": ["markdown", "text"],
   "coc.source.yaml.filetypes": ["yaml", "yml"],
-  "coc.source.python.filetypes": ["python"]
+  "coc.source.python.filetypes": ["python"],
+  "coc.source.vim-dadbod-completion": {
+    "filetypes": ["sql"],
+    "priority": 9,
+    "shortcut": "DB"
+  }
 }

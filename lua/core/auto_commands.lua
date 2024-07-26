@@ -92,3 +92,22 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     vim.cmd("silent! loadview")
   end,
 })
+
+
+-- WARN:  나는 자동완성으로 nvim-cmp가 아니라 coc을 쓰니까 coc-settings.json에 관련 설정을 추가해야한다.
+-- -- sql파일 열면 자동완성에 vim-dadbod-completion 추가
+-- local cmp = require "cmp"
+-- cmp.setup.filetype({ "sql" }, {
+--   sources = {
+--     { name = "vim-dadbod-completion" },
+--     { name = "buffer" },
+--   },
+-- })
+
+-- SQL 파일 타입에 대해 vim-dadbod-completion.vim을 소스하는 설정
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sql',
+  callback = function()
+    vim.cmd('source ~/.config/nvim/plugged/vim-dadbod-completion/plugin/vim-dadbod-completion.vim')
+  end
+})
