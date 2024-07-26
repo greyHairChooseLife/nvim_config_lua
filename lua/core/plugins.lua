@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
   use 'vimwiki/vimwiki'
 
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-surround' -- check advanced usage https://www.youtube.com/watch?v=96FS45IaUgo
   use 'junegunn/gv.vim'
 
   use {
@@ -173,9 +174,6 @@ return require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- use 'rcarriga/nvim-notify'
 
-  -- TODO:
-  -- for surrounder
-  -- 1. tpope/vim-surround
 
   -- TODO:
   -- for Database
@@ -185,7 +183,7 @@ return require('packer').startup(function(use)
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-use {'ryanoasis/vim-devicons'}
+  use { 'ryanoasis/vim-devicons' }
   if packer_bootstrap then
     require('packer').sync()
   end
