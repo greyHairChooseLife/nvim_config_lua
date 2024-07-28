@@ -182,7 +182,6 @@ return require('packer').startup(function(use)
 
   -- TODO: 
   --  1. better toggle term with transparency https://www.reddit.com/r/neovim/
-  --  2. vert diffsplit fileA fileB
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -230,6 +230,7 @@ vim.keymap.set('n', '<leader>cc', ':G commit<CR>')
 vim.keymap.set('n', '<leader>ce', ':G commit --amend<CR>')
 -- 현재 버퍼 gitdiff 확인
 vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')
+vim.keymap.set('n', ',vD', ':vert diffsplit ')
 -- git review
 -- TODO:
 -- workflow를 고려해서 재구성할 필요가 있다.
