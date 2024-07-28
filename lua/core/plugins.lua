@@ -180,9 +180,6 @@ return require('packer').startup(function(use)
   use { "kristijanhusak/vim-dadbod-ui" }
   use { "kristijanhusak/vim-dadbod-completion" }
 
-  -- TODO: 
-  --  1. better toggle term with transparency https://www.reddit.com/r/neovim/
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   use { 'ryanoasis/vim-devicons' }

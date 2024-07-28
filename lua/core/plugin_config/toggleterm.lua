@@ -13,16 +13,10 @@ require("toggleterm").setup {
     border = 'single',
     width = 300,
     height = 50,
-    winblend = 3,
+    winblend = 100,
     highlights = {
       border = "Normal",
       background = "Normal",
     }
   },
-  --  This field is only relevant if direction is set to 'float'
-  --  highlights = {
-  --    Normal = {
-  --      guibg = "TabLine",
-  --    }
-  --  }
 }
