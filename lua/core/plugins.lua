@@ -41,7 +41,8 @@ return require('packer').startup(function(use)
 
   use 'tpope/vim-fugitive'
   use 'tpope/vim-surround' -- check advanced usage https://www.youtube.com/watch?v=96FS45IaUgo
-  use 'junegunn/gv.vim'
+  --   use 'junegunn/gv.vim'
+  use 'greyhairchooselife/gv.vim'
 
   use {
     'ldelossa/gh.nvim',
