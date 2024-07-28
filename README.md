@@ -12,6 +12,16 @@ gh.nvim plugin이 루아 아니면 설치 및 설정이 너무 어려웠다. 그
   - [Ref](#ref)
   <!--toc:end-->
 
+## TODO
+
+```
+-- Alpha (Dashboard)
+{
+"goolord/alpha-nvim",
+lazy = true,
+},
+```
+
 ## 구성
 
 ```bash
