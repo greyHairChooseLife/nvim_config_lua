@@ -183,7 +183,6 @@ return require('packer').startup(function(use)
   -- TODO: 
   --  1. better toggle term with transparency https://www.reddit.com/r/neovim/
   --  2. vert diffsplit fileA fileB
-  --  3. stop coc for diffview and restart automatically, 근데 Gvdiff에서는 잘 되는데 왜 diffview에서는 안되는지 모르겠다. 이부분 해겨해보자. coc이 되면 더 좋지
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
