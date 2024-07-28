@@ -219,15 +219,12 @@ end, {})
 
 -- FUGITIVE && GV && DIFFVIEW
 -- log 확인
--- vim.keymap.set('n', '<leader>glg', ':GV<CR>')
--- vim.keymap.set('n', '<leader>gla', ':GV --all<CR>')
-vim.keymap.set('n', '<leader>glg<Space>',
-  ':G log --graph --oneline --color=never --date=short --format="%cd %h%d %s (%an)"<CR>')
-vim.keymap.set('n', '<leader>glga', ':G log --all --graph --oneline<CR>')
-
+vim.keymap.set('n', '<leader>gl<Space>', ':GV<CR>')
+vim.keymap.set('n', '<leader>gla', ':GV --all<CR>')
+vim.keymap.set('n', '<leader>glr', ':GV reflog<CR>')
 vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
 -- git status 관리
-vim.keymap.set('n', '<leader>gg', ':G<CR>')
+vim.keymap.set('n', '<leader>gq', ':G<CR>') -- 종료가 gq니까 편리할듯
 -- 즉시 커밋
 vim.keymap.set('n', '<leader>cc', ':G commit<CR>')
 vim.keymap.set('n', '<leader>ce', ':G commit --amend<CR>')
@@ -236,18 +233,14 @@ vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')
 -- git review
 -- TODO:
 -- workflow를 고려해서 재구성할 필요가 있다.
--- 1. remote에서 fetch 한 것과 local 최신을 비교
--- 2. 특정 커밋과 직전 커밋의 변경 내역 비교
 -- 3. PR을 받아서 (현재 최신과)비교
--- 4. 다양한 range적용
--- * 이것들을 임의 입력하는게 아니라 설명과 함께 telescope에서 선택할 수 있도록 하면 좋겠다. fzf처럼
-vim.keymap.set('n', '<leader>rer', ':DiffviewFileHistory --range=')
-vim.keymap.set('n', '<leader>rec', ':DiffviewFileHistory --range=origin/main...HEAD<CR>')
-vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory<CR>')
-vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')
-vim.keymap.set('n', '<leader>reF', ':DiffviewFileHistory --range=HEAD...FETCH_HEAD<CR>')
-vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')
-vim.keymap.set('n', '<leader>rew', ':DiffviewOpen<CR>')
+vim.keymap.set('n', '<leader>reb', ':DiffviewFileHistory --range=')                      -- 특정 브랜치, 선택해야 한다.
+vim.keymap.set('n', '<leader>re<Space>', ':DiffviewFileHistory<CR>')                     -- 현재 브랜치 히스토리
+vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory --all<CR>')                     -- 모든 커밋 히스토리
+vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')                         -- current file only, commit history
+vim.keymap.set('n', '<leader>reF', ':DiffviewFileHistory --range=HEAD...FETCH_HEAD<CR>') -- something fetched
+vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')                         -- review staged
+vim.keymap.set('n', '<leader>rew', ':DiffviewOpen<CR>')                                  -- review working status, staged + unstaged
 
 
 -- GITSIGNS
