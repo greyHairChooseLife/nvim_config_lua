@@ -151,7 +151,7 @@ function DiffviewFilePanelFocusConditional()
   end
 end
 
-vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, noremap = true })
+-- vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, noremap = true })
 
 
 
@@ -165,7 +165,7 @@ vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, no
 vim.keymap.set('n', ',,d', function()
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
 end)
---vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away  -> diffview 쪽이랑 통합했다. 조건부로 동작.
+vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away  -> diffview 쪽이랑 통합했다. 조건부로 동작.
 
 
 -- TELESCOPE
