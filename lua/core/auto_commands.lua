@@ -111,3 +111,15 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.cmd('source ~/.config/nvim/plugged/vim-dadbod-completion/plugin/vim-dadbod-completion.vim')
   end
 })
+
+vim.api.nvim_create_augroup('GV', { clear = true })
+
+-- GV에 탭이름 변경
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'GV',
+  pattern = 'GV',
+  callback = function()
+    local tabnr = vim.fn.tabpagenr()
+    vim.fn.settabvar(tabnr, 'tabname', 'GV')
+  end,
+})
