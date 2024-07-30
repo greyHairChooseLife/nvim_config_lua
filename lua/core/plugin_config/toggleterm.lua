@@ -13,7 +13,7 @@ require("toggleterm").setup {
     border = 'single',
     width = 300,
     height = 50,
-    winblend = 100,
+    winblend = 15,
     highlights = {
       border = "Normal",
       background = "Normal",
