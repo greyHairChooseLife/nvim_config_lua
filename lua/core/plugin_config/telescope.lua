@@ -1,3 +1,11 @@
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+local builtin = require('telescope.builtin')
+local function switch_to_normal_mode()
+  local escape_key = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
+  vim.api.nvim_feedkeys(escape_key, 'n', true)
+end
+
 require("telescope").setup {
   extensions = {
     ["ui-select"] = {
@@ -43,10 +51,103 @@ require("telescope").setup {
   },
   defaults = {
     mappings = {
+      n = {
+        ['qq'] = "close",
+      },
       i = {
+        ['qq'] = "close",
         -- IMPORTANT
         -- either hot-reloaded or `function(prompt_bufnr) telescope.extensions.hop.hop end`
-        ["<C-g>"] = require("telescope").extensions.hop.hop,
+        ['<C-g>'] = require("telescope").extensions.hop.hop,
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      mappings = {
+        n = {
+          ['dd'] = "delete_buffer",
+        },
+        i = {
+          ['<C-d>'] = "delete_buffer"
+        },
+      },
+    },
+    find_files = {
+      mappings = {
+        n = {
+          ['x'] = function(prompt_bufnr)
+            actions.select_horizontal(prompt_bufnr)
+            builtin.resume()
+            switch_to_normal_mode()
+          end,
+          ['v'] = function(prompt_bufnr)
+            actions.select_vertical(prompt_bufnr)
+            builtin.resume()
+            switch_to_normal_mode()
+          end,
+          ['t'] = function(prompt_bufnr)
+            actions.select_tab(prompt_bufnr)
+            builtin.resume()
+            switch_to_normal_mode()
+          end,
+        },
+        i = {
+          ['<C-x>'] = function(prompt_bufnr)
+            actions.select_horizontal(prompt_bufnr)
+            builtin.resume()
+          end,
+          ['<C-v>'] = function(prompt_bufnr)
+            actions.select_vertical(prompt_bufnr)
+            builtin.resume()
+          end,
+          ['<C-t>'] = function(prompt_bufnr)
+            actions.select_tab(prompt_bufnr)
+            builtin.resume()
+          end,
+        },
+      },
+    },
+    git_stash = {
+      mappings = {
+        n = {
+          ['dd'] = function(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            vim.cmd('Git stash drop ' .. selection.value)
+            actions.close(prompt_bufnr)
+            builtin.git_stash()
+            switch_to_normal_mode()
+          end,
+          ['ap'] = function(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            vim.cmd('Git stash apply ' .. selection.value)
+            actions.close(prompt_bufnr)
+          end,
+          ['pp'] = function(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            vim.cmd('Git stash pop ' .. selection.value)
+            actions.close(prompt_bufnr)
+          end,
+        },
+        i = {
+          ['<C-d>'] = function(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            vim.cmd('Git stash drop ' .. selection.value)
+            actions.close(prompt_bufnr)
+            builtin.git_stash()
+            switch_to_normal_mode()
+          end,
+          ['<C-a>'] = function(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            vim.cmd('Git stash apply ' .. selection.value)
+            actions.close(prompt_bufnr)
+          end,
+          ['<C-p>'] = function(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            vim.cmd('Git stash pop ' .. selection.value)
+            actions.close(prompt_bufnr)
+          end,
+        },
       },
     },
   },
