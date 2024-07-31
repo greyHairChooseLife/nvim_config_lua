@@ -4,7 +4,6 @@
 -- =========================================================================
 -- =========================================================================
 -- MISC TIPS
-vim.keymap.set({ 'i', 'v' }, ';h', '<ESC>l', { silent = true })           -- 검색 기록 제거
 vim.keymap.set('n', ',q', ':nohlsearch<CR>:echon<CR>', { silent = true }) -- 검색 기록 제거
 -- vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })            -- 창 크기 동일하게
 vim.keymap.set('n', ',r', function()
