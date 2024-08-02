@@ -93,7 +93,7 @@ return require('packer').startup(function(use)
       "nvim-telescope/telescope.nvim"
     }
   })
-  --☇⚊✔⛖⛖☞✍✍✍✂✂✎✎▼▼▼⮯⮯♲♲
+
   use { 'lewis6991/gitsigns.nvim', }
 
   use { "akinsho/toggleterm.nvim" }
