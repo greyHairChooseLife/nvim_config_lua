@@ -40,16 +40,13 @@ return require('packer').startup(function(use)
   use 'vimwiki/vimwiki'
 
   use 'tpope/vim-fugitive'
-  use 'tpope/vim-surround' -- check advanced usage https://www.youtube.com/watch?v=96FS45IaUgo
-  --   use 'junegunn/gv.vim'
-  use 'greyhairchooselife/gv.vim'
+  use 'tpope/vim-surround'        -- check advanced usage https://www.youtube.com/watch?v=96FS45IaUgo
+  use 'greyhairchooselife/gv.vim' -- 일부 개선을 위해 'junegunn/gv.vim' folk 해옴
 
   use {
     'ldelossa/gh.nvim',
     requires = { { 'ldelossa/litee.nvim' }, { 'nvim-tree/nvim-web-devicons', opt = true } }
   }
-
-  use { "ellisonleao/glow.nvim", config = function() require("glow").setup() end }
 
   use({
     "iamcco/markdown-preview.nvim",
@@ -60,12 +57,6 @@ return require('packer').startup(function(use)
 
   use "junegunn/goyo.vim"
   use "junegunn/vim-easy-align"
-
-  --	project 내에서 동일한 단어를 일괄 변경하기 위해서였는데, 실제로 잘 쓰지 않고 쓰더라도 오류가 나더라. %s/old/new 를 응용한 keymap으로 임시 대체한다.
-  --	use {
-  --		'nvim-pack/nvim-spectre',
-  --		requires = { {'nvim-lua/plenary.nvim'} }
-  --	}
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
@@ -97,8 +88,6 @@ return require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim', }
 
   use { "akinsho/toggleterm.nvim" }
-
-  use 'onsails/lspkind.nvim'
 
   --image renderer
   --dependencies
