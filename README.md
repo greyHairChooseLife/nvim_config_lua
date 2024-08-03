@@ -49,6 +49,7 @@ gh.nvim plugin이 루아 아니면 설치 및 설정이 너무 어려웠다. 그
 - [public doc](!https://www.lua.org/manual/5.3/)
 - [neovim doc for lua api](!https://neovim.io/doc/user/options.html)
 - [nerd font](https://www.nerdfonts.com/cheat-sheet)
+- [some tips](https://www.reddit.com/r/neovim/comments/1ehidxy/you_can_remove_padding_around_neovim_instance/)
 
 ## 이사람 스타일이 괜찮다. 참고하자
 
