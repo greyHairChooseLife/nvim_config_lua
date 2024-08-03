@@ -121,3 +121,9 @@ vim.cmd [[
   highlight DiffAdd guibg=#1a472a guifg=NONE
   highlight DiffChange guibg=#867300 guifg=NONE
 ]]
+
+vim.cmd [[
+  highlight RenderMarkdownCode guibg=#2F2F2F guifg=NONE
+  highlight RenderMarkdownCodeInline guibg=#2F2F2F guifg=NONE
+  highlight RenderMarkdownQuote guibg=#5F5F5F guifg=NONE
+]]

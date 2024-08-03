@@ -174,6 +174,7 @@ return require('packer').startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   use { 'ryanoasis/vim-devicons' }
+  use { 'MeanderingProgrammer/markdown.nvim' } -- for config, https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#setup
 
   -- TODO:  http client inside neovim
   -- https://github.com/rest-nvim/rest.nvim

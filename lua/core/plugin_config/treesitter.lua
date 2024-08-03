@@ -8,3 +8,5 @@ require 'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+
+vim.treesitter.language.register('markdown', 'vimwiki')
