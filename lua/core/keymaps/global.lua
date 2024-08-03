@@ -73,6 +73,8 @@ vim.keymap.set('n', 'zm', 'zm:mkview<CR>')
 vim.keymap.set('n', 'zM', 'zM:mkview<CR>')
 vim.keymap.set('n', 'zr', 'zr:mkview<CR>')
 vim.keymap.set('n', 'zR', 'zR:mkview<CR>')
+vim.keymap.set('n', 'zf', 'zR:mkview<CR>')
+vim.keymap.set('n', 'zd', 'zR:mkview<CR>')
 
 
 -- EASY ALIGN
