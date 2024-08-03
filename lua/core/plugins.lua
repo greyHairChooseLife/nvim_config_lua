@@ -175,6 +175,7 @@ return require('packer').startup(function(use)
   -- Put this at the end after all plugins
   use { 'ryanoasis/vim-devicons' }
   use { 'MeanderingProgrammer/markdown.nvim' } -- for config, https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#setup
+  -- use { 'OXY2DEV/markview.nvim' }
 
   -- TODO:  http client inside neovim
   -- https://github.com/rest-nvim/rest.nvim
