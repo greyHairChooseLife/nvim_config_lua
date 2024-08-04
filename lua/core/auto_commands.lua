@@ -52,7 +52,8 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
-    vim.bo.textwidth = 108
+    -- vim.bo.textwidth = 108
+    -- goyo, zen-mode를 사용하자
   end
 })
 

@@ -12,12 +12,13 @@
 --
 -- #004F4F   #007F7F   #00FFFF   #8FBC8F   #5F9EA0   #A0D9D9
 --
--- #2F2F2F   #5F5F5F   #9F9F9F   #D3D3D3   #FFFFFF   #E0E0E0
+-- #2F2F2F   #5F5F5F   #9F9F9F   #D3D3D3   #FFFFFF   #E0E0E0   #a6b0a1
 --
--- #800000   #FF0000   #FFA500   #FFFF00   #808000   #BDB76B
+-- #800000   #FF0000   #FF3000   #FFA500   #FFFF00   #808000   #BDB76B
 --
--- #000080   #0000FF   #4169E1   #87CEFA   #ADD8E6   #B0C4DE
+-- #000080   #0000FF   #3a0ff9   #4169E1   #87CEFA   #ADD8E6   #B0C4DE
 
+-- #1c2d5f   #404000   #242024
 
 
 
@@ -123,7 +124,62 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
-  highlight RenderMarkdownCode guibg=#2F2F2F guifg=NONE
-  highlight RenderMarkdownCodeInline guibg=#2F2F2F guifg=NONE
-  highlight RenderMarkdownQuote guibg=#5F5F5F guifg=NONE
+  highlight RenderMarkdownCode guibg=#4e4451 guifg=NONE
+  highlight RenderMarkdownCodeInline guibg=#4e4451 guifg=NONE
+  highlight RenderMarkdownDash guifg=#32CD32
+  highlight RenderMarkdownQuote guifg=#5F5F5F gui=italic
+  highlight RenderMarkdownMyRed  guifg=#FF3000 gui=bold
+  highlight RenderMarkdownBlue   guifg=#4169E1 gui=bold
+  highlight RenderMarkdownGreen  guifg=#32CD32 gui=bold
+  highlight RenderMarkdownYellow guifg=#FFBF00 gui=bold
+  highlight RenderMarkdownBullet guifg=#007F7F gui=bold
+
+  highlight RenderMarkdownH1Bg guibg=#FF3000 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH2Bg guibg=#1c2d5f guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH3Bg guibg=#404000 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH4Bg guibg=#37303a guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH5Bg guibg=#AF4500
+  highlight RenderMarkdownH6Bg guibg=#4e4451
+
+  highlight RenderMarkdownH1 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH2 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH3 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH4 guifg=#FFFFFF gui=bold
+  " highlight RenderMarkdownH5 guifg=#FFFFFF gui=bold
+  " highlight RenderMarkdownH6 guifg=#FFFFFF gui=bold
+
+
+  " markup highlight for TreeSitter
+  highlight @markup.link guifg=#4169E1
+  highlight @markup.link.label guifg=#FFF500 gui=italic
+  highlight @markup.strong guifg=#B0C4DE gui=bold
+  highlight @markup.italic guifg=#7F5F5F gui=italic
+  highlight @markup guifg=#FFFFFF
+
+" @markup.raw.markdown_inline
+" @markup.heading6.markdown
+" @markup.heading5.markdown
+" @markup.heading4.markdown
+" @markup.heading3.markdown
+" @markup.heading2.markdown
+" @markup.heading1.markdown
+" @markup.link.label.symbol
+" @markup.environment.name
+" @markup.list.unchecked
+" @markup.strikethrough
+" @markup.list.markdown
+" @markup.list.checked
+" @markup.environment
+" @markup.link.label
+" @markup.underline
+" @markup.link.url
+" @markup.emphasis
+" @markup.heading
+" @markup.strong
+" @markup.italic
+" @markup.math
+" @markup.list
+" @markup.link
+" @markup.raw
+" @markup
 ]]

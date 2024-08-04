@@ -57,7 +57,7 @@ require('render-markdown').setup({
   file_types = { 'markdown', 'vimwiki' },
   -- Vim modes that will show a rendered view of the markdown file
   -- All other modes will be uneffected by this plugin
-  render_modes = { 'n', 'c' },
+  render_modes = { 'n' },
   -- Set to avoid seeing warnings for conflicts in health check
   acknowledge_conflicts = false,
   anti_conceal = {
@@ -79,25 +79,25 @@ require('render-markdown').setup({
   },
   heading = {
     -- Turn on / off heading icon & background rendering
-    enabled = false,
+    enabled = true,
     -- Turn on / off any sign column related rendering
     sign = false,
     -- Determines how the icon fills the available space:
     --  inline: underlying '#'s are concealed resulting in a left aligned icon
     --  overlay: result is left padded with spaces to hide any additional '#'
-    position = 'inline',
+    position = 'overlay',
     -- Replaces '#+' of 'atx_h._marker'
     -- The number of '#' in the heading determines the 'level'
     -- The 'level' is used to index into the array using a cycle
     -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
-    icons = { '#', '## ', '### ', '#### ', '##### ', '###### ' },
+    icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
     -- Added to the sign column if enabled
     -- The 'level' is used to index into the array using a cycle
     signs = { '󰫎 ' },
     -- Width of the heading background:
     --  block: width of the heading text
     --  full: full width of the window
-    width = 'block',
+    width = 'full',
     -- The 'level' is used to index into the array using a clamp
     -- Highlight for the heading icon and extends through the entire line
     backgrounds = {
@@ -123,7 +123,7 @@ require('render-markdown').setup({
     -- Turn on / off code block & inline code rendering
     enabled = true,
     -- Turn on / off any sign column related rendering
-    sign = true,
+    sign = false,
     -- Determines how code blocks & inline code are rendered:
     --  none: disables all rendering
     --  normal: adds highlight group to code blocks & inline code, adds padding to code blocks
@@ -163,7 +163,7 @@ require('render-markdown').setup({
     enabled = true,
     -- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'
     -- The icon gets repeated across the window's width
-    icon = '─',
+    icon = '✂',
     -- Width of the generated line:
     --  <integer>: a hard coded width value
     --  full: full width of the window
@@ -178,7 +178,9 @@ require('render-markdown').setup({
     -- How deeply nested the list is determines the 'level'
     -- The 'level' is used to index into the array using a cycle
     -- If the item is a 'checkbox' a conceal is used to hide the bullet instead
-    icons = { '●', '○', '◆', '◇' },
+    --  󰓛 󰨔 󰄱    
+    -- icons = { '●', '○', '◆', '◇' },
+    icons = { '󰓛', '󰨔', '◆', '◇' },
     -- Padding to add to the right of bullet point
     right_pad = 0,
     -- Highlight for the bullet icon
@@ -191,13 +193,14 @@ require('render-markdown').setup({
     enabled = false,
     unchecked = {
       -- Replaces '[ ]' of 'task_list_marker_unchecked'
-      icon = '󰄱 ',
+      icon = '󰄱',
+      -- icon = '[_]' ,
       -- Highlight for the unchecked icon
       highlight = 'RenderMarkdownUnchecked',
     },
     checked = {
       -- Replaces '[x]' of 'task_list_marker_checked'
-      icon = '󰱒 ',
+      icon = '󰡖',
       -- Highligh for the checked icon
       highlight = 'RenderMarkdownChecked',
     },
@@ -216,7 +219,10 @@ require('render-markdown').setup({
     -- Turn on / off block quote & callout rendering
     enabled = true,
     -- Replaces '>' of 'block_quote'
+    -- icon = '▋',
+    -- icon = '󰍬',
     icon = '▋',
+    repeat_linebreak = true,
     -- Highlight for the quote icon
     highlight = 'RenderMarkdownQuote',
   },
@@ -257,6 +263,8 @@ require('render-markdown').setup({
   --   'raw': Matched against the raw text of a 'shortcut_link', case insensitive
   --   'rendered': Replaces the 'raw' value when rendering
   --   'highlight': Highlight for the 'rendered' text and quote markers
+  --  󰓛 󰄱    
+  --      󱓻강 sdf   sfd  󱓼  󰨔 󰴩     
   callout = {
     note = { raw = '[!NOTE]', rendered = '󰋽 Note', highlight = 'RenderMarkdownInfo' },
     tip = { raw = '[!TIP]', rendered = '󰌶 Tip', highlight = 'RenderMarkdownSuccess' },
@@ -273,14 +281,19 @@ require('render-markdown').setup({
     bug = { raw = '[!BUG]', rendered = '󰨰 Bug', highlight = 'RenderMarkdownError' },
     example = { raw = '[!EXAMPLE]', rendered = '󰉹 Example', highlight = 'RenderMarkdownHint' },
     quote = { raw = '[!QUOTE]', rendered = '󱆨 Quote', highlight = 'RenderMarkdownQuote' },
+    my_question = { raw = '[!Q]', rendered = '󰴩.', highlight = 'RenderMarkdownWarn' },
+    my_red = { raw = '[!re]', rendered = '', highlight = 'RenderMarkdownMyRed' },
+    my_blue = { raw = '[!bl]', rendered = '', highlight = 'RenderMarkdownBlue' },
+    my_green = { raw = '[!gr]', rendered = '', highlight = 'RenderMarkdownGreen' },
+    my_yellow = { raw = '[!ye]', rendered = '', highlight = 'RenderMarkdownYellow' },
   },
   link = {
     -- Turn on / off inline link icon rendering
-    enabled = false,
+    enabled = true,
     -- Inlined with 'image' elements
     image = '󰥶 ',
     -- Inlined with 'inline_link' elements
-    hyperlink = '󰌹 ',
+    hyperlink = '  󰌹 ',
     -- Applies to the inlined icon
     highlight = 'RenderMarkdownLink',
   },
@@ -306,6 +319,9 @@ require('render-markdown').setup({
       -- Used when being rendered, disable concealing text in all modes
       rendered = '',
     },
+    showbreak = { default = vim.api.nvim_get_option_value('showbreak', {}), rendered = '  ' },
+    breakindent = { default = vim.api.nvim_get_option_value('breakindent', {}), rendered = true },
+    breakindentopt = { default = vim.api.nvim_get_option_value('breakindentopt', {}), rendered = '' },
   },
   -- More granular configuration mechanism, allows different aspects of buffers
   -- to have their own behavior. Values default to the top level configuration
