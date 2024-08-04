@@ -151,7 +151,7 @@ vim.cmd [[
 
   " markup highlight for TreeSitter
   highlight @markup.link guifg=#4169E1
-  highlight @markup.link.label guifg=#FFF500 gui=italic
+  highlight @markup.link.label guifg=#FFF500
   highlight @markup.strong guifg=#B0C4DE gui=bold
   highlight @markup.italic guifg=#7F5F5F gui=italic
   highlight @markup guifg=#FFFFFF

@@ -289,11 +289,12 @@ require('render-markdown').setup({
   },
   link = {
     -- Turn on / off inline link icon rendering
-    enabled = true,
+    enabled = false,
     -- Inlined with 'image' elements
     image = '󰥶 ',
     -- Inlined with 'inline_link' elements
-    hyperlink = '  󰌹 ',
+    -- hyperlink = '  󰌹 ',
+    hyperlink = '',
     -- Applies to the inlined icon
     highlight = 'RenderMarkdownLink',
   },
