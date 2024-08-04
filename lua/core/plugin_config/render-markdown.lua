@@ -190,7 +190,7 @@ require('render-markdown').setup({
   -- There are two special states for unchecked & checked defined in the markdown grammar
   checkbox = {
     -- Turn on / off checkbox state rendering
-    enabled = false,
+    enabled = true,
     unchecked = {
       -- Replaces '[ ]' of 'task_list_marker_unchecked'
       icon = '󰄱',
@@ -273,7 +273,6 @@ require('render-markdown').setup({
     caution = { raw = '[!CAUTION]', rendered = '󰳦 Caution', highlight = 'RenderMarkdownError' },
     -- Obsidian: https://help.a.md/Editing+and+formatting/Callouts
     abstract = { raw = '[!ABSTRACT]', rendered = '󰨸 Abstract', highlight = 'RenderMarkdownInfo' },
-    todo = { raw = '[!TODO]', rendered = '󰗡 Todo', highlight = 'RenderMarkdownInfo' },
     success = { raw = '[!SUCCESS]', rendered = '󰄬 Success', highlight = 'RenderMarkdownSuccess' },
     question = { raw = '[!QUESTION]', rendered = '󰘥 Question', highlight = 'RenderMarkdownWarn' },
     failure = { raw = '[!FAILURE]', rendered = '󰅖 Failure', highlight = 'RenderMarkdownError' },
@@ -282,6 +281,8 @@ require('render-markdown').setup({
     example = { raw = '[!EXAMPLE]', rendered = '󰉹 Example', highlight = 'RenderMarkdownHint' },
     quote = { raw = '[!QUOTE]', rendered = '󱆨 Quote', highlight = 'RenderMarkdownQuote' },
     my_question = { raw = '[!Q]', rendered = '󰴩.', highlight = 'RenderMarkdownWarn' },
+    todo = { raw = '[!td]', rendered = '󰥔 Todo', highlight = 'RenderMarkdownMyRed' },
+    test = { raw = '[!ts]', rendered = '󰨸 Test', highlight = 'RenderMarkdownTest' },
     my_red = { raw = '[!re]', rendered = '', highlight = 'RenderMarkdownMyRed' },
     my_blue = { raw = '[!bl]', rendered = '', highlight = 'RenderMarkdownBlue' },
     my_green = { raw = '[!gr]', rendered = '', highlight = 'RenderMarkdownGreen' },

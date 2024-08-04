@@ -128,11 +128,13 @@ vim.cmd [[
   highlight RenderMarkdownCodeInline guibg=#4e4451 guifg=NONE
   highlight RenderMarkdownDash guifg=#32CD32
   highlight RenderMarkdownQuote guifg=#5F5F5F gui=italic
+  highlight RenderMarkdownBullet guifg=#007F7F gui=bold
+  highlight RenderMarkdownTodo guibg=#CA4500 gui=bold
+  highlight RenderMarkdownTest guifg=#B0C4DE gui=bold
   highlight RenderMarkdownMyRed  guifg=#FF3000 gui=bold
   highlight RenderMarkdownBlue   guifg=#4169E1 gui=bold
   highlight RenderMarkdownGreen  guifg=#32CD32 gui=bold
   highlight RenderMarkdownYellow guifg=#FFBF00 gui=bold
-  highlight RenderMarkdownBullet guifg=#007F7F gui=bold
 
   highlight RenderMarkdownH1Bg guibg=#FF3000 guifg=#FFFFFF gui=bold
   highlight RenderMarkdownH2Bg guibg=#1c2d5f guifg=#FFFFFF gui=bold
