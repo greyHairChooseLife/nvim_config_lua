@@ -2,4 +2,7 @@
                         
   󰭽  󰭽
  󰏔
+
 https://www.nerdfonts.com/cheat-sheet
+
+cat "icons/nerdfont.txt" | rofi -dmenu -i | awk '{print $1}' | xsel -i -b
