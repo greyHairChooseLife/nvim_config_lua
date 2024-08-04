@@ -123,3 +123,20 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.fn.settabvar(tabnr, 'tabname', 'GV')
   end,
 })
+
+-- WARN: 
+-- 뭐지 걍 안되는데?
+-- alpha buffer에 lualine 숨김
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'AlphaReady',
+  callback = function()
+    vim.opt_local.laststatus = 0
+  end,
+})
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'AlphaClosed',
+  callback = function()
+    print('bye')
+    vim.opt.laststatus = 2
+  end,
+})
