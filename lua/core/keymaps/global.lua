@@ -231,8 +231,18 @@ vim.keymap.set('n', '<leader>glr', ':GV reflog<CR>')
 vim.keymap.set('n', '<leader>glf', ':GV!<CR>')
 -- git status 관리
 vim.keymap.set('n', '<leader>gq', ':G<CR>') -- 종료가 gq니까 편리할듯
--- 즉시 커밋
-vim.keymap.set('n', '<leader>cc', ':G commit<CR>')
+-- 즉시 커밋, 버퍼가 상단이 아니라 우측에서 열리도록 하고 view는 유지
+vim.keymap.set('n', '<leader>cc', function()
+  local save_view = vim.fn.winsaveview()
+  vim.cmd('G commit')
+  vim.cmd('wincmd p')
+  vim.cmd('WinShift up')
+  vim.cmd("wincmd p")
+  vim.cmd('WinShift right')
+  vim.cmd("wincmd p")
+  vim.fn.winrestview(save_view)
+  vim.cmd("wincmd p")
+end)
 vim.keymap.set('n', '<leader>ce', ':G commit --amend<CR>')
 -- 현재 버퍼 gitdiff 확인
 vim.keymap.set('n', ',vd', ':sp<CR><C-w>T:Gvdiffsplit<CR>:wincmd l<CR>')

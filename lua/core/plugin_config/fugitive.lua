@@ -1,8 +1,14 @@
+-- NOTE:  다른 방식으로 해결했지만, 이 파일타입은 향후에도 잘 사용할듯
 -- COMMIT_EDITMSG 버퍼를 우측에 열리도록 설정
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "gitcommit",
-  callback = function()
-    vim.cmd('WinShift down')
-    vim.cmd('WinShift right')
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "gitcommit",
+--   callback = function()
+--     vim.cmd("wincmd p")
+--     vim.cmd('WinShift up')
+--     vim.cmd("wincmd p")
+--     vim.cmd('WinShift right')
+--
+--     -- vim.cmd('WinShift down')
+--     -- vim.cmd('WinShift right')
+--   end,
+-- })
