@@ -6,34 +6,37 @@ local dashboard = require("alpha.themes.dashboard")
 -- 일체개고
 -- Set header
 local function header()
+  -- Git 디렉토리인지 확인
+  local git_dir_check = vim.fn.system('git rev-parse --is-inside-work-tree 2>/dev/null')
+  if git_dir_check:match('true') == nil then
+    return {
+      "not in a git dir                                                                                                                                 " }
+  end
+
   local fetch_output = vim.fn.system('git log --oneline HEAD..FETCH_HEAD')
-  -- 여러 줄의 출력을 나눔
   local fetch_lines = {}
   for line in fetch_output:gmatch("([^\n]*)\n?") do
     table.insert(fetch_lines, line)
   end
-  -- 현재 브랜치와 fetch 출력을 포함한 테이블 반환
+
   local result = {
-  " HEAD..FETCH_HEAD                                                                                                                                 ",
-  " ",
+    " HEAD..FETCH_HEAD                                                                                                                                 ",
+    " ",
   }
-  -- fetch 출력 라인을 result 테이블에 추가
+
   for _, line in ipairs(fetch_lines) do
     table.insert(result, line)
   end
 
-  table.insert(result, "")
   table.insert(result, " origin..HEAD")
   table.insert(result, "")
 
   local workload_output = vim.fn.system('git log --oneline FETCH_HEAD..HEAD')
-  -- 여러 줄의 출력을 나눔
   local workload_lines = {}
   for line in workload_output:gmatch("([^\n]*)\n?") do
     table.insert(workload_lines, line)
   end
 
-  -- log 출력 라인을 result 테이블에 추가
   for _, line in ipairs(workload_lines) do
     table.insert(result, line)
   end
