@@ -22,9 +22,13 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
-vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                           -- search current word
-vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')                          -- for :on command
-vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>')                     -- for :on command
+vim.keymap.set({ 'n', 'v' }, ";;", "''", { noremap = true })             -- j, k 로 움직인 것도 jump list에 추가되도록
+vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
+vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+
+vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')       -- CamelCase
+vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')      -- for :on command
+vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>') -- for :on command
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
