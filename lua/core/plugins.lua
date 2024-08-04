@@ -84,6 +84,9 @@ return require('packer').startup(function(use)
       "nvim-telescope/telescope.nvim"
     }
   })
+  -- NOTE: 
+  -- reddit에 보면 아래 대체품이 커스터마이징이 더 쉽고 자유롭다고 한다.
+  -- https://github.com/Robitx/gp.nvim/
 
   use { 'lewis6991/gitsigns.nvim', }
 
