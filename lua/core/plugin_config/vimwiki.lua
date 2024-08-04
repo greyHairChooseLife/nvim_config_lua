@@ -26,12 +26,13 @@ vim.g.vimwiki_list = {
   }
 }
 
--- Set tabstop to 4 for vimwiki files
-vim.cmd([[
-  augroup VimwikiSettings
-    autocmd!
-    autocmd FileType vimwiki setlocal tabstop=4 shiftwidth=4 expandtab
-    autocmd BufRead,BufNewFile ~/Documents/dev-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
-    autocmd BufRead,BufNewFile ~/Documents/job-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
-  augroup END
-]])
+-- NOTE: markdown.nvim의 gui가 좋아서 딱히 필요 없을 듯
+-- -- Set tabstop to 4 for vimwiki files
+-- vim.cmd([[
+--   augroup VimwikiSettings
+--     autocmd!
+--     autocmd FileType vimwiki setlocal tabstop=4 shiftwidth=4 expandtab
+--     autocmd BufRead,BufNewFile ~/Documents/dev-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
+--     autocmd BufRead,BufNewFile ~/Documents/job-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
+--   augroup END
+-- ]])
