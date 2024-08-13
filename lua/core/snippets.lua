@@ -12,8 +12,9 @@ end, { noremap = true, silent = true })
 
 
 -- SNIPPET 주석: [ TODO / NOTE / WARN / BUG ]
+--     
 vim.keymap.set('i', ',,T', function()
-  vim.api.nvim_feedkeys("TODO: ", "n", true)
+  vim.api.nvim_feedkeys("TODO:", "n", true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
   vim.defer_fn(function()
     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
@@ -21,7 +22,7 @@ vim.keymap.set('i', ',,T', function()
   end, 1) -- 최소한의 딜레이
 end)
 vim.keymap.set('i', ',,N', function()
-  vim.api.nvim_feedkeys("NOTE: ", "n", true)
+  vim.api.nvim_feedkeys("NOTE:", "n", true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
   vim.defer_fn(function()
     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
@@ -29,7 +30,7 @@ vim.keymap.set('i', ',,N', function()
   end, 1) -- 최소한의 딜레이
 end)
 vim.keymap.set('i', ',,W', function()
-  vim.api.nvim_feedkeys("WARN: ", "n", true)
+  vim.api.nvim_feedkeys("WARN:", "n", true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
   vim.defer_fn(function()
     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
@@ -37,7 +38,7 @@ vim.keymap.set('i', ',,W', function()
   end, 1) -- 최소한의 딜레이
 end)
 vim.keymap.set('i', ',,D', function()
-  vim.api.nvim_feedkeys("DEBUG: ", "n", true)
+  vim.api.nvim_feedkeys("DEBUG:", "n", true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
   vim.defer_fn(function()
     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
