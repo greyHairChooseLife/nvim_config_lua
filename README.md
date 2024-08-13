@@ -57,7 +57,7 @@ gh.nvim plugin이 루아 아니면 설치 및 설정이 너무 어려웠다. 그
 
 - Telescope config 예시
 
-```
+```lua
 local plugin = {
   'nvim-telescope/telescope.nvim',
   dependencies = {

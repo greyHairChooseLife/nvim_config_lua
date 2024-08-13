@@ -183,6 +183,7 @@ return require('packer').startup(function(use)
   -- TODO:  http client inside neovim
   -- https://github.com/rest-nvim/rest.nvim
   -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
+  -- OR alternative: https://github.com/mistweaverco/kulala.nvim
   if packer_bootstrap then
     require('packer').sync()
   end
