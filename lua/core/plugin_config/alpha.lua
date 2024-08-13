@@ -55,9 +55,10 @@ dashboard.section.buttons.val = {
     vim.cmd('Git fetch')
     alpha.redraw()
   end),
-  dashboard.button("n", "New", ":ene <BAR> startinsert <CR>"),
+  -- dashboard.button("n", "New", ":ene <BAR> startinsert <CR>"),
+  dashboard.button("n", "New", ":ene<CR>"),
   dashboard.button("ff", "File", ":Telescope find_files<CR>"),
-  dashboard.button("fw", "Word", ":Telescope grep_string<CR>"),
+  dashboard.button("fw", "Word", ":Telescope live_grep<CR>"),
   dashboard.button("r", "Rrecent", ":Telescope oldfiles<CR>"),
   dashboard.button(".", "", ""),
   dashboard.button("D", "                   ---------  doc   ", ":cd ~/Documents | vi .<CR>"),

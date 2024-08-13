@@ -53,9 +53,12 @@ require("telescope").setup {
     mappings = {
       n = {
         ['qq'] = "close",
+        ['<C-g>'] = require("telescope").extensions.hop.hop,
       },
       i = {
         ['qq'] = "close",
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
         -- IMPORTANT
         -- either hot-reloaded or `function(prompt_bufnr) telescope.extensions.hop.hop end`
         ['<C-g>'] = require("telescope").extensions.hop.hop,
