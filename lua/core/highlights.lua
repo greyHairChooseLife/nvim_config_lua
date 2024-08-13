@@ -185,3 +185,9 @@ vim.cmd [[
 " @markup.raw
 " @markup
 ]]
+
+
+-- quickfix
+vim.cmd [[
+  highlight Delimiter guifg=#9ece6a
+]]
