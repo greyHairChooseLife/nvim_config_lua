@@ -290,14 +290,18 @@ require('render-markdown').setup({
   },
   link = {
     -- Turn on / off inline link icon rendering
-    enabled = false,
+    enabled = true,
     -- Inlined with 'image' elements
     image = '󰥶 ',
     -- Inlined with 'inline_link' elements
     -- hyperlink = '  󰌹 ',
-    hyperlink = '',
+    hyperlink = '󰌹 ',
     -- Applies to the inlined icon
-    highlight = 'RenderMarkdownLink',
+    highlight = 'RenderMarkdownDocLink',
+    custom = {
+      web = { pattern = '^http[s]?://', icon = '󰖟 ', highlight = 'RenderMarkdownWebLink' },
+      file = { pattern = '^file:', icon = ' ', highlight = 'RenderMarkdownFileLink' },
+    },
   },
   sign = {
     -- Turn on / off sign rendering

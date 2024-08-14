@@ -150,10 +150,13 @@ vim.cmd [[
   " highlight RenderMarkdownH5 guifg=#FFFFFF gui=bold
   " highlight RenderMarkdownH6 guifg=#FFFFFF gui=bold
 
+  " highlight RenderMarkdownDocLink guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownWebLink guifg=#4169E1 gui=bold
+  highlight RenderMarkdownFileLink guifg=#FFBF00 gui=bold
 
   " markup highlight for TreeSitter
   highlight @markup.link guifg=#4169E1
-  highlight @markup.link.label guifg=#FFF500
+  highlight @markup.link.label guifg=#DCDCAA "FFF500
   highlight @markup.strong guifg=#B0C4DE gui=bold
   highlight @markup.italic guifg=#7F5F5F gui=italic
   highlight @markup guifg=#FFFFFF
