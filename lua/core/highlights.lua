@@ -129,14 +129,17 @@ vim.cmd [[
   highlight RenderMarkdownDash guifg=#32CD32
   highlight RenderMarkdownQuote guifg=#5F5F5F gui=italic
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
+
   highlight RenderMarkdownTodo guibg=#CA4500 gui=bold
   highlight RenderMarkdownTest guifg=#B0C4DE gui=bold
+  highlight RenderMarkdownReference guifg=#C678DD gui=bold
+
   highlight RenderMarkdownMyRed  guifg=#FF3000 gui=bold
   highlight RenderMarkdownBlue   guifg=#4169E1 gui=bold
   highlight RenderMarkdownGreen  guifg=#32CD32 gui=bold
   highlight RenderMarkdownYellow guifg=#FFBF00 gui=bold
 
-  highlight RenderMarkdownH1Bg guibg=#FF3000 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH1Bg guibg=#FFFF00 guifg=#AF4500 gui=bold,italic
   highlight RenderMarkdownH2Bg guibg=#1c2d5f guifg=#FFFFFF gui=bold
   highlight RenderMarkdownH3Bg guibg=#404000 guifg=#FFFFFF gui=bold
   highlight RenderMarkdownH4Bg guibg=#37303a guifg=#FFFFFF gui=bold
@@ -150,14 +153,15 @@ vim.cmd [[
   " highlight RenderMarkdownH5 guifg=#FFFFFF gui=bold
   " highlight RenderMarkdownH6 guifg=#FFFFFF gui=bold
 
-  " highlight RenderMarkdownDocLink guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownDocLink guifg=#FFBF00 gui=bold
   highlight RenderMarkdownWebLink guifg=#4169E1 gui=bold
   highlight RenderMarkdownFileLink guifg=#FFBF00 gui=bold
+
 
   " markup highlight for TreeSitter
   highlight @markup.link guifg=#4169E1
   highlight @markup.link.label guifg=#DCDCAA "FFF500
-  highlight @markup.strong guifg=#B0C4DE gui=bold
+  highlight @markup.strong guibg=#196035 gui=bold
   highlight @markup.italic guifg=#7F5F5F gui=italic
   highlight @markup guifg=#FFFFFF
 

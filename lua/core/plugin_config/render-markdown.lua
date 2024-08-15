@@ -90,7 +90,8 @@ require('render-markdown').setup({
     -- The number of '#' in the heading determines the 'level'
     -- The 'level' is used to index into the array using a cycle
     -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
-    icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
+    -- icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
+    icons = { ' ', '    ', '      ', '         ', '     ##### ', '       ###### ' },
     -- Added to the sign column if enabled
     -- The 'level' is used to index into the array using a cycle
     signs = { '󰫎 ' },
@@ -282,6 +283,7 @@ require('render-markdown').setup({
     quote = { raw = '[!QUOTE]', rendered = '󱆨 Quote', highlight = 'RenderMarkdownQuote' },
     my_question = { raw = '[!Q]', rendered = '󰴩.', highlight = 'RenderMarkdownWarn' },
     todo = { raw = '[!td]', rendered = '󰥔 Todo', highlight = 'RenderMarkdownMyRed' },
+    reference = { raw = '[!rf]', rendered = '󰉢 Test', highlight = 'RenderMarkdownReference' },
     test = { raw = '[!ts]', rendered = '󰨸 Test', highlight = 'RenderMarkdownTest' },
     my_red = { raw = '[!re]', rendered = '', highlight = 'RenderMarkdownMyRed' },
     my_blue = { raw = '[!bl]', rendered = '', highlight = 'RenderMarkdownBlue' },
@@ -292,15 +294,15 @@ require('render-markdown').setup({
     -- Turn on / off inline link icon rendering
     enabled = true,
     -- Inlined with 'image' elements
-    image = '󰥶 ',
+    image = '󰥶\'',
     -- Inlined with 'inline_link' elements
-    -- hyperlink = '  󰌹 ',
-    hyperlink = '󰌹 ',
+    -- hyperlink = '  󰌹 ',
+    hyperlink = '\'',
     -- Applies to the inlined icon
     highlight = 'RenderMarkdownDocLink',
     custom = {
-      web = { pattern = '^http[s]?://', icon = '󰖟 ', highlight = 'RenderMarkdownWebLink' },
-      file = { pattern = '^file:', icon = ' ', highlight = 'RenderMarkdownFileLink' },
+      web = { pattern = '^http[s]?://', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
+      file = { pattern = '^file:', icon = '\'', highlight = 'RenderMarkdownFileLink' },
     },
   },
   sign = {
