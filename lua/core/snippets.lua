@@ -64,6 +64,8 @@ function Insert_console_log()
   vim.api.nvim_win_set_cursor(0, { current_pos[1], current_pos[2] + #log_message - 2 })
 end
 
+-- NOTE: 이건 글로벌 함수로 만들어서 다양한 커스텀 함수에서 활용할 수 있을듯?
+
 -- 비주얼 모드에서 선택한 텍스트 가져오기
 local function get_visual_selection()
   local _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
