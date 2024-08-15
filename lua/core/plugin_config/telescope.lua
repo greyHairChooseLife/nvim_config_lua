@@ -6,6 +6,22 @@ local function switch_to_normal_mode()
   vim.api.nvim_feedkeys(escape_key, 'n', true)
 end
 
+local focus_preview = function(prompt_bufnr)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local prompt_win = picker.prompt_win
+  local previewer = picker.previewer
+  local winid = previewer.state.winid
+  local bufnr = previewer.state.bufnr
+  vim.keymap.set({ "n", "v" }, "qq", function()
+    actions.close(prompt_bufnr)
+  end, { buffer = bufnr })
+  vim.keymap.set("n", "i", function()
+    vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", prompt_win))
+  end, { buffer = bufnr })
+  vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", winid))
+  -- api.nvim_set_current_win(winid)
+end
+
 require("telescope").setup {
   extensions = {
     ["ui-select"] = {
@@ -54,14 +70,14 @@ require("telescope").setup {
       n = {
         ['qq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
+        ['<A-p>'] = focus_preview
       },
       i = {
-        ['qq'] = "close",
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
-        -- IMPORTANT
-        -- either hot-reloaded or `function(prompt_bufnr) telescope.extensions.hop.hop end`
+        ['qq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
+        ['<A-p>'] = focus_preview
       },
     },
   },
