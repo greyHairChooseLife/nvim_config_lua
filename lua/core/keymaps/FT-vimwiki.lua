@@ -28,8 +28,13 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.api.nvim_win_set_cursor(0, { row - 1, 10 })
     end)
     vim.keymap.set('i', ',,td', function()
-      vim.api.nvim_put({ "> [!td]" }, 'l', false, true)
-      vim.api.nvim_put({ "> " }, 'c', false, true)
+      local date = vim.fn.system('date | sed "s/. /-/3" | cut -d"-" -f1 | sed "s/. /-/g"')
+      date = date:gsub("\n$", "")
+      vim.api.nvim_put({ "> [!td]", "> " .. date, "> - ", ">  󱞪 " }, 'c', false, true)
+
+      -- 커서를 [!qt]의 q 뒤로 이동
+      local row = unpack(vim.api.nvim_win_get_cursor(0))
+      vim.api.nvim_win_set_cursor(0, { row - 1, 10 })
     end)
     vim.keymap.set('i', ',,rf', function()
       vim.api.nvim_put({ "> [!rf]" }, 'l', false, true)
