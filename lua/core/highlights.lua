@@ -130,6 +130,9 @@ vim.cmd [[
   highlight RenderMarkdownDash guifg=#32CD32
   highlight RenderMarkdownQuote guifg=#5F5F5F gui=italic
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
+  highlight RenderMarkdownUnchecked guifg=#CA4500
+  highlight RenderMarkdownChecked guifg=#32CD32
+
 
   highlight RenderMarkdownMyTodo guifg=#CA4500 gui=bold,italic
   highlight RenderMarkdownMyQuestion guifg=#e0af68 gui=bold,italic

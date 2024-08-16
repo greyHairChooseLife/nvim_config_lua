@@ -194,15 +194,16 @@ require('render-markdown').setup({
     enabled = true,
     unchecked = {
       -- Replaces '[ ]' of 'task_list_marker_unchecked'
-      icon = '󰄱',
-      -- icon = '[_]' ,
+      icon = '[]',
+      -- icon = '[_]' ,󰄱
       -- Highlight for the unchecked icon
       highlight = 'RenderMarkdownUnchecked',
     },
     checked = {
       -- Replaces '[x]' of 'task_list_marker_checked'
-      icon = '󰡖',
-      -- Highligh for the checked icon
+      -- icon = '󰡖',  󰗠󰗡󰬧   󰣪 󱌸 󰵿  󰈸
+      icon = '[]',
+      -- Highligh for the 󰄱checked icon
       highlight = 'RenderMarkdownChecked',
     },
     -- Define custom checkbox states, more involved as they are not part of the markdown grammar
