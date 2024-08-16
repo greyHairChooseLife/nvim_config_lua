@@ -37,13 +37,46 @@ vim.keymap.set('i', ',,W', function()
     vim.api.nvim_feedkeys("A", "n", true)
   end, 1) -- 최소한의 딜레이
 end)
+-- vim.keymap.set('i', ',,D', function()
+--   vim.api.nvim_feedkeys("DEBUG:", "n", true)
+--   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
+--   vim.defer_fn(function()
+--     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
+--     vim.api.nvim_feedkeys("A", "n", true)
+--   end, 1) -- 최소한의 딜레이
+-- end)
+-- vim.keymap.set('i', ',,D', function()
+--   -- 첫 번째 DEBUG: 삽입
+--   vim.api.nvim_feedkeys(" Start  DEBUG:", "n", true)
+--
+--   -- ESC를 눌러 insert 모드에서 나옴
+--   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
+--
+--   -- 첫 번째 줄을 주석 처리
+--   vim.defer_fn(function()
+--     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
+--   end, 1) -- 첫 번째 줄 주석 처리 후 딜레이
+-- end)
+
+
 vim.keymap.set('i', ',,D', function()
-  vim.api.nvim_feedkeys("DEBUG:", "n", true)
+  -- 두 줄의 DEBUG: 삽입
+  vim.api.nvim_feedkeys("START_debug:\nEND___debug:", "n", true)
+
+  -- ESC를 눌러 insert 모드에서 나옴
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
+
+  -- 두 줄을 모두 주석 처리
   vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("A", "n", true)
-  end, 1) -- 최소한의 딜레이
+    -- 현재 커서 위치에서 두 줄을 주석 처리
+    vim.cmd("normal! k")                                           -- 한 줄 위로 이동
+    vim.cmd("lua require('Comment.api').toggle.linewise.count(2)") -- 두 줄 주석 처리
+
+    -- 커서를 insert 모드로 복귀시키고 커서 위치 설정
+    vim.api.nvim_feedkeys("o", "n", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("cc", true, true, true), "n", true)
+  end, 10) -- 두 줄 삽입 후 딜레이
 end)
 
 
