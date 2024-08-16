@@ -27,46 +27,21 @@ vim.g.vimwiki_list = {
 }
 
 -- 함수를 전역으로 등록
--- _G.vimwiki_fold_level_custom = function(lnum)
---   local line = vim.fn.getline(lnum)
---   local next_line = vim.fn.getline(lnum + 1)
---
---   -- 헤더를 찾음
---   local pounds = string.match(line, "^#+")
---
---   if pounds then
---     return '>' .. #pounds -- 헤더에 따라 폴딩 레벨을 설정
---   end
---
---   -- 헤더 바로 전 빈 줄을 폴딩하지 않음
---   if string.match(line, "^%s*$") and string.match(next_line, "^#+") then
---     return '-1' -- 이 라인은 폴딩하지 않음
---   end
---
---   -- 기본적으로 현재 폴딩 레벨 유지
---   return '='
--- end
-
-
 _G.vimwiki_fold_level_custom = function(lnum)
-  local line = vim.fn.getline(lnum)
   local prev_line = vim.fn.getline(lnum - 1)
+  local line = vim.fn.getline(lnum)
   local next_line = vim.fn.getline(lnum + 1)
 
   -- 헤더를 찾음
-  local pounds = string.match(line, "^#+")
+  local pounds = string.match(prev_line, "^##+")
 
-  -- 헤더 바로 다음 라인부터 폴드 레벨 시작
-  if pounds and not string.match(prev_line, "^#+") then
-    return '=' -- 현재 라인은 폴드하지 않음
+  if pounds then
+    return '>' .. #pounds -- 헤더에 따라 폴딩 레벨을 설정
   end
 
-  if string.match(prev_line, "^#+") then
-    return '>' .. #string.match(prev_line, "^#+") -- 이전 헤더에 따라 폴드 레벨 설정
-  end
-
-  if string.match(line, "^%s*$") and string.match(next_line, "^#+") then
-    return '-1' -- 이 라인은 폴딩하지 않음
+  -- 헤더 바로 전 빈 줄을 폴딩하지 않음
+  if string.match(line, "^%s*$") and string.match(next_line, "^##+") then
+    return '0' -- 이 라인은 폴딩하지 않음
   end
 
   -- 기본적으로 현재 폴딩 레벨 유지
@@ -86,23 +61,26 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldmethod = 'expr'
     vim.opt_local.foldenable = true
     vim.opt_local.foldexpr = 'v:lua.vimwiki_fold_level_custom(v:lnum)'
+    vim.opt_local.foldtext = 'v:lua.custom_fold_text()'
   end,
 })
+
+-- custom_fold_text 함수 정의
+function custom_fold_text()
+  local line_count = vim.v.foldend - vim.v.foldstart + 1
+  local fold_text = " 󱞪 " .. line_count .. " "
+
+  -- 현재 윈도우의 너비를 가져와 남은 공간을 공백으로 채움
+  local win_width = vim.fn.winwidth(0)
+  local padding = string.rep(" ", win_width - #fold_text)
+
+  return fold_text .. padding
+end
 
 -- TODO:
 -- "Vimwiki Shift+Return, Ctrl+Return not working."
 -- https://www.reddit.com/r/vim/comments/7xoe8b/vimwiki_shiftreturn_ctrlreturn_not_working/
 
--- NOTE: markdown.nvim의 gui가 좋아서 딱히 필요 없을 듯
--- -- Set tabstop to 4 for vimwiki files
--- vim.cmd([[
---   augroup VimwikiSettings
---     autocmd!
---     autocmd FileType vimwiki setlocal tabstop=4 shiftwidth=4 expandtab
---     autocmd BufRead,BufNewFile ~/Documents/dev-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
---     autocmd BufRead,BufNewFile ~/Documents/job-wiki/notes/*.md setlocal tabstop=4 shiftwidth=4 expandtab
---   augroup END
--- ]])
 
 -- NOTE:: ALTERNATIVE LIST
 -- ..
