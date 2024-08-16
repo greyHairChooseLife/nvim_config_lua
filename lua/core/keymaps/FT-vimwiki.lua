@@ -43,3 +43,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
   end
 })
+
+-- TODO: keymap:
+-- 1. tab 및 S-tab 대신 <C-j> 및 <C-k>로 이동
+-- 2. tab 및 S-tab은 기존 <C-CR> 및 <S-CR> 등 노트를 옆으로 펼치는 키로 활용하자.
