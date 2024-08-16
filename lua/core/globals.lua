@@ -19,7 +19,7 @@ vim.diagnostic.config({
 vim.opt.foldmethod = "manual"
 --vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
---vim.opt.foldlevel = 9
+vim.opt.foldlevel = 99
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 

@@ -84,7 +84,7 @@ require("nvim-tree").setup({
           default = "",
           open = "",
           empty = "",
-          empty_open = "",
+          empty_open = "", -- 
           symlink = "",
           symlink_open = "",
         },

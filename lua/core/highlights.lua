@@ -56,6 +56,7 @@ vim.cmd [[
   highlight NvimTreeNormal guibg=#333342 guifg=NONE
   highlight NvimTreeNormalNC guibg=#333342 guifg=NONE
   highlight NvimTreeFolderIcon guifg=#ffcc00
+  highlight NvimTreeFolderArrowOpen guifg=#ffcc00
   highlight NvimTreeFolderName guifg=#569CD6 gui=bold
   highlight NvimTreeOpenedFolderName guifg=#569CD6 gui=bold
   highlight NvimTreeEmptyFolderName guifg=#569CD6
