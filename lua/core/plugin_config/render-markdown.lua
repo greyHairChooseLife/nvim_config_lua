@@ -213,7 +213,7 @@ require('render-markdown').setup({
     --   'rendered': Replaces the 'raw' value when rendering
     --   'highlight': Highlight for the 'rendered' icon
     custom = {
-      todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo' },
+      todo = { raw = '[-]', rendered = '󰥔 TODO ', highlight = 'RenderMarkdownMyTodo' },
     },
   },
   quote = {
