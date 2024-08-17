@@ -303,9 +303,10 @@ require('render-markdown').setup({
     -- Applies to the inlined icon
     highlight = 'RenderMarkdownDocLink',
     custom = {
-      web = { pattern = '^http[s]?://(?!www%.youtube%.com)(?!youtu%.be)', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
+      -- web = { pattern = '^http[s]?://(?!www%.youtube%.com)(?!youtu%.be)', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
+      -- youtube = { pattern = '^http[s]?://(www%.)?youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
+      web = { pattern = '^http[s]?://', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
       file = { pattern = '^file:', icon = '\'', highlight = 'RenderMarkdownFileLink' },
-      youtube = { pattern = '^http[s]?://(www%.)?youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
     },
   },
   sign = {
