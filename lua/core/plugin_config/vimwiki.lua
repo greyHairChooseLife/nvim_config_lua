@@ -7,11 +7,13 @@ vim.g.vimwiki_list = {
     -- path_html = "~/Documents/vimwiki/",
     syntax = "markdown",
     ext = ".md",
+    links_space_char = "_", -- link에 띄어쓰기를 알아서 '_'로 바꿔줌
   },
   {
     path = "~/Documents/job-wiki/notes/",
     syntax = "markdown",
     ext = ".md",
+    links_space_char = "_",
   }
 }
 
