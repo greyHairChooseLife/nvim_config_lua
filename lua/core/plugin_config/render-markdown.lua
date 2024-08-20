@@ -286,7 +286,7 @@ require('render-markdown').setup({
     todo = { raw = '[!td]', rendered = '󰥔 TODO ', highlight = 'RenderMarkdownMyTodo' },
     my_question = { raw = '[!qt]', rendered = '󰴩.', highlight = 'RenderMarkdownMyQuestion' },
     reference = { raw = '[!rf]', rendered = '󰉢 REFERENCE ', highlight = 'RenderMarkdownMyReference' },
-    test = { raw = '[!ts]', rendered = '󰨸 TEST ', highlight = 'RenderMarkdownMyTest' },
+    test = { raw = '[!ts]', rendered = '󰨸 TEST ', highlight = 'RenderMarkdownMyTest' }, -- test -> log로 바꾸기, 다시 볼 일은 웬만하면 없지만 기록을 위해서 남겨둘 것들을 위한 것
     my_red = { raw = '[!re]', rendered = '', highlight = 'RenderMarkdownRed' },
     my_blue = { raw = '[!bl]', rendered = '', highlight = 'RenderMarkdownBlue' },
     my_green = { raw = '[!gr]', rendered = '', highlight = 'RenderMarkdownGreen' },
