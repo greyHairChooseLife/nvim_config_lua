@@ -181,12 +181,16 @@ return require('packer').startup(function(use)
   use { 'MeanderingProgrammer/markdown.nvim' } -- for config, https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#setup
   -- use { 'OXY2DEV/markview.nvim' }
 
-  use { 'stevearc/quicker.nvim' } -- https://github.com/stevearc/quicker.nvim
+  use { 'stevearc/quicker.nvim' }   -- https://github.com/stevearc/quicker.nvim
+  use { 'pteroctopus/faster.nvim' } -- handle big big files
 
   -- TODO:  http client inside neovim
   -- https://github.com/rest-nvim/rest.nvim
   -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
   -- OR alternative: https://github.com/mistweaverco/kulala.nvim
+  --
+  -- TODO:  indent or chunk marker(visualizer)
+  -- https://github.com/shellRaining/hlchunk.nvim
   if packer_bootstrap then
     require('packer').sync()
   end
