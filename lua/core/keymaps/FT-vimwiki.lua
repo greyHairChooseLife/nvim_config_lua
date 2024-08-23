@@ -5,6 +5,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('i', ',,H', function()
       vim.api.nvim_feedkeys("# 󰏢 ", "i", true)
 
+      -- TODO:: 이거 현재 파일의 이름을 가져와서 '_'(under-bar)모두 ' '(공백)으로 바꾸고, 끝에 '.md'를 제거하는것도 추가해주자.
+
       -- 아래 방식으로는 더 복잡한 작업도 가능
       -- local msg = "# 󰏢 "
       -- vim.api.nvim_put({ msg }, 'c', true, true)
