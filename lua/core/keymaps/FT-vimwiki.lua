@@ -68,3 +68,4 @@ vim.api.nvim_create_autocmd("FileType", {
 -- TODO: keymap:
 -- 1. tab 및 S-tab 대신 <C-j> 및 <C-k>로 이동
 -- 2. tab 및 S-tab은 기존 <C-CR> 및 <S-CR> 등 노트를 옆으로 펼치는 키로 활용하자.
+-- 3. vimwiki에는 lualine 굳이 필요없다.
