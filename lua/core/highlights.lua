@@ -75,11 +75,11 @@ vim.cmd [[
 
 vim.cmd [[
   " 헤더 색상 설정
-  highlight VimwikiHeader1 guifg=#ffffff guibg=#007F7F gui=bold
-  highlight VimwikiHeader2 guifg=#5169E1 gui=bold
-  highlight VimwikiHeader3 guifg=#7aa2f7 gui=bold
-  highlight VimwikiHeader4 guifg=#7aa2f7
-  highlight VimwikiHeader5 guifg=#7aa2f7
+  highlight VimwikiHeader1 guifg=#AF4500 guibg=#007F7F gui=bold
+  highlight VimwikiHeader2 guifg=#ffffff gui=bold
+  highlight VimwikiHeader3 guifg=#ffffff gui=bold
+  highlight VimwikiHeader4 guifg=#ffffff
+  highlight VimwikiHeader5 guifg=#ffffff
   " highlight VimwikiHeader6
 
   " 링크 색상 설정
@@ -144,10 +144,10 @@ vim.cmd [[
   highlight RenderMarkdownGreen  guifg=#32CD32 gui=bold
   highlight RenderMarkdownYellow guifg=#FFBF00 gui=bold
 
-  highlight RenderMarkdownH1Bg guibg=#FFFF00 guifg=#AF4500 gui=bold,italic
-  highlight RenderMarkdownH2Bg guibg=#1c2d5f guifg=#FFFFFF gui=bold
-  highlight RenderMarkdownH3Bg guibg=#404000 guifg=#FFFFFF gui=bold
-  highlight RenderMarkdownH4Bg guibg=#37303a guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH1Bg guibg=#FFFF00 gui=bold,italic
+  highlight RenderMarkdownH2Bg guibg=#1c2d5f gui=bold
+  highlight RenderMarkdownH3Bg guibg=#404000 gui=bold
+  highlight RenderMarkdownH4Bg guibg=#37303a gui=bold
   highlight RenderMarkdownH5Bg guibg=#AF4500
   highlight RenderMarkdownH6Bg guibg=#4e4451
 
@@ -169,14 +169,20 @@ vim.cmd [[
   highlight @markup.strong guibg=#196035 gui=bold
   highlight @markup.italic guifg=#7F5F5F gui=italic
   highlight @markup guifg=#FFFFFF
+  highlight @markup.heading.1.markdown guifg=#AF4500
+  highlight @markup.heading.2.markdown guifg=#FFFFFF
+  highlight @markup.heading.3.markdown guifg=#FFFFFF
+  highlight @markup.heading.4.markdown guifg=#FFFFFF
+  highlight @markup.heading.5.markdown guifg=#FFFFFF
+  highlight @markup.heading.6.markdown guifg=#FFFFFF
 
 " @markup.raw.markdown_inline
-" @markup.heading6.markdown
-" @markup.heading5.markdown
-" @markup.heading4.markdown
-" @markup.heading3.markdown
-" @markup.heading2.markdown
-" @markup.heading1.markdown
+" @markup.heading.6.markdown
+" @markup.heading.5.markdown
+" @markup.heading.4.markdown
+" @markup.heading.3.markdown
+" @markup.heading.2.markdown
+" @markup.heading.1.markdown
 " @markup.link.label.symbol
 " @markup.environment.name
 " @markup.list.unchecked

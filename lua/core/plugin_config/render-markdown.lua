@@ -82,6 +82,11 @@ require('render-markdown').setup({
     enabled = true,
     -- Turn on / off any sign column related rendering
     sign = false,
+    border = true,
+    border_prefix = false,
+    above = '',
+    -- Used below heading for border
+    below = '▀',
     -- Determines how the icon fills the available space:
     --  inline: underlying '#'s are concealed resulting in a left aligned icon
     --  overlay: result is left padded with spaces to hide any additional '#'
@@ -98,7 +103,8 @@ require('render-markdown').setup({
     -- Width of the heading background:
     --  block: width of the heading text
     --  full: full width of the window
-    width = 'full',
+    width = { 'full', 'full', 'block' },
+    min_width = 100,
     -- The 'level' is used to index into the array using a clamp
     -- Highlight for the heading icon and extends through the entire line
     backgrounds = {
@@ -268,7 +274,7 @@ require('render-markdown').setup({
   --  󰓛 󰄱    
   --      󱓻강 sdf   sfd  󱓼  󰨔 󰴩     
   callout = {
-    note = { raw = '[!NOTE]', rendered = '󰋽 Note', highlight = 'RenderMarkdownInfo' },
+    note = { raw = '[!NOTE]', rendered = '󰋽 Note', highlight = 'Re,derMarkdownInfo' },
     tip = { raw = '[!TIP]', rendered = '󰌶 Tip', highlight = 'RenderMarkdownSuccess' },
     important = { raw = '[!IMPORTANT]', rendered = '󰅾 Important', highlight = 'RenderMarkdownHint' },
     warning = { raw = '[!WARNING]', rendered = '󰀪 Warning', highlight = 'RenderMarkdownWarn' },
@@ -307,8 +313,9 @@ require('render-markdown').setup({
     custom = {
       -- web = { pattern = '^http[s]?://(?!www%.youtube%.com)(?!youtu%.be)', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
       -- youtube = { pattern = '^http[s]?://(www%.)?youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
-      web = { pattern = '^http[s]?://', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
       file = { pattern = '^file:', icon = '\'', highlight = 'RenderMarkdownFileLink' },
+      youtube = { pattern = '^http[s]?://www%.youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
+      web = { pattern = '^http[s]?://www', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
     },
   },
   sign = {
