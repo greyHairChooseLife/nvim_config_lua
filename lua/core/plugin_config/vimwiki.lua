@@ -17,6 +17,12 @@ vim.g.vimwiki_list = {
   }
 }
 
+vim.g.vimwiki_key_mappings = {
+  global = 0,
+  lists = 0,
+}
+
+
 -- 함수를 전역으로 등록
 _G.vimwiki_fold_level_custom = function(lnum)
   local prev_line = vim.fn.getline(lnum - 1)

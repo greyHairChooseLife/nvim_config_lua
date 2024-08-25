@@ -23,9 +23,10 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
-vim.keymap.set({ 'n', 'v' }, ";u", "''", { noremap = true })             -- j, k 로 움직인 것도 jump list에 추가되도록
+vim.keymap.set('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
+-- vim.keymap.set({ 'n', 'v' }, ";u", "''", { noremap = true })             -- j, k 로 움직인 것도 jump list에 추가되도록
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
-vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
 
 vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')       -- CamelCase
 vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')      -- for :on command
@@ -35,7 +36,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("v", "p", '"_dP') -- paste without yanking in visual mode
+vim.keymap.set("v", "p", '"_dP')       -- paste without yanking in visual mode
+
+vim.keymap.set({ 'n', 'v' }, ';', ':') -- repeat last command
+vim.keymap.set({ 'n', 'v' }, ':', ';') -- repeat last command
+vim.keymap.set({ 'n', 'v' }, 'Q', ',') -- repeat last command
 
 -- 선택한 줄 이동
 -- vim.keymap.set("v", "<A-k>", ":m .-2<CR>==gv")
@@ -53,10 +58,10 @@ vim.keymap.set('v', 'cl<cr>', ":<C-U>lua Insert_console_log_Visual()<CR>", { nor
 vim.keymap.set('n', '<leader>q', ':q!<CR>')
 vim.keymap.set('n', '<leader>bq', ':bd!<CR>') -- close buffer, saving memory
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
+vim.keymap.set('n', '<F1>', '<Plug>VimwikiIndex')
 vim.keymap.set('n', '<leader>w', function()
-  vim.cmd('w')
+  vim.cmd('silent w')
   vim.notify('Saved current buffers', 3, { render = 'minimal' })
-  vim.cmd('echon')
 end)
 vim.keymap.set('n', '<leader>W', function()
   vim.cmd('wa')
@@ -185,7 +190,7 @@ vim.keymap.set('n', ',.c', builtin.grep_string, {})
 vim.keymap.set('n', ',.m', builtin.marks, {})
 vim.keymap.set('n', ',.b', builtin.buffers, {})
 vim.keymap.set('n', ',.H', builtin.help_tags, {})
-vim.keymap.set('n', ',.r', builtin.registers, {})
+vim.keymap.set({ 'n', 'i' }, ',.r', builtin.registers, {})
 vim.keymap.set('n', ',.R', builtin.resume, {})
 vim.keymap.set('n', ',.q', builtin.quickfix, {})
 -- vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {}) 사실상 안쓰는듯
