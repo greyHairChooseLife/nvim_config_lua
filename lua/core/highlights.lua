@@ -162,6 +162,7 @@ vim.cmd [[
   highlight RenderMarkdownWebLink guifg=#4169E1 gui=bold
   highlight RenderMarkdownFileLink guifg=#FFBF00 gui=bold
   highlight RenderMarkdownYoutubeLink guifg=#FF3000 gui=bold
+  highlight RenderMarkdownDiaryLink guifg=#DCDCAA gui=bold
 
   " markup highlight for TreeSitter
   highlight @markup.link guifg=#4169E1

@@ -65,6 +65,9 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.notify('Saved all buffers', 3, { render = 'minimal' })
     end)
 
+    vim.keymap.set('n', '<leader><leader>w', '<cmd>VimwikiIndex<CR>')
+    vim.keymap.set('n', '<leader><leader>d', '<cmd>VimwikiDiaryIndex<CR>')
+
     -- SPECIAL UI
     vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
   end
