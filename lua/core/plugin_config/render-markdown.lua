@@ -315,7 +315,7 @@ require('render-markdown').setup({
       -- youtube = { pattern = '^http[s]?://(www%.)?youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
       file = { pattern = '^file:', icon = '\'', highlight = 'RenderMarkdownFileLink' },
       youtube = { pattern = '^http[s]?://www%.youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
-      web = { pattern = '^http[s]?://www', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
+      web = { pattern = '^http[s]?://', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
       diary = { pattern = '^%d%d%d%d%-%d%d%-%d%d', icon = ' ', highlight = 'RenderMarkdownDiaryLink' },
     },
   },
