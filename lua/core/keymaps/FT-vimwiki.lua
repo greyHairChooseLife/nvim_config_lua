@@ -68,8 +68,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<leader><leader>w', '<cmd>VimwikiIndex<CR>')
     vim.keymap.set('n', '<leader><leader>d', '<cmd>VimwikiDiaryIndex<CR>')
 
-    -- SPECIAL UI
+    -- UI
     vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
+    -- set number! signcolumn=no
+    vim.cmd('set relativenumber! signcolumn=no')
+    -- LineNr: 일반 줄 번호의 색상 설정
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#24283B" })
   end
 })
 

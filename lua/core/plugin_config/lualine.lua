@@ -39,7 +39,7 @@ require('lualine').setup {
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
-      -- statusline = { 'packer', 'NvimTree', 'alpha' },
+      statusline = { 'packer', 'NvimTree', 'alpha', 'vimwiki' },
       -- winbar = {},
     },
     ignore_focus = {},

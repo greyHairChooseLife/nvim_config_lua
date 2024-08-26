@@ -37,7 +37,9 @@ require('gitsigns').setup({
   end
 })
 
-vim.cmd "set statusline+={get(b:,'gitsigns_statusline',')}"
+-- 이게 왜 필요했더라?
+-- 하여튼 지금은 lualine disabled 일 때 방해되니까 꺼버린다.
+-- vim.cmd "set statusline+={get(b:,'gitsigns_statusline',')}"
 
 
 -- =========================================================================
