@@ -82,7 +82,7 @@ require('render-markdown').setup({
     enabled = true,
     -- Turn on / off any sign column related rendering
     sign = false,
-    border = true,
+    border = false,
     border_prefix = false,
     above = '',
     -- Used below heading for border

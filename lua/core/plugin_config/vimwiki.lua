@@ -25,8 +25,7 @@ vim.g.vimwiki_key_mappings = {
 
 -- 함수를 전역으로 등록
 _G.vimwiki_fold_level_custom = function(lnum)
-  -- local prev_line = vim.fn.getline(lnum - 1) -- render-markdown에서 header border를 사용하지 않을 경우 -1로 변경
-  local prev_line = vim.fn.getline(lnum - 2)
+  local prev_line = vim.fn.getline(lnum - 1) -- render-markdown에서 header border를 사용하지 않을 경우 -1로 변경, 사용한다면 -2로
   local line = vim.fn.getline(lnum)
   local next_line = vim.fn.getline(lnum + 1)
 
