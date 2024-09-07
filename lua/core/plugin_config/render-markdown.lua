@@ -57,13 +57,13 @@ require('render-markdown').setup({
   file_types = { 'markdown', 'vimwiki' },
   -- Vim modes that will show a rendered view of the markdown file
   -- All other modes will be uneffected by this plugin
-  render_modes = { 'n' },
+  render_modes = { 'n', 'c' },
   -- Set to avoid seeing warnings for conflicts in health check
   acknowledge_conflicts = false,
   anti_conceal = {
     -- This enables hiding any added text on the line the cursor is on
     -- This does have a performance penalty as we must listen to the 'CursorMoved' event
-    enabled = true,
+    enabled = false,
   },
   latex = {
     -- Whether LaTeX should be rendered, mainly used for health check
