@@ -1,7 +1,5 @@
 -- #2CB67D   #98C379   #A1C98A
 --
--- #37D060   #2F8132   #1E5631
---
 -- #569CD6   #D16969   #2E2E2E
 --
 -- #DCDCAA   #6A9955   #FF4500
@@ -128,16 +126,19 @@ vim.cmd [[
   highlight RenderMarkdownCode guibg=#4e4451 guifg=NONE
   highlight RenderMarkdownCodeInline guibg=#4e4451 guifg=NONE
   highlight RenderMarkdownDash guifg=#32CD32
-  highlight RenderMarkdownQuote guifg=#5F5F5F gui=italic
+  highlight RenderMarkdownQuote guifg=#5F5F5F
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
   highlight RenderMarkdownUnchecked guifg=#CA4500
   highlight RenderMarkdownChecked guifg=#32CD32
 
 
   highlight RenderMarkdownMyTodo guifg=#CA4500 gui=bold,italic
+  highlight RenderMarkdownMySimpleTodo guifg=#ffffff guibg=#CA4500 gui=bold,italic
+  highlight RenderMarkdownMySimpleDone guifg=#ffffff guibg=#004F4F gui=bold,italic
   highlight RenderMarkdownMyQuestion guifg=#e0af68 gui=bold,italic
   highlight RenderMarkdownMyTest guifg=#B0C4DE gui=bold,italic
   highlight RenderMarkdownMyReference guifg=#C678DD gui=bold,italic
+  highlight RenderMarkdownMyLog guifg=#000000 guibg=#B0C4DE gui=bold,italic
 
   highlight RenderMarkdownRed  guifg=#FF3000 gui=bold
   highlight RenderMarkdownBlue   guifg=#4169E1 gui=bold

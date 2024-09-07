@@ -220,7 +220,9 @@ require('render-markdown').setup({
     --   'rendered': Replaces the 'raw' value when rendering
     --   'highlight': Highlight for the 'rendered' icon
     custom = {
-      todo = { raw = '[-]', rendered = '󰥔 TODO ', highlight = 'RenderMarkdownMyTodo' },
+      todo = { raw = '[-]', rendered = ' 󰥔 TODO ', highlight = 'RenderMarkdownMySimpleTodo' },
+      done = { raw = '[x]', rendered = ' 󰗠 DONE ', highlight = 'RenderMarkdownMySimpleDone' },
+      log = { raw = '[lg]', rendered = '작성:', highlight = 'RenderMarkdownMyLog' },
     },
   },
   quote = {
@@ -230,7 +232,7 @@ require('render-markdown').setup({
     -- icon = '▋',
     -- icon = '󰍬',
     icon = '▋',
-    repeat_linebreak = true,
+    repeat_linebreak = false,
     -- Highlight for the quote icon
     highlight = 'RenderMarkdownQuote',
   },
@@ -290,7 +292,7 @@ require('render-markdown').setup({
     quote = { raw = '[!QUOTE]', rendered = '󱆨 Quote', highlight = 'RenderMarkdownQuote' },
     -- My own
     test = { raw = '[!ts]', rendered = '󰨸 TEST ', highlight = 'RenderMarkdownMyTest' },
-    todo = { raw = '[!td]', rendered = '󰥔 TODO ', highlight = 'RenderMarkdownMyTodo' },
+    todo = { raw = '[!td]', rendered = '󰗕 TODO ', highlight = 'RenderMarkdownMyTodo' },
     my_question = { raw = '[!qt]', rendered = '󰴩.', highlight = 'RenderMarkdownMyQuestion' },
     reference = { raw = '[!rf]', rendered = '󰉢 REFERENCE ', highlight = 'RenderMarkdownMyReference' },
     log = { raw = '[!lg]', rendered = '󰨸 Log ', highlight = 'RenderMarkdownMyTest' },
@@ -342,7 +344,8 @@ require('render-markdown').setup({
       -- Used when being rendered, disable concealing text in all modes
       rendered = '',
     },
-    showbreak = { default = vim.api.nvim_get_option_value('showbreak', {}), rendered = '  ' },
+    -- showbreak = { default = vim.api.nvim_get_option_value('showbreak', {}), rendered = '  ' },
+    showbreak = { default = vim.api.nvim_get_option_value('showbreak', {}), rendered = '' },
     breakindent = { default = vim.api.nvim_get_option_value('breakindent', {}), rendered = true },
     breakindentopt = { default = vim.api.nvim_get_option_value('breakindentopt', {}), rendered = '' },
   },
