@@ -1,6 +1,7 @@
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local builtin = require('telescope.builtin')
+
 local function switch_to_normal_mode()
   local escape_key = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
   vim.api.nvim_feedkeys(escape_key, 'n', true)
@@ -20,6 +21,12 @@ local focus_preview = function(prompt_bufnr)
   end, { buffer = bufnr })
   vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", winid))
   -- api.nvim_set_current_win(winid)
+end
+
+-- 프롬프트 내용 초기화
+local function clear_prompt()
+    local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
+    picker:reset_prompt()  -- 프롬프트 초기화
 end
 
 require("telescope").setup {
@@ -70,14 +77,23 @@ require("telescope").setup {
       n = {
         ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
-        ['<A-p>'] = focus_preview
+        ['<A-Space>'] = focus_preview,
+        ['<A-p>'] = actions.preview_scrolling_up,
+        ['<A-n>'] = actions.preview_scrolling_down,
+        ['<C-u>'] = actions.results_scrolling_up,
+        ['<C-d>'] = actions.results_scrolling_down
       },
       i = {
+        ['<C-r>'] = clear_prompt,
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
         ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
-        ['<A-p>'] = focus_preview
+        ['<A-Space>'] = focus_preview,
+        ['<A-p>'] = actions.preview_scrolling_up,
+        ['<A-n>'] = actions.preview_scrolling_down,
+        ['<C-u>'] = actions.results_scrolling_up,
+        ['<C-d>'] = actions.results_scrolling_down
       },
     },
   },
