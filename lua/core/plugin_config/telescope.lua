@@ -12,7 +12,7 @@ local focus_preview = function(prompt_bufnr)
   local previewer = picker.previewer
   local winid = previewer.state.winid
   local bufnr = previewer.state.bufnr
-  vim.keymap.set({ "n", "v" }, "qq", function()
+  vim.keymap.set({ "n", "v" }, "gq", function()
     actions.close(prompt_bufnr)
   end, { buffer = bufnr })
   vim.keymap.set("n", "i", function()
@@ -68,14 +68,14 @@ require("telescope").setup {
   defaults = {
     mappings = {
       n = {
-        ['qq'] = "close",
+        ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
         ['<A-p>'] = focus_preview
       },
       i = {
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
-        ['qq'] = "close",
+        ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
         ['<A-p>'] = focus_preview
       },
