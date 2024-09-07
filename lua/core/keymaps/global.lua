@@ -296,10 +296,6 @@ vim.keymap.set({ 'n' }, ',gl', '<Plug>(leap-from-window)')
 vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
 
 
--- VIMWIKI
-vim.keymap.set('i', ',T', '<ESC>:VimwikiTable ')
-
-
 -- TOGGLETERM
 vim.keymap.set({ "n", "v" }, "<F3>", ":ToggleTerm direction=float<CR>", {})
 vim.keymap.set("t", "<F3>", "<Cmd>ToggleTerm<CR>", {})

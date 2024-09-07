@@ -101,9 +101,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
         vim.api.nvim_win_set_cursor(0, {line_num, col_num})
     end
-
     vim.keymap.set('n', '<Space><Space>', Toggle_bracket)
 
+    vim.keymap.set('i', ',,T', '<ESC>:VimwikiTable ')
   end
 })
 
