@@ -1,6 +1,16 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "vimwiki",
   callback = function()
+    -- UI
+    vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
+    -- set number! signcolumn=no
+    vim.opt.signcolumn = "no"
+    vim.opt.relativenumber = false
+    -- LineNr: 일반 줄 번호의 색상 설정
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#24283B" })
+    -- relNumber
+    -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#24283B" })
+
     -- SNIPPET
     vim.keymap.set('i', ',,H', function()
       vim.api.nvim_feedkeys("# 󰏢 ", "i", true)
@@ -73,15 +83,27 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<leader><leader>w', '<cmd>VimwikiIndex<CR>')
     vim.keymap.set('n', '<leader><leader>d', '<cmd>VimwikiDiaryIndex<CR>')
 
-    -- UI
-    vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
-    -- set number! signcolumn=no
-    vim.opt.signcolumn = "no"
-    vim.opt.relativenumber = false
-    -- LineNr: 일반 줄 번호의 색상 설정
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#24283B" })
-    -- relNumber
-    -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#24283B" })
+    -- 현재 라인의 끝에 '[-]'를 추가하거나 제거하는 함수
+    local function Toggle_bracket()
+        local cursor_pos = vim.api.nvim_win_get_cursor(0)
+        local line_num = cursor_pos[1]
+        local col_num = cursor_pos[2]
+
+        local line = vim.api.nvim_get_current_line()
+
+        if string.match(line, " %[%-%]$") then
+            line = string.gsub(line, " %[%-%]$", "")
+        else
+            line = line .. " [-]"
+        end
+
+        vim.api.nvim_set_current_line(line)
+
+        vim.api.nvim_win_set_cursor(0, {line_num, col_num})
+    end
+
+    vim.keymap.set('n', '<Space><Space>', Toggle_bracket)
+
   end
 })
 
