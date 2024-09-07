@@ -289,16 +289,17 @@ require('render-markdown').setup({
     example = { raw = '[!EXAMPLE]', rendered = '󰉹 Example', highlight = 'RenderMarkdownHint' },
     quote = { raw = '[!QUOTE]', rendered = '󱆨 Quote', highlight = 'RenderMarkdownQuote' },
     -- My own
+    test = { raw = '[!ts]', rendered = '󰨸 TEST ', highlight = 'RenderMarkdownMyTest' },
     todo = { raw = '[!td]', rendered = '󰥔 TODO ', highlight = 'RenderMarkdownMyTodo' },
     my_question = { raw = '[!qt]', rendered = '󰴩.', highlight = 'RenderMarkdownMyQuestion' },
     reference = { raw = '[!rf]', rendered = '󰉢 REFERENCE ', highlight = 'RenderMarkdownMyReference' },
-    test = { raw = '[!ts]', rendered = '󰨸 TEST ', highlight = 'RenderMarkdownMyTest' }, -- test -> log로 바꾸기, 다시 볼 일은 웬만하면 없지만 기록을 위해서 남겨둘 것들을 위한 것
-    log = { raw = '[!lg]', rendered = '󰨸 Log ', highlight = 'RenderMarkdownMyTest' }, -- test -> log로 바꾸기, 다시 볼 일은 웬만하면 없지만 기록을 위해서 남겨둘 것들을 위한 것
+    log = { raw = '[!lg]', rendered = '󰨸 Log ', highlight = 'RenderMarkdownMyTest' },
+    concept = { raw = '[!cn]', rendered = '󰃁 개념정리 ', highlight = 'RenderMarkdownBlue' },
 
-    my_red = { raw = '[!re]', rendered = '', highlight = 'RenderMarkdownRed' },
-    my_blue = { raw = '[!bl]', rendered = '', highlight = 'RenderMarkdownBlue' },
-    my_green = { raw = '[!gr]', rendered = '', highlight = 'RenderMarkdownGreen' },
-    my_yellow = { raw = '[!ye]', rendered = '', highlight = 'RenderMarkdownYellow' },
+    my_red = { raw = '[!re]', rendered = '', highlight = 'RenderMarkdownRed' },
+    my_blue = { raw = '[!bl]', rendered = '', highlight = 'RenderMarkdownBlue' },
+    my_green = { raw = '[!gr]', rendered = '', highlight = 'RenderMarkdownGreen' },
+    my_yellow = { raw = '[!ye]', rendered = '', highlight = 'RenderMarkdownYellow' },
   },
   link = {
     -- Turn on / off inline link icon rendering

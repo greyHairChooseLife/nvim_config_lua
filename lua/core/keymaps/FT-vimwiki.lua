@@ -60,6 +60,11 @@ vim.api.nvim_create_autocmd("FileType", {
       -- vim.api.nvim_win_set_cursor(0, { row - 1, 10 })
     end)
 
+    -- callout: 개념정리
+    vim.keymap.set('i', ',,cn', function()
+      vim.api.nvim_put({ "> [!cn] 개념정리", "> ", "> " }, 'c', false, true)
+    end)
+
     vim.keymap.set('n', '<leader>w', function()
       vim.cmd('wa')
       vim.notify('Saved all buffers', 3, { render = 'minimal' })
