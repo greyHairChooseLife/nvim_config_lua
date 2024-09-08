@@ -124,7 +124,6 @@ return require('packer').startup(function(use)
   -- https://github.com/ggandor/leap.nvim
   use { 'ggandor/leap.nvim' }
   -- require('leap').create_default_mappings()
-  -- TODO: 이거 레딧 검색해보니까 영타인 상태로 한글 입력하듯 누르면 검색이 되는 방법이 있었다. 반영하자.
 
   -- https://github.com/rmagatti/auto-session
   use {
