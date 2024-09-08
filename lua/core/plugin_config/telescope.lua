@@ -78,8 +78,8 @@ require("telescope").setup {
         ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
         ['<A-Space>'] = focus_preview,
-        ['<A-p>'] = actions.preview_scrolling_up,
-        ['<A-n>'] = actions.preview_scrolling_down,
+        ['<A-u>'] = actions.preview_scrolling_up,
+        ['<A-d>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
         ['<C-d>'] = actions.results_scrolling_down
       },
@@ -90,8 +90,8 @@ require("telescope").setup {
         ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
         ['<A-Space>'] = focus_preview,
-        ['<A-p>'] = actions.preview_scrolling_up,
-        ['<A-n>'] = actions.preview_scrolling_down,
+        ['<A-u>'] = actions.preview_scrolling_up,
+        ['<A-d>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
         ['<C-d>'] = actions.results_scrolling_down
       },
