@@ -196,7 +196,12 @@ vim.keymap.set('n', ',.q', builtin.quickfix, {})
 -- vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {}) 사실상 안쓰는듯
 vim.keymap.set('n', ',.gsts', builtin.git_stash, {})
 vim.keymap.set('n', ',.gstt', builtin.git_status, {})
-vim.keymap.set('n', ',.gco', builtin.git_commits, {})
+vim.keymap.set('n', ',.gco', function()
+  builtin.git_commits({ git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "--all", "--decorate" } })
+end, {})
+vim.keymap.set('n', ',.gbco', function() -- 현재 버퍼에 열린 파일에서만 검색
+  builtin.git_bcommits({ git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "--all", "--decorate" } })
+end, {})
 vim.keymap.set('n', ',.gbr', builtin.git_branches, {})
 -- 현재 버퍼에 열린 파일에서만 검색
 vim.keymap.set('n', ',..w', function()
