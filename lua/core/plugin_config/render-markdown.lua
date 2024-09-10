@@ -171,7 +171,7 @@ require('render-markdown').setup({
     enabled = true,
     -- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'
     -- The icon gets repeated across the window's width
-    icon = '✂',
+    icon = '',
     -- Width of the generated line:
     --  <integer>: a hard coded width value
     --  full: full width of the window

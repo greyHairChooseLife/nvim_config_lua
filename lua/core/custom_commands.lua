@@ -320,12 +320,12 @@ function MyTabLine()
     local padding = math.max(0, (max_width - #tabname) / 2)
     tabname = string.rep(' ', padding) .. tabname .. string.rep(' ', max_width - #tabname - padding)
 
-    -- 현재 탭 페이지를 강조 표시     󱐋
+    -- 현재 탭 페이지를 강조 표시     󱐋  
     if i == vim.fn.tabpagenr() then
       s = s ..
           '%' .. i .. 'T' ..
           '%#TabLineSelBg#' ..
-          '%#TabLineSelBg#' .. tabname .. ' %#TabLineSelBorder#' .. '%#TabLineFill#'
+          '%#TabLineSelBg#' .. tabname .. '%#TabLineSelBorder#' .. '%#TabLineFill#'
       -- '%#TabLineSelBg# ' .. tabname .. ' %#TabLineSelBorder#' .. '%#TabLineFill#'
     else
       s = s .. '%' .. i .. 'T' .. '%#TabLineNotSel#' .. ' ' .. tabname .. ' '
