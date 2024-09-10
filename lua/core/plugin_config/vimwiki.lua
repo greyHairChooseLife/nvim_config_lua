@@ -20,7 +20,10 @@ vim.g.vimwiki_list = {
 vim.g.vimwiki_key_mappings = {
   global = 0,
   lists = 0,
+  links = 0,
 }
+
+vim.g.vimwiki_create_link = 0
 
 
 -- 함수를 전역으로 등록

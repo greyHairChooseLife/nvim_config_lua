@@ -114,19 +114,30 @@ vim.api.nvim_create_autocmd("FileType", {
           line = before_cursor .. "[-] " .. after_cursor
 
           vim.api.nvim_set_current_line(line)
-          vim.api.nvim_win_set_cursor(0, {line_num, col_num + 5})
+          vim.api.nvim_win_set_cursor(0, { line_num, col_num + 5 })
           vim.cmd("startinsert!")
           return
         end
       end
 
       vim.api.nvim_set_current_line(line)
-      vim.api.nvim_win_set_cursor(0, {line_num, col_num})
+      vim.api.nvim_win_set_cursor(0, { line_num, col_num })
     end
 
     vim.keymap.set('n', '<Space><Space>', ToggleBracket)
 
     vim.keymap.set('i', ',,T', '<ESC>:VimwikiTable ')
+
+    vim.keymap.set('n', '<C-j>', '<cmd>VimwikiNextLink<CR>')
+    vim.keymap.set('n', '<C-k>', '<cmd>VimwikiPrevLink<CR>')
+
+    vim.keymap.set('n', '<tab>', '<cmd>VimwikiVSplitLink 1 0<CR>')
+    vim.keymap.set('n', '<S-tab>', '<cmd>VimwikiVSplitLink 1 1<CR>')
+
+    vim.keymap.set('n', '<CR>', '<cmd>VimwikiFollowLink<CR>')
+    vim.keymap.set('n', '<Backspace>', '<cmd>VimwikiGoBackLink<CR>')
+
+    vim.keymap.set('v', '<CR>', '<Plug>VimwikiNormalizeLinkVisual', { noremap = false, silent = true })
   end
 })
 

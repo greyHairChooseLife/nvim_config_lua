@@ -30,3 +30,5 @@ vim.g.mapleader = "\\" -- <leader> as Space
 
 -- Set fillchars
 vim.o.fillchars = 'vert:┃'
+
+vim.opt.splitright = true -- 수직 분할시 오른쪽에 창 생성
