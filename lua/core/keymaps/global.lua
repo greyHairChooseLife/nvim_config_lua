@@ -42,6 +42,8 @@ vim.keymap.set({ 'n', 'v' }, ';', ':') -- repeat last command
 vim.keymap.set({ 'n', 'v' }, ':', ';') -- repeat last command
 vim.keymap.set({ 'n', 'v' }, 'Q', ',') -- repeat last command
 
+vim.keymap.set('i', ';j', '<ESC>')     -- ESC를 두 번 누르지 않고도 편리하게 나가기
+
 -- 선택한 줄 이동
 -- vim.keymap.set("v", "<A-k>", ":m .-2<CR>==gv")
 -- vim.keymap.set("v", "<A-j>", ":m .+1<CR>==gv")
