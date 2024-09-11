@@ -138,6 +138,9 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<Backspace>', '<cmd>VimwikiGoBackLink<CR>')
 
     vim.keymap.set('v', '<CR>', '<Plug>VimwikiNormalizeLinkVisual', { noremap = false, silent = true })
+
+    vim.keymap.set('n', '<leader>wd', '<cmd>VimwikiDeleteFile<CR>')
+    vim.keymap.set('n', '<leader>wr', '<cmd>VimwikiRenameFile<CR>')
   end
 })
 
