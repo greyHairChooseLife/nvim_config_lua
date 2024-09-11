@@ -190,6 +190,13 @@ return require('packer').startup(function(use)
   --
   -- TODO:  indent or chunk marker(visualizer)
   -- https://github.com/shellRaining/hlchunk.nvim
+  --
+  -- TODO: chat with copilot
+  -- https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file
+  --
+  -- TODO: CURSOR-like AI
+  -- https://github.com/yetone/avante.nvim
+
   if packer_bootstrap then
     require('packer').sync()
   end
