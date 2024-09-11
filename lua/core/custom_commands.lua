@@ -391,3 +391,16 @@ function MoveTabRight()
     vim.cmd('tabmove 0')
   end
 end
+
+-- 현재 탭 내에서 현재 버퍼만 남기기
+function OnlyThisBufferInCurrentTab()
+  local current_buf = vim.fn.bufnr('%')
+  for _, buf in ipairs(vim.fn.tabpagebuflist()) do
+    if buf ~= current_buf then
+      vim.cmd('bdelete ' .. buf)
+    end
+  end
+end
+
+-- 모든 탭 내에서 현재 버퍼만 남기기
+-- :%bdelete|edit#|bdelete#

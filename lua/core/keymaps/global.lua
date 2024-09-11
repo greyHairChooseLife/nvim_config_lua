@@ -28,9 +28,9 @@ vim.keymap.set('v', "'", '"zy/<C-R>z<CR>N')                              -- 비�
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
 
-vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')       -- CamelCase
-vim.keymap.set({ 'n' }, '<A-Enter>', ':on<CR>')      -- for :on command
-vim.keymap.set({ 'v' }, '<A-Enter>', '<Esc>:on<CR>') -- for :on command
+vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                                                                           -- CamelCase
+vim.keymap.set({ 'n', 'v' }, '<A-Enter>', OnlyThisBufferInCurrentTab)                                                    -- 현재 탭의 현재 버퍼만 남기기
+vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>%bdelete<bar>edit#<bar>bdelete#<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
