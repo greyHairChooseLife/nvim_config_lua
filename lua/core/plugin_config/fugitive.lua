@@ -10,5 +10,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd("wincmd p")
     vim.fn.winrestview(save_view)
     vim.cmd("wincmd p")
+    vim.cmd("normal gg")
   end,
 })
