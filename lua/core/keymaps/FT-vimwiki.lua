@@ -12,15 +12,6 @@ vim.api.nvim_create_autocmd("FileType", {
     -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#24283B" })
 
     -- SNIPPET
-    vim.keymap.set('i', ',,H', function()
-      vim.api.nvim_feedkeys("# 󰏢 ", "i", true)
-
-      -- TODO:: 이거 현재 파일의 이름을 가져와서 '_'(under-bar)모두 ' '(공백)으로 바꾸고, 끝에 '.md'를 제거하는것도 추가해주자.
-
-      -- 아래 방식으로는 더 복잡한 작업도 가능
-      -- local msg = "# 󰏢 "
-      -- vim.api.nvim_put({ msg }, 'c', true, true)
-    end)
     vim.keymap.set('i', ',,h1', function()
       vim.api.nvim_feedkeys("## ", "i", true)
     end)
@@ -134,7 +125,23 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<tab>', '<cmd>VimwikiVSplitLink 1 0<CR>')
     vim.keymap.set('n', '<S-tab>', '<cmd>VimwikiVSplitLink 1 1<CR>')
 
-    vim.keymap.set('n', '<CR>', '<cmd>VimwikiFollowLink<CR>')
+    local function insert_header()
+      local filename = vim.fn.expand('%:t')
+      filename = filename:gsub('_', ' '):gsub('%.md$', '')
+      local msg = "# 󰏢 " .. filename
+      vim.api.nvim_buf_set_lines(0, 0, 0, false, { msg })
+    end
+
+    vim.keymap.set('i', ',,H', insert_header)
+    vim.keymap.set('n', '<CR>', function()
+      vim.cmd('VimwikiFollowLink')
+
+      local filepath = vim.fn.expand('%:p')
+      if vim.fn.filereadable(filepath) == 0 and vim.fn.line('$') == 1 and vim.fn.getline(1) == '' then
+        insert_header()
+      end
+    end)
+
     vim.keymap.set('n', '<Backspace>', '<cmd>VimwikiGoBackLink<CR>')
 
     vim.keymap.set('v', '<CR>', '<Plug>VimwikiNormalizeLinkVisual', { noremap = false, silent = true })
