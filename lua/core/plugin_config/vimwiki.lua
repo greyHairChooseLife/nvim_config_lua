@@ -77,39 +77,5 @@ function custom_fold_text()
   return fold_text .. padding
 end
 
--- TODO: "Vimwiki Shift+Return, Ctrl+Return not working."
--- https://www.reddit.com/r/vim/comments/7xoe8b/vimwiki_shiftreturn_ctrlreturn_not_working/
--- TODO: 파일 주소의 '공백'을 다른것으로 대체 가능한 것으로 봤다. 즉, 공백이 포함된 링크도 ui적용이 가능하단 소리.
 -- TODO: 편의기능 개선
--- <C-k>로 웹링크를 손쉽게 만들 수 있다. 근데 사실 링크로 삼을 텍스트를 선택하고 이후 cmd에 주소를 입력하는것보단, 주소를 복사해와서 buffer에 붙여넣은 뒤, 이것을 visually select해서 <C-k>를 누르는게 더 효율적이다.
--- 이는 visual모드로 실행하는지, normal모드로 실행하는지에 따라 각각 동작하게 하면 될듯.
 -- 또한, 이외에도 static file의 주소를 가져온 뒤 손쉽게 하이퍼링크를 만들어주는 것도 해주자. 그림파일인지는 확장자를 통해 판단하면 되니 모든 종류의 스태틱 파일에 동일한 커맨드를 사용가능할듯.
-
--- NOTE:: ALTERNATIVE LIST
--- ..
--- https://www.reddit.com/r/neovim/comments/10ulqji/note_taking_options/
--- I cant recommend any specific plugin but I can give you a list of available note/wiki/org-plugins:
--- *anki
--- *arachne
--- *dotoo
--- *flashcards
--- *kb-notes
--- *linny
--- *mind
--- *nabla
--- *neorg
--- *neuron.nvim
--- *neuron.vim
--- *obsidian
--- *orgmode.nvim
--- *orgmode
--- *orgwiki
--- *riv
--- *samwise
--- *scribe
--- *todotxt
--- *vimwiki
--- *wiki
--- *YANP
--- *zettelkasten
--- *zk
