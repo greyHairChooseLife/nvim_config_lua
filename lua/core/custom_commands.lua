@@ -397,7 +397,7 @@ function OnlyThisBufferInCurrentTab()
   local current_buf = vim.fn.bufnr('%')
   for _, buf in ipairs(vim.fn.tabpagebuflist()) do
     if buf ~= current_buf then
-      vim.cmd('bdelete ' .. buf)
+      vim.cmd('bdelete! ' .. buf)
     end
   end
 end
