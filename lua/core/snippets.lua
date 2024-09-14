@@ -1,8 +1,8 @@
 -- TODO: 스니펫은 아무래도 ,,로 시작해서 2개 캐릭터 정도로 좁히는게 적절할듯? 통일하자.
 
 -- 날짜 찍기
-vim.keymap.set('i', ',d', function() -- 2024-06-11
-  local result = vim.fn.system('date | sed "s/. /-/3" | cut -d"-" -f1 | sed "s/. /-/g"')
+vim.keymap.set('i', ',d', function()
+  local result = vim.fn.system('date "+%Y-%m-%d"')
   result = result:gsub("\n$", "")
   vim.api.nvim_put({ result }, 'c', false, true)
 end, { noremap = true, silent = true })
