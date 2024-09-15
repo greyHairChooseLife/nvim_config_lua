@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
 
     vim.keymap.set('i', ',,td', function()
-      local date = vim.fn.system('date | sed "s/. /-/3" | cut -d"-" -f1 | sed "s/. /-/g"')
+      local date = vim.fn.system('date "+%Y-%m-%d"')
       date = date:gsub("\n$", "")
       vim.api.nvim_put({ "> [!td]" .. date, "> [-] ", ">  󱞪 " }, 'c', false, true)
 
@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- Log callout
     vim.keymap.set('i', ',,lg', function()
-      local date = vim.fn.system('date | sed "s/. /-/3" | cut -d"-" -f1 | sed "s/. /-/g"')
+      local date = vim.fn.system('date "+%Y-%m-%d"')
       date = date:gsub("\n$", "")
       vim.api.nvim_put({ "> [!lg] Log " .. date, "> - " }, 'c', false, true)
 
