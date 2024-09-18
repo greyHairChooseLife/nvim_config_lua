@@ -300,6 +300,7 @@ require('render-markdown').setup({
     -- My own
     test = { raw = '[!ts]', rendered = '󰨸 TEST ', highlight = 'RenderMarkdownMyTest' },
     todo = { raw = '[!td]', rendered = '󰗕 TODO ', highlight = 'RenderMarkdownMyTodo' },
+    todofin = { raw = '[!dt]', rendered = '󰈼 fin ', highlight = 'RenderMarkdownMyTodoFin' },
     my_question = { raw = '[!qt]', rendered = '󰴩.', highlight = 'RenderMarkdownMyQuestion' },
     reference = { raw = '[!rf]', rendered = '󰉢 REFERENCE ', highlight = 'RenderMarkdownMyReference' },
     log = { raw = '[!lg]', rendered = '󰨸 Log ', highlight = 'RenderMarkdownMyTest' },
