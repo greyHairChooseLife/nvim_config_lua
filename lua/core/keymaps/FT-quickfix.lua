@@ -65,6 +65,7 @@ local function QF_MoveNext()
   else
     vim.cmd('cnext')
   end
+  vim.cmd('wincmd p')
 end
 
 local function QF_MovePrev()
@@ -80,6 +81,7 @@ local function QF_MovePrev()
   else
     vim.cmd('cprev')
   end
+  vim.cmd('wincmd p')
 end
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -93,7 +95,24 @@ vim.api.nvim_create_autocmd("FileType", {
     -- keymap
     vim.keymap.set('n', 'dd', QF_RemoveItem, { buffer = true, silent = true })
     vim.keymap.set('n', 'DD', QF_ClearList, { buffer = true, silent = true })
-    vim.keymap.set('n', '<C-n>', QF_MoveNext, { buffer = true })
-    vim.keymap.set('n', '<C-p>', QF_MovePrev, { buffer = true })
+    vim.keymap.set({ 'n', 'v' }, '<C-n>', QF_MoveNext, { buffer = true })
+    vim.keymap.set({ 'n', 'v' }, '<C-p>', QF_MovePrev, { buffer = true })
   end
 })
+
+vim.keymap.set({ 'n', 'v' }, '<C-n>', function()
+  -- if last quickfix item, move to first
+  if vim.fn.getqflist({ idx = 0 }).idx == #vim.fn.getqflist() then
+    vim.cmd('cfirst')
+  else
+    vim.cmd('cnext')
+  end
+end, { buffer = false })
+vim.keymap.set({ 'n', 'v' }, '<C-p>', function()
+  -- if first quickfix item, move to last
+  if vim.fn.getqflist({ idx = 0 }).idx == 1 then
+    vim.cmd('clast')
+  else
+    vim.cmd('cprev')
+  end
+end, { buffer = false })
