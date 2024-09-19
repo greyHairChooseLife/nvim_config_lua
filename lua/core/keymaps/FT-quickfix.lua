@@ -1,5 +1,5 @@
 -- Quickfix list toggle 함수 정의
-function QF_ToggleList()
+local function QF_ToggleList()
   -- Quickfix 창이 열려있는지 확인
   local is_open = false
   for _, win in pairs(vim.fn.getwininfo()) do
@@ -20,7 +20,7 @@ vim.keymap.set('n', ',,q', QF_ToggleList, { noremap = true, silent = true })
 
 
 -- Quickfix 항목 제거 함수 정의
-function QF_RemoveItem()
+local function QF_RemoveItem()
   local curqfidx = vim.fn.line('.') - 1
   local qfall = vim.fn.getqflist()
   if #qfall == 1 then
@@ -45,14 +45,14 @@ function QF_RemoveItem()
 end
 
 -- Quickfix list clear all 함수 정의
-function QF_ClearList()
+local function QF_ClearList()
   vim.fn.setqflist({}, 'r')
   vim.api.nvim_command('cclose')
   vim.api.nvim_echo({ { "Quickfix list cleared", "MoreMsg" } }, false, {})
 end
 
 -- Quickfix 리스트 순환 이동
-function QF_MoveNext()
+local function QF_MoveNext()
   local qf_list = vim.fn.getqflist()
   if #qf_list == 0 then
     -- Notify("List is empty", 3, { title = "Quickfix" })
@@ -67,7 +67,7 @@ function QF_MoveNext()
   end
 end
 
-function QF_MovePrev()
+local function QF_MovePrev()
   local qf_list = vim.fn.getqflist()
   if #qf_list == 0 then
     -- Notify("List is empty", 3, { title = "Quickfix" })
