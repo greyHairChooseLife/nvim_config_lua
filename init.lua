@@ -16,3 +16,6 @@ require("core.temp");
 -- TODO:
 -- https://www.reddit.com/r/neovim/comments/1flo8qw/cmdfixnvim_lowercase_userdefined_commands_at_the/
 -- 플러그인: 커맨드 모드에서 사용할 함수를 만들 때, 이름을 반드시 대문자로 시작해야하는 규칙이 있다. 이를 해결해주는 플러그인.
+
+-- TODO:
+-- job-wiki의 diary에서 템플릿 옮기는 과정을 자동화 할 수 있겠다. 메인 헤더 달아주는것처럼, :r !cat <rel-path/to/template.md> 를 자동 실행하자
