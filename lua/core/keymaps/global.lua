@@ -255,12 +255,12 @@ vim.keymap.set('n', ',vD', ':vert diffsplit ')
 -- git review
 -- TODO:
 -- workflow를 고려해서 재구성할 필요가 있다.
--- 3. PR을 받아서 (현재 최신과)비교
+-- 3. (Fetch가 아니라)PR을 받아서 (현재 최신과)비교
 vim.keymap.set('n', '<leader>reb', ':DiffviewFileHistory --range=')                      -- 특정 브랜치, 선택해야 한다.
 vim.keymap.set('n', '<leader>re<Space>', ':DiffviewFileHistory<CR>')                     -- 현재 브랜치 히스토리
 vim.keymap.set('n', '<leader>rea', ':DiffviewFileHistory --all<CR>')                     -- 모든 커밋 히스토리
 vim.keymap.set('n', '<leader>ref', ':DiffviewFileHistory %<CR>')                         -- current file only, commit history
-vim.keymap.set('n', '<leader>reF', ':DiffviewFileHistory --range=HEAD...FETCH_HEAD<CR>') -- something fetched
+vim.keymap.set('n', '<leader>reF', ':DiffviewFileHistory --reverse --range=HEAD...FETCH_HEAD<CR>') -- something fetched
 vim.keymap.set('n', '<leader>res', ':DiffviewOpen --staged<CR>')                         -- review staged
 vim.keymap.set('n', '<leader>rew', ':DiffviewOpen<CR>')                                  -- review working status, staged + unstaged
 
