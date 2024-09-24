@@ -31,6 +31,7 @@ _G.vimwiki_fold_level_custom = function(lnum)
   local prev_line = vim.fn.getline(lnum - 1)  -- 헤더라인은 살려야지
   local curr_line = vim.fn.getline(lnum)
   local next_line = vim.fn.getline(lnum + 1)
+  local next2_line = vim.fn.getline(lnum + 2)
   local last_line = vim.fn.line('$')
 
   local is_lv2_header = string.match(prev_line, "^##%s")
@@ -39,7 +40,7 @@ _G.vimwiki_fold_level_custom = function(lnum)
   if is_lv2_header then return '1' end
   if is_lv3_header then return '2' end
   if string.match(curr_line, "^%s*$") and string.match(next_line, "^###%s") then return '1' end
-  if curr_line == last_line or string.match(curr_line, "^%s*$") and string.match(next_line, "^##%s") then return '0' end
+  if curr_line == last_line or string.match(curr_line, "^%s*$") and string.match(next2_line, "^##%s") then return '0' end
 
   -- 무엇에도 해당하지 않는 경우 prev_line의 foldlevel을 그대로 사용
   return '='
