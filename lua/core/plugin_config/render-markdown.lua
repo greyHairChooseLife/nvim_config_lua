@@ -87,12 +87,13 @@ require('render-markdown').setup({
     -- Turn on / off heading icon & background rendering
     enabled = true,
     -- Turn on / off any sign column related rendering
-    sign = false,
-    border = false,
+    sign = true,
+    border = true,
     border_prefix = false,
-    above = '',
+    above = '▁',
     -- Used below heading for border
-    below = '▀',
+    below = '',
+    -- ▁▂▃▅ (U+2581) Lower One Eighth Block
     -- Determines how the icon fills the available space:
     --  inline: underlying '#'s are concealed resulting in a left aligned icon
     --  overlay: result is left padded with spaces to hide any additional '#'
@@ -103,10 +104,11 @@ require('render-markdown').setup({
     -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
     -- icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
     -- icons = { ' ', '    ', '      ', '         ', '     ##### ', '       ###### ' },
-    icons = { '', '', '     ', '      ', '         ', '     ##### ' },
+    icons = { '', '', '     ', ' ', ' ', ' ' },
+    --󰻃󰻂󰑊󰨑
     -- Added to the sign column if enabled
     -- The 'level' is used to index into the array using a cycle
-    signs = { '󰫎 ' },
+    signs = { '', '', ' 󱞩', '', '', '' },
     -- Width of the heading background:
     --  block: width of the heading text
     --  full: full width of the window
