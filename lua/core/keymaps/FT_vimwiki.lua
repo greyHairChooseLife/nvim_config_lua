@@ -3,14 +3,15 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     -- UI
     vim.cmd('IBLEnable')
+    require('gitsigns').toggle_signs(false);
     vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
-    -- set number! signcolumn=no
-    vim.opt.signcolumn = "no"
-    vim.opt.relativenumber = false
+    vim.opt.number = false
+    -- vim.opt.signcolumn = "no"
+    -- vim.opt.relativenumber = false
     -- LineNr: 일반 줄 번호의 색상 설정
     vim.api.nvim_set_hl(0, "LineNr", { fg = "#24283B" })
-    -- relNumber
-    -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#24283B" })
+    vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#24283B" })
+    vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#24283B" })
 
     -- SNIPPET
     vim.keymap.set('i', ',,h1', function()
