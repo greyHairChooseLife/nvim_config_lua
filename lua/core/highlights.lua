@@ -1,3 +1,5 @@
+-- #24283b
+--
 -- #2CB67D   #98C379   #A1C98A
 --
 -- #569CD6   #D16969   #2E2E2E
@@ -149,14 +151,14 @@ vim.cmd [[
   highlight RenderMarkdownH1Bg guibg=#FFFF00 gui=bold,italic
   highlight RenderMarkdownH2Bg guibg=#1c2d5f gui=bold
   highlight RenderMarkdownH3Bg guibg=#404000 gui=bold
-  highlight RenderMarkdownH4Bg guibg=#37303a gui=bold
-  highlight RenderMarkdownH5Bg guibg=#AF4500
-  highlight RenderMarkdownH6Bg guibg=#4e4451
+  " highlight RenderMarkdownH4Bg guibg=#24283b guifg=#DCDCAA gui=italic,underline
+  " highlight RenderMarkdownH5Bg guibg=#AF4500
+  " highlight RenderMarkdownH6Bg guibg=#4e4451
 
-  highlight RenderMarkdownH1 guifg=#FFFFFF gui=bold
-  highlight RenderMarkdownH2 guifg=#FFFFFF gui=bold
-  highlight RenderMarkdownH3 guifg=#FFFFFF gui=bold
-  highlight RenderMarkdownH4 guifg=#FFFFFF gui=bold
+  highlight RenderMarkdownH1 guifg=#FFFFFF
+  highlight RenderMarkdownH2 guifg=#4169E1
+  highlight RenderMarkdownH3 guifg=#867300
+  " highlight RenderMarkdownH4 guifg=#FFFFFF
   " highlight RenderMarkdownH5 guifg=#FFFFFF gui=bold
   " highlight RenderMarkdownH6 guifg=#FFFFFF gui=bold
 

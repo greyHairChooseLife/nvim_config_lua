@@ -88,7 +88,7 @@ require('render-markdown').setup({
     enabled = true,
     -- Turn on / off any sign column related rendering
     sign = true,
-    border = true,
+    border = false,
     border_prefix = false,
     above = '▁',
     -- Used below heading for border
@@ -104,8 +104,8 @@ require('render-markdown').setup({
     -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
     -- icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
     -- icons = { ' ', '    ', '      ', '         ', '     ##### ', '       ###### ' },
-    icons = { '', '', '     ', ' ', ' ', ' ' },
-    --󰻃󰻂󰑊󰨑
+    icons = { '', '', '     ', '󰑊 ', ' ', ' ' },
+    --󰻃󰻂󰑊󰨑
     -- Added to the sign column if enabled
     -- The 'level' is used to index into the array using a cycle
     signs = { '', '', ' 󱞩', '', '', '' },
