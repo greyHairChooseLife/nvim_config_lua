@@ -33,14 +33,14 @@ _G.vimwiki_fold_level_custom = function(lnum)
   local next_line = vim.fn.getline(lnum + 1)
 
   -- 헤더를 찾음
-  local pounds = string.match(prev_line, "^##+")
+  local pounds = string.match(prev_line, "^###?%s")
 
   if pounds then
     return '>' .. #pounds -- 헤더에 따라 폴딩 레벨을 설정
   end
 
   -- 헤더 바로 전 빈 줄을 폴딩하지 않음
-  if string.match(line, "^%s*$") and string.match(next_line, "^##+") then
+  if string.match(line, "^%s*$") and string.match(next_line, "^###?%s") then
     return '0' -- 이 라인은 폴딩하지 않음
   end
 
