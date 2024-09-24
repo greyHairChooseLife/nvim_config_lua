@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd("FileType", {
     require('gitsigns').toggle_signs(false);
     vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
     vim.opt.number = false
+    vim.opt.foldlevelstart = 2
     -- vim.opt.signcolumn = "no"
     -- vim.opt.relativenumber = false
     -- LineNr: 일반 줄 번호의 색상 설정
