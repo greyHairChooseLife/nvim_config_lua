@@ -232,6 +232,7 @@ require('render-markdown').setup({
       todo = { raw = '[-]', rendered = ' 󰥔 TODO ', highlight = 'RenderMarkdownMySimpleTodo' },
       done = { raw = '[x]', rendered = ' 󰗠 DONE ', highlight = 'RenderMarkdownMySimpleDone' },
       log = { raw = '[lg]', rendered = '작성:', highlight = 'RenderMarkdownMyLog' },
+      result = { raw = '[>]', rendered = '   So 󰜴 ', highlight = 'RenderMarkdownResult' },
     },
   },
   quote = {

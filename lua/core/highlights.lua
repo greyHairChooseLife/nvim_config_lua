@@ -138,6 +138,7 @@ vim.cmd [[
   highlight RenderMarkdownMyTodoFin guifg=#1e6e40 gui=bold,italic
   highlight RenderMarkdownMySimpleTodo guifg=#ffffff guibg=#CA4500 gui=bold,italic
   highlight RenderMarkdownMySimpleDone guifg=#ffffff guibg=#004F4F gui=bold,italic
+  highlight RenderMarkdownResult guifg=#ffffff guibg=#3a0ff9 gui=bold,italic
   highlight RenderMarkdownMyQuestion guifg=#e0af68 gui=bold,italic
   highlight RenderMarkdownMyTest guifg=#B0C4DE gui=bold,italic
   highlight RenderMarkdownMyReference guifg=#C678DD gui=bold,italic
