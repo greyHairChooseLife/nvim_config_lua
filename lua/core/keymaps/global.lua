@@ -5,7 +5,6 @@
 -- =========================================================================
 -- MISC TIPS
 vim.keymap.set('n', ',q', ':nohlsearch<CR>:echon<CR>', { silent = true }) -- 검색 기록 제거
--- vim.keymap.set('n', ',r', ':wincmd =<CR>', { silent = true })            -- 창 크기 동일하게
 vim.keymap.set('n', ',r', function()
   vim.cmd('wincmd =');
   vim.cmd('NvimTreeRefresh')
@@ -24,7 +23,6 @@ vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
 vim.keymap.set('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
--- vim.keymap.set({ 'n', 'v' }, ";u", "''", { noremap = true })             -- j, k 로 움직인 것도 jump list에 추가되도록
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
 
@@ -45,8 +43,6 @@ vim.keymap.set({ 'n', 'v' }, 'Q', ',') -- repeat last command
 vim.keymap.set('i', ';j', '<ESC>')     -- ESC를 두 번 누르지 않고도 편리하게 나가기
 
 -- 선택한 줄 이동
--- vim.keymap.set("v", "<A-k>", ":m .-2<CR>==gv")
--- vim.keymap.set("v", "<A-j>", ":m .+1<CR>==gv")
 vim.keymap.set('x', '<A-k>', ':move \'<-2<CR>gv-gv')
 vim.keymap.set('x', '<A-j>', ':move \'>+1<CR>gv-gv')
 
