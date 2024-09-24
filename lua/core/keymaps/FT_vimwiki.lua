@@ -2,6 +2,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "vimwiki",
   callback = function()
     -- UI
+    vim.cmd('IBLEnable')
     vim.cmd('NvimTreeResize 100') -- require('nvim-tree.api').nvim-tree-api.tree.resize(100) 뭐야 외완되
     -- set number! signcolumn=no
     vim.opt.signcolumn = "no"
