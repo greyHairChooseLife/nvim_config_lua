@@ -97,14 +97,14 @@ require('render-markdown').setup({
     -- Determines how the icon fills the available space:
     --  inline: underlying '#'s are concealed resulting in a left aligned icon
     --  overlay: result is left padded with spaces to hide any additional '#'
-    position = 'overlay',
+    position = 'inline',
     -- Replaces '#+' of 'atx_h._marker'
     -- The number of '#' in the heading determines the 'level'
     -- The 'level' is used to index into the array using a cycle
     -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
     -- icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
     -- icons = { ' ', '    ', '      ', '         ', '     ##### ', '       ###### ' },
-    icons = { '', '', '     ', '󰑊 ', ' ', ' ' },
+    icons = { '', '', '', '󰨑', ' ', ' ' },
     --󰻃󰻂󰑊󰨑
     -- Added to the sign column if enabled
     -- The 'level' is used to index into the array using a cycle
@@ -112,8 +112,11 @@ require('render-markdown').setup({
     -- Width of the heading background:
     --  block: width of the heading text
     --  full: full width of the window
-    width = { 'full', 'full', 'block' },
-    min_width = 100,
+    width = { 'block' },
+    left_margin = { 100, 0, 0, 2 },
+    left_pad = { 3, 1, 3, 2 },
+    right_pad = { 3, 2, 2, 3 },
+    min_width = {20, 100, 50, 5},
     -- The 'level' is used to index into the array using a clamp
     -- Highlight for the heading icon and extends through the entire line
     backgrounds = {

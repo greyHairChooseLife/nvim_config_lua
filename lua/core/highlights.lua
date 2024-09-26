@@ -149,7 +149,7 @@ vim.cmd [[
   highlight RenderMarkdownGreen  guifg=#32CD32 gui=bold
   highlight RenderMarkdownYellow guifg=#FFBF00 gui=bold
 
-  highlight RenderMarkdownH1Bg guibg=#FFFF00 gui=bold,italic
+  highlight RenderMarkdownH1Bg guibg=#DCDCAA gui=bold,italic
   highlight RenderMarkdownH2Bg guibg=#1c2d5f gui=bold
   highlight RenderMarkdownH3Bg guibg=#404000 gui=bold
   " highlight RenderMarkdownH4Bg guibg=#24283b guifg=#DCDCAA gui=italic,underline
