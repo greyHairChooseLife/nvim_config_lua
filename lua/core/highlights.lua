@@ -32,6 +32,7 @@ vim.cmd("highlight Search guibg=#FFFF00 guifg=#1d202f")
 vim.cmd("highlight CurSearch gui=bold guibg=#0000FF guifg=white")
 vim.cmd("highlight Visual guibg=#4d6652 guifg=NONE")
 vim.cmd("highlight CursorLine guibg=#4d6652 guifg=NONE")
+vim.cmd("highlight Folded guibg=#24283b guifg=#4d6652 gui=italic")
 
 vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
 vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])

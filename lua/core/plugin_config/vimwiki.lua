@@ -64,15 +64,33 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- custom_fold_text 함수 정의
+-- function custom_fold_text()
+--   local line_count = vim.v.foldend - vim.v.foldstart + 1
+--   local fold_text = " 󱞪 " .. line_count .. " "
+--
+--   -- 현재 윈도우의 너비를 가져와 남은 공간을 공백으로 채움
+--   local win_width = vim.fn.winwidth(0)
+--   local padding = string.rep(" ", win_width - #fold_text)
+--
+--   return fold_text .. padding
+-- end
+
 function custom_fold_text()
+  local line_start_icon = " 󱞪 "
+  local line_end_icon = ""
+  local line_icon = "░"
+  local total_width = 100
+  local line_icon_fill = string.rep(line_icon, total_width - (#line_start_icon)/2)
+  local line_fill = line_start_icon .. line_icon_fill .. line_end_icon
+
   local line_count = vim.v.foldend - vim.v.foldstart + 1
-  local fold_text = " 󱞪 " .. line_count .. " "
+  local count_text = " 󰜴 " .. line_count
 
-  -- 현재 윈도우의 너비를 가져와 남은 공간을 공백으로 채움
   local win_width = vim.fn.winwidth(0)
-  local padding = string.rep(" ", win_width - #fold_text)
+  local padding = string.rep(" ", math.max(0, win_width - total_width))
 
-  return fold_text .. padding
+  -- 최종 폴드 텍스트 구성
+  return  line_fill .. count_text .. padding
 end
 
 -- TODO: 편의기능 개선
