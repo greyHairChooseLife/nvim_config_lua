@@ -183,6 +183,7 @@ vim.keymap.set("n", ",d", ":NvimTreeFocus<CR>") -- focus on nvim-tree right away
 
 -- TELESCOPE
 local builtin = require('telescope.builtin')
+vim.keymap.set({ 'n', 'v' }, ',.t', '<Cmd>Telescope toggleterm_manager<CR>', {})
 vim.keymap.set('n', ',.f', builtin.find_files, {})
 vim.keymap.set('n', ',.w', builtin.live_grep, {})
 vim.keymap.set('v', ',.w', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>', {})

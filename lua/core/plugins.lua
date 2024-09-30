@@ -183,6 +183,16 @@ return require('packer').startup(function(use)
   use { 'stevearc/quicker.nvim' }   -- https://github.com/stevearc/quicker.nvim
   use { 'pteroctopus/faster.nvim' } -- handle big big files
 
+  use {
+    "ryanmsnyder/toggleterm-manager.nvim",
+    requires = {
+      "akinsho/nvim-toggleterm.lua",
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim", -- only needed because it's a dependency of telescope
+    },
+    config = true,
+  }
+
   -- TODO:  http client inside neovim
   -- https://github.com/rest-nvim/rest.nvim
   -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
