@@ -160,5 +160,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.keymap.set('n', '<leader>wd', '<cmd>VimwikiDeleteFile<CR>')
     vim.keymap.set('n', '<leader>wr', '<cmd>VimwikiRenameFile<CR>')
+
+    vim.keymap.set('n', '<C-p>', '<Plug>VimwikiGoToPrevHeader', { noremap = true, silent = true })
+    vim.keymap.set('n', '<C-n>', '<Plug>VimwikiGoToNextHeader', { noremap = true, silent = true })
+    vim.keymap.set('n', '<C-[>', '<Plug>VimwikiGoToPrevSiblingHeader', { noremap = true, silent = true })
+    vim.keymap.set('n', '<C-]>', '<Plug>VimwikiGoToNextSiblingHeader', { noremap = true, silent = true })
   end
 })
