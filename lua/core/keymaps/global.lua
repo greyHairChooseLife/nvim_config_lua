@@ -303,19 +303,7 @@ vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
 
 
 -- TOGGLETERM
-vim.keymap.set({ "n", "v" }, "<F3>", ":ToggleTerm direction=float<CR>", {})
-vim.keymap.set("t", "<F3>", "<Cmd>ToggleTerm<CR>", {})
-vim.keymap.set({ "n", "v" }, "<F4>", ":ToggleTerm direction=vertical<CR>", {})
-vim.keymap.set("t", "<F4>", "<Cmd>ToggleTerm<CR>", {})
-
-vim.keymap.set("t", "<A-Left>", "<Cmd>vertical resize -2<CR>", {})
-vim.keymap.set("t", "<A-Right>", "<Cmd>vertical resize +2<CR>", {})
-vim.keymap.set("t", "<A-Down>", "<Cmd>horizontal resize -2<CR>", {})
-vim.keymap.set("t", "<A-Up>", "<Cmd>horizontal resize +2<CR>", {})
-vim.keymap.set("t", "<A-S-Left>", ":vertical resize -8<CR>", {})
-vim.keymap.set("t", "<A-S-Right>", ":vertical resize +8<CR>", {})
-vim.keymap.set("t", "<A-S-Down>", ":horizontal resize -8<CR>", {})
-vim.keymap.set("t", "<A-S-Up>", ":horizontal resize +8<CR>", {})
+vim.keymap.set({ "n", "v", "t" }, "<C-\\><C-\\>", "<Cmd>99ToggleTerm direction=float name=genaral<CR>", {})
 
 
 

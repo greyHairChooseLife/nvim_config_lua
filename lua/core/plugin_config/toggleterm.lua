@@ -1,6 +1,6 @@
 require("toggleterm").setup {
   size = 100,
-  open_mapping = [[<c-\>]],
+  -- open_mapping = [[<c-\>]],
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
   start_in_insert = true,
