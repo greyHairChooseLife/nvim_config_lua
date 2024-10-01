@@ -7,7 +7,8 @@
 vim.keymap.set('n', ',q', '<cmd>nohlsearch<CR><cmd>echon<CR>', { silent = true }) -- 검색 기록 제거
 vim.keymap.set('n', ',r', function()
   vim.cmd('wincmd =');
-  vim.cmd('NvimTreeRefresh')
+  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
   require('quicker').refresh()
 end)                                                                     -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
