@@ -187,7 +187,7 @@ local builtin = require('telescope.builtin')
 vim.keymap.set({ 'n', 'v' }, ',.t', '<Cmd>Telescope toggleterm_manager<CR>', {})
 vim.keymap.set('n', ',.f', builtin.find_files, {})
 vim.keymap.set('n', ',.w', builtin.live_grep, {})
-vim.keymap.set('v', ',.w', 'y<ESC><cmd>Telescope live_grep default_text=<c-r>0<CR>', {})
+vim.keymap.set('v', ',.w', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>', {})
 -- vim.keymap.set('v', ',.c', TelescopeSearchVisual)  visual mode의 ,.w기능과 동일한듯 싶은데? 실 사용도 없어왔고.. 불필요한듯, 2024-08-16
 vim.keymap.set('n', ',.c', builtin.grep_string, {})
 vim.keymap.set('n', ',.m', builtin.marks, {})
