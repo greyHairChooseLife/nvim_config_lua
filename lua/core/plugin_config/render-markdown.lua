@@ -234,6 +234,7 @@ require('render-markdown').setup({
     custom = {
       todo = { raw = '[-]', rendered = ' 󰥔 TODO ', highlight = 'RenderMarkdownMySimpleTodo' },
       done = { raw = '[x]', rendered = ' 󰗠 DONE ', highlight = 'RenderMarkdownMySimpleDone' },
+      cancel = { raw = '[c]', rendered = ' 󰜺 cancel ', highlight = 'RenderMarkdownMySimpleCancel' },
       log = { raw = '[lg]', rendered = '작성:', highlight = 'RenderMarkdownMyLog' },
       result = { raw = '[>]', rendered = '   So 󰜴 ', highlight = 'RenderMarkdownResult' },
     },
