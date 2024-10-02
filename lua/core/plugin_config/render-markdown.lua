@@ -115,7 +115,7 @@ require('render-markdown').setup({
     width = { 'block' },
     left_margin = { 100, 0, 0, 2 },
     left_pad = { 3, 1, 3, 2 },
-    right_pad = { 3, 2, 2, 3 },
+    right_pad = { 3, 2, 10, 3 },
     min_width = {20, 100, 50, 5},
     -- The 'level' is used to index into the array using a clamp
     -- Highlight for the heading icon and extends through the entire line
