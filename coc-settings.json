@@ -38,5 +38,9 @@
     "filetypes": ["sql"],
     "priority": 9,
     "shortcut": "DB"
-  }
+  },
+
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false
 }
