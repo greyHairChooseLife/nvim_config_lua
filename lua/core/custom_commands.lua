@@ -303,5 +303,16 @@ function OnlyThisBufferInCurrentTab()
   end
 end
 
+function _G.close_FT_buffers(FT)
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) then
+      local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+      if filetype == FT then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end
+end
+
 -- 모든 탭 내에서 현재 버퍼만 남기기
 -- :%bdelete|edit#|bdelete#

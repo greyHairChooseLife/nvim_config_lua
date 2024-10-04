@@ -8,6 +8,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- local function
     local function open_oil_relatively(mode) -- oil 켜기
+      -- 일단 기존의 oil 버퍼를 닫는다.
+      close_FT_buffers("oil")
+
       -- nvim-tree API를 이용해 현재 커서 위치의 노드 가져오기
       local node = require('nvim-tree.api').tree.get_node_under_cursor()
 
