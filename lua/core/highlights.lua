@@ -18,7 +18,7 @@
 --
 -- #000080   #0000FF   #3a0ff9   #4169E1   #87CEFA   #ADD8E6   #B0C4DE
 
--- #1c2d5f   #404000   #242024
+-- #1c2d5f   #404000   #242024  #60603a
 
 -- #db4b4b
 -- #a43838
@@ -31,8 +31,8 @@ vim.cmd("highlight TabLineSelBg guibg=#98c379 guifg=#24283b")
 vim.cmd("highlight TabLineSelBorder guifg=#98c379 guifg=#24283b")
 vim.cmd("highlight TabLineGVBg guibg=#FF8C00 guifg=#24283b")
 vim.cmd("highlight TabLineGVBorder guifg=#FF8C00 guifg=#24283b")
-vim.cmd("highlight TabLineOilBg guibg=#BDB76B guifg=#24283b")
-vim.cmd("highlight TabLineOilBorder guifg=#BDB76B guifg=#24283b")
+vim.cmd("highlight TabLineOilBg guibg=#BDB80B guifg=#24283b")
+vim.cmd("highlight TabLineOilBorder guifg=#BDB80B guifg=#24283b")
 vim.cmd("highlight TabLineTempBg guibg=#FFFFFF guifg=#24283b")
 vim.cmd("highlight TabLineTempBorder guifg=#FFFFFF guifg=#24283b")
 vim.cmd("highlight Search guibg=#FFFF00 guifg=#1d202f")
