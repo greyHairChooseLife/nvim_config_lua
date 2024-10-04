@@ -14,8 +14,16 @@ local function my_on_attach(bufnr)
   -- user mappings
   vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
   vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
-  vim.keymap.set('n', 'r', api.tree.change_root_to_node, opts('CD'))
-  vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
+  vim.keymap.set('n', 'r', function()
+    api.tree.change_root_to_node()
+    api.tree.toggle() -- lualine 표시를 위해
+    api.tree.toggle()
+  end, opts('CD'))
+  vim.keymap.set('n', 'h', function()
+    api.tree.change_root_to_parent()
+    api.tree.toggle() -- lualine 표시를 위해
+    api.tree.toggle()
+  end, opts('Up'))
   vim.keymap.set('n', 'K', api.node.show_info_popup, opts('Info'))
   vim.keymap.set('n', 'o', api.node.open.preview, opts('Open Preview'))
   vim.keymap.set('n', 'O', api.node.open.edit, opts('Open'))

@@ -39,6 +39,26 @@ local function empty()
   return ' '
 end
 
+local function get_git_branch()
+  -- 현재 디렉토리가 Git 저장소인지 확인
+  local git_dir = vim.fn.finddir('.git', '.;')
+  if git_dir == '' then
+    return 'no git'  -- Git 저장소가 아니면 빈 문자열 반환
+  end
+
+  -- 현재 Git 브랜치를 가져옴
+  local handle = io.popen('git branch --show-current 2>/dev/null')
+  local branch = handle:read("*a")
+  handle:close()
+
+  -- 줄바꿈 제거하고 브랜치 이름 반환
+  return ' ' .. branch:gsub("%s+", "")
+end
+
+local function this_is_fugitive()
+  return '- Fugitive -'
+end
+
 local my_quickfix = {
   filetypes = {'qf'},
   sections = {
@@ -68,7 +88,7 @@ local my_nvimTree = {
   sections = {
     lualine_a = {
       {
-        'branch',
+        get_git_branch,
         color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
         padding = { left = 3 },
       },
@@ -77,11 +97,38 @@ local my_nvimTree = {
   inactive_sections = {
     lualine_a = {
       {
-        'branch',
+        get_git_branch,
         color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
         padding = { left = 3 },
       },
     },
+  },
+}
+
+local my_fugitive = {
+  filetypes = { "fugitive" },
+  sections = {
+    lualine_a = {
+      {
+        get_git_branch,
+        color = { bg = colors.yellow, fg = colors.bblack, gui='bold,italic' },
+        padding = { left = 3, right = 5 },
+        separator = { right = '' },
+      },
+    },
+    lualine_z = { { this_is_fugitive, color = { bg = colors.yellow, fg = colors.bblack } } },
+  },
+  inactive_sections = {
+    lualine_a = {
+      {
+        get_git_branch,
+        color = { bg = colors.yellow, fg = colors.bblack, gui='bold,italic' },
+        padding = { left = 3, right = 5 },
+        separator = { right = '' },
+      },
+    },
+    lualine_b = { { empty, color = { bg = colors.grey } } },
+    lualine_z = { { this_is_fugitive, color = { bg = colors.grey, fg = colors.yellow, gui = 'italic' } } },
   },
 }
 
@@ -205,5 +252,5 @@ require('lualine').setup {
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {'fugitive', 'toggleterm', my_quickfix, my_nvimTree, my_oil},
+  extensions = {'toggleterm', my_quickfix, my_nvimTree, my_fugitive, my_oil},
 }
