@@ -202,7 +202,7 @@ end
 --                           Custom Tabline
 -- =========================================================================
 -- =========================================================================
--- 사용자 정의 tabline 함수
+-- 사용자 정의 tabline 함수   󱐋  
 function MyTabLine()
   local s = ''
   -- local sep = '%#TabLineSelBorder#' -- 탭 구분자
@@ -221,14 +221,31 @@ function MyTabLine()
     local padding = math.max(0, (max_width - #tabname) / 2)
     tabname = string.rep(' ', padding) .. tabname .. string.rep(' ', max_width - #tabname - padding)
 
-    -- 현재 탭 페이지를 강조 표시     󱐋  
     if i == vim.fn.tabpagenr() then
-      s = s ..
-          '%' .. i .. 'T' ..
-          '%#TabLineSelBg#' ..
-          '%#TabLineSelBg#' .. tabname .. '%#TabLineSelBorder#' .. '%#TabLineFill#'
-      -- '%#TabLineSelBg# ' .. tabname .. ' %#TabLineSelBorder#' .. '%#TabLineFill#'
+      -- active tab
+      if tabname:find('GV') then
+        s = s ..
+            '%' .. i .. 'T' ..
+            '%#TabLineGVBg#' ..
+            '%#TabLineGVBg#' .. tabname .. '%#TabLineGVBorder#' .. '%#TabLineFill#'
+      elseif tabname:find('sp:') or tabname:find('mv:') then
+        s = s ..
+            '%' .. i .. 'T' ..
+            '%#TabLineTempBg#' ..
+            '%#TabLineTempBg#' .. tabname .. '%#TabLineTempBorder#' .. '%#TabLineFill#'
+      elseif tabname:find('Oil') then
+        s = s ..
+            '%' .. i .. 'T' ..
+            '%#TabLineOilBg#' ..
+            '%#TabLineOilBg#' .. tabname .. '%#TabLineOilBorder#' .. '%#TabLineFill#'
+      else
+        s = s ..
+            '%' .. i .. 'T' ..
+            '%#TabLineSelBg#' ..
+            '%#TabLineSelBg#' .. tabname .. '%#TabLineSelBorder#' .. '%#TabLineFill#'
+      end
     else
+      -- inactive tab
       s = s .. '%' .. i .. 'T' .. '%#TabLineNotSel#' .. ' ' .. tabname .. ' '
     end
 
