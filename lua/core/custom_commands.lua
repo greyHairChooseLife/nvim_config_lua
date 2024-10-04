@@ -233,6 +233,11 @@ function MyTabLine()
             '%' .. i .. 'T' ..
             '%#TabLineTempBg#' ..
             '%#TabLineTempBg#' .. tabname .. '%#TabLineTempBorder#' .. '%#TabLineFill#'
+      elseif tabname:find('') then
+        s = s ..
+            '%' .. i .. 'T' ..
+            '%#TabLineGVBg#' ..
+            '%#TabLineGVBg#' .. tabname .. '%#TabLineGVBorder#' .. '%#TabLineFill#'
       elseif tabname:find('Oil') then
         s = s ..
             '%' .. i .. 'T' ..
