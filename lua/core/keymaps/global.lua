@@ -47,8 +47,8 @@ vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>')
 vim.keymap.set( 'n' , ',.<ESC>', '<Nop>') -- do nothing
 
 -- 선택한 줄 이동
-vim.keymap.set('x', '<A-k>', '<cmd>move \'<-2<CR>gv-gv')
-vim.keymap.set('x', '<A-j>', '<cmd>move \'>+1<CR>gv-gv')
+vim.keymap.set('x', '<A-k>', ':move \'<-2<CR>gv-gv')
+vim.keymap.set('x', '<A-j>', ':move \'>+1<CR>gv-gv')
 
 
 -- 디버깅
