@@ -20,7 +20,8 @@
 
 -- #1c2d5f   #404000   #242024
 
-
+-- #db4b4b
+-- #a43838
 
 vim.cmd("highlight LineNr guifg=#9ece6a ctermfg=red")
 vim.cmd("highlight TabLine guifg=lightgrey gui=bold guibg=black")
@@ -39,6 +40,9 @@ vim.cmd("highlight CurSearch gui=bold guibg=#0000FF guifg=white")
 vim.cmd("highlight Visual guibg=#4d6652 guifg=NONE")
 vim.cmd("highlight CursorLine guibg=#4d6652 guifg=NONE")
 vim.cmd("highlight Folded guibg=#24283b guifg=#4d6652 gui=italic")
+vim.cmd("highlight StatusLine guibg=#24283b")
+vim.cmd("highlight StatusLineNC guibg=#24283b")
+
 
 vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
 vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])
