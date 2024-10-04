@@ -29,7 +29,8 @@ vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr 
 
 vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                                                                           -- CamelCase
 vim.keymap.set({ 'n', 'v' }, '<A-Enter>', OnlyThisBufferInCurrentTab)                                                    -- 현재 탭의 현재 버퍼만 남기기
-vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>%bdelete<bar>edit#<bar>bdelete#<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
+-- vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>%bdelete<bar>edit#<bar>bdelete#<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
+vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
@@ -123,8 +124,23 @@ vim.keymap.set('n', '<A-H>', '<Cmd>WinShift left<CR>')
 vim.keymap.set('n', '<A-J>', '<Cmd>WinShift down<CR>')
 vim.keymap.set('n', '<A-K>', '<Cmd>WinShift up<CR>')
 vim.keymap.set('n', '<A-L>', '<Cmd>WinShift right<CR>')
-vim.keymap.set('n', ',mt', '<C-w>T')        -- move window to tab
-vim.keymap.set('n', ',st', '<cmd>sp<CR><C-w>T') -- copy window to tab
+vim.keymap.set('n', ',mt', function() -- move window to tab
+  vim.cmd('wincmd T')
+  local tabnr = vim.fn.tabpagenr()
+  local filename = vim.fn.expand('%:t')
+  if filename ~= '' then
+    vim.fn.settabvar(tabnr, 'tabname', ' mv: ' .. filename)
+  end
+end)
+
+vim.keymap.set('n', ',st', function() -- Copy window to new tab
+  vim.cmd('split | wincmd T')
+  local tabnr = vim.fn.tabpagenr()
+  local filename = vim.fn.expand('%:t')
+  if filename ~= '' then
+    vim.fn.settabvar(tabnr, 'tabname', ' sp: ' .. filename)
+  end
+end)
 -- WINDOW RESIZE
 vim.keymap.set("n", "<A-Left>", "<cmd>vertical resize -2<CR>", {})
 vim.keymap.set("n", "<A-Right>", "<cmd>vertical resize +2<CR>", {})
