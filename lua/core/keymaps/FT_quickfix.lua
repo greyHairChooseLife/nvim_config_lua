@@ -116,3 +116,12 @@ vim.keymap.set({ 'n', 'v' }, '<C-p>', function()
     vim.cmd('cprev')
   end
 end, { buffer = false })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    -- keymap
+    vim.keymap.set( 'n' , 'gq', '<cmd>quit<CR>', { noremap = true, silent = true })
+  end
+})
+
