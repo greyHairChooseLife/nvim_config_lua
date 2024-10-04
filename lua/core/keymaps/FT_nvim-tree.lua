@@ -10,6 +10,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set({ 'n', 'v' }, 'gq', function()
       api.tree.close_in_this_tab()
     end , { buffer = true })
+
+    vim.keymap.set({ 'n', 'v' }, '-', function()
+      vim.cmd('tabnew')
+      local tabnr = vim.fn.tabpagenr()
+      vim.fn.settabvar(tabnr, 'tabname', 'Oil')
+      require('oil').open()
+    end, { buffer = true })
   end
 })
 

@@ -217,3 +217,8 @@ vim.cmd [[
 vim.cmd [[
   highlight Delimiter guifg=#9ece6a
 ]]
+
+-- oil
+vim.cmd [[
+  highlight OilDirIcon guifg=#ffcc00
+]]
