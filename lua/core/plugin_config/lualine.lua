@@ -14,6 +14,8 @@ local colors = {
   active_qf = '#db4b4b',
   nvimTree = '#333342',
   active_oil = '#BDB80B',
+  purple1 = '#A020F0',
+  red2 = '#DC143C',
 }
 
 local my_theme = {
@@ -184,16 +186,16 @@ require('lualine').setup {
     lualine_a = {
       {
         'filename',
-         symbols = {
-           modified = '[]',      -- Text to show when the file is modified.
-           readonly = '[]',      -- Text to show when the file is non-modifiable or readonly.
-           unnamed = 'No Name', -- Text to show for unnamed buffers.
-           newfile = 'New',     -- Text to show for newly created file before first write
-         },
-         color = {
-           fg = colors.black,
-           gui = 'bold',
-         },
+        symbols = {
+          modified = '󰈸',      -- Text to show when the file is modified.
+          readonly = '',      -- Text to show when the file is non-modifiable or readonly.
+          unnamed = 'No Name', -- Text to show for unnamed buffers.
+          newfile = 'New',     -- Text to show for newly created file before first write
+        },
+        color = {
+          fg = colors.bblack,
+          gui = 'bold',
+        },
       },
     },
     lualine_b = {
@@ -222,16 +224,16 @@ require('lualine').setup {
     lualine_a = {
       {
         'filename',
-         symbols = {
-           modified = '[]',      -- Text to show when the file is modified.
-           readonly = '[]',      -- Text to show when the file is non-modifiable or readonly.
-           unnamed = 'No Name', -- Text to show for unnamed buffers.
-           newfile = 'New',     -- Text to show for newly created file before first write
-         },
-         color = {
-           fg = colors.black,
-           gui = 'italic',
-         },
+        symbols = {
+          modified = '󰈸',      -- Text to show when the file is modified.
+          readonly = '',      -- Text to show when the file is non-modifiable or readonly.
+          unnamed = 'No Name', -- Text to show for unnamed buffers.
+          newfile = 'New',     -- Text to show for newly created file before first write
+        },
+        color = {
+          fg = colors.black,
+          gui = 'italic',
+        },
       },
     },
     lualine_b = {
