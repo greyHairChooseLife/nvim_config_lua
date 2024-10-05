@@ -186,17 +186,41 @@ require('lualine').setup {
     lualine_a = {
       {
         'filename',
+        file_status = false,
+        newfile_status = false,
         symbols = {
           modified = '󰈸',      -- Text to show when the file is modified.
           readonly = '',      -- Text to show when the file is non-modifiable or readonly.
-          unnamed = 'No Name', -- Text to show for unnamed buffers.
+          unnamed = 'New', -- Text to show for unnamed buffers.
           newfile = 'New',     -- Text to show for newly created file before first write
         },
         color = {
-          fg = colors.bblack,
+          fg = colors.bg,
           gui = 'bold',
         },
+        separator = { right = '' },
       },
+      {
+        function()
+          if vim.bo.modified then
+            return '󰈸󰈸󰈸'
+          elseif vim.bo.readonly or vim.bo.buftype == 'nowrite' or vim.bo.buftype == 'nofile' then
+            return ' '
+          else
+            return ' '
+          end
+        end,
+        padding = { left = 0, right = 1 },
+        color = function()
+          if vim.bo.modified then
+            return { fg = colors.red2 }
+          elseif vim.bo.readonly or vim.bo.buftype == 'nowrite' or vim.bo.buftype == 'nofile' then
+            return { fg = colors.purple1 }
+          else
+            return { }
+          end
+        end,
+      }
     },
     lualine_b = {
       {
@@ -224,17 +248,35 @@ require('lualine').setup {
     lualine_a = {
       {
         'filename',
+        file_status = false,
+        newfile_status = false,
         symbols = {
           modified = '󰈸',      -- Text to show when the file is modified.
           readonly = '',      -- Text to show when the file is non-modifiable or readonly.
-          unnamed = 'No Name', -- Text to show for unnamed buffers.
+          unnamed = 'New', -- Text to show for unnamed buffers.
           newfile = 'New',     -- Text to show for newly created file before first write
         },
         color = {
-          fg = colors.black,
+          fg = colors.wwhite,
           gui = 'italic',
         },
+        separator = { right = '' },
       },
+      {
+        function()
+          if vim.bo.modified then
+            return '󰈸'
+          elseif vim.bo.readonly or vim.bo.buftype == 'nowrite' or vim.bo.buftype == 'nofile' then
+            return ''
+          else
+            return ' '
+          end
+        end,
+        padding = { left = 0, right = 1 },
+        color = {
+          fg = colors.yellow,
+        },
+      }
     },
     lualine_b = {
       {
