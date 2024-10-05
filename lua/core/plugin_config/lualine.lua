@@ -59,6 +59,9 @@ local function this_is_fugitive()
   return '- Fugitive -'
 end
 
+-- 각종 컴포넌트 스니펫이다.
+-- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets
+
 local my_quickfix = {
   filetypes = {'qf'},
   sections = {
