@@ -80,6 +80,8 @@ require("telescope").setup {
         ['<A-Space>'] = focus_preview,
         ['<A-p>'] = actions.preview_scrolling_up,
         ['<A-n>'] = actions.preview_scrolling_down,
+        ['<A-k>'] = actions.preview_scrolling_up,
+        ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
         ['<C-d>'] = actions.results_scrolling_down
       },
@@ -92,6 +94,8 @@ require("telescope").setup {
         ['<A-Space>'] = focus_preview,
         ['<A-p>'] = actions.preview_scrolling_up,
         ['<A-n>'] = actions.preview_scrolling_down,
+        ['<A-k>'] = actions.preview_scrolling_up,
+        ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
         ['<C-d>'] = actions.results_scrolling_down
       },
