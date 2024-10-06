@@ -165,5 +165,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<C-n>', '<Plug>VimwikiGoToNextHeader', { noremap = true, silent = true })
     vim.keymap.set('n', '<C-[>', '<Plug>VimwikiGoToPrevSiblingHeader', { noremap = true, silent = true })
     vim.keymap.set('n', '<C-]>', '<Plug>VimwikiGoToNextSiblingHeader', { noremap = true, silent = true })
+
+    -- delete keymap
+    vim.keymap.del('n', '<Esc>') -- 노멀모드에서 esc 누르면 sibling heading을 찾는다.
   end
 })
