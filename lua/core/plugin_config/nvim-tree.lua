@@ -20,6 +20,12 @@ local function my_on_attach(bufnr)
     api.tree.toggle()
   end, opts('CD'))
   vim.keymap.set('n', 'h', function()
+    -- TODO:
+    -- 바로 가는게 아니라 조건을 달아준다.
+    --  조건: 현재 커서의 위치가,
+    --  1) depth 1 이상 -> 그냥 현재 레벨이 닫히고 부모 노드로 커서 이동
+    --  2) depth 0      -> gg한 것처럼 보라색 최상위 디렉토리 노드로 커서 이동
+    --  3) depth 0이면서 현재 커서가 보라색 최상위 디렉토리 노드 -> 비로소 change_root_to_parent()
     api.tree.change_root_to_parent()
     api.tree.toggle() -- lualine 표시를 위해
     api.tree.toggle()
