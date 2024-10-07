@@ -13,7 +13,7 @@ vim.keymap.set('n', ',r', function()
 end)                                                                     -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])             -- change word under cursor globally
-vim.keymap.set("n", ",ss", "<cmd>sp<CR><cmd>wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
+vim.keymap.set("n", ",sx", "<cmd>sp<CR><cmd>wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
 vim.keymap.set("n", ",sv", "<cmd>vs<CR><cmd>wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (vertical)
 vim.keymap.set("n", "vv", "viw")                                         -- easy visual block for word
 vim.keymap.set({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
