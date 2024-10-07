@@ -54,11 +54,12 @@ keyset({ "n", "x" }, ",j", "<Plug>(coc-diagnostic-next)", { silent = true })
 -- GoTo code navigation
 -- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
 -- keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true }) -- 내가 클래스를 안/못 쓰니까 이놈의 필요성을 못느낀다.
 -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
 -- Telescope 연계
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope coc definitions<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gr', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gR', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gr', '<cmd>Telescope coc references<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', { noremap = true, silent = true })
 
 
