@@ -65,6 +65,11 @@ require('render-markdown').setup({
     -- This does have a performance penalty as we must listen to the 'CursorMoved' event
     enabled = false,
   },
+  paragraph = {
+    enabled = false,
+    -- left_margin = 2,
+    -- min_width = 20,
+  },
   indent = {
     -- 왠진 몰라도 켜면 들여쓰기 되지도 않으면서 테이블 UI 깨지는 버그만 있음
     -- enabled = true,
