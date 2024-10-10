@@ -164,14 +164,14 @@ vim.cmd [[
   highlight RenderMarkdownH1Bg guibg=#DCDCAA gui=bold,italic
   highlight RenderMarkdownH2Bg guibg=#1c2d5f gui=bold
   highlight RenderMarkdownH3Bg guibg=#404000 gui=bold
-  " highlight RenderMarkdownH4Bg guibg=#24283b guifg=#DCDCAA gui=italic,underline
+  highlight RenderMarkdownH4Bg guibg=#4169E1
   " highlight RenderMarkdownH5Bg guibg=#AF4500
   " highlight RenderMarkdownH6Bg guibg=#4e4451
 
   highlight RenderMarkdownH1 guifg=#FFFFFF
   highlight RenderMarkdownH2 guifg=#4169E1
   highlight RenderMarkdownH3 guifg=#867300
-  " highlight RenderMarkdownH4 guifg=#FFFFFF
+  highlight RenderMarkdownH4 guifg=#4169E1
   " highlight RenderMarkdownH5 guifg=#FFFFFF gui=bold
   " highlight RenderMarkdownH6 guifg=#FFFFFF gui=bold
 
