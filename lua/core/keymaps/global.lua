@@ -42,7 +42,13 @@ vim.keymap.set({ 'n', 'v' }, ';', ':') -- repeat last command
 vim.keymap.set({ 'n', 'v' }, ':', ';') -- repeat last command
 vim.keymap.set({ 'n', 'v' }, 'Q', ',') -- repeat last command
 
-vim.keymap.set({ 'i', 'c' }, ';j', '<ESC>')     -- ESC를 두 번 누르지 않고도 편리하게 나가기
+vim.keymap.set({ 'i', 'c' }, ';j<Space>', '<ESC>')     -- ESC를 두 번 누르지 않고도 편리하게 나가기
+vim.keymap.set({ 'i', 'c' }, ';ㅓ<Space>', function()
+  -- 실제 <Esc> 입력을 강제 실행
+  vim.api.nvim_input('<Esc>')
+  -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기)
+  os.execute("xdotool key Escape")
+end, { noremap = true })
 vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>')
 vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>')
 vim.keymap.set( 'n' , ',.<ESC>', '<Nop>') -- do nothing
