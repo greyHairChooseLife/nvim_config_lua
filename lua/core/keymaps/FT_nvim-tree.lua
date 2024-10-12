@@ -52,6 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
     -- keymap
     vim.keymap.set({ 'n', 'v' }, '-', function() open_oil_relatively() end, { noremap = true, silent = true })
     vim.keymap.set({ 'n', 'v' }, '_', function() open_oil_relatively("tab") end, { noremap = true, silent = true })
+    vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>quit<CR>', { buffer = true, silent = true })
 
   end
 })
