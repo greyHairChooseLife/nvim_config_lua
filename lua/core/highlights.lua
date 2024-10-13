@@ -136,8 +136,8 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
-  highlight RenderMarkdownCode guibg=#4e4451 guifg=NONE
-  highlight RenderMarkdownCodeInline guibg=#4e4451 guifg=NONE
+  highlight RenderMarkdownCode guibg=#2c2832 guifg=NONE
+  highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
   highlight RenderMarkdownDash guifg=#000000
   highlight RenderMarkdownQuote guifg=#5F5F5F
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
