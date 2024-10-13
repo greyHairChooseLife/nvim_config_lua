@@ -23,7 +23,7 @@ require('avante').setup({
       theirs = "ct",
       all_theirs = "ca",
       both = "cb",
-      cursor = "cc",
+      cursor = "c<Space>",
       next = "]x",
       prev = "[x",
     },
