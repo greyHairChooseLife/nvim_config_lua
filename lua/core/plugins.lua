@@ -195,6 +195,31 @@ return require('packer').startup(function(use)
 
   use({ "stevearc/oil.nvim" })
 
+  -- https://github.com/yetone/avante.nvim/issues/581#issuecomment-2394807552 packer 전용 플러그인 정의
+  -- https://github.com/yetone/avante.nvim/issues/612#issuecomment-2375729928 설치 후 build 방법
+  -- https://github.com/yetone/avante.nvim/issues/612#issuecomment-2401169692 cnofig에 앞서 avante_lib을 불러와야한다.
+  use {
+    "yetone/avante.nvim",
+    build = "make BUILD_FROM_SOURCE=true",
+    lazy = false,
+    version = false,
+    BUILD_FROM_SOURCE = true,
+    config = function()
+      require("avante_lib").load()
+      require("avante").setup()
+    end,
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "HakonHarnes/img-clip.nvim",
+    },
+  }
+
+
   -- TODO:  http client inside neovim
   -- https://github.com/rest-nvim/rest.nvim
   -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/

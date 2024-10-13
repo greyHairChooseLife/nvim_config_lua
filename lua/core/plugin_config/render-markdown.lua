@@ -54,7 +54,7 @@ require('render-markdown').setup({
   -- Only intended to be used for plugin development / debugging
   log_level = 'error',
   -- Filetypes this plugin will run on
-  file_types = { 'markdown', 'vimwiki' },
+  file_types = { 'markdown', 'vimwiki', 'Avante' },
   -- Vim modes that will show a rendered view of the markdown file
   -- All other modes will be uneffected by this plugin
   render_modes = { 'n', 'c', 'i' },
