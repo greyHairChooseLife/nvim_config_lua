@@ -122,9 +122,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.keymap.set('i', ',,T', '<ESC>:VimwikiTable ')
 
-    vim.keymap.set('n', '<C-j>', '<cmd>VimwikiNextLink<CR>')
-    vim.keymap.set('n', '<C-k>', '<cmd>VimwikiPrevLink<CR>')
-
     vim.keymap.set('n', '<tab>', '<cmd>VimwikiVSplitLink 1 0<CR>')
     vim.keymap.set('n', '<S-tab>', '<cmd>VimwikiVSplitLink 1 1<CR>')
 
@@ -161,10 +158,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<leader>wd', '<cmd>VimwikiDeleteFile<CR>')
     vim.keymap.set('n', '<leader>wr', '<cmd>VimwikiRenameFile<CR>')
 
-    vim.keymap.set('n', '<C-p>', '<Plug>VimwikiGoToPrevHeader', { noremap = true, silent = true })
-    vim.keymap.set('n', '<C-n>', '<Plug>VimwikiGoToNextHeader', { noremap = true, silent = true })
-    vim.keymap.set('n', '<C-[>', '<Plug>VimwikiGoToPrevSiblingHeader', { noremap = true, silent = true })
-    vim.keymap.set('n', '<C-]>', '<Plug>VimwikiGoToNextSiblingHeader', { noremap = true, silent = true })
+    vim.keymap.set('n', '<Right>', '<cmd>VimwikiNextLink<CR>')
+    vim.keymap.set('n', '<Left>', '<cmd>VimwikiPrevLink<CR>')
+
+    vim.keymap.set('n', '<Up>', '<Plug>VimwikiGoToPrevHeader', { noremap = true, silent = true })
+    vim.keymap.set('n', '<Down>', '<Plug>VimwikiGoToNextHeader', { noremap = true, silent = true })
+    -- START_debug:: 저장 관련 버그가 발생한다.
+    -- vim.keymap.set('n', '<C-Up>', '<Plug>VimwikiGoToPrevSiblingHeader', { noremap = true, silent = true })
+    -- vim.keymap.set('n', '<C-Down>', '<Plug>VimwikiGoToNextSiblingHeader', { noremap = true, silent = true })
+    -- END___debug:
 
     -- delete keymap
     vim.keymap.del('n', '<Esc>') -- 노멀모드에서 esc 누르면 sibling heading을 찾는다.
