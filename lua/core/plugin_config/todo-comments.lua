@@ -1,5 +1,5 @@
 require("todo-comments").setup {
-  signs = false,     -- show icons in the signs column
+  signs = true,     -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
   keywords = {
@@ -9,11 +9,12 @@ require("todo-comments").setup {
       alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO = { icon = " ", color = "test" },
+    TODO = { icon = " ", color = "test" },
     START_debug = { icon = " ", color = "error" },
     END___debug = { icon = " ", color = "error" },
     WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+    NOTE = { icon = "󱩼 ", color = "hint", alt = { "INFO" } },
+    PSEUDO_CODE = { icon = " ", color = "pseudo", alt = { "PSEUDO_CODE" } },
   },
   gui_style = {
     fg = "NONE",         -- The gui style to use for the fg highlight group.
@@ -44,7 +45,8 @@ require("todo-comments").setup {
     info = { "DiagnosticInfo", "#2563EB" },
     hint = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
-    test = { "Identifier", "#FF00FF" }
+    test = { "Identifier", "#FF00FF" },
+    pseudo = { "#37D060" },
   },
   search = {
     command = "rg",
