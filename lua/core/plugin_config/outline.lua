@@ -37,15 +37,32 @@ require("outline").setup({
     },
   },
   outline_window = {
-    width = 40,
-    relative_width = false,
+    width = 25,
+    relative_width = true,
     ---@type boolean|string?
-    show_cursorline = true,
+    show_cursorline = false,
     hide_cursor = false,
     winhl = 'Normal:OutlineNormal',
+  },
+  outline_item = {
+    highlight_hovered_item = true,
+    auto_set_cursor = true,
   },
   keymaps = {
     up_and_jump = '<C-p>',
     down_and_jump = '<C-n>',
-  }
+    close = 'gq'
+  },
+  providers = {
+    priority = { 'lsp', 'coc', 'markdown', 'norg' },
+    -- Configuration for each provider (3rd party providers are supported)
+    lsp = {
+      -- Lsp client names to ignore
+      blacklist_clients = {},
+    },
+    markdown = {
+      -- List of supported ft's to use the markdown provider
+      filetypes = {'markdown', 'md', 'vimwiki'},
+    },
+  },
 })

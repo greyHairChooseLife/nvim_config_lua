@@ -21,3 +21,9 @@ require("core.floating_window");
 
 -- TODO:
 -- job-wiki의 diary에서 템플릿 옮기는 과정을 자동화 할 수 있겠다. 메인 헤더 달아주는것처럼, :r !cat <rel-path/to/template.md> 를 자동 실행하자
+
+-- TODO:
+-- outline.nvim을 보다 실용성있게
+
+-- TODO:
+-- toggle-term 제대로 사용하기
