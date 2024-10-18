@@ -66,24 +66,41 @@ vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", {
 
 
 -- BUFFER & WINDOW 관리
-vim.keymap.set('n', '<leader>q', '<cmd>q!<CR>')
-vim.keymap.set('n', '<leader>bq', '<cmd>bd!<CR>') -- close buffer, saving memory
 vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>')
-vim.keymap.set('n', '<F1>', '<Plug>VimwikiIndex')
-vim.keymap.set('n', '<leader>w', function()
+vim.keymap.set('n', 'gq', '<cmd>q!<CR>')
+vim.keymap.set('n', 'gQ', '<cmd>bd!<CR>') -- close buffer, saving memory
+vim.keymap.set('n', 'gw', function()
   vim.cmd('silent w')
   vim.notify('Saved current buffers', 3, { render = 'minimal' })
 end)
-vim.keymap.set('n', '<leader>W', function()
+vim.keymap.set('n', 'gW', function()
   vim.cmd('wa')
   vim.notify('Saved all buffers', 3, { render = 'minimal' })
 end)
-vim.keymap.set('n', '<leader>e', function()
+vim.keymap.set('n', 'ge', function()
   vim.cmd('wq')
   vim.notify('Saved last buffers', 3, { render = 'minimal' })
 end)
-vim.keymap.set('n', '<leader>tq', '<cmd>tabclose!<CR>')
-vim.keymap.set('n', '<leader>cp', Save_current_buffer_path)
+vim.keymap.set('n', 'gtq', '<cmd>tabclose!<CR>')
+vim.keymap.set('n', 'gtQ', function()
+  -- 전체 탭의 개수가 1개라면 아무것도 하지 않고 종료
+  if vim.fn.tabpagenr('$') == 1 then
+    vim.notify('Cannot close the last tab page', 4, { render = 'minimal' })
+    return
+  end
+
+  -- 현재 탭의 모든 윈도우를 순회하며 버퍼를 닫음
+  local tabnr = vim.fn.tabpagenr()  -- 현재 탭 번호 가져오기
+  local wins = vim.api.nvim_tabpage_list_wins(tabnr) -- 현재 탭의 윈도우 목록 가져오기
+
+  for _, win in ipairs(wins) do
+      local bufnr = vim.api.nvim_win_get_buf(win) -- 윈도우에 연결된 버퍼 번호 가져오기
+      vim.api.nvim_buf_delete(bufnr, { force = true }) -- 버퍼 삭제 (force 옵션으로 강제 종료)
+  end
+end, { noremap = true, silent = true })
+
+
+vim.keymap.set('n', 'gcp', Save_current_buffer_path)
 
 
 -- fold는 항상  mkview
@@ -99,8 +116,8 @@ vim.keymap.set('n', 'zd', 'zd<cmd>mkview<CR>')
 
 
 -- EASY ALIGN
-vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
-vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
+-- vim.keymap.set('x', 'al', '<Plug>(LiveEasyAlign)', {})
+-- vim.keymap.set('x', 'tal', '<Plug>(EasyAlign)*||', {})
 
 
 -- NEW WINDOW & TAB
@@ -273,7 +290,7 @@ vim.keymap.set('n', '<leader>gla', '<cmd>GV --all<CR>')
 vim.keymap.set('n', '<leader>glr', '<cmd>GV reflog<CR>')
 vim.keymap.set('n', '<leader>glf', '<cmd>GV!<CR>')
 -- git status 관리
-vim.keymap.set('n', '<leader>gq', '<cmd>G<CR>') -- 종료가 gq니까 편리할듯
+vim.keymap.set('n', '<leader>gg', '<cmd>G<CR>')
 -- 즉시 커밋, 버퍼가 상단이 아니라 우측에서 열리도록 하고 view는 유지
 vim.keymap.set('n', '<leader>cc', '<cmd>silent G commit<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ce', '<cmd>silent G commit --amend<CR>', { silent = true })
