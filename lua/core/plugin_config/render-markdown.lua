@@ -250,7 +250,7 @@ require('render-markdown').setup({
     -- Replaces '>' of 'block_quote'
     -- icon = '▋',
     -- icon = '󰍬',
-    icon = '▋',
+    icon = '▍',
     repeat_linebreak = false,
     -- Highlight for the quote icon
     highlight = 'RenderMarkdownQuote',
