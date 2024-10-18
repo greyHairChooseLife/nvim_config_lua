@@ -226,6 +226,11 @@ return require('packer').startup(function(use)
       requires = { {"nvim-lua/plenary.nvim"} }
   }
 
+  use {
+    'letieu/harpoon-lualine',
+    opt = false,
+    requires = {{'ThePrimeagen/harpoon'}}
+  }
 
     -- TODO:  http client inside neovim
     -- https://github.com/rest-nvim/rest.nvim

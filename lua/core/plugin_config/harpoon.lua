@@ -4,8 +4,12 @@ local harpoon = require("harpoon")
 harpoon:setup()
 -- REQUIRED
 
-vim.keymap.set("n", "<leader><space>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader><space>a", function()
+  harpoon:list():add()
+  vim.notify("Added to Harpoon", "info", { title = "Harpoon" })
+end)
 vim.keymap.set("n", "<leader><space>b", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<leader><space>B", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
 
 vim.keymap.set("n", "<leader><space>1", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader><space>2", function() harpoon:list():select(2) end)
@@ -13,8 +17,8 @@ vim.keymap.set("n", "<leader><space>3", function() harpoon:list():select(3) end)
 vim.keymap.set("n", "<leader><space>4", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<leader><space>5", function() harpoon:list():select(4) end)
 
-vim.keymap.set("n", "<C-]>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-[>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<C-[>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-]>", function() harpoon:list():next() end)
 
 harpoon:extend({
   UI_CREATE = function(cx)
@@ -51,6 +55,3 @@ local function toggle_telescope(harpoon_files)
         sorter = conf.generic_sorter({}),
     }):find()
 end
-
-vim.keymap.set("n", "<leader><space>B", function() toggle_telescope(harpoon:list()) end,
-    { desc = "Open harpoon window" })

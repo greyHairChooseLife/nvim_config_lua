@@ -23,9 +23,9 @@ local my_theme = {
     a = { fg = colors.yellow, bg = colors.yellow },
     b = { fg = colors.yellow, bg = colors.bg },
     c = { fg = colors.black, bg = colors.greenbg },
-    x = { fg = colors.white, bg = colors.black },
-    y = { fg = colors.black, bg = colors.yellow },
-    z = { fg = colors.black, bg = colors.yellow },
+    x = { fg = colors.black, bg = colors.yellow },
+    y = { fg = colors.wwhite, bg = colors.bg },
+    z = { fg = colors.bg, bg = colors.yellow },
   },
   inactive = {
     a = { fg = colors.yellow, bg = colors.bg },
@@ -33,7 +33,7 @@ local my_theme = {
     c = { fg = colors.grey, bg = colors.grey },
     x = { fg = colors.grey, bg = colors.grey },
     y = { fg = colors.grey, bg = colors.grey },
-    z = { fg = colors.yellow, bg = colors.grey },
+    z = { fg = colors.wwhite, bg = colors.grey },
   },
 }
 
@@ -167,7 +167,7 @@ require('lualine').setup {
     theme = my_theme,
     -- component_separators = { left = '', right = '' },
     -- section_separators = { left = '', right = '' },
-    component_separators = { left = ' 󰪍󰪍 ', right = '' },
+    component_separators = { left = ' 󰪍󰪍 ', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = { 'packer', 'alpha', 'vimwiki' },
@@ -241,8 +241,19 @@ require('lualine').setup {
     },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { 'location', },
-    lualine_z = {{ 'progress', padding = { right = 2 }} },
+    lualine_y = {
+      {
+        "harpoon2",
+        icon = '',-- 󰀱 󰃀 󰃃  󰆡  
+        indicators = { "󰆡", "󰆡", "󰆡", "󰆡" },
+        active_indicators = { "", "", "", "" }, -- 󰍕 4번 까지만 지원한다. 내가 직접 고쳐볼수도?
+        color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
+        _separator = "󱗘", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
+        no_harpoon = "Harpoon not loaded",
+        padding = { left = 1, right = 1 }
+      },
+    },
+    lualine_z = {{ 'location', padding = { left = 0, right = 1 } },{ 'progress', padding = { left= 1, right = 1 } }},
   },
   inactive_sections = {
     lualine_a = {
@@ -295,6 +306,18 @@ require('lualine').setup {
       },
       {'diagnostics'}
     },
+    lualine_z = {
+      {
+        "harpoon2",
+        -- icon = '♥',
+        icon = '',
+        indicators = { "󰆡", "󰆡", "󰆡", "󰆡" },
+        active_indicators = { "", "", "", "" }, -- 󰍕 4번 까지만 지원한다. 내가 직접 고쳐볼수도?
+        color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
+        _separator = "󱗘",
+        no_harpoon = "Harpoon not loaded",
+      },
+    }
   },
   tabline = {},
   winbar = {},
