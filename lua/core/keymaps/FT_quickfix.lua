@@ -101,6 +101,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.keymap.set({ 'n', 'v' }, '<C-n>', function()
+  -- if quickfix is empty, do nothing
+  if #vim.fn.getqflist() == 0 then
+    return
+  end
+
   -- if last quickfix item, move to first
   if vim.fn.getqflist({ idx = 0 }).idx == #vim.fn.getqflist() then
     vim.cmd('cfirst')
@@ -109,6 +114,10 @@ vim.keymap.set({ 'n', 'v' }, '<C-n>', function()
   end
 end, { buffer = false })
 vim.keymap.set({ 'n', 'v' }, '<C-p>', function()
+  -- if quickfix is empty, do nothing
+  if #vim.fn.getqflist() == 0 then
+    return
+  end
   -- if first quickfix item, move to last
   if vim.fn.getqflist({ idx = 0 }).idx == 1 then
     vim.cmd('clast')
@@ -116,12 +125,3 @@ vim.keymap.set({ 'n', 'v' }, '<C-p>', function()
     vim.cmd('cprev')
   end
 end, { buffer = false })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    -- keymap
-    vim.keymap.set( 'n' , 'gq', '<cmd>quit<CR>', { noremap = true, silent = true })
-  end
-})
-
