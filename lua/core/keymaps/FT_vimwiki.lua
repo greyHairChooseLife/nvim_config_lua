@@ -57,7 +57,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('i', ',,lg', function()
       local date = vim.fn.system('date "+%Y-%m-%d"')
       date = date:gsub("\n$", "")
-      vim.api.nvim_put({ "> [!lg] Log " .. date, "> - " }, 'c', false, true)
+      -- vim.api.nvim_put({ "> [!lg] Log " .. date, "> - " }, 'c', false, true)
+      vim.api.nvim_put({ "> [!lg] Log " .. date, "> " }, 'c', false, true)
 
       -- 커서를 [!qt]의 q 뒤로 이동
       -- local row = unpack(vim.api.nvim_win_get_cursor(0))
