@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use "nvim-lua/plenary.nvim"
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
@@ -219,10 +220,16 @@ return require('packer').startup(function(use)
     },
   }
 
+  use {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      requires = { {"nvim-lua/plenary.nvim"} }
+  }
 
-  -- TODO:  http client inside neovim
-  -- https://github.com/rest-nvim/rest.nvim
-  -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
+
+    -- TODO:  http client inside neovim
+    -- https://github.com/rest-nvim/rest.nvim
+    -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
   -- OR alternative: https://github.com/mistweaverco/kulala.nvim
   --
   -- TODO:  indent or chunk marker(visualizer)
