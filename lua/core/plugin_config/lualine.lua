@@ -38,7 +38,7 @@ local my_theme = {
 }
 
 local function empty()
-  return ' '
+  return ''
 end
 
 local function get_git_branch()
@@ -59,6 +59,13 @@ end
 
 local function this_is_fugitive()
   return '- Fugitive -'
+end
+
+local function harpoon_length()
+  -- get the length of the harpoon list
+  local items = require('harpoon'):list():length()
+  if items == 0 then return ''
+  else return '󰀱 ' .. items end
 end
 
 -- 각종 컴포넌트 스니펫이다.
@@ -97,6 +104,10 @@ local my_nvimTree = {
         color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
         padding = { left = 3 },
       },
+      { harpoon_length,
+        color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
+        padding = { left = 25, right = 3 },
+      },
     },
   },
   inactive_sections = {
@@ -105,6 +116,12 @@ local my_nvimTree = {
         get_git_branch,
         color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
         padding = { left = 3 },
+      },
+    },
+    lualine_z = {
+      { harpoon_length,
+        color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
+        padding = { left = 25, right = 3 },
       },
     },
   },
