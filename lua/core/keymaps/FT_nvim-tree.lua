@@ -54,6 +54,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set({ 'n', 'v' }, '_', function() open_oil_relatively("tab") end, { noremap = true, silent = true })
     vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>quit<CR>', { buffer = true, silent = true })
 
+    vim.keymap.set('n', '<A-n>v', function()
+      vim.cmd('vert rightbelow new')
+      vim.cmd('NvimTreeToggle')
+      vim.cmd('NvimTreeToggle')
+      vim.cmd('wincmd w')
+    end, { buffer = true })
   end
 })
 
