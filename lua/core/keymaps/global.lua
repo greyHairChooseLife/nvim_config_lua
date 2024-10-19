@@ -13,8 +13,6 @@ vim.keymap.set('n', ',r', function()
 end)                                                                     -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])             -- change word under cursor globally
--- vim.keymap.set("n", ",sx", "<cmd>sp | wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
--- vim.keymap.set("n", ",sv", "<cmd>vs | wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (vertical)
 vim.keymap.set("n", ",sx", "<cmd>sp | wincmd w<CR>") -- go to definition in splitted window (horizontal)
 vim.keymap.set("n", ",sv", "<cmd>vs<CR>") -- go to definition in splitted window (vertical)
 vim.keymap.set("n", "vv", "viw")                                         -- easy visual block for word
@@ -31,7 +29,6 @@ vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr 
 
 vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                                                                           -- CamelCase
 vim.keymap.set({ 'n', 'v' }, '<A-Enter>', OnlyThisBufferInCurrentTab)                                                    -- 현재 탭의 현재 버퍼만 남기기
--- vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>%bdelete<bar>edit#<bar>bdelete#<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
 vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
@@ -40,9 +37,9 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "p", '"_dP')       -- paste without yanking in visual mode
 
-vim.keymap.set({ 'n', 'v' }, ';', ':') -- repeat last command
-vim.keymap.set({ 'n', 'v' }, ':', ';') -- repeat last command
-vim.keymap.set({ 'n', 'v' }, 'Q', ',') -- repeat last command
+vim.keymap.set({ 'n', 'v' }, ';', ':')
+vim.keymap.set({ 'n', 'v' }, ':', ';')
+vim.keymap.set({ 'n', 'v' }, 'Q', ',')
 
 vim.keymap.set({ 'i', 'c' }, ';j<Space>', '<ESC>')     -- ESC를 두 번 누르지 않고도 편리하게 나가기
 vim.keymap.set({ 'i', 'c' }, ';ㅓ<Space>', function()
@@ -67,7 +64,6 @@ vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", {
 
 -- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>')
--- vim.keymap.set('n', 'gq', '<cmd>bd!<CR>') -- close buffer, saving memory
 vim.keymap.set('n', 'gq', function()
   if vim.fn.winnr('$') == 1 then vim.cmd('q!')
   else vim.cmd('bd!') end
@@ -187,10 +183,6 @@ vim.keymap.set("n", "<A-S-Left>", "<cmd>vertical resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Right>", "<cmd>vertical resize +8<CR>", {})
 vim.keymap.set("n", "<A-S-Down>", "<cmd>horizontal resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Up>", "<cmd>horizontal resize +8<CR>", {})
--- WINDOW RESIZE 고정 값으로
--- 잘 안씀
--- vim.keymap.set('n', '<A-R>h', '<cmd>resize ')
--- vim.keymap.set('n', '<A-R>v', '<cmd>vertical resize ')
 -- BUFFER FOCUS
 vim.keymap.set('n', "<A-'>", '<cmd>bnext<CR>', { silent = true })
 vim.keymap.set('n', '<A-;>', '<cmd>bprevious<CR>', { silent = true })
@@ -375,6 +367,3 @@ vim.keymap.set({ "n", "v", "t" }, "<C-\\><C-\\>", "<Cmd>99ToggleTerm direction=f
 
 -- -- FLUTTER-TOOLS
 -- vim.keymap.set('n', '<leader><leader>Fo', '<cmd>FlutterOutlineToggle<CR>') -- toggle widget outline
--- -- GET DOCS OF K AS INDEPENDENTLY
--- vim.keymap.set("n", "<Leader><Leader>K",
---   '<cmd>sp | wincmd L<CR><CMD>lua _G.show_docs()<CR><cmd>sleep 20ms<CR><cmd>wincmd w<CR><cmd>sp<CR><cmd>wincmd j<CR><cmd>q<CR>')
