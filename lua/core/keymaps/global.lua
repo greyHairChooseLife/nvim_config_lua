@@ -91,8 +91,8 @@ vim.keymap.set('n', 'gE', function()
   vim.cmd('wq')
   vim.notify('Saved last buffers', 3, { render = 'minimal' })
 end)
-vim.keymap.set('n', 'gtq', '<cmd>tabclose!<CR>')
-vim.keymap.set('n', 'gtQ', function()
+vim.keymap.set('n', 'gtQ', '<cmd>tabclose!<CR>')
+vim.keymap.set('n', 'gtq', function()
   -- 전체 탭의 개수가 1개라면 아무것도 하지 않고 종료
   if vim.fn.tabpagenr('$') == 1 then
     vim.notify('Cannot close the last tab page', 4, { render = 'minimal' })
