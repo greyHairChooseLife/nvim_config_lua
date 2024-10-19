@@ -111,6 +111,7 @@ require("telescope").setup {
           ['<C-d>'] = "delete_buffer"
         },
       },
+      ignore_current_buffer = true,
     },
     find_files = {
       mappings = {
