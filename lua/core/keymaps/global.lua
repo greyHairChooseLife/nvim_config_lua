@@ -33,8 +33,8 @@ vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, si
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+-- vim.keymap.set("v", "<", "<gv")
+-- vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "p", '"_dP')       -- paste without yanking in visual mode
 
 vim.keymap.set({ 'n', 'v' }, ';', ':')
@@ -55,6 +55,8 @@ vim.keymap.set( 'n' , ',.<ESC>', '<Nop>') -- do nothing
 -- 선택한 줄 이동
 vim.keymap.set('x', '<A-k>', ':move \'<-2<CR>gv-gv')
 vim.keymap.set('x', '<A-j>', ':move \'>+1<CR>gv-gv')
+vim.keymap.set("v", "<A-h>", "<gv")
+vim.keymap.set("v", "<A-l>", ">gv")
 
 
 -- 디버깅
