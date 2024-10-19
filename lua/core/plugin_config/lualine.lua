@@ -245,7 +245,8 @@ require('lualine').setup {
       {
         "harpoon2",
         icon = '',-- 󰀱 󰃀 󰃃  󰆡  
-        indicators = { "󰆡", "󰆡", "󰆡", "󰆡" },
+        indicators = { "", "", "", "" },
+        -- indicators = { "󰆡", "󰆡", "󰆡", "󰆡" },
         active_indicators = { "", "", "", "" }, -- 󰍕 4번 까지만 지원한다. 내가 직접 고쳐볼수도?
         color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
         _separator = "󱗘", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
@@ -311,7 +312,7 @@ require('lualine').setup {
         "harpoon2",
         -- icon = '♥',
         icon = '',
-        indicators = { "󰆡", "󰆡", "󰆡", "󰆡" },
+        indicators = { "", "", "", "" },
         active_indicators = { "", "", "", "" }, -- 󰍕 4번 까지만 지원한다. 내가 직접 고쳐볼수도?
         color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
         _separator = "󱗘",
