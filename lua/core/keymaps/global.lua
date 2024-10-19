@@ -66,6 +66,7 @@ vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", {
 vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>')
 vim.keymap.set('n', 'gq', function()
   if vim.fn.winnr('$') == 1 then vim.cmd('q!')
+  elseif vim.fn.winnr('$') == 2 and require('nvim-tree.api').tree.is_visible() then vim.cmd('q!')
   else vim.cmd('bd!') end
 end) -- close buffer, saving memory
 vim.keymap.set('n', 'gQ', '<cmd>q!<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다.
