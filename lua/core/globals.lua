@@ -16,15 +16,16 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
-vim.opt.foldmethod = "manual"
+-- vim.opt.foldmethod = "manual"
 --vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldlevel = 99
+vim.opt.foldlevel = 99
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
+vim.opt.formatoptions:remove('f') -- 코드 작성 시 폴드가 갑자기 접히는 문제가 있다면 formatoptions의 fold 플래그 때문일 수 있습니다. 이 플래그가 설정되어 있으면 포매팅 중에 폴드를 자동으로 다시 접을 수 있습니다.
 
 vim.g.mapleader = "\\" -- <leader> as Space
 
