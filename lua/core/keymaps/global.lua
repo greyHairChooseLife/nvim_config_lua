@@ -4,18 +4,18 @@
 -- =========================================================================
 -- =========================================================================
 -- MISC TIPS
-vim.keymap.set('n', ',q', '<cmd>nohlsearch<CR><cmd>echon<CR>', { silent = true }) -- 검색 기록 제거
+vim.keymap.set('n', ',q', '<cmd>nohlsearch | echon<CR>', { silent = true }) -- 검색 기록 제거
 vim.keymap.set('n', ',r', function()
-  vim.cmd('wincmd =');
+  vim.cmd('wincmd = | echon');
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
   require('quicker').refresh()
 end)                                                                     -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])             -- change word under cursor globally
--- vim.keymap.set("n", ",sx", "<cmd>sp<CR><cmd>wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
--- vim.keymap.set("n", ",sv", "<cmd>vs<CR><cmd>wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (vertical)
-vim.keymap.set("n", ",sx", "<cmd>sp<CR><cmd>wincmd w<CR>") -- go to definition in splitted window (horizontal)
+-- vim.keymap.set("n", ",sx", "<cmd>sp | wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (horizontal)
+-- vim.keymap.set("n", ",sv", "<cmd>vs | wincmd w<CR><Plug>(coc-definition)") -- go to definition in splitted window (vertical)
+vim.keymap.set("n", ",sx", "<cmd>sp | wincmd w<CR>") -- go to definition in splitted window (horizontal)
 vim.keymap.set("n", ",sv", "<cmd>vs<CR>") -- go to definition in splitted window (vertical)
 vim.keymap.set("n", "vv", "viw")                                         -- easy visual block for word
 vim.keymap.set({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
@@ -67,8 +67,12 @@ vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", {
 
 -- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>')
-vim.keymap.set('n', 'gq', '<cmd>q!<CR>')
-vim.keymap.set('n', 'gQ', '<cmd>bd!<CR>') -- close buffer, saving memory
+-- vim.keymap.set('n', 'gq', '<cmd>bd!<CR>') -- close buffer, saving memory
+vim.keymap.set('n', 'gq', function()
+  if vim.fn.winnr('$') == 1 then vim.cmd('q!')
+  else vim.cmd('bd!') end
+end) -- close buffer, saving memory
+vim.keymap.set('n', 'gQ', '<cmd>q!<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다.
 vim.keymap.set('n', 'gw', function()
   vim.cmd('silent w')
   vim.notify('Saved current buffers', 3, { render = 'minimal' })
@@ -78,6 +82,13 @@ vim.keymap.set('n', 'gW', function()
   vim.notify('Saved all buffers', 3, { render = 'minimal' })
 end)
 vim.keymap.set('n', 'ge', function()
+  vim.cmd('w')
+  -- 현재 윈도우가 마지막 윈도우라면 q로 종료
+  if vim.fn.winnr('$') == 1 then vim.cmd('q')
+  else vim.cmd('bd') end
+  vim.notify('Saved last buffers', 3, { render = 'minimal' })
+end)
+vim.keymap.set('n', 'gE', function()
   vim.cmd('wq')
   vim.notify('Saved last buffers', 3, { render = 'minimal' })
 end)
@@ -241,8 +252,8 @@ vim.keymap.set({ 'n', 'i' }, ',.r', builtin.registers, {})
 vim.keymap.set('n', ',.R', builtin.resume, {})
 vim.keymap.set('n', ',.q', builtin.quickfix, {})
 -- vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {}) 사실상 안쓰는듯
-vim.keymap.set('n', ',.gsts', builtin.git_stash, {})
-vim.keymap.set('n', ',.gstt', builtin.git_status, {})
+vim.keymap.set('n', ',.gss', builtin.git_stash, {})
+vim.keymap.set('n', ',.gst', builtin.git_status, {})
 vim.keymap.set('n', ',.gco', function()
   builtin.git_commits({ git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "--all", "--decorate" } })
 end, {})
@@ -295,7 +306,7 @@ vim.keymap.set('n', '<leader>gq', '<cmd>G<CR>')
 vim.keymap.set('n', '<leader>cc', '<cmd>silent G commit<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ce', '<cmd>silent G commit --amend<CR>', { silent = true })
 -- 현재 버퍼 gitdiff 확인
-vim.keymap.set('n', ',vd', '<cmd>sp<CR><C-w>T<cmd>Gvdiffsplit<CR><cmd>wincmd l<CR>')
+vim.keymap.set('n', ',vd', '<cmd>sp<CR><C-w>T<cmd>Gvdiffsplit | wincmd l<CR>')
 vim.keymap.set('n', ',vD', '<cmd>vert diffsplit ')
 -- git review
 -- TODO:
@@ -317,11 +328,11 @@ vim.keymap.set("n", "<leader><leader>d", function()
 end)
 vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>silent Gitsigns next_hunk<CR>')                     -- move hunk
 vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>silent Gitsigns prev_hunk<CR>')                     -- move hunk
-vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- stage hunk
+vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk | NvimTreeRefresh<CR>')   -- stage hunk
 vim.keymap.set('v', 'gsth', Visual_stage)                                             -- stage hunk
 vim.keymap.set('v', 'gstH', Visual_undo_stage)                                        -- stage hunk
-vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer<CR><cmd>NvimTreeRefresh<CR>') -- stage buffer
-vim.keymap.set('n', 'greh', '<cmd>Gitsigns reset_hunk<CR><cmd>NvimTreeRefresh<CR>')   -- reset hunk, de-active
+vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer | NvimTreeRefresh<CR>') -- stage buffer
+vim.keymap.set('n', 'greh', '<cmd>Gitsigns reset_hunk | NvimTreeRefresh<CR>')   -- reset hunk, de-active
 vim.keymap.set('v', 'greh', Visual_reset)                                             -- reset hunk, de-active
 vim.keymap.set('n', 'gpre', '<cmd>Gitsigns preview_hunk<CR>')                         -- show diff
 
@@ -366,4 +377,4 @@ vim.keymap.set({ "n", "v", "t" }, "<C-\\><C-\\>", "<Cmd>99ToggleTerm direction=f
 -- vim.keymap.set('n', '<leader><leader>Fo', '<cmd>FlutterOutlineToggle<CR>') -- toggle widget outline
 -- -- GET DOCS OF K AS INDEPENDENTLY
 -- vim.keymap.set("n", "<Leader><Leader>K",
---   '<cmd>sp<CR><cmd>wincmd L<CR><CMD>lua _G.show_docs()<CR><cmd>sleep 20ms<CR><cmd>wincmd w<CR><cmd>sp<CR><cmd>wincmd j<CR><cmd>q<CR>')
+--   '<cmd>sp | wincmd L<CR><CMD>lua _G.show_docs()<CR><cmd>sleep 20ms<CR><cmd>wincmd w<CR><cmd>sp<CR><cmd>wincmd j<CR><cmd>q<CR>')
