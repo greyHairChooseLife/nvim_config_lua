@@ -9,7 +9,6 @@ vim.keymap.set("n", "<leader><space>a", function()
   vim.notify("Added to Harpoon", "info", { title = "Harpoon" })
 end)
 vim.keymap.set("n", "<leader><space>b", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.keymap.set("n", "<leader><space>B", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
 
 vim.keymap.set("n", "<leader><space>1", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader><space>2", function() harpoon:list():select(2) end)
@@ -55,3 +54,4 @@ local function toggle_telescope(harpoon_files)
         sorter = conf.generic_sorter({}),
     }):find()
 end
+vim.keymap.set("n", "<leader><space>B", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
