@@ -232,9 +232,12 @@ return require('packer').startup(function(use)
     requires = {{'ThePrimeagen/harpoon'}}
   }
 
-    -- TODO:  http client inside neovim
-    -- https://github.com/rest-nvim/rest.nvim
-    -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
+  -- NOTE: 너무 초기라 시기상조다. 일단은 q:를 활용하자.
+  -- use { "smilhey/ed-cmd.nvim" }
+
+  -- TODO:  http client inside neovim
+  -- https://github.com/rest-nvim/rest.nvim
+  -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
   -- OR alternative: https://github.com/mistweaverco/kulala.nvim
   --
   -- TODO:  indent or chunk marker(visualizer)
