@@ -100,8 +100,9 @@ vim.keymap.set('n', 'gtq', function()
   end
 
   -- 현재 탭의 모든 윈도우를 순회하며 버퍼를 닫음
-  local tabnr = vim.fn.tabpagenr()  -- 현재 탭 번호 가져오기
-  local wins = vim.api.nvim_tabpage_list_wins(tabnr) -- 현재 탭의 윈도우 목록 가져오기
+  -- local tabnr = vim.fn.tabpagenr()  -- 현재 탭 번호 가져오기
+  local tabid = vim.api.nvim_get_current_tabpage()  -- 탭 ID 가져오기
+  local wins = vim.api.nvim_tabpage_list_wins(tabid) -- 현재 탭의 윈도우 목록 가져오기, 인자로 받는 것은 탭 번호가 아니라 탭 ID
 
   for _, win in ipairs(wins) do
       local bufnr = vim.api.nvim_win_get_buf(win) -- 윈도우에 연결된 버퍼 번호 가져오기
