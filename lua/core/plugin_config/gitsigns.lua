@@ -34,6 +34,13 @@ require('gitsigns').setup({
         require('nvim-tree.api').tree.reload()
       end,
     })
+
+    vim.keymap.set("n", "]c", function()
+      gs.nav_hunk('next', { target = 'all' })
+    end, { noremap = true, silent = true })
+    vim.keymap.set("n", "[c", function()
+      gs.nav_hunk('prev', { target = 'all' })
+    end, { noremap = true, silent = true })
   end
 })
 
