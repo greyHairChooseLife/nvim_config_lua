@@ -1,6 +1,13 @@
 -- Lua
 local actions = require("diffview.actions")
 
+local git_add_patch = function()
+  -- fugitive 'I' on panel or view
+  actions.goto_file_tab()
+  vim.cmd("G add -p " .. vim.fn.expand('%'))
+  vim.cmd("only")
+end
+
 require("diffview").setup({
   diff_binaries = false,    -- Show diffs for binaries
   enhanced_diff_hl = false, -- See |diffview-config-enhanced_diff_hl|
@@ -100,9 +107,12 @@ require("diffview").setup({
       { "n", "]F",         actions.select_last_entry,             { desc = "Open the diff for the last file" } },
       { "n", "gf",         actions.goto_file_edit,                { desc = "Open the file in the previous tabpage" } },
       { "n", "<C-w><C-f>", actions.goto_file_split,               { desc = "Open the file in a new split" } },
-      { "n", "<C-w>gf",    actions.goto_file_tab,                 { desc = "Open the file in a new tabpage" } },
+      { "n", "<C-t>",      actions.goto_file_tab,                 { desc = "Open the file in a new tabpage" } },
       { "n", "<leader>e",  actions.focus_files,                   { desc = "Bring focus to the file panel" } },
       { "n", "<leader>b",  actions.toggle_files,                  { desc = "Toggle the file panel." } },
+      { "n", ",e",         actions.focus_files,                   { desc = "Bring focus to the file panel" } },
+      { "n", ",b",         actions.toggle_files,                  { desc = "Toggle the file panel." } },
+      { "n", "I",          git_add_patch,                         { desc = "Git add --patch" } },
       { "n", "g<C-x>",     actions.cycle_layout,                  { desc = "Cycle through available layouts." } },
       { "n", "[x",         actions.prev_conflict,                 { desc = "In the merge-tool: jump to the previous conflict" } },
       { "n", "]x",         actions.next_conflict,                 { desc = "In the merge-tool: jump to the next conflict" } },
@@ -147,6 +157,8 @@ require("diffview").setup({
       { "n", "o",             actions.select_entry,                  { desc = "Open the diff for the selected entry" } },
       { "n", "l",             actions.select_entry,                  { desc = "Open the diff for the selected entry" } },
       { "n", "<2-LeftMouse>", actions.select_entry,                  { desc = "Open the diff for the selected entry" } },
+      { "n", "a",             actions.toggle_stage_entry,            { desc = "Stage / unstage the selected entry" } },
+      { "n", "I",             git_add_patch,                         { desc = "Git add --patch" } },
       { "n", "-",             actions.toggle_stage_entry,            { desc = "Stage / unstage the selected entry" } },
       { "n", "s",             actions.toggle_stage_entry,            { desc = "Stage / unstage the selected entry" } },
       { "n", "S",             actions.stage_all,                     { desc = "Stage all entries" } },
@@ -167,12 +179,14 @@ require("diffview").setup({
       { "n", "]F",            actions.select_last_entry,             { desc = "Open the diff for the last file" } },
       { "n", "gf",            actions.goto_file_edit,                { desc = "Open the file in the previous tabpage" } },
       { "n", "<C-w><C-f>",    actions.goto_file_split,               { desc = "Open the file in a new split" } },
-      { "n", "<C-w>gf",       actions.goto_file_tab,                 { desc = "Open the file in a new tabpage" } },
+      { "n", "<C-t>",         actions.goto_file_tab,                 { desc = "Open the file in a new tabpage" } },
       { "n", "i",             actions.listing_style,                 { desc = "Toggle between 'list' and 'tree' views" } },
       { "n", "f",             actions.toggle_flatten_dirs,           { desc = "Flatten empty subdirectories in tree listing style" } },
       { "n", "R",             actions.refresh_files,                 { desc = "Update stats and entries in the file list" } },
       { "n", "<leader>e",     actions.focus_files,                   { desc = "Bring focus to the file panel" } },
       { "n", "<leader>b",     actions.toggle_files,                  { desc = "Toggle the file panel" } },
+      { "n", ",e",            actions.focus_files,                   { desc = "Bring focus to the file panel" } },
+      { "n", ",b",            actions.toggle_files,                  { desc = "Toggle the file panel" } },
       { "n", "g<C-x>",        actions.cycle_layout,                  { desc = "Cycle available layouts" } },
       { "n", "[x",            actions.prev_conflict,                 { desc = "Go to the previous conflict" } },
       { "n", "]x",            actions.next_conflict,                 { desc = "Go to the next conflict" } },
