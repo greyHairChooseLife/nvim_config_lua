@@ -232,3 +232,19 @@ vim.cmd [[
 vim.cmd [[
   highlight OilDirIcon guifg=#ffcc00
 ]]
+
+vim.cmd [[
+  highlight TelescopeSelectionCaret guifg=#FF4500 guibg=#000080
+  highlight TelescopeSelection guibg=#000080
+  highlight TelescopeMultiSelection guibg=#000060  "bookmark한 것들
+  highlight TelescopeMatching guifg=#FF4500
+
+  " highlight TelescopePreviewMessageFillchar guibg=#FF4500 "preview에서 빈칸 채우기, 솔직히 뭔 용도인지 모르곘다.
+
+  highlight TelescopePreviewLine guibg=#000080
+  " highlight TelescopePreviewBorder guifg=#000080 guibg=#000000
+  highlight TelescopePreviewNormal guifg=#E0E0E0 guibg=#000000
+  highlight TelescopeResultsBorder guifg=#000000 guibg=#000000
+  highlight TelescopeResultsTitle guifg=#000000 guibg=#000000
+  highlight TelescopeResultsNormal guifg=#E0E0E0 guibg=#000000
+]]
