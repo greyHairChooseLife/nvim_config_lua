@@ -248,6 +248,7 @@ vim.keymap.set('n', ',.H', builtin.help_tags, {})
 vim.keymap.set({ 'n', 'i' }, ',.r', builtin.registers, {})
 vim.keymap.set('n', ',.R', builtin.resume, {})
 vim.keymap.set('n', ',.q', builtin.quickfix, {})
+vim.keymap.set('n', ',.o', function() builtin.oldfiles({only_cwd = true}) end, {})
 -- vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {}) 사실상 안쓰는듯
 vim.keymap.set('n', ',.gss', builtin.git_stash, {})
 vim.keymap.set('n', ',.gst', builtin.git_status, {})
