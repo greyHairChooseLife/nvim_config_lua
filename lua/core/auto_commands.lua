@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
-    -- vim.bo.textwidth = 108
+    -- vim.bo.textwidth = 108 -- 이놈은 실제로 줄바꿈을 해버린다. 파일 내용이 바뀐다!
     -- goyo, zen-mode를 사용하자
   end
 })
