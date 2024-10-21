@@ -8,24 +8,6 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     if not view.is_visible() then
       api.tree.open()
     end
-
-    -- keymap
-    vim.keymap.set('n', 'l', function()
-        local node = api.tree.get_node_under_cursor()
-        vim.cmd('vert rightbelow new')
-        vim.cmd('edit ' .. node.absolute_path)
-        vim.cmd('NvimTreeFocus')
-      end,
-      { buffer = true, desc = 'Open in new vertical split' }
-    )
-
-    vim.keymap.set('n', 'L', function()
-        local node = api.tree.get_node_under_cursor()
-        vim.cmd('vert rightbelow new')
-        vim.cmd('edit ' .. node.absolute_path)
-      end,
-      { buffer = true, desc = 'Open in new vertical split' }
-    )
   end,
 })
 

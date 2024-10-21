@@ -20,22 +20,62 @@ local function my_on_attach(bufnr)
     api.tree.toggle()
   end, opts('CD'))
   vim.keymap.set('n', 'h', function()
-    -- TODO:
-    -- 바로 가는게 아니라 조건을 달아준다.
-    --  조건: 현재 커서의 위치가,
-    --  1) depth 1 이상 -> 그냥 현재 레벨이 닫히고 부모 노드로 커서 이동
-    --  2) depth 0      -> gg한 것처럼 보라색 최상위 디렉토리 노드로 커서 이동
-    --  3) depth 0이면서 현재 커서가 보라색 최상위 디렉토리 노드 -> 비로소 change_root_to_parent()
-    api.tree.change_root_to_parent()
-    api.tree.toggle() -- lualine 표시를 위해
-    api.tree.toggle()
+    local line = vim.fn.line('.')
+    local node = api.tree.get_node_under_cursor()
+
+    if line == 1 then -- 최상위 디렉토리 노드
+      api.tree.change_root_to_parent()
+      api.tree.toggle() -- lualine 표시를 위해, reload는 branch 표시가 부족하다.
+      api.tree.toggle()
+    elseif node.type == 'directory' and node.open then
+      api.node.open.preview() -- 그냥 닫기만 해
+    else -- 닫힌 디렉퇼 또는 파일이면
+      api.node.navigate.parent() -- 부모 디엑토리로 이동만
+    end
   end, opts('Up'))
   vim.keymap.set('n', 'K', api.node.show_info_popup, opts('Info'))
   vim.keymap.set('n', 'o', api.node.open.preview, opts('Open Preview'))
   vim.keymap.set('n', 'O', api.node.open.edit, opts('Open'))
   vim.keymap.set('n', 'T', api.node.open.tab, { desc = 'Open in New Tab' })
-  -- vim.keymap.set('n', 'l', open_in_new_vertical_split_focus_stay, {desc = 'Open in new vertical split'})
-  -- vim.keymap.set('n', 'L', open_in_new_vertical_split, {desc = 'Open in new vertical split'})
+  vim.keymap.set('n', 'l', function()
+      local node = api.tree.get_node_under_cursor()
+      if node.type == 'directory' then
+        if not node.open then -- is_dir_expanded?
+          -- from help doc
+          -- node.open.edit({node})                        *nvim-tree-api.node.open.edit()*
+          --     File:   open as per |nvim-tree.actions.open_file|
+          --     Folder: expand or collapse
+          --     Root:   change directory up
+          api.node.open.edit()
+        end
+        vim.cmd('normal j')
+      else
+        vim.cmd('vert rightbelow new')
+        vim.cmd('edit ' .. node.absolute_path)
+        vim.cmd('NvimTreeToggle')
+        vim.cmd('NvimTreeToggle')
+        vim.cmd('NvimTreeFocus')
+      end
+    end,
+    { desc = 'Open in new vertical split' }
+  )
+  vim.keymap.set('n', 'L', function()
+      local node = api.tree.get_node_under_cursor()
+      if node.type == 'directory' then
+        if not node.open then
+          api.node.open.edit()
+        end
+        vim.cmd('normal j')
+      else
+        vim.cmd('vert rightbelow new')
+        vim.cmd('edit ' .. node.absolute_path)
+        vim.cmd('NvimTreeToggle')
+        vim.cmd('NvimTreeToggle')
+        vim.cmd('wincmd w')
+      end
+    end,
+    { desc = 'Open in new vertical split' }
+  )
   vim.keymap.set('n', 'N', api.fs.create, opts('Create'))
   vim.keymap.set('n', 'D', api.fs.trash, opts('Trash'))
   vim.keymap.set('n', 'X', api.fs.cut, opts('Cut'))
@@ -50,8 +90,8 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '<BS>', api.node.navigate.parent_close, opts('Close Directory'))
   vim.keymap.set('n', 'p', api.node.navigate.parent, opts('Parent Directory'))
 
-  vim.keymap.set('n', 'ee', api.tree.expand_all, opts('Expand All'))
-  vim.keymap.set('n', 'cc', api.tree.collapse_all, opts('Collapse'))
+  vim.keymap.set('n', 'zR', api.tree.expand_all, opts('Expand All'))
+  vim.keymap.set('n', 'zM', api.tree.collapse_all, opts('Collapse'))
   vim.keymap.set('n', 'ya', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
   vim.keymap.set('n', 'yr', api.fs.copy.relative_path, opts('Copy Relative Path'))
   vim.keymap.set('n', 'yf', api.fs.copy.filename, opts('Copy Name'))
@@ -62,6 +102,7 @@ end
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = { width = 40 },
+  -- sync_root_with_cwd = true,
   filters = {
     dotfiles = true,
     custom = {
