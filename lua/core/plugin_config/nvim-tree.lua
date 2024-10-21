@@ -36,7 +36,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'K', api.node.show_info_popup, opts('Info'))
   vim.keymap.set('n', 'o', api.node.open.preview, opts('Open Preview'))
   vim.keymap.set('n', 'O', api.node.open.edit, opts('Open'))
-  vim.keymap.set('n', 'T', api.node.open.tab, { desc = 'Open in New Tab' })
+  vim.keymap.set('n', 'T', api.node.open.tab, opts('Open in New Tab' ))
   vim.keymap.set('n', 'l', function()
       local node = api.tree.get_node_under_cursor()
       if node.type == 'directory' then
@@ -57,7 +57,7 @@ local function my_on_attach(bufnr)
         vim.cmd('NvimTreeFocus')
       end
     end,
-    { desc = 'Open in new vertical split' }
+    opts('action l')
   )
   vim.keymap.set('n', 'L', function()
       local node = api.tree.get_node_under_cursor()
@@ -74,7 +74,7 @@ local function my_on_attach(bufnr)
         vim.cmd('wincmd w')
       end
     end,
-    { desc = 'Open in new vertical split' }
+    opts('action L')
   )
   vim.keymap.set('n', 'N', api.fs.create, opts('Create'))
   vim.keymap.set('n', 'D', api.fs.trash, opts('Trash'))
