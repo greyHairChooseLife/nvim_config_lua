@@ -21,6 +21,7 @@ vim.g.vimwiki_key_mappings = {
   global = 0,
   lists = 0,
   links = 0,
+  table_format = 0,
 }
 
 vim.g.vimwiki_create_link = 0
