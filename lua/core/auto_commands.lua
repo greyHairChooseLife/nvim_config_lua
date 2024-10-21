@@ -4,24 +4,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     local api = require('nvim-tree.api')
     local view = require('nvim-tree.view')
 
+    -- gui
     if not view.is_visible() then
       api.tree.open()
     end
-  end,
-})
 
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*",
-  callback = function()
-    vim.cmd("normal! zR")
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'NvimTree',
-  callback = function()
-    local api = require('nvim-tree.api')
-
+    -- keymap
     vim.keymap.set('n', 'l', function()
         local node = api.tree.get_node_under_cursor()
         vim.cmd('vert rightbelow new')
@@ -30,13 +18,6 @@ vim.api.nvim_create_autocmd('FileType', {
       end,
       { buffer = true, desc = 'Open in new vertical split' }
     )
-  end
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'NvimTree',
-  callback = function()
-    local api = require('nvim-tree.api')
 
     vim.keymap.set('n', 'L', function()
         local node = api.tree.get_node_under_cursor()
@@ -45,7 +26,21 @@ vim.api.nvim_create_autocmd('FileType', {
       end,
       { buffer = true, desc = 'Open in new vertical split' }
     )
-  end
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("normal! zR")
+    vim.cmd("silent! loadview")
+
+    -- 마지막 커서 위치로 이동
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    if mark[1] > 0 and mark[1] <= vim.fn.line("$") then
+      vim.api.nvim_win_set_cursor(0, mark)
+    end
+  end,
 })
 
 -- markdown은 108자로 자동 줄바꿈
@@ -59,19 +54,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- highlight yanked area
 vim.api.nvim_create_autocmd('TextYankPost', {
+  pattern = '*',
   callback = function()
     vim.highlight.on_yank { higroup = 'Sneak', timeout = 100 }
-  end,
-  pattern = '*',
-})
-
--- 마지막 커서 위치로 이동
-vim.api.nvim_create_autocmd("BufReadPost", {
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    if mark[1] > 0 and mark[1] <= vim.fn.line("$") then
-      vim.api.nvim_win_set_cursor(0, mark)
-    end
   end,
 })
 
@@ -79,18 +64,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
+    -- 현재 파일의 파일 타입을 가져옵니다.
+    local filetype = vim.bo.filetype
+
+    -- 만약 파일 타입이 markdown이면 공백 제거를 하지 않습니다.
+    if filetype == "markdown" then
+      return
+    end
+
+    -- 제거 로직
     local pos = vim.api.nvim_win_get_cursor(0)
     vim.cmd([[%s/\s\+$//e]])
     vim.api.nvim_win_set_cursor(0, pos)
-  end,
-})
-
-
--- 파일 열면 loadview
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*",
-  callback = function()
-    vim.cmd("silent! loadview")
   end,
 })
 
