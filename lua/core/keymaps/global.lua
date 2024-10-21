@@ -41,10 +41,10 @@ vim.keymap.set({ 'n', 'v' }, ';', ':')
 vim.keymap.set({ 'n', 'v' }, ':', ';')
 vim.keymap.set({ 'n', 'v' }, 'Q', ',')
 
-vim.keymap.set({ 'i', 'c' }, ';j<Space>', function()
+vim.keymap.set({ 'i', 'c', 't' }, ';j<Space>', function()
   vim.api.nvim_input('<Esc>') -- 실제 <Esc> 입력을 강제 실행
 end, { noremap = true })
-vim.keymap.set({ 'i', 'c' }, ';ㅓ<Space>', function()
+vim.keymap.set({ 'i', 'c', 't' }, ';ㅓ<Space>', function()
   vim.api.nvim_input('<Esc>') -- 실제 <Esc> 입력을 강제 실행
   os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기)
 end, { noremap = true })
