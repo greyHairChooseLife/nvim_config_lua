@@ -233,6 +233,7 @@ vim.cmd [[
   highlight OilDirIcon guifg=#ffcc00
 ]]
 
+-- telescope
 vim.cmd [[
   highlight TelescopeSelectionCaret guifg=#FF4500 guibg=#000080
   highlight TelescopeSelection guibg=#000080
@@ -247,4 +248,6 @@ vim.cmd [[
   highlight TelescopeResultsBorder guifg=#000000 guibg=#000000
   highlight TelescopeResultsTitle guifg=#000000 guibg=#000000
   highlight TelescopeResultsNormal guifg=#E0E0E0 guibg=#000000
+
+  highlight TelescopeResultsComment guifg=#FF4500 "버퍼의 a, h, # 등 부가 정보
 ]]
