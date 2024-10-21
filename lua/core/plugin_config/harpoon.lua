@@ -16,8 +16,8 @@ vim.keymap.set("n", "<leader><space>3", function() harpoon:list():select(3) end)
 vim.keymap.set("n", "<leader><space>4", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<leader><space>5", function() harpoon:list():select(4) end)
 
-vim.keymap.set("n", "<C-h>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-l>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<C-h>", function() harpoon:list():prev({ui_nav_wrap = true}) end) -- ui_nav_wrap will cycle the list
+vim.keymap.set("n", "<C-l>", function() harpoon:list():next({ui_nav_wrap = true}) end)
 
 harpoon:extend({
   UI_CREATE = function(cx)
