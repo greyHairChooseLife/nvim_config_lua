@@ -41,6 +41,12 @@ require('gitsigns').setup({
     vim.keymap.set("n", "[c", function()
       gs.nav_hunk('prev', { target = 'all' })
     end, { noremap = true, silent = true })
+    vim.keymap.set("n", ",cj", function()
+      gs.nav_hunk('next', { target = 'all' })
+    end, { noremap = true, silent = true })
+    vim.keymap.set("n", ",ck", function()
+      gs.nav_hunk('prev', { target = 'all' })
+    end, { noremap = true, silent = true })
   end
 })
 
