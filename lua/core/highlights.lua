@@ -20,8 +20,19 @@
 
 -- #1c2d5f   #404000   #242024  #60603a
 
--- #db4b4b
--- #a43838
+-- #a43838  #3a1f1f
+-- #db4b4b  #442424
+-- #e05f5f  #4d2929
+-- #e57373  #573030
+-- #ea8686  #603636
+-- #efa0a0  #6a3d3d
+-- #f3b3b3  #744444
+-- #f6c4c4  #7d4a4a
+-- #f8d2d2  #875151
+-- #f9dddd  #925858
+-- #fbe8e8
+-- #fdf2f2
+
 
 vim.cmd("highlight LineNr guifg=#9ece6a ctermfg=red")
 vim.cmd("highlight TabLine guifg=lightgrey gui=bold guibg=black")
@@ -250,4 +261,9 @@ vim.cmd [[
   highlight TelescopeResultsNormal guifg=#E0E0E0 guibg=#000000
 
   highlight TelescopeResultsComment guifg=#FF4500 "버퍼의 a, h, # 등 부가 정보
+]]
+
+-- nvim-tree
+vim.cmd [[
+  highlight NvimTreeOpenedHL guifg=#FF4500 gui=italic,underline
 ]]

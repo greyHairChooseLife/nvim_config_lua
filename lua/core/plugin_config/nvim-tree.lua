@@ -114,7 +114,7 @@ require("nvim-tree").setup({
     group_empty = false,
     highlight_git = false,
     full_name = false,
-    highlight_opened_files = "none",
+    highlight_opened_files = "name", -- active buffer 표시
     highlight_modified = "none",
     icons = {
       webdev_colors = true,
