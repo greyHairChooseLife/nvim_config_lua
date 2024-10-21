@@ -360,6 +360,13 @@ vim.keymap.set({ 'n', 'v' }, '<F2>', '<cmd>IBLToggle<CR>')
 vim.keymap.set({ "n", "v", "t" }, "<C-\\><C-\\>", "<Cmd>99ToggleTerm direction=float name=genaral<CR>", {})
 
 
+-- REMOVE KEYMAP FROM NO-WHERE
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    pcall(vim.keymap.del, 'i', '<C-G>s')
+    pcall(vim.keymap.del, 'i', '<C-G>S')
+  end,
+})
 
 -- NOTE:
 -- 이놈들은 정확히 뭐하는건지 모르겠다.
