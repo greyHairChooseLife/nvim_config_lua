@@ -233,6 +233,40 @@ vim.keymap.set("n", ",d", "<cmd>NvimTreeFocus<CR>") -- focus on nvim-tree right 
 
 -- TELESCOPE
 local builtin = require('telescope.builtin')
+-- START_debug:
+
+-- ref: https://www.reddit.com/r/neovim/search/?q=telescope+git+status&cId=51d2c1e2-b237-4175-9714-58fed8a2473d&iId=29239c86-73c5-4004-9ab9-faede50e3ace
+-- ref: https://www.reddit.com/r/neovim/
+-- install git-delta from packer
+
+--    on .gitconfig
+-- [core]
+-- 	editor = nvim
+--   pager = delta
+--
+-- [delta]
+--   navigate = true
+--   light = false
+--   side-by-side = true
+
+    local previewers = require('telescope.previewers')
+    local themes = require('telescope.themes')
+
+    local delta = previewers.new_termopen_previewer({
+      get_command = function(entry)
+        if entry.status == '??' or 'A ' then
+          return { 'git', 'diff', entry.value }
+        end
+
+        return { 'git', 'diff', entry.value .. '^!' }
+      end
+    })
+
+  vim.keymap.set('n', '<Leader>..', function() builtin.git_status({ previewer = delta, layout_strategy = 'vertical' }) end)
+
+
+
+-- END___debug:
 vim.keymap.set({ 'n', 'v' }, ',.t', '<Cmd>Telescope toggleterm_manager<CR>', {})
 vim.keymap.set('n', ',.f', builtin.find_files, {})
 vim.keymap.set('n', ',.w', builtin.live_grep, {})
