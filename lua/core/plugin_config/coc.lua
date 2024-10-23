@@ -48,8 +48,8 @@ keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-keyset({ "n", "x" }, ",k", "<Plug>(coc-diagnostic-prev)", { silent = true })
-keyset({ "n", "x" }, ",j", "<Plug>(coc-diagnostic-next)", { silent = true })
+keyset({ "n", "x" }, "dp", "<Plug>(coc-diagnostic-prev)", { silent = true })
+keyset({ "n", "x" }, "dn", "<Plug>(coc-diagnostic-next)", { silent = true })
 
 -- GoTo code navigation
 -- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })

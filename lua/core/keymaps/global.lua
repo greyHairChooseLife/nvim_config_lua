@@ -363,8 +363,6 @@ vim.keymap.set("n", "<leader><leader>d", function()
   vim.cmd('Gitsigns toggle_word_diff')
   vim.cmd('Gitsigns toggle_linehl')
 end)
-vim.keymap.set({ 'n', 'v' }, ']c', '<cmd>silent Gitsigns next_hunk<CR>')                     -- move hunk
-vim.keymap.set({ 'n', 'v' }, '[c', '<cmd>silent Gitsigns prev_hunk<CR>')                     -- move hunk
 vim.keymap.set('n', 'gsth', '<cmd>Gitsigns stage_hunk | NvimTreeRefresh<CR>')   -- stage hunk
 vim.keymap.set('v', 'gsth', Visual_stage)                                             -- stage hunk
 vim.keymap.set('v', 'gstH', Visual_undo_stage)                                        -- stage hunk
