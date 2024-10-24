@@ -118,7 +118,7 @@ require("telescope").setup {
           ['<C-d>'] = "delete_buffer"
         },
       },
-      ignore_current_buffer = true,
+      ignore_current_buffer = false, -- quickfix에 전체 리스트 넣을 때 불편할 수 있겠다.
     },
     find_files = {
       mappings = {
