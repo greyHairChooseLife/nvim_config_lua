@@ -234,40 +234,23 @@ vim.keymap.set("n", ",d", "<cmd>NvimTreeFocus<CR>") -- focus on nvim-tree right 
 
 -- TELESCOPE
 local builtin = require('telescope.builtin')
--- START_debug:
+local previewers = require('telescope.previewers')
 
--- ref: https://www.reddit.com/r/neovim/search/?q=telescope+git+status&cId=51d2c1e2-b237-4175-9714-58fed8a2473d&iId=29239c86-73c5-4004-9ab9-faede50e3ace
--- ref: https://www.reddit.com/r/neovim/
 -- install git-delta from packer
+local delta = previewers.new_termopen_previewer({
+  get_command = function(entry)
+    -- 새로 추가된 파일
+    if entry.status == 'A ' then return { 'git', 'diff', '--cached', entry.path } end
+    -- 추적되지 않은 파일
+    if entry.status == '??' then return { 'bash', '-c', 'echo "This is an untracked file. No diff available.\n\nJust stage it, so you can have a look."' } end
 
---    on .gitconfig
--- [core]
--- 	editor = nvim
---   pager = delta
---
--- [delta]
---   navigate = true
---   light = false
---   side-by-side = true
+    return { 'git', 'diff', 'HEAD', '--', entry.path }
+    -- 원한다면 아래처럼도 가능
+    -- return { 'bash', '-c', 'git diff HEAD -- ' .. entry.path }
+  end
+})
 
-    local previewers = require('telescope.previewers')
-    local themes = require('telescope.themes')
-
-    local delta = previewers.new_termopen_previewer({
-      get_command = function(entry)
-        if entry.status == '??' or 'A ' then
-          return { 'git', 'diff', entry.value }
-        end
-
-        return { 'git', 'diff', entry.value .. '^!' }
-      end
-    })
-
-  vim.keymap.set('n', '<Leader>..', function() builtin.git_status({ previewer = delta, layout_strategy = 'vertical' }) end)
-
-
-
--- END___debug:
+vim.keymap.set('n', ',.gd', function() builtin.git_status({ previewer = delta, layout_config = { preview_width = 0.8, width = 0.9, height = 0.9 } }) end)
 vim.keymap.set({ 'n', 'v' }, ',.t', '<Cmd>Telescope toggleterm_manager<CR>', {})
 vim.keymap.set('n', ',.f', builtin.find_files, {})
 vim.keymap.set('n', ',.w', builtin.live_grep, {})

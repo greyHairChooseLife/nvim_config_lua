@@ -100,6 +100,13 @@ require("telescope").setup {
         ['<C-d>'] = actions.results_scrolling_down
       },
     },
+    layout_config = {
+      preview_width = 0.7
+    },
+    set_env = {
+      LESS = '',
+      DELTA_PAGER = 'less',
+    },
   },
   pickers = {
     buffers = {
