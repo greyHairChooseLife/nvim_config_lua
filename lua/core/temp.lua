@@ -40,7 +40,11 @@ function SearchInChrome()
   print('Search URL: ', search_url)
 
   -- 구글 크롬으로 검색
-  vim.fn.system("google-chrome " .. search_url)
+  vim.fn.system("brave " .. search_url)
+
+-- TODO::
+-- 1. 한글은 인코딩해서 넣어야할듯?
+-- 2. 띄어쓰기 포함되면 첫번째 부분만 검색된다.
 end
 
 -- Visual mode에서 사용할 키맵 설정
