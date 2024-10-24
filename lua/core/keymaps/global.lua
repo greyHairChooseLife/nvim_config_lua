@@ -68,9 +68,19 @@ vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", {
 -- BUFFER & WINDOW 관리
 vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>')
 vim.keymap.set('n', 'gq', function()
-  if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then vim.cmd('q!')
-  elseif vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') ~= 1 then vim.cmd('bd!')
-  elseif vim.fn.winnr('$') == 2 and require('nvim-tree.api').tree.is_visible() then vim.cmd('bd! | q!')
+  if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then vim.cmd('q!')  -- 마지막 탭의 마지막 윈도우라면 걍 끄면 됨
+  elseif vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') ~= 1 then
+    local bufnr = vim.fn.bufnr('%')
+    vim.cmd('q!')
+    if vim.api.nvim_buf_is_valid(bufnr) then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  elseif vim.fn.winnr('$') == 2 and require('nvim-tree.api').tree.is_visible() then
+    local bufnr = vim.fn.bufnr('%')
+    vim.cmd('q!')
+    if vim.api.nvim_buf_is_valid(bufnr) then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
   else vim.cmd('bd!') end
 end) -- close buffer, saving memory
 vim.keymap.set('n', 'gQ', '<cmd>q!<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다.
