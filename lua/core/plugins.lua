@@ -104,7 +104,10 @@ return require('packer').startup(function(use)
   --pacman -S kitty
   use '3rd/image.nvim'
 
-  use { 'antonk52/markdowny.nvim', config = function()
+  use {
+    'antonk52/markdowny.nvim',
+    commit = '9881051', -- 내 나름대로 수정한 버전으로 고정해서 사용. 이후에 딱히 변경도 없다.
+    config = function()
     require('markdowny').setup({ filetypes = { 'markdown' } })
   end }
 
@@ -223,6 +226,7 @@ return require('packer').startup(function(use)
   use {
       "ThePrimeagen/harpoon",
       branch = "harpoon2",
+      commit = "e76cb03",   -- primegin 이양반 버그가 있는데 개선을 안한다. https://github.com/ThePrimeagen/harpoon/issues/577#issuecomment-2275638768
       requires = { {"nvim-lua/plenary.nvim"} }
   }
 
