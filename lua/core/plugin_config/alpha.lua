@@ -89,10 +89,5 @@ dashboard.section.header.opts.hl = "AlphaHeaderLabel"
 dashboard.section.buttons.opts.hl = "GitSignsChange"
 dashboard.section.footer.opts.hl = "ErrorMsg"
 
--- TODO: 
--- 아래 두 줄을 통해 redrawing 기능을 활성화하는 것인가?
--- dashboard.section.header.opts.redraw = true
--- dashboard.section.buttons.opts.redraw = true
-
 -- Send config to alpha
 alpha.setup(dashboard.opts)

@@ -249,9 +249,6 @@ return require('packer').startup(function(use)
   --
   -- TODO: chat with copilot
   -- https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file
-  --
-  -- TODO: CURSOR-like AI
-  -- https://github.com/yetone/avante.nvim
 
   if packer_bootstrap then
     require('packer').sync()
