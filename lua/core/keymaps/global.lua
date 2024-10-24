@@ -322,7 +322,7 @@ vim.keymap.set('n', '<leader>gla', '<cmd>GV --all<CR>')
 vim.keymap.set('n', '<leader>glr', '<cmd>GV reflog<CR>')
 vim.keymap.set('n', '<leader>glf', '<cmd>GV!<CR>')
 -- git status 관리
-vim.keymap.set('n', '<leader>gq', '<cmd>G<CR>')
+vim.keymap.set('n', ',.gg', '<cmd>G<CR>')
 -- 즉시 커밋, 버퍼가 상단이 아니라 우측에서 열리도록 하고 view는 유지
 vim.keymap.set('n', '<leader>cc', '<cmd>silent G commit<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ce', '<cmd>silent G commit --amend<CR>', { silent = true })
