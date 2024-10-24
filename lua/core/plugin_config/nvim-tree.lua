@@ -95,7 +95,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'ya', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
   vim.keymap.set('n', 'yr', api.fs.copy.relative_path, opts('Copy Relative Path'))
   vim.keymap.set('n', 'yf', api.fs.copy.filename, opts('Copy Name'))
-  vim.keymap.set('n', '<C-l>', api.tree.reload, opts('Refresh'))
+  vim.keymap.set('n', ',r', api.tree.reload, opts('Refresh'))
 end
 
 -- OR setup with some options
