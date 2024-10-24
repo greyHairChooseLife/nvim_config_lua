@@ -106,7 +106,7 @@ local my_nvimTree = {
       },
       { harpoon_length,
         color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
-        padding = { left = 25, right = 3 },
+        padding = { left = 22, right = 3 },
       },
     },
   },
@@ -121,7 +121,7 @@ local my_nvimTree = {
     lualine_z = {
       { harpoon_length,
         color = { bg = colors.nvimTree, fg = colors.yellow, gui = 'bold,italic' },
-        padding = { left = 25, right = 3 },
+        padding = { left = 22, right = 3 },
       },
     },
   },
