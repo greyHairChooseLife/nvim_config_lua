@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.keymap.set({ 'n', 'v' }, '<C-n>', function()
+vim.keymap.set('n', 'qn', function()
   -- if quickfix is empty, do nothing
   if #vim.fn.getqflist() == 0 then
     return
@@ -113,7 +113,7 @@ vim.keymap.set({ 'n', 'v' }, '<C-n>', function()
     vim.cmd('cnext')
   end
 end, { buffer = false })
-vim.keymap.set({ 'n', 'v' }, '<C-p>', function()
+vim.keymap.set( 'n' , 'qp', function()
   -- if quickfix is empty, do nothing
   if #vim.fn.getqflist() == 0 then
     return
