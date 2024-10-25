@@ -90,12 +90,17 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '<BS>', api.node.navigate.parent_close, opts('Close Directory'))
   vim.keymap.set('n', 'p', api.node.navigate.parent, opts('Parent Directory'))
 
-  vim.keymap.set('n', 'zR', api.tree.expand_all, opts('Expand All'))
-  vim.keymap.set('n', 'zM', api.tree.collapse_all, opts('Collapse'))
+  vim.keymap.set('n', 'zr', api.tree.expand_all, opts('Expand All'))
+  vim.keymap.set('n', 'zm', api.tree.collapse_all, opts('Collapse'))
   vim.keymap.set('n', 'ya', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
   vim.keymap.set('n', 'yr', api.fs.copy.relative_path, opts('Copy Relative Path'))
   vim.keymap.set('n', 'yf', api.fs.copy.filename, opts('Copy Name'))
-  vim.keymap.set('n', ',r', api.tree.reload, opts('Refresh'))
+  vim.keymap.set('n', ',r', function()
+    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    require('quicker').refresh()
+    vim.cmd('wincmd = | echon | wincmd h');
+  end, opts('Refresh'))
 end
 
 -- OR setup with some options
