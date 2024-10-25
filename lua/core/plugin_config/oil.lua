@@ -197,3 +197,38 @@ oil.setup({
     border = "rounded",
   },
 })
+
+-- ref: https://github.com/stevearc/oil.nvim/issues/444#issuecomment-2284687178
+-- You can achieve these behaviours using the neovim API:
+--
+-- -- Open oil in split
+-- vim.keymap.set("n", "<leader>os", "<cmd>vs | Oil<cr>", { desc = "Open oil in split" })
+-- -- Open oil in float window
+-- vim.keymap.set("n", "-", "<cmd>Oil --float<cr>", { desc = "Open parent directory" })
+-- -- Open oil with preview
+-- vim.keymap.set("n", "<leader>op", function()
+-- 	local oil = require("oil")
+-- 	local util = require("oil.util")
+--
+-- 	oil.open()
+-- 	util.run_after_load(0, function()
+-- 		oil.select({ preview = true })
+-- 	end)
+-- end, { desc = "Open oil with preview" })
+-- -- Map q or <escape> to close buffer only for floating Oil buffers
+-- vim.api.nvim_create_autocmd("User", {
+-- 	group = vim.api.nvim_create_augroup("OilFloatCustom", {}),
+-- 	pattern = "OilEnter",
+-- 	callback = function()
+-- 		local actions = require("oil.actions")
+-- 		local util = require("oil.util")
+-- 		if util.is_floating_win() then
+-- 			vim.keymap.set("n", "<Esc>", actions.close.callback, {
+-- 				buffer = true,
+-- 			})
+-- 			vim.keymap.set("n", "q", actions.close.callback, {
+-- 				buffer = true,
+-- 			})
+-- 		end
+-- 	end,
+-- })
