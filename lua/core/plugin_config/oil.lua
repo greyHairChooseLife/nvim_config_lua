@@ -1,4 +1,5 @@
-require("oil").setup({
+local oil = require("oil")
+oil.setup({
   -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
   -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
   default_file_explorer = false,
@@ -64,8 +65,20 @@ require("oil").setup({
     ["<C-x>"] = { "actions.select", opts = { split = "belowright" }, desc = "Open the entry in a horizontal split" },
     ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
     ["<C-p>"] = "actions.preview",
-    ["gq"] = function()
-      vim.cmd("q!")
+    ["ge"] = function() -- 저장 후 oil 버퍼를 nvim-tree버퍼로 치환
+      oil.save({ confirm = false }, function()
+        oil.close()
+        vim.cmd("NvimTreeOpen")
+      vim.cmd("wincmd p | q! | wincmd p | echon")
+      end)
+    end,
+    ["gw"] = function()
+      vim.notify("USE 'ge' to save, or 'gq' to close without saving", 3, { title = "Oil" })
+    end,
+    ["gq"] = function() -- (저장x)취소 후 oil 버퍼를 nvim-tree버퍼로 치환
+      oil.close()
+      vim.cmd("NvimTreeOpen")
+      vim.cmd("wincmd p | q! | wincmd p | echon")
     end,
     ["<C-l>"] = "actions.refresh",
     ["<BS>"] = "actions.parent",

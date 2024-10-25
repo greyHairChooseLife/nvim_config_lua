@@ -52,6 +52,23 @@ vim.api.nvim_create_autocmd("FileType", {
     -- keymap
     vim.keymap.set({ 'n', 'v' }, '-', function() open_oil_relatively() end, { noremap = true, silent = true, buffer = true })
     vim.keymap.set({ 'n', 'v' }, '_', function() open_oil_relatively("tab") end, { noremap = true, silent = true, buffer = true })
+    vim.keymap.set({ 'n', 'v' }, 'i', function()
+      local oil = require("oil")
+      local util = require("oil.util")
+      local nvim_tree_ln = vim.api.nvim_win_get_cursor(0)[1] -- 현재 라인 번호
+
+      vim.cmd('vsplit | Oil')
+
+      -- 아래 훨씬 엘레강스한 방법이 있다.
+      -- vim.schedule(function()
+        -- vim.cmd('NvimTreeClose')
+      -- end)
+      util.run_after_load(0, function()
+        vim.cmd('NvimTreeClose')
+        vim.cmd('normal ggO')
+        vim.api.nvim_win_set_cursor(0, {nvim_tree_ln, 0})
+      end)
+    end, {silent = true, buffer = true })
 
     vim.keymap.set('n', '<A-n>v', function()
       vim.cmd('vert rightbelow new')
