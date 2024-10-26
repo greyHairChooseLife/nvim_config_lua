@@ -91,7 +91,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_command("wincmd L")
     vim.api.nvim_win_set_width(0, 100)
     vim.api.nvim_set_hl(0, "QFBufferBG", { bg = "#201010" })
-    vim.cmd("setlocal winhighlight=Normal:QFBufferBG")
+    vim.api.nvim_set_hl(0, "QFBufferEOB", { fg = "#201010" })
+    vim.cmd("setlocal winhighlight=Normal:QFBufferBG,EndOfBuffer:QFBufferEOB")
 
     -- keymap
     vim.keymap.set('n', 'dd', QF_RemoveItem, { buffer = true, silent = true })
