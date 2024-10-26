@@ -55,18 +55,25 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set({ 'n', 'v' }, 'i', function()
       local oil = require("oil")
       local util = require("oil.util")
-      local nvim_tree_ln = vim.api.nvim_win_get_cursor(0)[1] -- 현재 라인 번호
+      local node = require('nvim-tree.api').tree.get_node_under_cursor()
 
-      vim.cmd('vsplit | Oil')
+      close_FT_buffers("oil") -- 기존 oil 버퍼는 닫는다.
 
-      -- 아래 훨씬 엘레강스한 방법이 있다.
-      -- vim.schedule(function()
-        -- vim.cmd('NvimTreeClose')
-      -- end)
+      path = vim.fn.fnamemodify(node.absolute_path, ":h")
+      name = node.name
+      -- oil을 열고
+      vim.cmd('vsplit')
+      oil.open(path)
+      -- oil이 메모리에 로딩 되고 나면,
       util.run_after_load(0, function()
-        vim.cmd('NvimTreeClose')
-        vim.cmd('normal ggO')
-        vim.api.nvim_win_set_cursor(0, {nvim_tree_ln, 0})
+        vim.cmd('NvimTreeClose')  -- nvim-tree를 닫는다.
+        vim.cmd('normal ggO')  -- oil 버퍼의 첫 줄로 이동, 한 줄 띄우고
+        -- 그 자리에 가상 텍스트로 현재 oil path를 표시한다.
+        local buf = vim.api.nvim_get_current_buf()
+        modified_path = string.gsub(path, "^/home/sy", "~")
+        vim.api.nvim_buf_set_virtual_text(buf, 0, 0, {{modified_path .. '/..', "NvimTreeRootFolder"}}, {})
+        -- nvim-tree에서 포커싱된 노드로 커서 이동
+        vim.fn.search(name)
       end)
     end, {silent = true, buffer = true })
 
