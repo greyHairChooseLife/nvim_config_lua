@@ -4,7 +4,6 @@
 -- =========================================================================
 -- =========================================================================
 -- MISC TIPS
-vim.keymap.set('n', ',q', '<cmd>nohlsearch | echon<CR>', { silent = true }) -- 검색 기록 제거
 vim.keymap.set('n', ',r', function()
   vim.cmd('wincmd = | echon');
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
@@ -22,7 +21,10 @@ vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move
 vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
-vim.keymap.set({ 'n' }, "'", '*N')                                       -- search current word
+vim.keymap.set({ 'n' }, "'", function() -- toggle hlsearch, 2번 따닥 눌러서 검색 기록 제거의 역할도 겸한다.
+  if vim.v.hlsearch == 1 then vim.cmd('nohlsearch | echon')
+  else vim.cmd('normal! *N') end
+end)                                       -- search current word
 vim.keymap.set('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
