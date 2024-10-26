@@ -27,3 +27,7 @@ require("core.floating_window");
 
 -- TODO:
 -- ,.b로 buffer list 볼 때, 조건(inactive/ NO NAME/ 내용 비어있는)에 맞는 버퍼는 모두 자동 제거
+
+-- TODO:: aerial.nvim에서
+-- 1. treesitter typescript post parse에서 커스텀으로 'type'도 구분하기, 현재는 variable과 동일한 취급
+-- 2. function, variable, type의 아이콘을 보다 명확하게 변경하기
