@@ -24,3 +24,6 @@ require("core.floating_window");
 
 -- TODO:
 -- 15. normal mode ], [ 키를 활용하기. 기본적으로는 파일의 맨 시작과 끝으로 이동하는뜻? 아마도 next change 또는 next fold로 이동할수도?
+
+-- TODO:
+-- ,.b로 buffer list 볼 때, 조건(inactive/ NO NAME/ 내용 비어있는)에 맞는 버퍼는 모두 자동 제거
