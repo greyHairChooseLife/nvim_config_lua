@@ -203,8 +203,9 @@ require('render-markdown').setup({
     -- The 'level' is used to index into the array using a cycle
     -- If the item is a 'checkbox' a conceal is used to hide the bullet instead
     --  󰓛 󰨔 󰄱    
-    icons = { '●', '○', '◆', '◇' },
-    -- icons = { '󰓛', '󰨔', '◆', '◇' },
+    -- icons = { '●', '○', '◆', '◇', '▪', '•', '-', '▫' },
+    icons = { '●', '○', '◆', '◇', '▪', '-' },
+    -- ordered_icons = {{'1', '2', '3', '4'}, {'a', 'b', 'c'},}, -- TODO:: 아마도 list of lists 형태로 업데이트 될듯, 기다렸다가 사용하자.
     -- Padding to add to the right of bullet point
     right_pad = 0,
     -- Highlight for the bullet icon
