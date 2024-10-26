@@ -111,12 +111,8 @@ return require('packer').startup(function(use)
     require('markdowny').setup({ filetypes = { 'markdown' } })
   end }
 
-  -- https://github.com/hedyhli/outline.nvim
-  use { 'hedyhli/outline.nvim'
-    -- , config = function()
-    -- require("outline").setup({})
-    -- end
-  }
+  -- use 'hedyhli/outline.nvim'  -- react 파일 열어보면 parsing을 너무 못한다.
+  use 'stevearc/aerial.nvim'
 
   -- https://github.com/numToStr/Comment.nvim?tab=readme-ov-file
   use { 'numToStr/Comment.nvim', config = function()

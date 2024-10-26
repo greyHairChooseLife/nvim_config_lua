@@ -8,6 +8,8 @@ vim.keymap.set('n', ',r', function()
   vim.cmd('wincmd = | echon');
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    vim.cmd('AerialToggle')
+    vim.cmd('AerialToggle')
   require('quicker').refresh()
 end)                                                                     -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
@@ -368,10 +370,11 @@ vim.keymap.set('v', 'greh', Visual_reset)                                       
 vim.keymap.set('n', 'gpre', '<cmd>Gitsigns preview_hunk<CR>')                         -- show diff
 
 
--- OUTLINE
-vim.keymap.set({ 'n' }, ',,o', "<cmd>Outline<CR>")
-vim.keymap.set({ 'n' }, ',o', "<cmd>OutlineFocusOutline<CR>")
-
+-- OUTLINE to AERIAL
+-- vim.keymap.set({ 'n' }, ',,o', "<cmd>Outline<CR>")
+-- vim.keymap.set({ 'n' }, ',o', "<cmd>OutlineFocusOutline<CR>")
+vim.keymap.set("n", ",,a", "<cmd>AerialToggle<CR>")
+vim.keymap.set("n", ",a", "<cmd>AerialOpen<CR>")
 
 -- AUTO-SESSION
 vim.keymap.set("n", "<leader><leader>s", "<cmd>SessionSave<CR>") -- save

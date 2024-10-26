@@ -267,3 +267,14 @@ vim.cmd [[
 vim.cmd [[
   highlight NvimTreeOpenedHL guifg=#FF8C00 gui=italic,underline
 ]]
+
+-- aerial
+vim.cmd [[
+  highlight AerialGuide1 guifg=#FF4500
+  highlight AerialGuide2 guifg=#E0E0E0
+  highlight AerialGuide3 guifg=#E0E0E0
+  highlight AerialFunction guifg=#67b3ff gui=bold
+  highlight AerialVariable guifg=#DCDCAA gui=italic
+  highlight AerialVariableIcon guifg=#DCDCAA
+  highlight AerialLine guibg=#4d6652
+]]
