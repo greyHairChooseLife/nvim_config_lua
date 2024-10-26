@@ -163,8 +163,8 @@ keyset("v", "<A-p>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-p>"', o
 
 -- Use CTRL-S for selections ranges
 -- Requires 'textDocument/selectionRange' support of language server
-keyset("n", ",a", "<Plug>(coc-range-select)", { silent = true })
-keyset("x", ",a", "<Plug>(coc-range-select)", { silent = true })
+-- keyset("n", ",a", "<Plug>(coc-range-select)", { silent = true })
+keyset("x", "V", "<Plug>(coc-range-select)", { silent = true })
 
 -- BUG: 왜 안됨?
 -- keyset("n", "<space>e", ":CocList extensions<cr>", opts)
