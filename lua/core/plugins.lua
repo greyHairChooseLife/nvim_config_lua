@@ -194,7 +194,7 @@ return require('packer').startup(function(use)
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim", -- only needed because it's a dependency of telescope
     },
-    config = true,
+    -- config = true, fixed with https://github.com/wbthomason/packer.nvim/issues/908#issuecomment-1133901800
   }
 
   use({ "stevearc/oil.nvim" })
