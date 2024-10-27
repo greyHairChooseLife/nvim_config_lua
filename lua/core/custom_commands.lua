@@ -268,3 +268,14 @@ end
 
 -- 모든 탭 내에서 현재 버퍼만 남기기
 -- :%bdelete|edit#|bdelete#
+
+function CloseEmptyUnnamedBuffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) == "" then
+      local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+      if #lines == 0 or (#lines == 1 and lines[1] == "") then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end
+end
