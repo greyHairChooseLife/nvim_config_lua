@@ -21,13 +21,14 @@ end
 
 vim.cmd('command! ShowCursor lua ShowCursor()')
 
-function BlinkCursorLine()
+function BlinkCursorLine(duration)
+  duration = duration or 50 -- 기본값 50ms
   vim.cmd("highlight CursorLine guibg=#2CB67D")
   vim.wo.cursorline = true
   vim.defer_fn(function()
     vim.cmd("highlight CursorLine guibg=#3e4452")
     vim.wo.cursorline = false
-  end, 50)
+  end, duration)
 end
 
 function ExpandGlow()
