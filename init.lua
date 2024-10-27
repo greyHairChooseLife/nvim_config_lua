@@ -14,12 +14,6 @@ require("core.floating_window");
 -- https://neovim.io/doc/user/options.html
 
 -- TODO:
--- outline.nvim을 보다 실용성있게
--- => vista 적용, outline.nvim 대신에 사용할만 한가?
---https://github.com/liuchengxu/vista.vim
---https://www.youtube.com/results?search_query=vista.vim
-
--- TODO:
 -- toggle-term 제대로 사용하기
 
 -- TODO:
