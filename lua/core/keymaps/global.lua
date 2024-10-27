@@ -25,8 +25,13 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 vim.keymap.set({ 'n' }, "'", function() -- toggle hlsearch, 2번 따닥 눌러서 검색 기록 제거의 역할도 겸한다.
-  if vim.v.hlsearch == 1 then vim.cmd('nohlsearch | echon')
-  else vim.cmd('normal! *N') end
+  if vim.v.hlsearch == 1 then
+    vim.cmd('nohlsearch | echon')
+  else
+    local saved_view = vim.fn.winsaveview()
+    vim.cmd('normal! *N') -- 이다음 것을 찾은 뒤에 N으로 돌아기 때문에 윈도우가 포커싱한 위치가 달라질 수 있다. 이를 보정해야함
+    vim.fn.winrestview(saved_view)
+  end
 end)                                       -- search current word
 vim.keymap.set('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
