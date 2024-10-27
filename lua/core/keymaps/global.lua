@@ -4,6 +4,7 @@
 -- =========================================================================
 -- =========================================================================
 -- MISC TIPS
+vim.keymap.set('n', '~', '<cmd>wincmd p<CR>') -- switch to the previous window, last cursor position
 vim.keymap.set('n', ',r', function()
   vim.cmd('wincmd = | echon');
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
