@@ -79,12 +79,13 @@ keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 
 
 -- Highlight the symbol and its references on a CursorHold event(cursor is idle)
+-- 커서가 위치한 심볼 자동으로 하이라이트 거는거. 매우 성가시다.
 vim.api.nvim_create_augroup("CocGroup", {})
-vim.api.nvim_create_autocmd("CursorHold", {
-  group = "CocGroup",
-  command = "silent call CocActionAsync('highlight')",
-  desc = "Highlight symbol under cursor on CursorHold"
-})
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   group = "CocGroup",
+--   command = "silent call CocActionAsync('highlight')",
+--   desc = "Highlight symbol under cursor on CursorHold"
+-- })
 
 
 -- Symbol renaming
