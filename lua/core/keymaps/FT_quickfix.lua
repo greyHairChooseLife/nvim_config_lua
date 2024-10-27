@@ -9,16 +9,12 @@ local function QF_ToggleList()
     end
   end
 
-  if is_open then
-    vim.api.nvim_command('cclose')
-  else
-    vim.api.nvim_command('copen')
-  end
+  if is_open then vim.cmd('cclose')
+  else vim.cmd('copen | wincmd p') end
 end
 
 vim.keymap.set('n', ',,q', QF_ToggleList, { noremap = true, silent = true })
--- TODO:: 포커싱 하는 기능도 추가
--- vim.keymap.set('n', ',q', QF_Focus, { noremap = true, silent = true })
+vim.keymap.set('n', ',q', '<cmd>copen<CR>', { noremap = true, silent = true })
 
 
 -- Quickfix 항목 제거 함수 정의
