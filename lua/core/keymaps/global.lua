@@ -376,7 +376,10 @@ vim.keymap.set('n', 'gpre', '<cmd>Gitsigns preview_hunk<CR>')                   
 -- OUTLINE to AERIAL
 -- vim.keymap.set({ 'n' }, ',,o', "<cmd>Outline<CR>")
 -- vim.keymap.set({ 'n' }, ',o', "<cmd>OutlineFocusOutline<CR>")
-vim.keymap.set("n", ",,a", "<cmd>AerialToggle<CR>")
+vim.keymap.set("n", ",,a", function()
+  vim.cmd('AerialToggle')
+  vim.cmd('wincmd p')
+end)
 vim.keymap.set("n", ",a", "<cmd>AerialOpen<CR>")
 
 -- AUTO-SESSION
