@@ -63,3 +63,10 @@ require("core.floating_window");
 
 -- TODO:
 -- telescope git_stash에서도 delta를 사용하도록 설정하기
+
+-- TODO:
+-- https://github.com/folke/twilight.nvim
+--
+-- indent-blankline의 current_scope_only 옵션이 부재한 것을 보완히기 위해 사용할수도 있을듯. <Space>에 추가 맵핑하자.
+-- indent-blankline의 경우 lv.1 line은 무시하는 것도 좋겠다. -> https://github.com/lukas-reineke/indent-blankline.nvim/issues/824
+-- 별개로 다른 indent-line 플러그인도 고려해보자. mini같ㅇ너거
