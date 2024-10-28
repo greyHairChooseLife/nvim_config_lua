@@ -266,6 +266,7 @@ vim.cmd [[
 -- nvim-tree
 vim.cmd [[
   highlight NvimTreeOpenedHL guifg=#FF8C00 gui=italic,underline
+  highlight NvimTreeIndentMarker guifg=#FF8C00
 ]]
 
 -- aerial

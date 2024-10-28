@@ -128,6 +128,18 @@ require("nvim-tree").setup({
     full_name = false,
     highlight_opened_files = "name", -- active buffer 표시
     highlight_modified = "none",
+    indent_width = 3,
+    indent_markers = {
+      enable = true,
+      inline_arrows = true,
+      icons = {
+        corner = "└",
+        edge = "│",
+        item = "│",
+        bottom = "─",
+        none = " ",
+      },
+    },
     icons = {
       webdev_colors = true,
       git_placement = "after",
@@ -137,7 +149,7 @@ require("nvim-tree").setup({
       show = {
         file = true,
         folder = true,
-        folder_arrow = true,
+        folder_arrow = false,
         git = true,
         modified = true,
       },
@@ -188,7 +200,7 @@ require("nvim-tree").setup({
     ignore_list = {},
   },
   diagnostics = {
-    enable = true,
+    enable = false, -- 오랫동안 봐 왔지만 실용적인 적이 딱히 없는듯?
     show_on_dirs = true,
     show_on_open_dirs = false,
     debounce_delay = 50,
