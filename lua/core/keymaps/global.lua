@@ -115,6 +115,13 @@ vim.keymap.set('n', 'gE', function()
 end)
 vim.keymap.set('n', 'gtQ', '<cmd>tabclose!<CR>')
 vim.keymap.set('n', 'gtq', function()
+  -- 탭 이름이 'abcd' 라면
+  local tabname = GetCurrentTabName()
+  if tabname == ' Commit' or tabname == ' File' then
+    vim.cmd('tabclose!')
+    return
+  end
+
   -- 전체 탭의 개수가 1개라면 아무것도 하지 않고 종료
   if vim.fn.tabpagenr('$') == 1 then
     vim.notify('Cannot close the last tab page', 4, { render = 'minimal' })

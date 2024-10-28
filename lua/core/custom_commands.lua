@@ -280,3 +280,8 @@ function CloseEmptyUnnamedBuffers()
     end
   end
 end
+
+function GetCurrentTabName()
+  local tabnr = vim.fn.tabpagenr()
+  return vim.fn.gettabvar(tabnr, 'tabname', 'No Name')
+end
