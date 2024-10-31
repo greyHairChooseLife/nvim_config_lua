@@ -1,6 +1,7 @@
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local builtin = require('telescope.builtin')
+local previewers = require('telescope.previewers')
 
 local function switch_to_normal_mode()
   local escape_key = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
@@ -28,6 +29,43 @@ local function clear_prompt()
   local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
   picker:reset_prompt() -- 프롬프트 초기화
 end
+
+-- install git-delta from pacman
+local diff_delta = previewers.new_termopen_previewer({
+  get_command = function(entry)
+    -- 새로 추가된 파일
+    if entry.status == 'A ' then return { 'git', 'diff', '--cached', entry.path } end
+    -- 추적되지 않은 파일
+    if entry.status == '??' then return { 'bash', '-c', 'echo "This is an untracked file. No diff available.\n\nJust stage it, so you can have a look."' } end
+
+    return { 'git', 'diff', 'HEAD', '--', entry.path }
+    -- 원한다면 아래처럼도 가능
+    -- return { 'bash', '-c', 'git diff HEAD -- ' .. entry.path }
+  end
+})
+
+local stash_delta = previewers.new_termopen_previewer({
+  get_command = function(entry)
+    -- 스태시 항목을 선택했을 때 diff 보여주기
+    return { 'git', 'stash', 'show', '-p', entry.value }
+  end
+})
+
+local wide_layout_config = { preview_width = 0.8, width = 0.9, height = 0.9 }
+
+vim.keymap.set('n', ',.gd', function()
+  builtin.git_status({
+    previewer = diff_delta,
+    layout_config = wide_layout_config
+  })
+end, {})
+
+vim.keymap.set('n', ',.gss', function()
+  builtin.git_stash({
+    previewer = stash_delta,
+    layout_config = wide_layout_config
+  })
+end, {})
 
 require("telescope").setup {
   extensions = {
