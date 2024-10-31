@@ -228,6 +228,7 @@ require("diffview").setup({
       { "n", "<C-w>gf",       actions.goto_file_tab,              { desc = "Open the file in a new tabpage" } },
       { "n", "<leader>e",     actions.focus_files,                { desc = "Bring focus to the file panel" } },
       { "n", "<leader>b",     actions.toggle_files,               { desc = "Toggle the file panel" } },
+      { "n", ",b",            actions.toggle_files,               { desc = "Toggle the file panel" } },
       { "n", "g<C-x>",        actions.cycle_layout,               { desc = "Cycle available layouts" } },
       { "n", "g?",            actions.help("file_history_panel"), { desc = "Open the help panel" } },
     },
