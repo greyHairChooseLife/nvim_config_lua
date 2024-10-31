@@ -279,6 +279,13 @@ local delta = previewers.new_termopen_previewer({
     -- return { 'bash', '-c', 'git diff HEAD -- ' .. entry.path }
   end
 })
+local stash_delta = previewers.new_termopen_previewer({
+  get_command = function(entry)
+    -- 스태시 항목을 선택했을 때 diff 보여주기
+    return { 'git', 'stash', 'show', '-p', entry.value }
+  end
+})
+
 
 vim.keymap.set('n', ',.gd', function() builtin.git_status({ previewer = delta, layout_config = { preview_width = 0.8, width = 0.9, height = 0.9 } }) end)
 vim.keymap.set({ 'n', 'v' }, ',.t', '<Cmd>Telescope toggleterm_manager<CR>', {})
@@ -306,7 +313,12 @@ vim.keymap.set('n', ',.R', builtin.resume, {})
 vim.keymap.set('n', ',.q', builtin.quickfix, {})
 vim.keymap.set('n', ',.o', function() builtin.oldfiles({only_cwd = true}) end, {})
 -- vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {}) 사실상 안쓰는듯
-vim.keymap.set('n', ',.gss', builtin.git_stash, {})
+vim.keymap.set('n', ',.gss', function()
+  builtin.git_stash({
+    previewer = stash_delta,
+    layout_config = { preview_width = 0.8, width = 0.9, height = 0.9 }
+  })
+end, {})
 vim.keymap.set('n', ',.gst', builtin.git_status, {})
 vim.keymap.set('n', ',.gco', function()
   builtin.git_commits({ git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "--all", "--decorate" } })

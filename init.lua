@@ -61,8 +61,6 @@ require("core.floating_window");
 --   }
 -- }
 
--- TODO:
--- telescope git_stash에서도 delta를 사용하도록 설정하기
 
 -- TODO:
 -- https://github.com/folke/twilight.nvim
