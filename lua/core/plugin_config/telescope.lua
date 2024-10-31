@@ -53,6 +53,29 @@ local stash_delta = previewers.new_termopen_previewer({
 
 local wide_layout_config = { preview_width = 0.8, width = 0.9, height = 0.9 }
 
+local commits_delta = previewers.new_termopen_previewer({
+  get_command = function(entry)
+    return { 'git', 'show', entry.value }
+  end
+})
+
+vim.keymap.set('n', ',.gco', function()
+  builtin.git_commits({
+    git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "HEAD", "--decorate", "--exclude=refs/stash"  },
+    previewer = commits_delta,
+    layout_config = wide_layout_config
+	})
+end)
+
+vim.keymap.set('n', ',.gbco', function()
+  builtin.git_bcommits({
+    git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "HEAD", "--decorate", "--exclude=refs/stash"  },
+    previewer = commits_delta,
+    layout_config = wide_layout_config
+  })
+end)
+
+
 vim.keymap.set('n', ',.gd', function()
   builtin.git_status({
     previewer = diff_delta,
