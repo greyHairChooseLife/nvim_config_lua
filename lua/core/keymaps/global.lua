@@ -220,8 +220,8 @@ vim.keymap.set("n", "<A-S-Right>", "<cmd>vertical resize +8<CR>", {})
 vim.keymap.set("n", "<A-S-Down>", "<cmd>horizontal resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Up>", "<cmd>horizontal resize +8<CR>", {})
 -- BUFFER FOCUS
-vim.keymap.set('n', "<A-'>", '<cmd>bnext<CR>', { silent = true })
-vim.keymap.set('n', '<A-;>', '<cmd>bprevious<CR>', { silent = true })
+vim.keymap.set('n', "<Tab>", '<cmd>bnext<CR>', { silent = true })
+vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { silent = true })
 
 
 -- NVIM-TREE BUFFER 또는 (조건에 따라)DIFFVIEWFILE PANEL로 즉시 이동
