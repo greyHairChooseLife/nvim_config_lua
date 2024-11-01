@@ -16,5 +16,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.fn.winrestview(save_view)
     vim.cmd("wincmd p")
     vim.cmd("normal gg")
+
+    -- KEYMAP
+    vim.keymap.set('n', 'gq', function()
+      vim.api.nvim_buf_set_lines(0, 0, -1, false, { "" }) -- 현재 버퍼의 내용을 빈 문자열로 덮어씌워 커밋 메시지가 저장되지 않도록 합니다.
+      vim.cmd('wq')
+    end, {buffer = true })
   end,
 })
