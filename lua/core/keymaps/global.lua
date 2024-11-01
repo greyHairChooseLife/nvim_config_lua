@@ -364,6 +364,7 @@ vim.keymap.set('n', 'gstb', '<cmd>Gitsigns stage_buffer | NvimTreeRefresh<CR>') 
 vim.keymap.set('n', 'greh', '<cmd>Gitsigns reset_hunk | NvimTreeRefresh<CR>')   -- reset hunk, de-active
 vim.keymap.set('v', 'greh', Visual_reset)                                             -- reset hunk, de-active
 vim.keymap.set('n', 'gpre', '<cmd>Gitsigns preview_hunk<CR>')                         -- show diff
+vim.keymap.set('n', 'gbl', '<cmd>Gitsigns blame_line<CR>')                         -- show diff
 
 
 -- OUTLINE to AERIAL
