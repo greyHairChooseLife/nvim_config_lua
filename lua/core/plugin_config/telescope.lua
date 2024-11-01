@@ -60,6 +60,41 @@ local commits_delta = previewers.new_termopen_previewer({
   end
 })
 
+local function focus_or_open(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local filepath = entry.path or entry.filename
+  local bufnr = entry.bufnr  -- buffers picker의 경우에는 bufnr 필드를 참조합니다.
+
+  -- 버퍼 리스트에서 filepath에 해당하는것 있는지 확인
+  function is_file_in_buffer_list(filepath)
+    local buffers = vim.api.nvim_list_bufs()
+    for _, buf in ipairs(buffers) do
+      if vim.api.nvim_buf_is_loaded(buf) and (vim.api.nvim_buf_get_name(buf) == filepath or buf == bufnr) then
+        return true, buf
+      end
+    end
+    return false
+  end
+
+  local is_opened, buf = is_file_in_buffer_list(filepath)
+
+  if is_opened then
+    print("파일이 이미 열려 있습니다.")
+    actions.close(prompt_bufnr)
+
+    local wins = vim.api.nvim_list_wins()
+    for _, win in ipairs(wins) do
+      if vim.api.nvim_win_get_buf(win) == buf then
+        vim.api.nvim_set_current_win(win)
+      end
+    end
+
+  else
+    actions.select_default(prompt_bufnr)
+    print("파일이 아직...")
+  end
+end
+
 vim.keymap.set('n', ',.gco', function()
   builtin.git_commits({
     git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "HEAD", "--decorate", "--exclude=refs/stash"  },
@@ -145,7 +180,8 @@ require("telescope").setup {
         ['<A-k>'] = actions.preview_scrolling_up,
         ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
-        ['<C-d>'] = actions.results_scrolling_down
+        ['<C-d>'] = actions.results_scrolling_down,
+        ["<CR>"] = focus_or_open,
       },
       i = {
         ['<C-r>'] = clear_prompt,
@@ -159,7 +195,8 @@ require("telescope").setup {
         ['<A-k>'] = actions.preview_scrolling_up,
         ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
-        ['<C-d>'] = actions.results_scrolling_down
+        ['<C-d>'] = actions.results_scrolling_down,
+        ["<CR>"] = focus_or_open,
       },
     },
     layout_config = {
