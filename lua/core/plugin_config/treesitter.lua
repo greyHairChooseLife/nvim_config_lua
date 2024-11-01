@@ -7,6 +7,7 @@ require 'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
+  indent = { enable = true },
 }
 
 vim.treesitter.language.register('markdown', 'vimwiki')
