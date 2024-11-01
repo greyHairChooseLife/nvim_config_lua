@@ -1,4 +1,5 @@
 local actions = require('telescope.actions')
+local action_layout = require('telescope.actions.layout')
 local action_state = require('telescope.actions.state')
 local builtin = require('telescope.builtin')
 local previewers = require('telescope.previewers')
@@ -139,8 +140,8 @@ require("telescope").setup {
         ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
         ['<A-Space>'] = focus_preview,
-        ['<A-p>'] = actions.preview_scrolling_up,
-        ['<A-n>'] = actions.preview_scrolling_down,
+        ['<A-p>'] = action_layout.toggle_preview,
+        -- ['<A-n>'] = actions.preview_scrolling_down,
         ['<A-k>'] = actions.preview_scrolling_up,
         ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
@@ -153,8 +154,8 @@ require("telescope").setup {
         ['gq'] = "close",
         ['<C-g>'] = require("telescope").extensions.hop.hop,
         ['<A-Space>'] = focus_preview,
-        ['<A-p>'] = actions.preview_scrolling_up,
-        ['<A-n>'] = actions.preview_scrolling_down,
+        ['<A-p>'] = action_layout.toggle_preview,
+        -- ['<A-n>'] = actions.preview_scrolling_down,
         ['<A-k>'] = actions.preview_scrolling_up,
         ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
