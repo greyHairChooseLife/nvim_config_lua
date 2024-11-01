@@ -79,19 +79,23 @@ local function focus_or_open(prompt_bufnr)
   local is_opened, buf = is_file_in_buffer_list(filepath)
 
   if is_opened then
-    print("파일이 이미 열려 있습니다.")
     actions.close(prompt_bufnr)
 
     local wins = vim.api.nvim_list_wins()
     for _, win in ipairs(wins) do
       if vim.api.nvim_win_get_buf(win) == buf then
         vim.api.nvim_set_current_win(win)
+        -- picker마다 다른 기본동작을 그대로 실행하기 위해서 아래처럼 한다.
+        builtin.resume()
+        vim.schedule(function()
+          local new_picker_bufnr = vim.api.nvim_get_current_buf()
+          actions.select_default(new_picker_bufnr)
+        end)
       end
     end
 
   else
     actions.select_default(prompt_bufnr)
-    print("파일이 아직...")
   end
 end
 
