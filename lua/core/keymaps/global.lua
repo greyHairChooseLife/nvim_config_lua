@@ -120,7 +120,7 @@ vim.keymap.set('n', 'gtQ', '<cmd>tabclose!<CR>')
 vim.keymap.set('n', 'gtq', function()
   -- 탭 이름이 'abcd' 라면
   local tabname = GetCurrentTabName()
-  if tabname == ' Commit' or tabname == ' File' then
+  if tabname == ' Commit' or tabname == ' File' or tabname == 'GV' then
     vim.cmd('tabclose!')
     return
   end
