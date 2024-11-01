@@ -224,7 +224,10 @@ require("telescope").setup {
             local selection = action_state.get_selected_entry()
             vim.cmd('Git stash drop ' .. selection.value)
             actions.close(prompt_bufnr)
-            builtin.git_stash()
+            builtin.git_stash({
+              previewer = stash_delta,
+              layout_config = wide_layout_config
+            })
             switch_to_normal_mode()
           end,
           ['ap'] = function(prompt_bufnr)
@@ -243,7 +246,10 @@ require("telescope").setup {
             local selection = action_state.get_selected_entry()
             vim.cmd('Git stash drop ' .. selection.value)
             actions.close(prompt_bufnr)
-            builtin.git_stash()
+            builtin.git_stash({
+              previewer = stash_delta,
+              layout_config = wide_layout_config
+            })
             switch_to_normal_mode()
           end,
           ['<C-a>'] = function(prompt_bufnr)
