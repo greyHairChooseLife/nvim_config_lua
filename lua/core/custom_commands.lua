@@ -271,8 +271,18 @@ end
 -- :%bdelete|edit#|bdelete#
 
 function CloseEmptyUnnamedBuffers()
+  -- 현재 모든 윈도우에 로드된 활성 버퍼 목록 가져오기
+  local active_buffers = {}
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    active_buffers[buf] = true
+  end
+
+  -- 모든 버퍼를 확인하면서, 비어있고 이름이 없는 비활성 버퍼를 닫기
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) == "" then
+    if vim.api.nvim_buf_is_loaded(buf)
+       and vim.api.nvim_buf_get_name(buf) == ""
+       and not active_buffers[buf] then
       local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
       if #lines == 0 or (#lines == 1 and lines[1] == "") then
         vim.api.nvim_buf_delete(buf, { force = true })
