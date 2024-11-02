@@ -222,6 +222,9 @@ require("telescope").setup {
         },
       },
       ignore_current_buffer = false, -- quickfix에 전체 리스트 넣을 때 불편할 수 있겠다.
+      preview = {
+        hide_on_startup = true,
+      },
     },
     find_files = {
       mappings = {
@@ -256,6 +259,9 @@ require("telescope").setup {
             builtin.resume()
           end,
         },
+      },
+      preview = {
+        hide_on_startup = true,
       },
     },
     git_stash = {
