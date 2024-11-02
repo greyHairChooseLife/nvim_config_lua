@@ -43,7 +43,7 @@ vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, si
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', function()
   BlinkCursorLine()
-  vim.cmd('IBLToggle')
+  -- vim.cmd('IBLToggle')
 end)
 vim.keymap.set('v', 'v', '<Esc>')
 

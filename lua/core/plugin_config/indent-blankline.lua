@@ -1,7 +1,8 @@
 vim.api.nvim_set_hl(0, "MyBG", { fg = "#24283b" })
+vim.api.nvim_set_hl(0, "MyFG", { fg = "#FF8C00" })
 
 require("ibl").setup {
-  enabled = false,
+  enabled = true,
   indent = {
     char = "▏",
     smart_indent_cap = true,
@@ -13,7 +14,7 @@ require("ibl").setup {
     enabled = true,
     -- char = "▍",
     char = "▏",
-    highlight = { "NvimTreeIndentMarker" },
+    highlight = { "MyFG" },
     show_start = false,
     show_end = false,
     injected_languages = false,
