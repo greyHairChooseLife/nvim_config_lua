@@ -72,6 +72,7 @@ vim.keymap.set('x', '<A-j>', ':move \'>+1<CR>gv-gv')
 vim.keymap.set("v", "<A-h>", "<gv")
 vim.keymap.set("v", "<A-l>", ">gv")
 
+vim.keymap.set('n', '<C-t>', OpenOrFocusTerm)
 
 -- 디버깅
 vim.keymap.set('i', 'cl<cr>', Insert_console_log, { noremap = true, silent = true })
