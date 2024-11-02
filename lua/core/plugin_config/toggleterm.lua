@@ -9,14 +9,22 @@ require("toggleterm").setup {
   direction = 'vertical',
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell,  -- change the default shell
+  highlights = {
+    NormalFloat = {
+      -- guifg = "<VALUE-HERE>",
+      guibg = "black",
+    },
+    FloatBorder = {
+      guifg = "#24283b",
+      guibg = "#24283b",
+    },
+  },
   float_opts = {
-    border = 'single',
-    width = 300,
-    height = 50,
-    winblend = 15,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    }
+    border = 'none',
+    -- width = 150,
+    -- height = 50,
+    -- row = 5,
+    winblend = 35,
+    title_pos = 'center',
   },
 }
