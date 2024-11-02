@@ -99,6 +99,59 @@ local function focus_or_open(prompt_bufnr)
   end
 end
 
+local function focus_or_open_terminal_buffer(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local filepath = entry.path or entry.filename
+  local bufnr = entry.bufnr  -- 버퍼 선택기에서는 bufnr 필드를 사용
+
+  local function is_buffer_open(filepath, bufnr)
+    local buffers = vim.api.nvim_list_bufs()
+    for _, buf in ipairs(buffers) do
+      if vim.api.nvim_buf_is_loaded(buf) then
+        local bufname = vim.api.nvim_buf_get_name(buf)
+
+        -- 파일 경로나 버퍼 번호가 일치하는지 확인
+        if bufname == filepath or buf == bufnr then
+          -- 모든 탭과 창을 순회하여 버퍼가 열린 창이 있는지 확인
+          for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+            for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+              if vim.api.nvim_win_get_buf(win) == buf then
+                return true, buf  -- 다른 탭이나 창에서 열린 상태라면 true 반환
+              end
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  local is_opened, buf = is_buffer_open(filepath, bufnr)
+
+  if is_opened then
+    actions.close(prompt_bufnr)
+
+    -- 열려있는 버퍼의 창으로 포커스를 이동
+    local wins = vim.api.nvim_list_wins()
+    for _, win in ipairs(wins) do
+      if vim.api.nvim_win_get_buf(win) == buf then
+        vim.api.nvim_set_current_win(win)
+
+        -- picker마다 기본 동작을 유지하기 위해 resume 후 select_default 호출
+        builtin.resume()
+        vim.schedule(function()
+          local new_picker_bufnr = vim.api.nvim_get_current_buf()
+          actions.select_default(new_picker_bufnr)
+        end)
+        return
+      end
+    end
+  else
+    -- 버퍼가 열려있지 않다면 선택된 기본 동작을 실행
+    actions.select_default(prompt_bufnr)
+  end
+end
+
 vim.keymap.set('n', ',.gco', function()
   builtin.git_commits({
     git_command = { "git", "log", "--pretty=oneline", "--abbrev-commit", "HEAD", "--decorate", "--exclude=refs/stash"  },
@@ -129,6 +182,90 @@ vim.keymap.set('n', ',.gss', function()
     layout_config = wide_layout_config
   })
 end, {})
+
+vim.keymap.set({ "n", 'v' }, ',.t', function()
+  builtin.buffers {
+    default_text = 'Term: ',
+    prompt_title = 'Terminals',
+    attach_mappings = function(_, map)
+      map({"i", "n"}, "<CR>", function(_prompt_bufnr) focus_or_open_terminal_buffer(_prompt_bufnr) end)
+
+      -- map({"i", "n"}, "<C-r>", function(_prompt_bufnr)
+      --   print "You typed <C-r>"
+      -- end)
+
+
+      map({ "i" }, "<C-r>", function(_prompt_bufnr)
+        local default_text = "Term:  " -- 왜인지 두 칸을 띄워야한다.
+        vim.cmd('normal! dd')
+        vim.cmd('normal! i' .. default_text)
+      end)
+
+      map({ "n" }, "<C-r>", function(_prompt_bufnr)
+        local default_text = "Term:  " -- 왜인지 두 칸을 띄워야한다.
+        vim.cmd('normal! dd')
+        vim.cmd('normal! i' .. default_text)
+        vim.cmd('startinsert')
+      end)
+
+      return true -- default mapping applied as well
+    end,
+  }
+end, {})
+
+-- vim.keymap.set({ 'n', 'v' }, ',.t', '<Cmd>Telescope toggleterm_manager<CR>', {})
+vim.keymap.set('n', ',.f', builtin.find_files, {})
+vim.keymap.set('n', ',.w', builtin.live_grep, {})
+vim.keymap.set('v', ',.w', function()
+  vim.cmd('normal! y')
+  local search_text = vim.fn.getreg('0')
+  builtin.live_grep({ default_text = search_text })
+end, {})
+vim.keymap.set('n', ',.c', builtin.grep_string, {})
+vim.keymap.set('v', ',.c', function()
+  vim.cmd('normal! y')
+  local search_text = vim.fn.getreg('0')
+  builtin.grep_string({ search = search_text })
+end, {})
+vim.keymap.set('n', ',.m', builtin.marks, {})
+vim.keymap.set('n', ',.b', function()
+  CloseEmptyUnnamedBuffers()
+  builtin.buffers { file_ignore_patterns = { '^Term:' } } -- 터미널 버퍼는 제외
+end, {})
+vim.keymap.set('n', ',.H', builtin.help_tags, {})
+vim.keymap.set({ 'n', 'i' }, ',.r', builtin.registers, {})
+vim.keymap.set('n', ',.R', builtin.resume, {})
+vim.keymap.set('n', ',.q', builtin.quickfix, {})
+vim.keymap.set('n', ',.o', function() builtin.oldfiles({only_cwd = true}) end, {})
+vim.keymap.set('n', ',.T', '<cmd>TodoTelescope<CR>', {})
+vim.keymap.set('n', ',.gst', builtin.git_status, {})
+vim.keymap.set('n', ',.gbr', builtin.git_branches, {})
+-- 현재 버퍼에 열린 파일에서만 검색
+vim.keymap.set('n', ',..w', function()
+  local scope = vim.fn.expand('%:p')
+  builtin.live_grep {
+    search_dirs = { scope }
+  }
+end) -- Regex search current file
+vim.keymap.set('v', ',..w', function()
+  local scope = vim.fn.expand('%:p')
+
+  vim.cmd('normal! y')
+  local text = vim.fn.getreg('0')
+
+  builtin.live_grep {
+    search_dirs = { scope },
+    default_text = text
+  }
+end)
+vim.keymap.set('n', ',..c', function()
+  local scope = vim.fn.expand('%:p')
+
+  builtin.grep_string {
+    search_dirs = { scope }
+  }
+end, {})
+
 
 require("telescope").setup {
   extensions = {
@@ -225,6 +362,7 @@ require("telescope").setup {
       preview = {
         hide_on_startup = true,
       },
+      -- file_ignore_patterns = { '^Term:' }, -- buftype으로 체크가 된다!  ignore buffer
     },
     find_files = {
       mappings = {
