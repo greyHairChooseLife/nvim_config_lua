@@ -60,7 +60,7 @@ vim.keymap.set({ 'i', 'c', 't' }, ';j<Space>', function()
 end, { noremap = true })
 vim.keymap.set({ 'i', 'c', 't' }, ';ㅓ<Space>', function()
   vim.api.nvim_input('<Esc>') -- 실제 <Esc> 입력을 강제 실행
-  os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기)
+  os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
 end, { noremap = true })
 vim.keymap.set({ 'n', 'v' }, '<C-e>', '2<C-e>')
 vim.keymap.set({ 'n', 'v' }, '<C-y>', '2<C-y>')
