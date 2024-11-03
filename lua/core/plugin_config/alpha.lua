@@ -51,15 +51,15 @@ dashboard.section.header.val = header()
 
 -- Set menu
 dashboard.section.buttons.val = {
-  dashboard.button("fe", "                           -  fetch   ", function()
+  dashboard.button("F", "                           -  fetch   ", function()
     vim.cmd('Git fetch')
     alpha.redraw()
   end),
   -- dashboard.button("n", "New", ":ene <BAR> startinsert <CR>"),
   dashboard.button("n", "New", ":ene<CR>"),
-  dashboard.button("ff", "File", ":Telescope find_files<CR>"),
-  dashboard.button("fw", "Word", ":Telescope live_grep<CR>"),
-  dashboard.button("r", "Rrecent", ":Telescope oldfiles<CR>"),
+  dashboard.button("f", "File", ":Telescope find_files<CR>"),
+  dashboard.button("w", "Word", ":Telescope live_grep<CR>"),
+  dashboard.button("o", "Old", ":Telescope oldfiles<CR>"),
   dashboard.button(".", "", ""),
   dashboard.button("D", "                   ---------  doc   ", ":cd ~/Documents | vi .<CR>"),
   dashboard.button("dpu", "                           -  pull    ",
