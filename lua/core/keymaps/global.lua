@@ -356,6 +356,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+
+-- FOLD MOVE
+vim.keymap.set({ 'n', 'v' }, '<C-j>', 'zj')
+vim.keymap.set({ 'n', 'v' }, '<C-k>', 'zk')
+vim.keymap.set({ 'n', 'v' }, '<C-h>', '[z')
+vim.keymap.set({ 'n', 'v' }, '<C-l>', ']z')
+vim.keymap.set({ 'n', 'v' }, '<C-n>', '%][%zz')
+vim.keymap.set({ 'n', 'v' }, '<C-p>', '[]%zz')
+
+
 -- NOTE:
 -- 이놈들은 정확히 뭐하는건지 모르겠다.
 --

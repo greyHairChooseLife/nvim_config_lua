@@ -16,13 +16,6 @@ require("core.floating_window");
 -- TODO:
 -- toggleTerm 플러그인으로 vim 버퍼 안에서 '다수의 고유한 터미널(id 부여)'을 열 수 있다. [관련 영상](https://www.youtube.com/watch?v=lbZkCPaFom0)
 
--- TODO:: fzf hisotry 실행이 안된다. 이거 필드 위치를 잘못 전달해서 그럴듯
-
--- TODO:: next, prev fold navigation
-
--- TODO:
--- 15. normal mode ], [ 키를 활용하기. 기본적으로는 파일의 맨 시작과 끝으로 이동하는뜻? 아마도 next change 또는 next fold로 이동할수도?
-
 -- TODO:: aerial.nvim에서
 -- 1. treesitter typescript post parse에서 커스텀으로 'type'도 구분하기, 현재는 variable과 동일한 취급
 -- 2. function, variable, type의 아이콘을 보다 명확하게 변경하기
