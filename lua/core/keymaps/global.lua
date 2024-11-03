@@ -28,6 +28,13 @@ vim.keymap.set({ 'n' }, "'", function() -- toggle hlsearch, 2번 따닥 눌러�
   if vim.v.hlsearch == 1 then
     vim.cmd('nohlsearch | echon')
   else
+    -- cword가 빈 문자일 때
+    local cword = vim.fn.expand('<cword>')
+    if cword == '' then
+      vim.cmd('nohlsearch | echon')
+      return
+    end
+
     local saved_view = vim.fn.winsaveview()
     vim.cmd('normal! *N') -- 이다음 것을 찾은 뒤에 N으로 돌아기 때문에 윈도우가 포커싱한 위치가 달라질 수 있다. 이를 보정해야함
     vim.fn.winrestview(saved_view)
