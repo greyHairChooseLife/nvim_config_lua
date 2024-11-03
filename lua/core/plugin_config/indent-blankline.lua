@@ -1,5 +1,5 @@
 vim.api.nvim_set_hl(0, "MyBG", { fg = "#24283b" })
-vim.api.nvim_set_hl(0, "MyFG", { fg = "#FF8C00" })
+vim.api.nvim_set_hl(0, "MyFG", { fg = "#5F5F5F" })
 
 require("ibl").setup {
   enabled = true,
