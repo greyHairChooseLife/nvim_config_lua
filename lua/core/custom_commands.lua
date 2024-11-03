@@ -13,9 +13,9 @@ function ShowCursor()
     vim.o.cursorcolumn = true
     vim.o.relativenumber = true
     vim.cmd([[
-        highlight CursorColumn guifg=white guibg=#AB82A5
-        highlight CursorLine guifg=white guibg=#AB82A5
-      ]])
+      highlight CursorColumn guifg=white guibg=#AB82A5
+      highlight CursorLine guifg=white guibg=#AB82A5
+    ]])
   end
 end
 
