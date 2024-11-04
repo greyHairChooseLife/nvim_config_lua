@@ -247,6 +247,8 @@ return require('packer').startup(function(use)
 
   use { 'metakirby5/codi.vim' }
 
+  use { "cdmill/focus.nvim" }
+
   -- use 'folke/trouble.nvim' -- coc.nvim은 쓰기 어렵고, 내장 lsp 매니저(?)로 전환할 때 활용하자
 
   -- NOTE: 너무 초기라 시기상조다. 일단은 q:를 활용하자.
