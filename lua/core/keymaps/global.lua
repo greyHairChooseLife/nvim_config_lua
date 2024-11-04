@@ -365,6 +365,7 @@ vim.keymap.set({ 'n', 'v' }, '<C-l>', ']zw')
 vim.keymap.set({ 'n', 'v' }, '<C-n>', '%][%zz')
 vim.keymap.set({ 'n', 'v' }, '<C-p>', '[]%zz')
 
+vim.keymap.set({ 'n', 'v' }, '<C-q>', '<Cmd>Focus<CR>')
 
 -- NOTE:
 -- 이놈들은 정확히 뭐하는건지 모르겠다.
