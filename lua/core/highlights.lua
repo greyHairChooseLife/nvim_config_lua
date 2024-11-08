@@ -142,14 +142,16 @@ vim.cmd [[
 
 -- Gvdiff, diffview
 vim.cmd [[
-  highlight DiffAdd guibg=#1a472a guifg=NONE
+  highlight DiffAdd guibg=#1e6e40 guifg=NONE " #1a472a
   highlight DiffChange guibg=#867300 guifg=NONE
 ]]
 
 vim.cmd [[
-  highlight RenderMarkdownCode guibg=#2c2832 guifg=NONE
-  highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
-  highlight RenderMarkdownDash guifg=#000000
+  " highlight RenderMarkdownCode guibg=#2c2832 guifg=NONE
+  " highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
+  highlight RenderMarkdownCode guibg=#242024 guifg=NONE
+  highlight RenderMarkdownCodeInline guibg=#242024 guifg=NONE
+  highlight RenderMarkdownDash guifg=#FFFFFF
   highlight RenderMarkdownQuote guifg=#5F5F5F
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
   highlight RenderMarkdownUnchecked guifg=#CA4500
@@ -278,4 +280,10 @@ vim.cmd [[
   highlight AerialVariable guifg=#DCDCAA gui=italic
   highlight AerialVariableIcon guifg=#DCDCAA
   highlight AerialLine guibg=#4d6652
+]]
+
+-- avante
+vim.cmd [[
+  highlight AvanteConflictCurrentLabel guifg=#FFA500 guibg=#000000
+  highlight AvanteConflictIncomingLabel guifg=#FFA500 guibg=#000000
 ]]

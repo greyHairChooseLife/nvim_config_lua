@@ -1,14 +1,16 @@
 require('avante_lib').load()
 require('avante').setup({
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+  -- provider = "claude", -- Recommend using Claude
   provider = "claude", -- Recommend using Claude
   auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    model = "claude-3-5-sonnet-20240620",
-    temperature = 0,
-    max_tokens = 4096,
-  },
+  -- claude = {
+  --   endpoint = "https://api.anthropic.com",
+  --   model = "claude-3-5-sonnet-latest",
+  --   -- model = "claude-3-5-haiku-20241022", -- yet no supported
+  --   temperature = 0,
+  --   max_tokens = 4096,
+  -- },
   behaviour = {
     auto_suggestions = false, -- Experimental stage
     auto_set_highlight_group = true,
@@ -20,7 +22,7 @@ require('avante').setup({
     --- @class AvanteConflictMappings
     diff = {
       ours = "co",
-      theirs = "ct",
+      theirs = "ci",
       all_theirs = "ca",
       both = "cb",
       cursor = "c<Space>",
@@ -34,8 +36,8 @@ require('avante').setup({
       dismiss = "<C-]>",
     },
     jump = {
-      next = "]]",
-      prev = "[[",
+      next = "cn",
+      prev = "cp",
     },
     submit = {
       normal = "<CR>",
@@ -48,21 +50,24 @@ require('avante').setup({
       reverse_switch_windows = "<S-Tab>",
     },
   },
-  hints = { enabled = true },
+  hints = { enabled = false },
   windows = {
     ---@type "right" | "left" | "top" | "bottom"
     position = "right", -- the position of the sidebar
     wrap = true, -- similar to vim.o.wrap
-    width = 30, -- default % based on available width
+    width = 60, -- default % based on available width
     sidebar_header = {
-      align = "center", -- left, center, right for title
-      rounded = true,
+      align = "right", -- left, center, right for title
+      rounded = false,
     },
+    ask = {
+      start_insert = false,
+    }
   },
   highlights = {
     ---@type AvanteConflictHighlights
     diff = {
-      current = "DiffText",
+      current = "DiffDelete",
       incoming = "DiffAdd",
     },
   },
@@ -70,6 +75,6 @@ require('avante').setup({
   diff = {
     autojump = true,
     ---@type string | fun(): any
-    list_opener = "copen",
+    -- list_opener = "copen",
   },
 })

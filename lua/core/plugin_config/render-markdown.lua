@@ -165,6 +165,8 @@ require('render-markdown').setup({
     left_pad = 5,
     -- Amount of padding to add to the right of code blocks when width is 'block'
     right_pad = 20,
+    left_margin = 4,
+    min_width = 100,
     -- Width of the code block background:
     --  block: width of the code block
     --  full: full width of the window
@@ -187,7 +189,7 @@ require('render-markdown').setup({
     enabled = true,
     -- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'
     -- The icon gets repeated across the window's width
-    icon = '',
+    icon = '',
     -- Width of the generated line:
     --  <integer>: a hard coded width value
     --  full: full width of the window

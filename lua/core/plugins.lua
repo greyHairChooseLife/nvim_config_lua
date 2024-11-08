@@ -217,10 +217,6 @@ return require('packer').startup(function(use)
     lazy = false,
     version = false,
     BUILD_FROM_SOURCE = true,
-    config = function()
-      require("avante_lib").load()
-      require("avante").setup()
-    end,
     requires = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
