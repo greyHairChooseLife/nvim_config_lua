@@ -55,7 +55,7 @@ require('avante').setup({
     ---@type "right" | "left" | "top" | "bottom"
     position = "right", -- the position of the sidebar
     wrap = true, -- similar to vim.o.wrap
-    width = 60, -- default % based on available width
+    width = 50, -- default % based on available width
     sidebar_header = {
       align = "right", -- left, center, right for title
       rounded = false,

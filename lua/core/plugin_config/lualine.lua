@@ -187,7 +187,7 @@ require('lualine').setup {
     component_separators = { left = ' 󰪍󰪍 ', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
-      statusline = { 'packer', 'alpha', 'vimwiki', 'aerial' },
+      statusline = { 'packer', 'alpha', 'vimwiki', 'aerial', 'Avante', 'AvanteInput' },
       -- winbar = {},
     },
     ignore_focus = {},
