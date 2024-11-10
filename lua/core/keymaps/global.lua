@@ -367,6 +367,9 @@ vim.keymap.set({ 'n', 'v' }, '<C-p>', '[]%zz')
 
 vim.keymap.set({ 'n', 'v' }, '<C-q>', '<Cmd>Focus<CR>')
 
+vim.keymap.set("n", "<leader>y", Save_entire_buffer_to_register_for_AI_prompt, { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>y", Save_visual_selection_to_register_for_AI_prompt, { noremap = true, silent = true })
+
 -- NOTE:
 -- 이놈들은 정확히 뭐하는건지 모르겠다.
 --
