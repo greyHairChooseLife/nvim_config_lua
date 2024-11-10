@@ -1,7 +1,7 @@
 vim.cmd(
   [[
 function OpenMarkdownPreview (url)
-  execute "silent ! google-chrome --new-window --app=" . a:url
+  execute "silent ! brave --new-window --app=" . a:url
 endfunction
 ]]
 )
