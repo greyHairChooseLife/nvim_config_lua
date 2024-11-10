@@ -13,8 +13,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('t', '<A-n>v', '<Cmd>vert rightbelow new<CR>', {buffer = true})
     vim.keymap.set('t', '<A-n>t', NewTabWithPrompt, {buffer = true})
     vim.keymap.set('t', '<A-r>', RenameCurrentTab, {buffer = true})
-    vim.keymap.set('t', '<A-m>l', MoveTabRight, {buffer = true})
-    vim.keymap.set('t', '<A-m>h', MoveTabLeft, {buffer = true})
+    vim.keymap.set('t', '<A-.>', MoveTabRight, {buffer = true})
+    vim.keymap.set('t', '<A-,>', MoveTabLeft, {buffer = true})
     -- FOCUS TABS
     vim.keymap.set('t', '<A-p>', [[<C-\><C-n>gt]], { noremap = true, silent = true, buffer = true })
     vim.keymap.set('t', '<A-o>', [[<C-\><C-n>gT]], { noremap = true, silent = true, buffer = true })
