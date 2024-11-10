@@ -202,7 +202,9 @@ function NewTabWithPrompt()
   -- 입력 프롬프트 표시
   local tabname = vim.fn.input('Enter tab name: ')
   if tabname == '' then
-    tabname = 'Tab ' .. vim.fn.tabpagenr('$') + 1
+    -- tabname = 'Tab ' .. vim.fn.tabpagenr('$') + 1
+    -- 입력이 없거나 ESC를 누른 경우, 함수 종료
+    return
   end
   -- 새로운 탭 생성 및 이름 설정
   vim.cmd('tabnew')
@@ -217,7 +219,9 @@ function RenameCurrentTab()
   -- 입력 프롬프트를 표시하여 새 탭 이름을 입력받습니다
   local tabname = vim.fn.input('Enter new tab name: ')
   if tabname == '' then
-    tabname = 'Tab ' .. tabnr
+    -- tabname = 'Tab ' .. tabnr
+    -- 입력이 없거나 ESC를 누른 경우, 함수 종료
+    return
   end
 
   -- 현재 탭의 이름을 설정합니다
