@@ -142,7 +142,7 @@ vim.cmd [[
 
 -- Gvdiff, diffview
 vim.cmd [[
-  highlight DiffAdd guibg=#1e6e40 guifg=NONE " #1a472a
+  highlight DiffAdd guibg=#1a472a guifg=NONE " #1e6e40
   highlight DiffChange guibg=#867300 guifg=NONE
 ]]
 
