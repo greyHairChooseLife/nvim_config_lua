@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   callback = function()
     if vim.bo.filetype == 'Avante' then
       vim.cmd("stopinsert")
+      vim.opt.signcolumn = "yes"
     end
     if vim.bo.filetype == 'AvanteInput' then
       vim.cmd("stopinsert")
