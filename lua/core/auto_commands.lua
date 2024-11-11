@@ -9,15 +9,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         api.tree.open()
       end
     end
-  end,
-})
 
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  callback = function()
     if vim.bo.filetype == 'Avante' then
       vim.cmd("stopinsert")
       vim.opt.signcolumn = "yes"
     end
+
     if vim.bo.filetype == 'AvanteInput' then
       vim.cmd("stopinsert")
       vim.opt.wrap = true
@@ -77,15 +74,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- markdown은 108자로 자동 줄바꿈
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    -- vim.bo.textwidth = 108 -- 이놈은 실제로 줄바꿈을 해버린다. 파일 내용이 바뀐다!
-    -- goyo, zen-mode를 사용하자
-  end
-})
-
 -- highlight yanked area
 vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
@@ -98,11 +86,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
-    -- 현재 파일의 파일 타입을 가져옵니다.
-    local filetype = vim.bo.filetype
-
-    -- 만약 파일 타입이 markdown이면 공백 제거를 하지 않습니다.
-    if filetype == "markdown" then
+    -- 예외 규정
+    if vim.bo.filetype == "markdown" then
       return
     end
 
