@@ -132,16 +132,16 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- -- 명령 입력 시 cmdheight를 1로 설정
--- vim.api.nvim_create_autocmd("CmdlineEnter", {
---   callback = function()
---     vim.opt.cmdheight = 1
---   end,
--- })
---
--- -- 명령 입력 종료 시 cmdheight를 0으로 설정
--- vim.api.nvim_create_autocmd("CmdlineLeave", {
---   callback = function()
---     vim.opt.cmdheight = 0
---   end,
--- })
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+  callback = function()
+    -- -- 명령줄 입력 시에만 활성화
+    -- vim.opt.cmdheight = 1
+  end,
+})
+
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+  callback = function()
+    -- -- 명령줄 입력 시에만 활성화
+    -- vim.opt.cmdheight = 0
+  end,
+})
