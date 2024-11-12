@@ -53,6 +53,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', function()
   -- vim.cmd('IBLToggle')
 end)
 vim.keymap.set('v', 'v', '<Esc>')
+vim.keymap.set('n', ',.ai', "<cmd>OrganizeImport<cr>") -- coc code action
 
 -- vim.keymap.set("v", "<", "<gv")
 -- vim.keymap.set("v", ">", ">gv")
