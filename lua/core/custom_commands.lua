@@ -380,3 +380,51 @@ function Save_visual_selection_to_register_for_AI_prompt()
     vim.fn.setreg("+", result)
   end)
 end
+
+function ReloadLayout()
+  vim.cmd('wincmd = | echon');
+  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    vim.cmd('AerialToggle')
+    vim.cmd('AerialToggle')
+  require('quicker').refresh()
+end
+
+function ToggleHilightSearch()
+  if vim.v.hlsearch == 1 then
+    vim.cmd('nohlsearch | echon')
+  else
+    -- cword가 빈 문자일 때
+    local cword = vim.fn.expand('<cword>')
+    if cword == '' then
+      vim.cmd('nohlsearch | echon')
+      return
+    end
+
+    local saved_view = vim.fn.winsaveview()
+    vim.cmd('normal! *N') -- 이다음 것을 찾은 뒤에 N으로 돌아기 때문에 윈도우가 포커싱한 위치가 달라질 수 있다. 이를 보정해야함
+    vim.fn.winrestview(saved_view)
+  end
+end
+
+-- NVIM-TREE BUFFER 또는 (조건에 따라)DIFFVIEWFILE PANEL로 즉시 이동
+function DiffviewFilePanelFocusConditional()
+  local buffers = vim.api.nvim_list_bufs()
+  local diffviewOpen = false
+
+  for _, buf in ipairs(buffers) do
+    local ft = vim.bo[buf].filetype
+    if ft == 'DiffviewFiles' then
+      diffviewOpen = true
+      break
+    end
+  end
+
+  if diffviewOpen then
+    vim.cmd('DiffviewFocusFiles')
+  else
+    -- Diffview가 열려 있지 않을 경우, NvimTreeFocus 명령을 실행합니다.
+    vim.cmd('NvimTreeFocus')
+  end
+end
+

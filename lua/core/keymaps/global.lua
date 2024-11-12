@@ -5,14 +5,7 @@
 -- =========================================================================
 -- MISC TIPS
 vim.keymap.set('n', '~', '<cmd>wincmd p<CR>') -- switch to the previous window, last cursor position
-vim.keymap.set('n', ',r', function()
-  vim.cmd('wincmd = | echon');
-  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-    vim.cmd('AerialToggle')
-    vim.cmd('AerialToggle')
-  require('quicker').refresh()
-end)                                                                     -- 창 크기 동일하게
+vim.keymap.set('n', ',r', ReloadLayout)   -- 창 크기 동일하게
 vim.keymap.set({ 'n', 'v' }, ',p', '"0p')                                -- paste last thing yanked, not deleted
 vim.keymap.set("n", ",C", [[:%s/<C-r><C-w>//g<Left><Left>]])             -- change word under cursor globally
 vim.keymap.set("n", ",sx", "<cmd>sp | wincmd w<CR>") -- go to definition in splitted window (horizontal)
@@ -24,22 +17,7 @@ vim.keymap.set({ 'n', 'v' }, 'gh', '^')                                  -- move
 vim.keymap.set({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
 vim.keymap.set({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 vim.keymap.set({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
-vim.keymap.set({ 'n' }, "'", function() -- toggle hlsearch, 2번 따닥 눌러서 검색 기록 제거의 역할도 겸한다.
-  if vim.v.hlsearch == 1 then
-    vim.cmd('nohlsearch | echon')
-  else
-    -- cword가 빈 문자일 때
-    local cword = vim.fn.expand('<cword>')
-    if cword == '' then
-      vim.cmd('nohlsearch | echon')
-      return
-    end
-
-    local saved_view = vim.fn.winsaveview()
-    vim.cmd('normal! *N') -- 이다음 것을 찾은 뒤에 N으로 돌아기 때문에 윈도우가 포커싱한 위치가 달라질 수 있다. 이를 보정해야함
-    vim.fn.winrestview(saved_view)
-  end
-end)                                       -- search current word
+vim.keymap.set({ 'n' }, "'", ToggleHilightSearch)
 vim.keymap.set('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
@@ -48,10 +26,7 @@ vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                                  
 vim.keymap.set({ 'n', 'v' }, '<A-Enter>', OnlyThisBufferInCurrentTab)                                                    -- 현재 탭의 현재 버퍼만 남기기
 -- vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기, 키맵 중복, 이건 굳이 키맵으로 할 필요가 없을듯.
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v' }, '<Space>', function()
-  BlinkCursorLine()
-  -- vim.cmd('IBLToggle')
-end)
+vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 vim.keymap.set('v', 'v', '<Esc>')
 vim.keymap.set('n', ',.ai', "<cmd>OrganizeImport<cr>") -- coc code action
 
@@ -232,28 +207,6 @@ vim.keymap.set("n", "<A-S-Up>", "<cmd>horizontal resize +8<CR>", {})
 vim.keymap.set('n', "<Tab>", '<cmd>bnext<CR>', { silent = true })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { silent = true })
 
-
--- NVIM-TREE BUFFER 또는 (조건에 따라)DIFFVIEWFILE PANEL로 즉시 이동
-function DiffviewFilePanelFocusConditional()
-  local buffers = vim.api.nvim_list_bufs()
-  local diffviewOpen = false
-
-  for _, buf in ipairs(buffers) do
-    local ft = vim.bo[buf].filetype
-    if ft == 'DiffviewFiles' then
-      diffviewOpen = true
-      break
-    end
-  end
-
-  if diffviewOpen then
-    vim.cmd('DiffviewFocusFiles')
-  else
-    -- Diffview가 열려 있지 않을 경우, NvimTreeFocus 명령을 실행합니다.
-    vim.cmd('NvimTreeFocus')
-  end
-end
-
 -- vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, noremap = true })
 
 
@@ -370,15 +323,3 @@ vim.keymap.set({ 'n', 'v' }, '<C-q>', '<Cmd>Focus<CR>')
 
 vim.keymap.set("n", "<leader>y", Save_entire_buffer_to_register_for_AI_prompt, { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>y", Save_visual_selection_to_register_for_AI_prompt, { noremap = true, silent = true })
-
--- NOTE:
--- 이놈들은 정확히 뭐하는건지 모르겠다.
---
--- vim.keymap.set('n', '<leader><leader>o', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-
-
--- NOTE:
--- 이놈들은 당분간 안쓰는 것들
-
--- -- FLUTTER-TOOLS
--- vim.keymap.set('n', '<leader><leader>Fo', '<cmd>FlutterOutlineToggle<CR>') -- toggle widget outline
