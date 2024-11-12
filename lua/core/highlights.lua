@@ -95,6 +95,7 @@ vim.cmd [[
   highlight NvimTreeModified guifg=#ffcc00
 ]]
 
+-- Vimwiki
 vim.cmd [[
   " 헤더 색상 설정
   highlight VimwikiHeader1 guifg=#AF4500 guibg=#007F7F gui=bold
@@ -121,6 +122,7 @@ vim.cmd [[
   highlight VimwikiTodo guifg=#000000 guibg=#87CEFA gui=bold
 ]]
 
+-- GitSigns
 vim.cmd [[
   highlight GitSignsAdd guifg=#40cd52
   highlight GitSignsChange guifg=#ffcc00
@@ -131,9 +133,8 @@ vim.cmd [[
   highlight GitSignsTopdelete guifg=#f1502f
   highlight GitSignsUntracked guifg=#7f52ff
 
-  " 제대로 작동을 안하는거같어...
-  highlight GitSignsAddInline guibg=#32CD32 guifg=NONE
-  highlight GitSignsChangeInline guibg=#FFFF00 guifg=NONE
+  highlight GitSignsAddInline guibg=#ffcc00 guifg=#FF4500 gui=italic
+  highlight GitSignsChangeInline guibg=#FFFF00 guifg=NONE " useless?
   highlight GitSignsDeleteInline guibg=#800000 guifg=NONE
   highlight GitSignsAddLnInline guibg=#32CD32 guifg=NONE
   highlight GitSignsChangeLnInline guibg=#FFFF00 guifg=NONE
@@ -143,7 +144,9 @@ vim.cmd [[
 -- Gvdiff, diffview
 vim.cmd [[
   highlight DiffAdd guibg=#1a472a guifg=NONE " #1e6e40
-  highlight DiffChange guibg=#867300 guifg=NONE
+  highlight DiffChange guibg=#312E03 guifg=NONE
+  highlight DiffText guibg=#ffcc00 guifg=#FF4500 gui=italic
+  highlight DiffDelete guibg=#4f2d3d guifg=NONE
 ]]
 
 vim.cmd [[
