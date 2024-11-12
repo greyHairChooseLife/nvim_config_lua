@@ -438,3 +438,10 @@ function UpdateCommandWinodwHistory()
   end
   print("Command-line history updated.")
 end
+
+function VDiffSplitOnTab()
+  vim.cmd("sp | wincmd T | Gvdiffsplit | wincmd l")
+
+  local tabnr = vim.fn.tabpagenr()
+  vim.fn.settabvar(tabnr, 'tabname', 'Diff')
+end

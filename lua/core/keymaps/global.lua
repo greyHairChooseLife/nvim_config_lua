@@ -104,7 +104,7 @@ vim.keymap.set('n', 'gtQ', '<cmd>tabclose!<CR>')
 vim.keymap.set('n', 'gtq', function()
   -- 탭 이름이 'abcd' 라면
   local tabname = GetCurrentTabName()
-  if tabname == ' Commit' or tabname == ' File' or tabname == 'GV' then
+  if tabname == ' Commit' or tabname == ' File' or tabname == 'GV' or tabname == 'Diff' then
     vim.cmd('tabclose!')
     return
   end
@@ -242,7 +242,7 @@ vim.keymap.set('n', ',.gg', '<cmd>G<CR>')
 vim.keymap.set('n', '<leader>cc', '<cmd>silent G commit<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ce', '<cmd>silent G commit --amend<CR>', { silent = true })
 -- 현재 버퍼 gitdiff 확인
-vim.keymap.set('n', ',vd', '<cmd>sp<CR><C-w>T<cmd>Gvdiffsplit | wincmd l<CR>')
+vim.keymap.set('n', ',vd', VDiffSplitOnTab)
 vim.keymap.set('n', ',vD', '<cmd>vert diffsplit ')
 -- git review
 -- TODO:
