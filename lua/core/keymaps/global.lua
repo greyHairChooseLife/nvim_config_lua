@@ -46,7 +46,7 @@ vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr 
 
 vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                                                                           -- CamelCase
 vim.keymap.set({ 'n', 'v' }, '<A-Enter>', OnlyThisBufferInCurrentTab)                                                    -- 현재 탭의 현재 버퍼만 남기기
-vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기
+-- vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기, 키맵 중복, 이건 굳이 키맵으로 할 필요가 없을듯.
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', function()
   BlinkCursorLine()
@@ -172,9 +172,9 @@ vim.keymap.set('n', 'zd', 'zd<cmd>mkview<CR>')
 
 
 -- NEW WINDOW & TAB
-vim.keymap.set('n', '<A-n>x', '<cmd>rightbelow new<CR>')
-vim.keymap.set('n', '<A-n>v', '<cmd>vert rightbelow new<CR>')
-vim.keymap.set('n', '<A-n>t', NewTabWithPrompt)
+vim.keymap.set('n', '<A-x>', '<cmd>rightbelow new<CR>')
+vim.keymap.set('n', '<A-v>', '<cmd>vnew<CR>')
+vim.keymap.set('n', '<A-t>', NewTabWithPrompt)
 vim.keymap.set('n', '<A-r>', RenameCurrentTab)
 vim.keymap.set('n', '<A-.>', MoveTabRight)
 vim.keymap.set('n', '<A-,>', MoveTabLeft)

@@ -9,9 +9,9 @@ vim.api.nvim_create_autocmd("FileType", {
     -- keymap
     vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = true})
     -- NEW WINDOW & TAB
-    vim.keymap.set('t', '<A-n>x', '<Cmd>rightbelow new<CR>', {buffer = true})
-    vim.keymap.set('t', '<A-n>v', '<Cmd>vert rightbelow new<CR>', {buffer = true})
-    vim.keymap.set('t', '<A-n>t', NewTabWithPrompt, {buffer = true})
+    vim.keymap.set('t', '<A-x>', '<Cmd>rightbelow new<CR>', {buffer = true})
+    vim.keymap.set('t', '<A-v>', '<Cmd>vnew<CR>', {buffer = true})
+    vim.keymap.set('t', '<A-t>', NewTabWithPrompt, {buffer = true})
     vim.keymap.set('t', '<A-r>', RenameCurrentTab, {buffer = true})
     vim.keymap.set('t', '<A-.>', MoveTabRight, {buffer = true})
     vim.keymap.set('t', '<A-,>', MoveTabLeft, {buffer = true})
