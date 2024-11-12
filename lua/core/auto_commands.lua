@@ -136,6 +136,9 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
   callback = function()
     -- -- 명령줄 입력 시에만 활성화
     -- vim.opt.cmdheight = 1
+
+    -- KEYMAP
+    vim.api.nvim_set_keymap("c", "<Esc>", [[<C-u><Cmd>lua vim.fn.histdel("cmd", 0)<CR><Esc><Cmd>echon<CR>]], { noremap = true, silent = true }) -- 실행하지 않은 명령은 cmd history에 기록 안됨
   end,
 })
 
@@ -143,5 +146,37 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
   callback = function()
     -- -- 명령줄 입력 시에만 활성화
     -- vim.opt.cmdheight = 0
+  end,
+})
+
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "CmdlineWindowBG", { bg = "#0d0d0d" })
+    vim.api.nvim_set_hl(0, "CmdlineWindowFG", { fg = "#0d0d0d" })
+    vim.wo.winhighlight = "Normal:CmdlineWindowBG,EndOfBuffer:CmdlineWindowFG,SignColumn:CmdlineWindowBG"
+    vim.wo.relativenumber = false
+    vim.wo.number = false
+    vim.o.laststatus = 0
+    vim.o.cmdheight = 0
+
+    vim.cmd("resize 20 | normal zb")
+
+    -- KEYMAP
+    local opts = { buffer = true }
+    vim.keymap.set("n", "gq", "<Cmd>q<CR>", opts)
+    vim.keymap.set("n", "gw", UpdateCommandWinodwHistory, opts)
+    vim.keymap.set("n", "ge", function()
+      UpdateCommandWinodwHistory()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
+    end, opts)
+  end,
+})
+
+vim.api.nvim_create_autocmd("CmdwinLeave", {
+  callback = function()
+    -- vim.api.nvim_del_augroup_by_name("CmdwinEnter_GUI_KEYMAP")
+
+    vim.o.cmdheight = 1
+    vim.o.laststatus = 2
   end,
 })

@@ -428,3 +428,13 @@ function DiffviewFilePanelFocusConditional()
   end
 end
 
+function UpdateCommandWinodwHistory()
+  vim.fn.histdel("cmd", -1)
+  for i = 1, vim.fn.line("$") do
+    local cmd = vim.fn.getline(i)
+    if cmd ~= "" then  -- 빈 줄은 무시
+      vim.fn.histadd("cmd", cmd)
+    end
+  end
+  print("Command-line history updated.")
+end
