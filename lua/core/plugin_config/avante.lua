@@ -77,4 +77,8 @@ require('avante').setup({
     ---@type string | fun(): any
     -- list_opener = "copen",
   },
+  --- @class AvanteRepoMapConfig
+  repo_map = {
+    ignore_patterns = { "%.git", "%.worktree", "__pycache__", "node_modules" }, -- ignore files matching these
+  },
 })
