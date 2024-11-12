@@ -1,3 +1,5 @@
+local opts = { buffer = true, silent = true }
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "NvimTree",
   callback = function()
@@ -50,8 +52,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 
     -- keymap
-    vim.keymap.set({ 'n', 'v' }, '-', function() open_oil_relatively() end, { noremap = true, silent = true, buffer = true })
-    vim.keymap.set({ 'n', 'v' }, '_', function() open_oil_relatively("tab") end, { noremap = true, silent = true, buffer = true })
+    vim.keymap.set({ 'n', 'v' }, '-', function() open_oil_relatively() end, opts)
+    vim.keymap.set({ 'n', 'v' }, '_', function() open_oil_relatively("tab") end, opts)
     vim.keymap.set({ 'n', 'v' }, 'i', function()
       local oil = require("oil")
       local util = require("oil.util")
@@ -75,18 +77,25 @@ vim.api.nvim_create_autocmd("FileType", {
         -- nvim-tree에서 포커싱된 노드로 커서 이동
         vim.fn.search(name)
       end)
-    end, {silent = true, buffer = true })
+    end, opts)
 
     vim.keymap.set('n', '<A-n>v', function()
       vim.cmd('vert rightbelow new')
       vim.cmd('NvimTreeToggle')
       vim.cmd('NvimTreeToggle')
       vim.cmd('wincmd w')
-    end, { buffer = true })
+    end, opts)
 
     vim.keymap.set({ 'n', 'v' }, 'gq', function()
       vim.cmd('q! | wincmd p')
       BlinkCursorLine(500)
-    end, { buffer = true, silent = true })
+    end, opts)
+
+    vim.keymap.set({ 'n', 'v' }, '<C-n>', function()
+      vim.cmd('vnew')
+      vim.cmd('NvimTreeToggle')
+      vim.cmd('NvimTreeToggle')
+      vim.cmd('wincmd p')
+    end, opts)
   end
 })
