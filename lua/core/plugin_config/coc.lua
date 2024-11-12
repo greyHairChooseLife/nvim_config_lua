@@ -27,6 +27,8 @@ local opts = { silent = true, noremap = true, expr = true, replace_keycodes = fa
 -- keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 keyset("i", "<C-n>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
 keyset("i", "<C-p>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+keyset("i", "<C-j>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+keyset("i", "<C-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 --[[  vimscript에서는 그냥 덮어씌워서 썼었다.
 
 " Use <Tab> and <S-Tab> to navigate the completion list
@@ -42,7 +44,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 keyset("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
 -- Use <c-j> to trigger snippets
-keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+-- keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
 --keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
 
@@ -57,10 +59,10 @@ keyset({ "n" }, "dn", "<Plug>(coc-diagnostic-next)", { silent = true })
 keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true }) -- 내가 클래스를 안/못 쓰니까 이놈의 필요성을 못느낀다.
 -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
 -- Telescope 연계
-vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope coc definitions<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gR', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gr', '<cmd>Telescope coc references<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', { noremap = true, silent = true })
+keyset('n', 'gd', '<cmd>Telescope coc definitions<CR>', { noremap = true, silent = true })
+keyset('n', 'gR', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
+keyset('n', 'gr', '<cmd>Telescope coc references<CR>', { noremap = true, silent = true })
+keyset('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', { noremap = true, silent = true })
 
 
 -- Use K to show documentation in preview window
@@ -119,7 +121,7 @@ local opts = { silent = true, nowait = true }
 --keyset("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 
 keyset("n", ",.ac", "<Plug>(coc-codeaction-cursor)", opts)
-keyset("x", ",.av", "<Plug>(coc-codeaction-selected)", opts) -- Remap keys for apply code actions at the cursor position.
+keyset("x", ",.ac", "<Plug>(coc-codeaction-selected)", opts) -- Remap keys for apply code actions at the cursor position.
 keyset("n", ",.as", "<Plug>(coc-codeaction-source)", opts)   -- Remap keys for apply code actions affect whole buffer.
 
 -- Remap keys for applying codeActions to the current buffer
@@ -152,14 +154,18 @@ keyset("o", "ac", "<Plug>(coc-classobj-a)", opts)
 -- Remap <A-p> and <C-n> to scroll float windows/popups
 ---@diagnostic disable-next-line: redefined-local
 local opts = { silent = true, nowait = true, expr = true }
-keyset("n", "<A-n>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<A-n>"', opts)
-keyset("n", "<A-p>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-p>"', opts)
+keyset({ "n", "v" }, "<A-n>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<A-n>"', opts)
+keyset({ "n", "v" }, "<A-p>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-p>"', opts)
 keyset("i", "<A-n>",
   'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
 keyset("i", "<A-p>",
   'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
-keyset("v", "<A-n>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<A-n>"', opts)
-keyset("v", "<A-p>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-p>"', opts)
+keyset({ "n", "v" }, "<A-j>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<A-j>"', opts)
+keyset({ "n", "v" }, "<A-k>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<A-k>"', opts)
+keyset("i", "<A-j>",
+  'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
+keyset("i", "<A-k>",
+  'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
 
 
 -- Use CTRL-S for selections ranges
@@ -171,13 +177,13 @@ keyset("x", "V", "<Plug>(coc-range-select)", { silent = true })
 -- keyset("n", "<space>e", ":CocList extensions<cr>", opts)
 
 -- Add `:Format` command to format current buffer
-vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+-- vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
 
 -- " Add `:Fold` command to fold current buffer
-vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
+-- vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
 
 -- Add `:OR` command for organize imports of the current buffer
-vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
+vim.api.nvim_create_user_command("OrganizeImport", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 
 -- Add (Neo)Vim's native statusline support
 -- NOTE: Please see `:h coc-status` for integrations with external plugins that
