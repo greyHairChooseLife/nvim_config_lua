@@ -24,7 +24,7 @@ P.setup({
     {
       "<",
       function()
-        P.collapse()
+        P.expand({ before = -5, after = -5, add_to_existing = true })
       end,
       desc = "Collapse quickfix context",
     },
