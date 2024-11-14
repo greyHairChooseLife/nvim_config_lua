@@ -30,3 +30,8 @@ require("core.floating_window");
 -- nvim-tree와 버퍼 관리 키맵, 특히 'gq'에 맵핑된 것이 제대로 동작을 안하는 부분이 있다. 문제되는 부분이 명확히 정리되지도 않았다.
 -- 이와 관련하여 nvim-tree의 wiki에 내용이 있다. nvim-tree 버퍼 외 1개 버퍼만 있을 시 bq로 윈도우가 완전히 닫히지 않는 문제다.
 -- (더불어 해당 wiki에 좋은 내용이 많으니 다시 한번 훑어보며 가져올만한게 없나 살피자.)
+--
+
+-- TODO:
+-- paste makes refold, 최상단에 붙여넣을 때만
+-- https://www.reddit.com/r/neovim/comments/1e7tfw2/pasting_line_by_p_makes_refold/
