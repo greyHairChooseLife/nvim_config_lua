@@ -431,12 +431,17 @@ function Save_visual_selection_to_register_for_AI_prompt()
 end
 
 function ReloadLayout()
-  vim.cmd('wincmd = | echon');
-  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-  vim.cmd('AerialToggle')
-  vim.cmd('AerialToggle')
-  require('quicker').refresh()
+  -- 현재 윈도우의 파일타입이 NvimTree이면서, 현재 탭의 유일한 윈도우인 경우
+  if vim.bo.filetype == 'NvimTree' and #vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage()) == 1 then
+    require('nvim-tree.api').tree.reload()
+  else
+    vim.cmd('wincmd = | echon');
+    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    vim.cmd('AerialToggle')
+    vim.cmd('AerialToggle')
+    require('quicker').refresh()
+  end
 end
 
 function ToggleHilightSearch()

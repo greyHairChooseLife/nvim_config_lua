@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- KEYMAP
     vim.keymap.set('n', 'gq', function()
-      vim.cmd('silent q!')
+      vim.cmd('silent q')
     end, {buffer = true})
     vim.keymap.set('n', 'gw', function()
       vim.cmd('silent w')

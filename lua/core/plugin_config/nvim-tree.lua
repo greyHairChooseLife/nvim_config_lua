@@ -101,12 +101,18 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'yr', api.fs.copy.relative_path, opts('Copy Relative Path'))
   vim.keymap.set('n', 'yf', api.fs.copy.filename, opts('Copy Name'))
   vim.keymap.set('n', ',r', function()
-    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-    vim.cmd('AerialToggle')
-    vim.cmd('AerialToggle')
-    require('quicker').refresh()
-    vim.cmd('wincmd = | echon | wincmd h');
+
+    if vim.bo.filetype == 'NvimTree' and #vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage()) == 1 then
+      require('nvim-tree.api').tree.reload()
+    else
+      require('nvim-tree.api').tree.reload()
+      require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+      require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+      vim.cmd('AerialToggle')
+      vim.cmd('AerialToggle')
+      require('quicker').refresh()
+      vim.cmd('wincmd = | echon | wincmd h');
+    end
   end, opts('Refresh'))
 end
 

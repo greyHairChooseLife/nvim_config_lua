@@ -69,7 +69,7 @@ oil.setup({
       oil.save({ confirm = false }, function()
         oil.close()
         vim.cmd("NvimTreeOpen")
-      vim.cmd("wincmd p | q! | wincmd p | echon")
+      vim.cmd("wincmd p | q | wincmd p | echon")
       end)
     end,
     ["gw"] = function()
@@ -78,7 +78,7 @@ oil.setup({
     ["gq"] = function() -- (저장x)취소 후 oil 버퍼를 nvim-tree버퍼로 치환
       oil.close()
       vim.cmd("NvimTreeOpen")
-      vim.cmd("wincmd p | q! | wincmd p | echon")
+      vim.cmd("wincmd p | q | wincmd p | echon")
     end,
     ["<C-l>"] = "actions.refresh",
     ["<BS>"] = "actions.parent",

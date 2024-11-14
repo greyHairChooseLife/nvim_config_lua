@@ -98,7 +98,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set({ 'n', 'v' }, '<C-n>', QF_MoveNext, { buffer = true })
     vim.keymap.set({ 'n', 'v' }, '<C-p>', QF_MovePrev, { buffer = true })
     vim.keymap.set({ 'n', 'v' }, 'gq', function()
-      vim.cmd('q! | wincmd p')
+      vim.cmd('q | wincmd p')
       BlinkCursorLine(500)
     end, { buffer = true, silent = true })
   end
