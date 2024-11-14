@@ -578,3 +578,41 @@ function PasteFromHistory()
     vim.api.nvim_put({ word }, 'c', true, true)  -- 현재 커서 위치에 단어 삽입
   end
 end
+
+function CocScrollUp()
+  -- floating 요소에 스크롤이 있는지 확인
+  if vim.fn['coc#float#has_scroll']() == 1 then
+    -- scroll
+    vim.fn['coc#float#scroll'](0)
+  else
+    vim.cmd('tabnext')
+  end
+end
+
+function CocScrollDown()
+  if vim.fn['coc#float#has_scroll']() == 1 then
+    -- scroll
+    vim.fn['coc#float#scroll'](1)
+  end
+end
+
+function CocScrollUp_K()
+  -- floating 요소에 스크롤이 있는지 확인
+  if vim.fn['coc#float#has_scroll']() == 1 then
+    -- scroll
+    vim.fn['coc#float#scroll'](0)
+  else
+    vim.cmd('wincmd k')
+  end
+end
+
+function CocScrollDown_J()
+  if vim.fn['coc#float#has_scroll']() == 1 then
+    -- scroll
+    vim.fn['coc#float#scroll'](1)
+  else
+    vim.cmd('wincmd j')
+  end
+end
+
+

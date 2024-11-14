@@ -169,8 +169,10 @@ vim.keymap.set('n', '<A-t>', NewTabWithPrompt)
 vim.keymap.set('n', '<A-r>', RenameCurrentTab)
 vim.keymap.set('n', '<A-.>', MoveTabRight)
 vim.keymap.set('n', '<A-,>', MoveTabLeft)
+
+vim.keymap.set('n', '<A-p>', CocScrollUp)
+vim.keymap.set('n', '<A-n>', CocScrollDown)
 -- FOCUS TABS
-vim.keymap.set('n', '<A-p>', 'gt')
 vim.keymap.set('n', '<A-o>', 'gT')
 vim.keymap.set('n', '<A-1>', '1gt')
 vim.keymap.set('n', '<A-2>', '2gt')
@@ -183,8 +185,8 @@ vim.keymap.set('n', '<A-8>', '8gt')
 vim.keymap.set('n', '<A-9>', '9gt')
 -- FOCUS WINDOW
 vim.keymap.set('n', '<A-h>', '<cmd>wincmd h<CR>')
-vim.keymap.set('n', '<A-j>', '<cmd>wincmd j<CR>')
-vim.keymap.set('n', '<A-k>', '<cmd>wincmd k<CR>')
+vim.keymap.set('n', '<A-j>', CocScrollDown_J)
+vim.keymap.set('n', '<A-k>', CocScrollUp_K)
 vim.keymap.set('n', '<A-l>', '<cmd>wincmd l<CR>')
 -- MOVE WINDOW POSITION
 vim.keymap.set('n', '<A-H>', '<Cmd>WinShift left<CR>')

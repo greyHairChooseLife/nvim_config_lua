@@ -44,5 +44,6 @@
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.parameterTypes": false,
 
-  "pairs.disableLanguages": ["vimwiki", "markdown", "TelescopePrompt"]
+  "pairs.disableLanguages": ["vimwiki", "markdown", "TelescopePrompt"],
+  "pretty-ts-errors.codeBlockHighlightType": "prettytserr"
 }
