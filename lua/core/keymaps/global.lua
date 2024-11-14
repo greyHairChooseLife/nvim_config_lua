@@ -56,6 +56,20 @@ vim.keymap.set("v", "<A-l>", ">gv")
 
 vim.keymap.set('n', '<C-t>', OpenOrFocusTerm)
 
+-- 삽입 도중 undo
+vim.keymap.set('i', '<C-h>', function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, true, true), 'n', true)
+  DeleteAndStore()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), 'n', true)
+end, { noremap = true, silent = true })
+
+-- 삽입 도중 redo
+vim.keymap.set('i', '<C-l>', function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, true, true), 'n', true)
+  PasteFromHistory()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", true, true, true), 'n', true)
+end, { noremap = true, silent = true })
+
 -- 디버깅
 vim.keymap.set('i', 'cl<cr>', Insert_console_log, { noremap = true, silent = true })
 vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", { noremap = true, silent = true })
