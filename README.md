@@ -51,6 +51,28 @@ gh.nvim plugin이 루아 아니면 설치 및 설정이 너무 어려웠다. 그
 - [nerd font](https://www.nerdfonts.com/cheat-sheet)
 - [some tips](https://www.reddit.com/r/neovim/comments/1ehidxy/you_can_remove_padding_around_neovim_instance/)
 
+## 버퍼 리스트 관련 기본팁
+
+> 아래를 통해 버퍼 리스트를 가져올 수 있다.
+> listed_buffers = vim.fn.getbufinfo({ buflisted = true })
+>
+> 이때 결과는 {index = value} 테이블이고, 이때 value는 아래와 같은 테이블이다.
+>
+> - lnum
+> - changed
+> - linecount
+> - signs
+> - variables
+> - windows
+> - changedtick
+> - lastused
+> - listed
+> - hidden
+> - name
+> - bufnr
+> - command
+> - loaded
+
 ## 이사람 스타일이 괜찮다. 참고하자
 
 - [vim config link](https://github.com/phenax/neovim-config/blob/main/lua%2F_plugins%2Ftelescope.lua#L193-L196)
