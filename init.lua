@@ -33,7 +33,3 @@ require("core.floating_window");
 
 -- TODO:
 -- fugitive 'I'에 맵핑한 git add -p 의 기능이 뭔가 이상하다. esc로 빠져나가는 부분이 정상이 아닌듯. 버퍼 안에 버퍼를 띄우는데, 혹시 flatten.nvim과 관련 있는 내용이지 싶다.
-
-
--- TODO:
--- lualine 반응이 매우 느려졌다. 왜? 개선이 필요하다.
