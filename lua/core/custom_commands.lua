@@ -445,3 +445,13 @@ function VDiffSplitOnTab()
   local tabnr = vim.fn.tabpagenr()
   vim.fn.settabvar(tabnr, 'tabname', 'Diff')
 end
+
+function NextBuffAfterCleaing()
+  CloseEmptyUnnamedBuffers()
+  vim.cmd('bnext')
+end
+
+function PrevBuffAfterCleaing()
+  CloseEmptyUnnamedBuffers()
+  vim.cmd('bprev')
+end
