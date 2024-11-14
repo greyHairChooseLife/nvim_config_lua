@@ -500,12 +500,62 @@ function VDiffSplitOnTab()
   vim.fn.settabvar(tabnr, 'tabname', 'Diff')
 end
 
-function NextBuffAfterCleaing()
+function NextBuffAfterCleaning()
   CloseEmptyUnnamedBuffers()
   vim.cmd('bnext')
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if(bufname:find("Term: ")) then
+    vim.cmd('bnext')
+  end
+
+  local listed_buffers = vim.fn.getbufinfo({ buflisted = true })
+  local current_bufnr = vim.fn.bufnr()
+  local current_buf_index
+
+  for i, buf in ipairs(listed_buffers) do
+    if buf.bufnr == current_bufnr then
+      current_buf_index = i
+      break
+    end
+  end
+
+  PrintTime('  Buffers .. [' .. current_buf_index .. '/' .. #listed_buffers .. ']', 3)
 end
 
-function PrevBuffAfterCleaing()
+function PrevBuffAfterCleaning()
   CloseEmptyUnnamedBuffers()
   vim.cmd('bprev')
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if(bufname:find("Term: ")) then
+    vim.cmd('bprev')
+  end
+
+  local listed_buffers = vim.fn.getbufinfo({ buflisted = true })
+  local current_bufnr = vim.fn.bufnr()
+  local current_buf_index
+
+  for i, buf in ipairs(listed_buffers) do
+    if buf.bufnr == current_bufnr then
+      current_buf_index = i
+      break
+    end
+  end
+
+  PrintTime('  Buffers .. [' .. current_buf_index .. '/' .. #listed_buffers .. ']', 3)
+end
+
+-- message history에는 남기지 않는다.
+function PrintTime(msg, time)
+  vim.api.nvim_echo({{msg}}, false, {})
+
+  -- vim.defer_fn(function()
+  --   vim.api.nvim_echo({{''}}, false, {})  -- 빈 문자열로 메시지 지우기
+  -- end, time * 1000)
+  -- 성능 이슈가 있어 아래를 사용한다.
+  local timer = vim.loop.new_timer()
+  timer:start(time * 1000, 0, vim.schedule_wrap(function()
+    vim.api.nvim_echo({{''}}, false, {})  -- 빈 문자열로 메시지 지우기
+    timer:stop()
+    timer:close()
+  end))
 end
