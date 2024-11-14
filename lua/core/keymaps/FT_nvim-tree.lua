@@ -79,6 +79,13 @@ vim.api.nvim_create_autocmd("FileType", {
       end)
     end, opts)
 
+    vim.keymap.set({ 'n', 'v' }, '<A-v>', function()
+      vim.cmd('vnew')
+      vim.cmd('NvimTreeToggle')
+      vim.cmd('NvimTreeToggle')
+      vim.cmd('wincmd p')
+    end, opts)
+
     vim.keymap.set({ 'n', 'v' }, 'gq', function()
       vim.cmd('q! | wincmd p')
       BlinkCursorLine(500)
