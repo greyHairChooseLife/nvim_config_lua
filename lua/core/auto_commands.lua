@@ -197,7 +197,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     -- keymap
     vim.keymap.set('n', 'gq', '<Cmd>q<CR>', {buffer = true}) -- 버퍼는 종료하지 않는다. (e)xit으로 종료할 수 있다.
     vim.keymap.set('n', 'cc', [[i<C-u>]], {buffer = true})
-    -- vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = true})
     -- NEW WINDOW & TAB
     vim.keymap.set('t', '<A-x>', '<Cmd>rightbelow new<CR>', {buffer = true})
     vim.keymap.set('t', '<A-v>', '<Cmd>vnew<CR>', {buffer = true})
