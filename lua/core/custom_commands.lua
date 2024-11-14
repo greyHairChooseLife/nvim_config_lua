@@ -250,14 +250,62 @@ function MoveTabRight()
   end
 end
 
--- 현재 탭 내에서 현재 버퍼만 남기기
-function OnlyThisBufferInCurrentTab()
-  local current_buf = vim.fn.bufnr('%')
-  for _, buf in ipairs(vim.fn.tabpagebuflist()) do
-    if buf ~= current_buf then
-      vim.cmd('bdelete! ' .. buf)
+function CloseOtherBuffersInCurrentTab()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local current_tab = vim.api.nvim_get_current_tabpage()
+  local windows = vim.api.nvim_tabpage_list_wins(current_tab)
+
+  -- 현재 탭의 다른 윈도우 닫기
+  for _, win in ipairs(windows) do
+    if vim.api.nvim_win_get_buf(win) ~= current_buf then
+      vim.api.nvim_win_close(win, true)
     end
   end
+
+  -- 히든 버퍼 중 다른 탭에서 사용되지 않는 버퍼 삭제
+  local buffers = vim.api.nvim_list_bufs()
+  for _, buf in ipairs(buffers) do
+    if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buf then
+      -- 다른 탭에서 열려있는지 확인
+      local is_open_elsewhere = false
+      for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+        if tab ~= current_tab then
+          local tab_wins = vim.api.nvim_tabpage_list_wins(tab)
+          for _, tw in ipairs(tab_wins) do
+            if vim.api.nvim_win_get_buf(tw) == buf then
+              is_open_elsewhere = true
+              break
+            end
+          end
+        end
+        if is_open_elsewhere then break end
+      end
+
+      -- 다른 탭에서 사용되지 않는 히든 버퍼 삭제
+      if not is_open_elsewhere and vim.fn.bufwinnr(buf) == -1 then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end
+end
+
+function TabOnlyAndCloseHiddenBuffers()
+  -- 현재 탭에서 열린 버퍼 번호들을 저장
+  local open_buffers = {}
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    open_buffers[buf] = true
+  end
+
+  -- 모든 버퍼를 순회하며, 열린 버퍼에 포함되지 않은(hidden 상태인) 버퍼를 닫기
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if not open_buffers[buf] and vim.api.nvim_buf_is_loaded(buf) then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+
+  print('tab only, wipe invisible buffers')
+  vim.cmd('silent tabonly')
 end
 
 function _G.close_FT_buffers(FT)

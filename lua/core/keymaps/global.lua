@@ -1,3 +1,4 @@
+local keyset = vim.keymap.set
 -- =========================================================================
 -- =========================================================================
 --                           custom shortcuts
@@ -23,8 +24,6 @@ vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr 
 vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
 
 vim.keymap.set({ 'n', 'v' }, ',U', '<Esc>bvU')                                                                           -- CamelCase
-vim.keymap.set({ 'n', 'v' }, '<A-Enter>', OnlyThisBufferInCurrentTab)                                                    -- 현재 탭의 현재 버퍼만 남기기
--- vim.keymap.set({ 'n', 'v' }, '<A-t><CR>', '<cmd>tabon<CR>', { noremap = true, silent = true }) -- 모든 탭 지우고 현재 버퍼만 남기기, 키맵 중복, 이건 굳이 키맵으로 할 필요가 없을듯.
 vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 vim.keymap.set('v', 'v', '<Esc>')
@@ -63,6 +62,8 @@ vim.keymap.set('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", {
 
 
 -- BUFFER & WINDOW 관리
+vim.keymap.set({ 'n', 'v' }, '<A-Enter><Space>', CloseOtherBuffersInCurrentTab)
+vim.keymap.set({ 'n', 'v' }, '<A-Enter>t', TabOnlyAndCloseHiddenBuffers)
 vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>')
 vim.keymap.set('n', 'gq', function()
   if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then vim.cmd('q!')  -- 마지막 탭의 마지막 윈도우라면 걍 끄면 됨
