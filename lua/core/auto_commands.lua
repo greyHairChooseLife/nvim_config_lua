@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd("TabNew", {
 
 vim.api.nvim_create_autocmd("TabEnter", {
   callback = function()
+    require('nvim-tree.api').tree.reload() -- open된 buffer를 찾는 부분이 업데이트가 늦다. 탭 옮길때 갱신하면 잘 됨.
     local tabname = GetCurrentTabName()
     if tabname == ' Commit' or tabname == ' File' then
       vim.cmd('IBLDisable')
