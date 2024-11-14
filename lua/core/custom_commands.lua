@@ -385,8 +385,8 @@ function ReloadLayout()
   vim.cmd('wincmd = | echon');
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-    vim.cmd('AerialToggle')
-    vim.cmd('AerialToggle')
+  vim.cmd('AerialToggle')
+  vim.cmd('AerialToggle')
   require('quicker').refresh()
 end
 
