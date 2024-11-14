@@ -272,6 +272,7 @@ vim.keymap.set('n', '<leader>ref', '<cmd>DiffviewFileHistory %<CR>')            
 vim.keymap.set('n', '<leader>reF', '<cmd>DiffviewFileHistory --reverse --range=HEAD...FETCH_HEAD<CR>') -- something fetched
 vim.keymap.set('n', '<leader>res', '<cmd>DiffviewOpen --staged<CR>')                         -- review staged
 vim.keymap.set('n', '<leader>rew', '<cmd>DiffviewOpen<CR>')                                  -- review working status, staged + unstaged
+vim.keymap.set('v', '<leader>re', DiffviewOpenWithVisualHash) -- gbl로 gitsigns blame line을 확인하고, 커밋의 변경사항을 확인
 
 
 -- GITSIGNS

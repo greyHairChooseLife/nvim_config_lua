@@ -64,22 +64,22 @@ end
 --                           Telescope
 -- =========================================================================
 -- =========================================================================
+function GetVisualText()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  vim.fn.setreg('v', {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ''
+  end
+end
+
 -- visual block만 서치하기
 function TelescopeSearchVisual()
-  local function getVisualText()
-    vim.cmd('noau normal! "vy"')
-    local text = vim.fn.getreg('v')
-    vim.fn.setreg('v', {})
-
-    text = string.gsub(text, "\n", "")
-    if #text > 0 then
-      return text
-    else
-      return ''
-    end
-  end
-
-  local text = getVisualText()
+  local text = GetVisualText()
   require('telescope.builtin').live_grep({ default_text = text })
 end
 
@@ -615,4 +615,7 @@ function CocScrollDown_J()
   end
 end
 
-
+function DiffviewOpenWithVisualHash()
+  local hash = GetVisualText()
+  vim.cmd('DiffviewOpen ' .. hash .. '^..' .. hash)
+end
