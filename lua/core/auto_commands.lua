@@ -30,16 +30,13 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 
 vim.api.nvim_create_autocmd("TabNew", {
   callback = function()
-    local function DiffView탭이면_IBL_끄기()
+    -- tabname이 커스텀 되는 것도 시간이 걸리기 떄문에, 약간의 딜레이를 줘야한다.
+    vim.defer_fn(function()
       local tabname = GetCurrentTabName()
       if tabname == ' Commit' or tabname == ' File' then
         vim.cmd('IBLDisable')
+        vim.cmd('silent CocDisable')
       end
-    end
-
-    -- tabname이 커스텀 되는 것도 시간이 걸리기 떄문에, 약간의 딜레이를 줘야한다.
-    vim.defer_fn(function()
-      DiffView탭이면_IBL_끄기()
     end, 50)
   end,
 })
@@ -49,6 +46,7 @@ vim.api.nvim_create_autocmd("TabEnter", {
     local tabname = GetCurrentTabName()
     if tabname == ' Commit' or tabname == ' File' then
       vim.cmd('IBLDisable')
+      vim.cmd('silent CocDisable')
     end
   end,
 })
@@ -58,6 +56,7 @@ vim.api.nvim_create_autocmd("TabLeave", {
     local tabname = GetCurrentTabName()
     if tabname == ' Commit' or tabname == ' File' then
       vim.cmd('IBLEnable')
+      vim.cmd('silent CocEnable')
     end
   end,
 })
