@@ -62,6 +62,11 @@ vim.api.nvim_create_autocmd("TabLeave", {
   end,
 })
 
+vim.api.nvim_create_autocmd("TabClosed", {
+  callback = function()
+     vim.cmd('tabprev')
+  end
+})
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",
