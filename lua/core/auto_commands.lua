@@ -95,14 +95,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
     -- 예외 규정
-    if vim.bo.filetype == "markdown" then
-      return
+    if vim.bo.filetype ~= "markdown" then
+      RemoveTrailingWhitespace()
     end
 
-    -- 제거 로직
-    local pos = vim.api.nvim_win_get_cursor(0)
-    vim.cmd([[%s/\s\+$//e]])
-    vim.api.nvim_win_set_cursor(0, pos)
+    require('core.custom_commands.auto_mkdir').run()
   end,
 })
 
