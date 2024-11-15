@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("FileType", {
     -- KEYMAP
     vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>AvanteToggle<cr>', opts)
     vim.keymap.set('n', '<Esc>', '', opts)
+    vim.keymap.set('n', 'i', '<Cmd>wincmd w | startinsert | normal l<CR>', opts)
   end
 
 })
