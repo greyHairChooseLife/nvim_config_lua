@@ -22,7 +22,7 @@ require('avante').setup({
     --- @class AvanteConflictMappings
     diff = {
       ours = "co",
-      theirs = "ci",
+      theirs = "cu",
       all_theirs = "ca",
       both = "cb",
       cursor = "c<Space>",
