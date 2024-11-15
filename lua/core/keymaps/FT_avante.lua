@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- KEYMAP
     vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>AvanteToggle<cr>', opts)
+    vim.keymap.set('n', '<Esc>', '', opts)
   end
 
 })
@@ -24,5 +25,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
     -- KEYMAP
     vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>AvanteToggle<cr>', opts)
+    vim.keymap.set('n', '<Esc>', '', opts)
   end
 })
