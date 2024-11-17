@@ -441,6 +441,8 @@ function ReloadLayout()
     vim.cmd('AerialToggle')
     vim.cmd('AerialToggle')
     require('quicker').refresh()
+    vim.cmd('AvanteToggle')
+    vim.cmd('AvanteToggle')
   end
 end
 

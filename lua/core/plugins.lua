@@ -262,6 +262,8 @@ return require('packer').startup(function(use)
   -- TODO: chat with copilot
   -- https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file
 
+  -- TODO: A Neovim plugin for crawling web pages, rendering them to Markdown or JSON, and inserting the content into new buffers. It also supports asynchronous search functionality.
+  -- https://github.com/twilwa/crawler.nvim
   if packer_bootstrap then
     require('packer').sync()
   end
