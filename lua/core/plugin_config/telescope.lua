@@ -339,7 +339,10 @@ require("telescope").setup {
       },
     },
     layout_config = {
-      preview_width = 0.7
+      horizontal = {
+        preview_width = 0.7,
+      },
+      -- preview_width = 0.7
     },
     set_env = {
       LESS = '',
