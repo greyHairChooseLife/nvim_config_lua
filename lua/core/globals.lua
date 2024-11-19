@@ -36,3 +36,5 @@ vim.opt.splitright = true -- 수직 분할시 오른쪽에 창 생성
 -- vim.opt.splitbelow = true -- 수평 분할시 아래쪽에 창 생성
 
 vim.opt.undofile = true -- 종료시에도 undo 기록을 남김
+
+vim.o.mouse = ""
