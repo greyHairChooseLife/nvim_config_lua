@@ -11,7 +11,9 @@ vim.api.nvim_create_autocmd("WinEnter", {
     -- 플로팅 윈도우는 'relative' 필드가 비어있지 않음
     if config.relative ~= "" then
       -- 플로팅 윈도우에만 적용할 키맵 설정
-      vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>quit<CR>', { buffer = true, silent = true })
+      if vim.bo.filetype ~= 'VoltWindow' then
+        vim.keymap.set({ 'n', 'v' }, 'gq', '<cmd>quit<CR>', { buffer = true, silent = true })
+      end
 
       -- 추가 옵션 설정 (예: 텍스트 너비 조정)
       -- vim.bo.textwidth = 80

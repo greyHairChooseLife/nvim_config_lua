@@ -28,6 +28,7 @@ vim.keymap.set({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, sile
 vim.keymap.set({ 'n', 'v' }, '<Space>', BlinkCursorLine)
 vim.keymap.set('v', 'v', '<Esc>')
 vim.keymap.set('n', ',.ai', "<cmd>OrganizeImport<cr>") -- coc code action
+vim.keymap.set({ 'n', 'v', 'i', 'c' }, '<leader>t', "<cmd>TTimerlyToggle<cr>") -- coc code action
 
 -- vim.keymap.set("v", "<", "<gv")
 -- vim.keymap.set("v", ">", ">gv")
