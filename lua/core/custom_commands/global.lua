@@ -627,3 +627,24 @@ function RemoveTrailingWhitespace()
   vim.cmd([[%s/\s\+$//e]])
   vim.api.nvim_win_set_cursor(0, pos)
 end
+
+function BufferNextDropLast()
+  local last_buf = vim.api.nvim_get_current_buf()
+
+  -- hidden 버퍼만 얻어서 테이블에 넣기
+  local hidden_bufs = {}
+  local listed_buffers = vim.fn.getbufinfo({ buflisted = true })
+  for _, buf in ipairs(listed_buffers) do
+    if buf.hidden == 1 then
+      table.insert(hidden_bufs, buf.bufnr)
+    end
+  end
+
+  -- 테이블에 요소가 1개 이상이라면, 다음 버퍼로 0번째 버퍼로 이동
+  if #hidden_bufs > 0 then
+    vim.api.nvim_set_current_buf(hidden_bufs[1])
+  end
+
+  -- 어쨋든 최근 버퍼는 닫는다.
+  vim.cmd('bd ' .. last_buf)
+end

@@ -97,6 +97,7 @@ vim.keymap.set('n', 'gq', function()
   else vim.cmd('bd!') end
 end) -- close buffer, saving memory
 vim.keymap.set('n', 'gQ', '<cmd>q<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다. 희안하게 !를 붙이면 hidden이 아니라 active상태다.
+vim.keymap.set('n', 'g<Tab>', BufferNextDropLast)
 vim.keymap.set('n', 'gw', function()
   vim.cmd('silent w')
   vim.notify('Saved current buffers', 3, { render = 'minimal' })
