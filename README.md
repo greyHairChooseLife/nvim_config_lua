@@ -53,25 +53,39 @@ gh.nvim plugin이 루아 아니면 설치 및 설정이 너무 어려웠다. 그
 
 ## 버퍼 리스트 관련 기본팁
 
-> 아래를 통해 버퍼 리스트를 가져올 수 있다.
-> listed_buffers = vim.fn.getbufinfo({ buflisted = true })
->
-> 이때 결과는 {index = value} 테이블이고, 이때 value는 아래와 같은 테이블이다.
->
-> - lnum
-> - changed
-> - linecount
-> - signs
-> - variables
-> - windows
-> - changedtick
-> - lastused
-> - listed
-> - hidden
-> - name
-> - bufnr
-> - command
-> - loaded
+```
+-- 현재 탭의 모든 창 ID 가져오기
+local tabpage = vim.api.nvim_get_current_tabpage()
+local windows = vim.api.nvim_tabpage_list_wins(tabpage)
+
+print("현재 탭의 윈도우들:")
+for _, win in ipairs(windows) do
+  local buf = vim.api.nvim_win_get_buf(win) -- 각 창에 연결된 버퍼 ID
+  print("윈도우:", win, "버퍼:", buf)
+end
+```
+
+```
+-- 아래를 통해 버퍼 리스트를 가져올 수 있다.
+listed_buffers = vim.fn.getbufinfo({ buflisted = true })
+
+이때 결과는 {index = value} 테이블이고, 이때 value는 아래와 같은 테이블이다.
+
+- lnum
+- changed
+- linecount
+- signs
+- variables
+- windows
+- changedtick
+- lastused
+- listed
+- hidden
+- name
+- bufnr
+- command
+- loaded
+```
 
 ## 이사람 스타일이 괜찮다. 참고하자
 
