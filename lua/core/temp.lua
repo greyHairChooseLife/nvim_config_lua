@@ -51,16 +51,3 @@ end
 vim.api.nvim_set_keymap('v', '<leader>s', [[:lua SearchInChrome()<CR>]], { noremap = true, silent = true })
 
 
--- 최상위 git 디렉토리에서 live_grep 실행, 현재 vim session의 cwd가 git root dir이 아닌 경우도 있다. 이럴 때 유용함
--- ref:https://www.reddit.com/r/neovim/comments/106oz66/telescopenvim_live_grep_with_similar_behaviour_as/
---
--- function live_grep_git_dir()
---   local git_dir = vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
---   git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
---   local opts = {
---     cwd = git_dir,
---   }
---   require('telescope.builtin').live_grep(opts)
--- end
---
--- lvim.keys.normal_mode["<leader>gG"] = ":lua live_grep_git_dir()<CR>"
