@@ -540,17 +540,22 @@ function NavBuffAfterCleaning(DIR)
   end
 
   local listed_buffers = vim.fn.getbufinfo({ buflisted = true })
+  -- "Term: "으로 시작하는 버퍼를 제거
+  local filtered_buffers = vim.tbl_filter(function(buf)
+    return not string.find(buf.name, "Term:")
+  end, listed_buffers)
+
   local current_bufnr = vim.fn.bufnr()
   local current_buf_index
 
-  for i, buf in ipairs(listed_buffers) do
+  for i, buf in ipairs(filtered_buffers) do
     if buf.bufnr == current_bufnr then
       current_buf_index = i
       break
     end
   end
 
-  PrintTime('  Buffers .. [' .. current_buf_index .. '/' .. #listed_buffers .. ']', 3)
+  PrintTime('  Buffers .. [' .. current_buf_index .. '/' .. #filtered_buffers .. ']', 1)
 end
 
 -- message history에는 남기지 않는다.

@@ -38,12 +38,6 @@ require("core.floating_window");
 -- https://www.reddit.com/r/neovim/comments/1e7tfw2/pasting_line_by_p_makes_refold/
 
 
--- TODO:
--- Tab, S-Tab으로 버퍼 전환 시 현재순서/전체개수를 보여준다. 근데 이때 터미널 버퍼는 제외해야 한다.(지금은 포함)
-
-
-
-
 -- TODO:: avante input에 wrap이 풀렸는데? 왜지?
 -- i키에다가 맵핑: input으로 넘어가서 insertmode 시작
 
