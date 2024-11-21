@@ -223,11 +223,12 @@ vim.keymap.set("n", "<A-S-Right>", "<cmd>vertical resize +8<CR>", {})
 vim.keymap.set("n", "<A-S-Down>", "<cmd>horizontal resize -8<CR>", {})
 vim.keymap.set("n", "<A-S-Up>", "<cmd>horizontal resize +8<CR>", {})
 -- BUFFER FOCUS
-vim.keymap.set('n', "<Tab>", NextBuffAfterCleaning)
-vim.keymap.set('n', '<S-Tab>', PrevBuffAfterCleaning)
-
--- vim.keymap.set("n", ",d", DiffviewFilePanelFocusConditional, { silent = true, noremap = true })
-
+vim.keymap.set('n', "<Tab>", function()
+  NavBuffAfterCleaning("next")
+end)
+vim.keymap.set('n', "<S-Tab>", function()
+  NavBuffAfterCleaning("prev")
+end)
 
 
 

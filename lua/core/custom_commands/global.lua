@@ -530,34 +530,13 @@ function VDiffSplitOnTab()
   vim.fn.settabvar(tabnr, 'tabname', 'Diff')
 end
 
-function NextBuffAfterCleaning()
+function NavBuffAfterCleaning(DIR)
   CloseEmptyUnnamedBuffers()
-  vim.cmd('bnext')
+  vim.cmd(DIR == "prev" and "bprev" or "bnext")
+
   local bufname = vim.api.nvim_buf_get_name(0)
   if(bufname:find("Term: ")) then
-    vim.cmd('bnext')
-  end
-
-  local listed_buffers = vim.fn.getbufinfo({ buflisted = true })
-  local current_bufnr = vim.fn.bufnr()
-  local current_buf_index
-
-  for i, buf in ipairs(listed_buffers) do
-    if buf.bufnr == current_bufnr then
-      current_buf_index = i
-      break
-    end
-  end
-
-  PrintTime('  Buffers .. [' .. current_buf_index .. '/' .. #listed_buffers .. ']', 3)
-end
-
-function PrevBuffAfterCleaning()
-  CloseEmptyUnnamedBuffers()
-  vim.cmd('bprev')
-  local bufname = vim.api.nvim_buf_get_name(0)
-  if(bufname:find("Term: ")) then
-    vim.cmd('bprev')
+    vim.cmd(DIR == "prev" and "bprev" or "bnext")
   end
 
   local listed_buffers = vim.fn.getbufinfo({ buflisted = true })
