@@ -63,7 +63,7 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-lualine/lualine.nvim',
-    commit = '640260d', -- 이 이후 버전부터 성능 이유가 있다. github에 이슈 작성함.
+    -- commit = '640260d', -- 이 이후 버전부터 성능 이유가 있다. github에 이슈 작성함. -> 이슈 해결(https://github.com/nvim-lualine/lualine.nvim/issues/1328)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
