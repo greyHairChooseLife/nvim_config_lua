@@ -38,10 +38,6 @@ require("core.floating_window");
 -- https://www.reddit.com/r/neovim/comments/1e7tfw2/pasting_line_by_p_makes_refold/
 
 
--- TODO:: <C-t>하면 터미널 이름을 입력받는데, 이때 만약 해당 버퍼의 이름이 이미 'Term: '으로 시작한다면, 그것은 그 이름 그대로 터미널로 전환한다.
---
-
-
 -- TODO:
 -- Tab, S-Tab으로 버퍼 전환 시 현재순서/전체개수를 보여준다. 근데 이때 터미널 버퍼는 제외해야 한다.(지금은 포함)
 

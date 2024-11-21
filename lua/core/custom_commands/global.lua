@@ -349,6 +349,34 @@ function GetCurrentTabName()
 end
 
 function OpenOrFocusTerm()
+  -- Step 0: 기존에 "Term: "으로 시작하는 이름을 가진 터미널 버퍼가 있다면 아래와 같이 Early Return
+  local CB = {} -- current buffer
+  CB.number = vim.fn.bufnr()
+  CB.name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(CB.number), ":t")
+  CB.info = vim.fn.getbufinfo(CB.number)[1]
+
+  if CB.name:find("Term: ") and CB.info.variables and CB.info.variables.terminal_job_id then
+    local input = vim.fn.input("Change name: ")
+    if input ~= "" then
+      vim.api.nvim_buf_set_name(CB.number, "Term: " .. input)
+      PrintTime("Changed to: " .. input, 1.5)
+    else
+      PrintTime("Canceled", 0.5)
+    end
+    return -- 입력값 없이 입력 또는 ESC를 누른 경우, 함수 종료
+  elseif CB.name:find("Term: ") and CB.info.variables and not CB.info.variables.terminal_job_id then
+    vim.cmd('term bash')
+    vim.cmd('bdelete' .. CB.number) -- :trem은 새로운 버퍼를 생성하므로 기존 버퍼를 삭제한다. 그렇지 않으면 버퍼 이름 중복으로 에러가 발생한다.
+    local new_bufnr = vim.fn.bufnr()
+
+    -- vim.schedule을 사용해 이름 설정을 지연하여 터미널 초기화 후 실행
+    vim.schedule(function()
+      vim.api.nvim_buf_set_name(new_bufnr, CB.name)
+      vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = new_bufnr})
+    end)
+    return
+  end
+
   -- Step 1: ex 커맨드 라인에서 사용자 입력 요청
   local input = vim.fn.input("Term: ")
   if input == "" then
