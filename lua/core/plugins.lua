@@ -251,6 +251,16 @@ return require('packer').startup(function(use)
     requires = { "nvzone/volt" }
   }
 
+  use {
+    "folke/twilight.nvim",
+    opts = {
+      context = 1, -- amount of lines we will try to show around the current line
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  }
+
   -- use 'folke/trouble.nvim' -- coc.nvim은 쓰기 어렵고, 내장 lsp 매니저(?)로 전환할 때 활용하자
 
   -- NOTE: 너무 초기라 시기상조다. 일단은 q:를 활용하자.
