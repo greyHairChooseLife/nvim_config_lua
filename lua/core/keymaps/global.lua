@@ -344,3 +344,20 @@ map({ 'n', 'v' }, '<C-q>', '<Cmd>Focus<CR>')
 
 map("n", "<leader>y", Save_entire_buffer_to_register_for_AI_prompt, { noremap = true, silent = true })
 map("v", "<leader>y", Save_visual_selection_to_register_for_AI_prompt, { noremap = true, silent = true })
+
+map("n", "ㅗ", function()
+  os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
+  vim.api.nvim_input('h')
+end, { noremap = true, silent = true })
+map("n", "ㅓ", function()
+  os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
+  vim.api.nvim_input('j')
+end, { noremap = true, silent = true })
+map("n", "ㅏ", function()
+  os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
+  vim.api.nvim_input('k')
+end, { noremap = true, silent = true })
+map("n", "ㅣ", function()
+  os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
+  vim.api.nvim_input('l')
+end, { noremap = true, silent = true })
