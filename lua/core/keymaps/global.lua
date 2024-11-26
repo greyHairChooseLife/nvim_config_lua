@@ -112,7 +112,7 @@ end)
 map('n', 'ge', function()
   vim.cmd('w')
   -- 현재 윈도우가 마지막 윈도우라면 q로 종료
-  if vim.fn.winnr('$') == 1 then vim.cmd('bd')
+  if vim.fn.winnr('$') == 1 then vim.cmd('q')
   else vim.cmd('bd') end
   vim.notify('Saved last buffers', 3, { render = 'minimal' })
 end)
