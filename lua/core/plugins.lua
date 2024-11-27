@@ -279,6 +279,11 @@ return require('packer').startup(function(use)
 
   -- TODO: A Neovim plugin for crawling web pages, rendering them to Markdown or JSON, and inserting the content into new buffers. It also supports asynchronous search functionality.
   -- https://github.com/twilwa/crawler.nvim
+
+  -- TODO: 선택한 코드라인의 github url을 생성
+  -- https://www.reddit.com/r/neovim/comments/1gzid9o/browshernvim_create_commit_pinned_githubgitlab/
+  -- https://github.com/claydugo/browsher.nvim
+
   if packer_bootstrap then
     require('packer').sync()
   end
