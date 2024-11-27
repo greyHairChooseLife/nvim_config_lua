@@ -53,3 +53,5 @@ require("core.floating_window");
 --
   -- TODO:: avante 개선, predefined propmts
 -- https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks
+
+  -- TODO:: custom folding 1단계 더 아래도 접을 수 있게 하자.
