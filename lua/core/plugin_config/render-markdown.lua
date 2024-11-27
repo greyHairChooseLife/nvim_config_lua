@@ -93,13 +93,13 @@ require('render-markdown').setup({
     enabled = true,
     -- Turn on / off any sign column related rendering
     sign = true,
-    border = { false, false, false, false, false },
+    border = { false, true, true, false, false },
     border_virtual = false,
     border_prefix = false,
-    above = '',
+    above = '▂',
     -- Used below heading for border
-    below = '▔',
-    -- ▁▂▃▅ (U+2581) Lower One Eighth Block
+    below = '',
+    -- ▁▂▃▅▔ (U+2581) Lower One Eighth Block
     -- Determines how the icon fills the available space:
     --  inline: underlying '#'s are concealed resulting in a left aligned icon
     --  overlay: result is left padded with spaces to hide any additional '#'
