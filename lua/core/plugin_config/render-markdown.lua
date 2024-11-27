@@ -93,11 +93,12 @@ require('render-markdown').setup({
     enabled = true,
     -- Turn on / off any sign column related rendering
     sign = true,
-    border = false,
+    border = { false, false, false, false, false },
+    border_virtual = false,
     border_prefix = false,
-    above = '▁',
+    above = '',
     -- Used below heading for border
-    below = '',
+    below = '▔',
     -- ▁▂▃▅ (U+2581) Lower One Eighth Block
     -- Determines how the icon fills the available space:
     --  inline: underlying '#'s are concealed resulting in a left aligned icon
@@ -106,10 +107,10 @@ require('render-markdown').setup({
     -- Replaces '#+' of 'atx_h._marker'
     -- The number of '#' in the heading determines the 'level'
     -- The 'level' is used to index into the array using a cycle
-    -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+    -- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' }, 󰨑
     -- icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
     -- icons = { ' ', '    ', '      ', '         ', '     ##### ', '       ###### ' },
-    icons = { '', '', '', '󰨑', ' ', ' ' },
+    icons = { '', '', '', ' ', ' ', ' ' },
     --󰻃󰻂󰑊󰨑
     -- Added to the sign column if enabled
     -- The 'level' is used to index into the array using a cycle
@@ -118,9 +119,9 @@ require('render-markdown').setup({
     --  block: width of the heading text
     --  full: full width of the window
     width = { 'block' },
-    left_margin = { 5, 0, 0, 1 },
-    left_pad = { 3, 1, 3, 0 },
-    right_pad = { 3, 2, 10, 5 },
+    left_margin = { 30, 0, 0, 0 },
+    left_pad = { 3, 80, 3, 0 },
+    right_pad = { 3, 2, 10, 1 },
     min_width = {70, 100, 50, 5},
     -- The 'level' is used to index into the array using a clamp
     -- Highlight for the heading icon and extends through the entire line

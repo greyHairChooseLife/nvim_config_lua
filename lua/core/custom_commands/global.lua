@@ -283,13 +283,17 @@ function CloseOtherBuffersInCurrentTab()
 
       -- 다른 탭에서 사용되지 않는 히든 버퍼 삭제
       if not is_open_elsewhere and vim.fn.bufwinnr(buf) == -1 then
-        vim.api.nvim_buf_delete(buf, { force = true })
+        local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+        if filetype ~= 'VoltWindow' then
+          vim.api.nvim_buf_delete(buf, { force = true })
+        end
       end
     end
   end
 end
 
 function TabOnlyAndCloseHiddenBuffers()
+  vim.cmd('TTimerlyToggle')
   -- 현재 탭에서 열린 버퍼 번호들을 저장
   local open_buffers = {}
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
@@ -300,7 +304,10 @@ function TabOnlyAndCloseHiddenBuffers()
   -- 모든 버퍼를 순회하며, 열린 버퍼에 포함되지 않은(hidden 상태인) 버퍼를 닫기
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if not open_buffers[buf] and vim.api.nvim_buf_is_loaded(buf) then
-      vim.api.nvim_buf_delete(buf, { force = true })
+      local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+      if filetype ~= 'VoltWindow' then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
     end
   end
 
