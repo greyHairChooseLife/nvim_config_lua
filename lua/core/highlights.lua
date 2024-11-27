@@ -155,7 +155,7 @@ vim.cmd [[
   highlight RenderMarkdownCode guibg=#242024 guifg=NONE
   highlight RenderMarkdownCodeInline guibg=#242024 guifg=NONE
   highlight RenderMarkdownDash guifg=#FFFFFF
-  highlight RenderMarkdownQuote guifg=#5F5F5F
+  highlight RenderMarkdownQuote guifg=#007F7F " #5F5F5F
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
   highlight RenderMarkdownUnchecked guifg=#CA4500
   highlight RenderMarkdownChecked guifg=#32CD32

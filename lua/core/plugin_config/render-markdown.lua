@@ -162,10 +162,10 @@ require('render-markdown').setup({
     -- Likely because that language has background highlights itself
     disable_background = { 'diff' },
     -- Amount of padding to add to the left of code blocks
-    left_pad = 5,
+    left_pad = 2,
     -- Amount of padding to add to the right of code blocks when width is 'block'
-    right_pad = 20,
-    left_margin = 4,
+    right_pad = 10,
+    left_margin = 2,
     min_width = 100,
     -- Width of the code block background:
     --  block: width of the code block
@@ -251,9 +251,9 @@ require('render-markdown').setup({
     -- Turn on / off block quote & callout rendering
     enabled = true,
     -- Replaces '>' of 'block_quote'
-    -- icon = '▋',
+    -- icon = '▋▍',
     -- icon = '󰍬',
-    icon = '▍',
+    icon = '▏',
     repeat_linebreak = false,
     -- Highlight for the quote icon
     highlight = 'RenderMarkdownQuote',
