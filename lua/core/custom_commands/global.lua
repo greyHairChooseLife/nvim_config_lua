@@ -372,7 +372,7 @@ function OpenOrFocusTerm()
     -- vim.schedule을 사용해 이름 설정을 지연하여 터미널 초기화 후 실행
     vim.schedule(function()
       vim.api.nvim_buf_set_name(new_bufnr, CB.name)
-      vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = new_bufnr})
+      -- vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = new_bufnr})
     end)
     return
   end
@@ -422,7 +422,7 @@ function OpenOrFocusTerm()
   -- vim.schedule을 사용해 이름 설정을 지연하여 터미널 초기화 후 실행
   vim.schedule(function()
     vim.api.nvim_buf_set_name(term_bufnr, term_name)
-    vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = term_bufnr}) -- TermOpen같은 autocmd 이벤트로 달아버리면 fugitive git push -p 로 생성된 터미널 버퍼에서 불편함을 초래한다.
+    -- vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {buffer = term_bufnr}) -- TermOpen같은 autocmd 이벤트로 달아버리면 fugitive git push -p 로 생성된 터미널 버퍼에서 불편함을 초래한다.
   end)
 end
 
