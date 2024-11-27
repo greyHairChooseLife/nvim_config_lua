@@ -28,7 +28,7 @@ opt.foldenable = false
 opt.formatoptions:remove('f') -- Prevent auto-folding during formatting
 
 -- Session settings
-opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Global variables
 g.mapleader = "\\" -- Set leader key
