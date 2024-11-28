@@ -55,3 +55,6 @@ require("core.floating_window");
 -- https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks
 
   -- TODO:: custom folding 1단계 더 아래도 접을 수 있게 하자.
+
+
+-- TODO:: nvim-tree에서 tab 으로 선택한 것들의 절대경로를 복사하는 기능(키맵 bcp)추가하자, 벌크 명령(키맵) 재정비 한번 하자.
