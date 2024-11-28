@@ -166,7 +166,7 @@ require('render-markdown').setup({
     left_pad = 2,
     -- Amount of padding to add to the right of code blocks when width is 'block'
     right_pad = 10,
-    left_margin = 2,
+    left_margin = 0,
     min_width = 100,
     -- Width of the code block background:
     --  block: width of the code block
