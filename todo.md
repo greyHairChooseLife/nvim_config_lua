@@ -35,6 +35,10 @@
 - telescope find_file가 visual 모드에서도 동작하게 하기. selected words가 default_words가 되도록
 
 - custom folding 1단계 더 아래도 접을 수 있게 하자.
+- ,.gg에서 nvim-tree 사이즈가 깨진다. ,.gg 버퍼를 종료하면 리셋하면 될듯?
+- vimwiki가 아닌 경우엔 마크다운인데도 자꾸 2개 이상의 라인 또는 EOL에 따라오는 공백을 지워버린다.
+- `<leader>cc`로 commitmsg 버퍼를 켜면 최종 버퍼의 포키싱 윈도우 범위가 바뀐다.(살짝 올라감)
+- `zz`를 약간 위로 끌어당기자.
 
 #### 복잡
 
@@ -46,8 +50,6 @@
 - (avante 개선) Predefined Propmts [예시자료](https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks)
 
 ### 버그
-
-- vimwiki가 아닌 경우엔 마크다운인데도 자꾸 2개 이상의 라인 또는 EOL에 따라오는 공백을 지워버린다.
 
 - telescope에서 enter로 포커싱 하거나 새로운 파일을 열려고 하는데, 이게 그냥 무시되어버리는 경우가 종종 있다.
 
