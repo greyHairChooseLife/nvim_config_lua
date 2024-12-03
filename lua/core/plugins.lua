@@ -191,15 +191,16 @@ return require('packer').startup(function(use)
   use { "kristijanhusak/vim-dadbod-completion" }
 
   use { "goolord/alpha-nvim" }
+  -- NOTE:: dashboard
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
   use { 'ryanoasis/vim-devicons' }
-  use { 'MeanderingProgrammer/markdown.nvim' } -- for config, https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#setup
-  -- use { 'OXY2DEV/markview.nvim' }
+  use { 'MeanderingProgrammer/markdown.nvim' }
 
-  use { 'stevearc/quicker.nvim' }   -- https://github.com/stevearc/quicker.nvim
-  use { 'pteroctopus/faster.nvim' } -- handle big big files
+  use { 'stevearc/quicker.nvim' }
+  -- NOTE:: quickfix superset
+
+  use { 'pteroctopus/faster.nvim' }
+  -- NOTE:: handle big big files
 
   use {
     "ryanmsnyder/toggleterm-manager.nvim",
@@ -213,9 +214,6 @@ return require('packer').startup(function(use)
 
   use({ "stevearc/oil.nvim" })
 
-  -- https://github.com/yetone/avante.nvim/issues/581#issuecomment-2394807552 packer 전용 플러그인 정의
-  -- https://github.com/yetone/avante.nvim/issues/612#issuecomment-2375729928 설치 후 build 방법
-  -- https://github.com/yetone/avante.nvim/issues/612#issuecomment-2401169692 cnofig에 앞서 avante_lib을 불러와야한다.
   use {
     "yetone/avante.nvim",
     build = "make BUILD_FROM_SOURCE=true",
@@ -232,6 +230,12 @@ return require('packer').startup(function(use)
       "HakonHarnes/img-clip.nvim",
     },
   }
+  -- NOTE:
+  --
+  -- HOW TO INSTALL
+  --  https://github.com/yetone/avante.nvim/issues/581#issuecomment-2394807552 packer 전용 플러그인 정의
+  --  https://github.com/yetone/avante.nvim/issues/612#issuecomment-2375729928 설치 후 build 방법
+  --  https://github.com/yetone/avante.nvim/issues/612#issuecomment-2401169692 cnofig에 앞서 avante_lib을 불러와야한다.
 
   use {
       "ThePrimeagen/harpoon",
@@ -265,8 +269,8 @@ return require('packer').startup(function(use)
     }
   }
 
-  use {'mistricky/codesnap.nvim', run = 'make'} -- USAGE:
-  -- NOTE:
+  use {'mistricky/codesnap.nvim', run = 'make'}
+  -- NOTE: code to img
   --
   -- USAGE
   --  https://github.com/mistricky/codesnap.nvim?tab=readme-ov-file#usage
@@ -274,29 +278,6 @@ return require('packer').startup(function(use)
   -- ALTERNATIVE
   --  https://github.com/0oAstro/silicon.lua
   --  https://github.com/Aloxaf/silicon
-
-  -- use 'folke/trouble.nvim' -- coc.nvim은 쓰기 어렵고, 내장 lsp 매니저(?)로 전환할 때 활용하자
-
-  -- NOTE: 너무 초기라 시기상조다. 일단은 q:를 활용하자.
-  -- use { "smilhey/ed-cmd.nvim" }
-
-  -- TODO:  http client inside neovim
-  -- https://github.com/rest-nvim/rest.nvim
-  -- https://www.reddit.com/r/neovim/comments/1eh0yr6/restnvim_is_back/
-  -- OR alternative: https://github.com/mistweaverco/kulala.nvim
-  --
-  -- TODO:  indent or chunk marker(visualizer)
-  -- https://github.com/shellRaining/hlchunk.nvim
-  --
-  -- TODO: chat with copilot
-  -- https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file
-
-  -- TODO: A Neovim plugin for crawling web pages, rendering them to Markdown or JSON, and inserting the content into new buffers. It also supports asynchronous search functionality.
-  -- https://github.com/twilwa/crawler.nvim
-
-  -- TODO: 선택한 코드라인의 github url을 생성
-  -- https://www.reddit.com/r/neovim/comments/1gzid9o/browshernvim_create_commit_pinned_githubgitlab/
-  -- https://github.com/claydugo/browsher.nvim
 
   if packer_bootstrap then
     require('packer').sync()
