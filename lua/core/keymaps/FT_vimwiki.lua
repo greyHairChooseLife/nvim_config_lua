@@ -15,13 +15,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#24283B" })
 
     -- SNIPPET
-    vim.keymap.set('i', ',,h1', function()
+    vim.keymap.set('i', ',,h2', function()
       vim.api.nvim_feedkeys("## ", "i", true)
     end)
-    vim.keymap.set('i', ',,h2', function()
+    vim.keymap.set('i', ',,h3', function()
       vim.api.nvim_feedkeys("### ", "i", true)
     end)
-    vim.keymap.set('i', ',,h3', function()
+    vim.keymap.set('i', ',,h4', function()
       vim.api.nvim_feedkeys("#### ", "i", true)
     end)
 
