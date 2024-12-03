@@ -26,8 +26,38 @@
   - https://www.reddit.com/r/neovim/comments/1gzid9o/browshernvim_create_commit_pinned_githubgitlab/
   - https://github.com/claydugo/browsher.nvim
 
-### 간단한 개선서항
+### 개선서항
+
+#### 간단
+
+- gQ를 qq로 매핑하자.
+
+- oli.nvim에서 <C-v>가 뭔가에 맵핑되어있다. 자꾸 저장하려고 한다. 나는 visual blocking 하려는건데
+- oil.nvim에서 <C-p>는 미리보기 버퍼를 띄워준다. 이것의 구분이 어려우니, oil버퍼의 좌측에 나타나면 좋을듯
+- telescope find_file가 visual 모드에서도 동작하게 하기. selected words가 default_words가 되도록
+
+- custom folding 1단계 더 아래도 접을 수 있게 하자.
+
+#### 복잡
+
+- aerial.nvim에서,
+
+  - treesitter typescript post parse에서 커스텀으로 'type'도 구분하기, 현재는 variable과 동일한 취급
+  - function, variable, type의 아이콘을 보다 명확하게 변경하기
+
+- (avante 개선) Predefined Propmts [예시자료](https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks)
 
 ### 버그
+
+- vimwiki가 아닌 경우엔 마크다운인데도 자꾸 2개 이상의 라인 또는 EOL에 따라오는 공백을 지워버린다.
+
+- telescope에서 enter로 포커싱 하거나 새로운 파일을 열려고 하는데, 이게 그냥 무시되어버리는 경우가 종종 있다.
+
+- 가끔 색깔이 오락가락 한다. 특히 C-q에 맵핑한 플러그인이 실행될 때 증상이 거의 매번 나타난다. 희안하게도 nvim-tree를 껏다 켜거나, i3로 전체화면 전환해보면 괜찮아진다.
+
+- nvim-tree 외 단 1개의 버퍼만 있을 때 `:bd`로 닫으면, 버퍼가 종료되지 않고 빈 버퍼가 남아버린다.
+  현재는 이를 위한 대응을 버퍼 관리 기능들에 덕지덕지 붙여놨다. 이거 좀 개선할 필요가 있겠다.
+
+- 어떤 단위의 첫번째 라인 바로 아래에 코드를 붙여넣으면 refold 되어버린다. [이 사람도 같은 불편을 호소](https://www.reddit.com/r/neovim/comments/1e7tfw2/pasting_line_by_p_makes_refold/)
 
 ### Deprecated
