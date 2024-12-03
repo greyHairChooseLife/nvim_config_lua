@@ -53,6 +53,10 @@ return require('packer').startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+  -- NOTE:
+  --
+  -- ETC
+  --  markdown 파일 작성중에 workflow의 끊김없이 이미지를 캡쳐해오는 방법 https://github.com/kiran94/maim.nvim
 
   use "norcalli/nvim-colorizer.lua"
 
@@ -260,6 +264,16 @@ return require('packer').startup(function(use)
       -- refer to the configuration section below
     }
   }
+
+  use {'mistricky/codesnap.nvim', run = 'make'} -- USAGE:
+  -- NOTE:
+  --
+  -- USAGE
+  --  https://github.com/mistricky/codesnap.nvim?tab=readme-ov-file#usage
+  --
+  -- ALTERNATIVE
+  --  https://github.com/0oAstro/silicon.lua
+  --  https://github.com/Aloxaf/silicon
 
   -- use 'folke/trouble.nvim' -- coc.nvim은 쓰기 어렵고, 내장 lsp 매니저(?)로 전환할 때 활용하자
 
