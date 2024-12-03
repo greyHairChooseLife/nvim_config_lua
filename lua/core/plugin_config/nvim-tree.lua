@@ -90,8 +90,8 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '<BS>', api.node.navigate.parent_close, opts('Close Directory'))
   vim.keymap.set('n', 'p', api.node.navigate.parent, opts('Parent Directory'))
 
-  vim.keymap.set('n', 'gp', api.node.navigate.git.prev_recursive, opts('git prev'))
-  vim.keymap.set('n', 'gn', api.node.navigate.git.next_recursive, opts('git next'))
+  vim.keymap.set('n', 'cp', api.node.navigate.git.prev_recursive, opts('git prev'))
+  vim.keymap.set('n', 'cn', api.node.navigate.git.next_recursive, opts('git next'))
   vim.keymap.set('n', 'bp', api.node.navigate.opened.prev, opts('active buffer prev'))
   vim.keymap.set('n', 'bn', api.node.navigate.opened.next, opts('active buffer next'))
 
