@@ -304,7 +304,10 @@ map("n", ",,a", function()
   vim.cmd('AerialToggle')
   vim.cmd('wincmd p')
 end)
-map("n", ",a", "<cmd>AerialOpen<CR>")
+map("n", ",a", function()
+  vim.cmd('norm ^ww')
+  vim.cmd('AerialOpen')
+end)
 
 -- AUTO-SESSION
 map("n", "<leader><leader>s", "<cmd>SessionSave<CR>") -- save
