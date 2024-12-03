@@ -30,8 +30,6 @@
 
 #### 간단
 
-- gQ를 qq로 매핑하자.
-
 - oli.nvim에서 <C-v>가 뭔가에 맵핑되어있다. 자꾸 저장하려고 한다. 나는 visual blocking 하려는건데
 - oil.nvim에서 <C-p>는 미리보기 버퍼를 띄워준다. 이것의 구분이 어려우니, oil버퍼의 좌측에 나타나면 좋을듯
 - telescope find_file가 visual 모드에서도 동작하게 하기. selected words가 default_words가 되도록

@@ -100,6 +100,7 @@ map('n', 'gq', function()
   else vim.cmd('bd!') end
 end) -- close buffer, saving memory
 map('n', 'gQ', '<cmd>q<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다. 희안하게 !를 붙이면 hidden이 아니라 active상태다.
+map('n', 'qq', '<cmd>q<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다. 희안하게 !를 붙이면 hidden이 아니라 active상태다.
 map('n', 'g<Tab>', BufferNextDropLast)
 map('n', 'gw', function()
   vim.cmd('silent w')
