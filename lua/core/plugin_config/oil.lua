@@ -61,9 +61,9 @@ oil.setup({
   keymaps = {
     ["g?"] = "actions.show_help",
     ["<CR>"] = "actions.select",
-    ["<C-v>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
-    ["<C-x>"] = { "actions.select", opts = { split = "belowright" }, desc = "Open the entry in a horizontal split" },
-    ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+    -- ["<C-v>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+    -- ["<C-x>"] = { "actions.select", opts = { split = "belowright" }, desc = "Open the entry in a horizontal split" },
+    -- ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
     ["<C-p>"] = "actions.preview",
     ["ge"] = function() -- 저장 후 oil 버퍼를 nvim-tree버퍼로 치환
       oil.save({ confirm = false }, function()
@@ -142,7 +142,7 @@ oil.setup({
       winblend = 0,
     },
     -- preview_split: Split direction: "auto", "left", "right", "above", "below".
-    preview_split = "auto",
+    preview_split = "left",
     -- This is the config that will be passed to nvim_open_win.
     -- Change values here to customize the layout
     override = function(conf)
