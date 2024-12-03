@@ -115,12 +115,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- })
 
 -- SQL 파일 타입에 대해 vim-dadbod-completion.vim을 소스하는 설정
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'sql',
-  callback = function()
-    vim.cmd('source ~/.config/nvim/plugged/vim-dadbod-completion/plugin/vim-dadbod-completion.vim')
-  end
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'sql',
+--   callback = function()
+--     vim.cmd('source ~/.config/nvim/plugged/vim-dadbod-completion/plugin/vim-dadbod-completion.vim')
+--   end
+-- })
 
 vim.api.nvim_create_augroup('GV', { clear = true })
 
