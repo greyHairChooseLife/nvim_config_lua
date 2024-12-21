@@ -81,4 +81,14 @@ require('avante').setup({
   repo_map = {
     ignore_patterns = { "%.git", "%.worktree", "__pycache__", "node_modules" }, -- ignore files matching these
   },
+  --- https://github.com/yetone/avante.nvim/commit/a1da070
+  --- @class AvanteFileSelectorConfig
+  --- @field provider "native" | "fzf" | "telescope"
+  file_selector = {
+    -- e.g native, fzf, telescope
+    -- native for vim.ui.select
+    provider = "telescope",
+    -- Options override for custom providers
+    provider_opts = {},
+  },
 })
