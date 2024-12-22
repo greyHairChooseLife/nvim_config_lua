@@ -39,8 +39,6 @@
 - https://github.com/dlvhdr/diffnav
   ,.gd에다가 그냥 delta 말고 이걸 적용하면 좋을듯
 
-- nvim-tree에서 'o, O'를 일관되게 하자. 지금 문제는 'o'로 켜면 메모리에 버퍼를 깔아놓지 않는다.
-
 #### 복잡
 
 - aerial.nvim에서,
