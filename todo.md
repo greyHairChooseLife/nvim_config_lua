@@ -30,7 +30,6 @@
 
 #### 간단
 
-- custom folding 1단계 더 아래도 접을 수 있게 하자.
 - vimwiki가 아닌 경우엔 마크다운인데도 자꾸 2개 이상의 라인 또는 EOL에 따라오는 공백을 지워버린다.
 - `<leader>cc`로 commitmsg 버퍼를 켜면 최종 버퍼의 포키싱 윈도우 범위가 바뀐다.(살짝 올라감)
 - `zz`를 약간 위로 끌어당기자.
@@ -50,6 +49,8 @@
   - function, variable, type의 아이콘을 보다 명확하게 변경하기
 
 - (avante 개선) Predefined Propmts [예시자료](https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks)
+
+- coc -> native lsp로 전환
 
 ### 버그
 
