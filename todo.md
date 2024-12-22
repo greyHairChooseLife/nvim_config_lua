@@ -30,8 +30,6 @@
 
 #### 간단
 
-- telescope find_file가 visual 모드에서도 동작하게 하기. selected words가 default_words가 되도록
-
 - custom folding 1단계 더 아래도 접을 수 있게 하자.
 - vimwiki가 아닌 경우엔 마크다운인데도 자꾸 2개 이상의 라인 또는 EOL에 따라오는 공백을 지워버린다.
 - `<leader>cc`로 commitmsg 버퍼를 켜면 최종 버퍼의 포키싱 윈도우 범위가 바뀐다.(살짝 올라감)
