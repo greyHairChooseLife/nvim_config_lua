@@ -148,10 +148,10 @@ require("nvim-tree").setup({
     },
     icons = {
       webdev_colors = true,
-      git_placement = "after",
-      modified_placement = "before",
+      git_placement = "before",
+      modified_placement = "after",
       padding = " ",
-      symlink_arrow = "➛",
+      symlink_arrow = "",
       show = {
         file = true,
         folder = true,
@@ -162,8 +162,8 @@ require("nvim-tree").setup({
       glyphs = {
         default = "",
         symlink = "",
-        bookmark = "✓",
-        modified = "●",
+        bookmark = "", --  
+        modified = "󰈸󰈸󰈸", --   
         folder = {
           arrow_closed = "",
           arrow_open = "",
@@ -182,13 +182,13 @@ require("nvim-tree").setup({
           -- untracked = "★",
           -- deleted = "",
           -- ignored = "◌",
-          unstaged = ")",
-          staged = ")",
-          unmerged = ")",
-          renamed = "➜)",
-          untracked = ")",
-          deleted = "󰛌)",
-          ignored = ")",
+          unstaged = "󰅙", --  󱠇
+          staged = "󰗠", --     󰗠 󰗡 󰄲 󰄴 󱤧 󰄵 󰱒
+          unmerged = "",
+          renamed = "", --      
+          untracked = "", --       󰅗 󰅘 󰅙 󰅚 󰅜 󰅝 󱍥 󱍦
+          deleted = "", -- 󰗨 󰺝 󰛌
+          ignored = "",
         },
       },
     },

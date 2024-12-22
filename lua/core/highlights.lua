@@ -77,6 +77,7 @@ vim.cmd("highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a")
 vim.cmd [[
   highlight NvimTreeNormal guibg=#333342 guifg=NONE
   highlight NvimTreeNormalNC guibg=#333342 guifg=NONE
+  highlight NvimTreeCursorLine guibg=#242024 guifg=NONE
   highlight NvimTreeFolderIcon guifg=#ffcc00
   highlight NvimTreeFolderArrowOpen guifg=#ffcc00
   highlight NvimTreeFolderName guifg=#569CD6 gui=bold
@@ -84,15 +85,15 @@ vim.cmd [[
   highlight NvimTreeEmptyFolderName guifg=#569CD6
   highlight NvimTreeSymlink guifg=#56B6C2
   highlight NvimTreeRootFolder guifg=#C678DD
-  highlight NvimTreeGitDirty guifg=#f1502f
+  highlight NvimTreeGitDirty guifg=#FF3000 " #f1502f
   highlight NvimTreeGitStagedIcon guifg=#50cd5a
   " highlight NvimTreeGitMerge guifg=#E5C07B
-  highlight NvimTreeGitRenamed guifg=#61AFEF
+  highlight NvimTreeGitRenamedIcon guifg=#50cd5a " #61AFEF
   " highlight NvimTreeGitNew guifg=#D19A66
   highlight NvimTreeGitNew guifg=#7f52ff
   highlight NvimTreeGitDeleted guifg=#f1502f
   highlight NvimTreeGitIgnored guifg=#7F848E
-  highlight NvimTreeModified guifg=#ffcc00
+  highlight NvimTreeModifiedIcon guifg=#FF3000
 ]]
 
 -- Vimwiki
