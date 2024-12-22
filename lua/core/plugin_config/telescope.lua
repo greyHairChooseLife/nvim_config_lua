@@ -188,6 +188,8 @@ local select_one_or_multi = function(prompt_bufnr, variant)
       -- builtin.resume() -- picker를 재실행, 연속적으로 선택할 수 있도록
     elseif variant == 'V' then
       actions.select_vertical(prompt_bufnr)
+    elseif variant == 'T' then
+      actions.select_tab(prompt_bufnr)
     end
   end
 
