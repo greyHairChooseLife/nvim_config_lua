@@ -76,26 +76,26 @@ local function focus_or_open(prompt_bufnr)
     return false
   end
 
-  local is_opened, buf = is_file_in_buffer_list(filepath)
+  local is_loaded, buf = is_file_in_buffer_list(filepath)
 
-  if is_opened then
+  if is_loaded then
     actions.close(prompt_bufnr)
 
     local wins = vim.api.nvim_list_wins()
+    local found_win = false
     for _, win in ipairs(wins) do
       if vim.api.nvim_win_get_buf(win) == buf then
         vim.api.nvim_set_current_win(win)
-        -- picker마다 다른 기본동작을 그대로 실행하기 위해서 아래처럼 한다.
-        builtin.resume()
-        vim.schedule(function()
-          local new_picker_bufnr = vim.api.nvim_get_current_buf()
-          actions.select_default(new_picker_bufnr)
-        end)
+        found_win = true
       end
     end
 
+    if not found_win then
+      vim.api.nvim_set_current_buf(buf)
+    end
+
   else
-    actions.select_default(prompt_bufnr)
+    actions.file_edit(prompt_bufnr)
   end
 end
 
@@ -150,6 +150,48 @@ local function focus_or_open_terminal_buffer(prompt_bufnr)
     -- 버퍼가 열려있지 않다면 선택된 기본 동작을 실행
     actions.select_default(prompt_bufnr)
   end
+end
+
+local select_one_or_multi = function(prompt_bufnr, variant)
+  -- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1991532321
+  -- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-2177826003
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local multi = picker:get_multi_selection()
+  if not vim.tbl_isempty(multi) then
+    actions.close(prompt_bufnr)
+    if variant == 'T' then vim.cmd('tabnew') end
+
+    for _, j in pairs(multi) do
+      local filename = j.path or j.filename or j.value
+      local lnum = j.lnum or 1
+      local lcol = j.col or 1
+
+      if filename ~= nil then
+        if variant == 'Enter' then
+          vim.cmd(string.format('%s %s', 'edit', filename))
+        elseif variant == 'X' then
+          vim.cmd(string.format('%s %s', 'below split', filename))
+        elseif variant == 'V' or variant == 'T' then
+          vim.cmd(string.format('%s %s', 'vsplit', filename))
+        end
+        vim.cmd(string.format("normal! %dG%d|zz", lnum, lcol))
+      end
+    end
+
+    if variant == 'T' then vim.cmd('wincmd w | q | wincmd p') end
+  else
+    if variant == 'Enter' then
+      focus_or_open(prompt_bufnr)
+    elseif variant == 'X' then
+      actions.select_horizontal(prompt_bufnr)
+      vim.cmd('WinShift down')
+      -- builtin.resume() -- picker를 재실행, 연속적으로 선택할 수 있도록
+    elseif variant == 'V' then
+      actions.select_vertical(prompt_bufnr)
+    end
+  end
+  vim.cmd('NvimTreeToggle')
+  vim.cmd('NvimTreeToggle')
 end
 
 vim.keymap.set('n', ',.gco', function()
@@ -340,7 +382,13 @@ require("telescope").setup {
         ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
         ['<C-d>'] = actions.results_scrolling_down,
+        ['<C-a>'] = actions.add_to_qflist,
+        ['<A-a>'] = actions.add_selected_to_qflist,
         ["<CR>"] = focus_or_open,
+        ['<C-Enter>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'Enter') end,
+        ['<C-x>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'X') end,
+        ['<C-v>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'V') end,
+        ['<C-t>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'T') end,
       },
     },
     layout_config = {
@@ -371,39 +419,6 @@ require("telescope").setup {
       -- file_ignore_patterns = { '^Term:' }, -- buftype으로 체크가 된다!  ignore buffer
     },
     find_files = {
-      mappings = {
-        n = {
-          ['x'] = function(prompt_bufnr)
-            actions.select_horizontal(prompt_bufnr)
-            builtin.resume()
-            switch_to_normal_mode()
-          end,
-          ['v'] = function(prompt_bufnr)
-            actions.select_vertical(prompt_bufnr)
-            builtin.resume()
-            switch_to_normal_mode()
-          end,
-          ['t'] = function(prompt_bufnr)
-            actions.select_tab(prompt_bufnr)
-            builtin.resume()
-            switch_to_normal_mode()
-          end,
-        },
-        i = {
-          ['<C-x>'] = function(prompt_bufnr)
-            actions.select_horizontal(prompt_bufnr)
-            builtin.resume()
-          end,
-          ['<C-v>'] = function(prompt_bufnr)
-            actions.select_vertical(prompt_bufnr)
-            builtin.resume()
-          end,
-          ['<C-t>'] = function(prompt_bufnr)
-            actions.select_tab(prompt_bufnr)
-            builtin.resume()
-          end,
-        },
-      },
       preview = {
         hide_on_startup = true,
       },
