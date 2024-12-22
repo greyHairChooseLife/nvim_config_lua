@@ -67,6 +67,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_augroup("MarkdownFoldingGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = "MarkdownFoldingGroup",
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.foldmethod = 'expr'
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldexpr = 'v:lua.vimwiki_fold_level_custom(v:lnum)'
+    vim.opt_local.foldtext = 'v:lua.custom_fold_text()'
+  end,
+})
+
 -- custom_fold_text 함수 정의
 -- function custom_fold_text()
 --   local line_count = vim.v.foldend - vim.v.foldstart + 1
