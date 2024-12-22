@@ -19,7 +19,7 @@ map({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
 map({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
 map({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 map({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
-map({ 'n' }, "'", ToggleHilightSearch)
+map('n', "'", ToggleHilightSearch)
 map('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
 map('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 map('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });

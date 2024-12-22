@@ -486,20 +486,28 @@ function ReloadLayout()
   end
 end
 
+function IsCursorOnEmptySpace()
+  -- 현재 커서 위치 가져오기 (1-based index)
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  -- 현재 줄 텍스트 가져오기
+  local line = vim.api.nvim_get_current_line()
+  -- 커서 위치의 문자 확인
+  local char = line:sub(col + 1, col + 1)  -- Lua는 1-based, col은 0-based
+  return char == " " or char == ""
+end
+
 function ToggleHilightSearch()
   if vim.v.hlsearch == 1 then
     vim.cmd('nohlsearch | echon')
   else
-    -- cword가 빈 문자일 때
-    local cword = vim.fn.expand('<cword>')
-    if cword == '' then
-      vim.cmd('nohlsearch | echon')
-      return
+    if not IsCursorOnEmptySpace() then
+      vim.cmd('normal! viw')
+      local text = GetVisualText()
+      if text and #text > 0 then
+        vim.cmd(string.format('/%s', text))
+        vim.cmd('normal! N')
+      end
     end
-
-    local saved_view = vim.fn.winsaveview()
-    vim.cmd('normal! *N') -- 이다음 것을 찾은 뒤에 N으로 돌아기 때문에 윈도우가 포커싱한 위치가 달라질 수 있다. 이를 보정해야함
-    vim.fn.winrestview(saved_view)
   end
 end
 
