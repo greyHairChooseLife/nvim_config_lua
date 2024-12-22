@@ -184,8 +184,10 @@ require('lualine').setup {
     theme = my_theme,
     -- component_separators = { left = '', right = '' },
     -- section_separators = { left = '', right = '' },
+    -- component_separators = { left = ' 󰪍󰪍 ', right = '' },
+    -- section_separators = { left = '', right = '' },
     component_separators = { left = ' 󰪍󰪍 ', right = '' },
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = ' ' },
     disabled_filetypes = {
       statusline = { 'packer', 'alpha', 'vimwiki', 'aerial', 'Avante', 'AvanteInput' },
       -- winbar = {},
@@ -265,7 +267,7 @@ require('lualine').setup {
         indicators = { "", "", "", "", "", "" },
         active_indicators = { "", "", "", "", "", "" },
         color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
-        _separator = "󱗘", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
+        _separator = "", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
         no_harpoon = "Harpoon not loaded",
         padding = { left = 1, right = 1 }
       },
@@ -331,7 +333,7 @@ require('lualine').setup {
         indicators = { "", "", "", "", "", "" },
         active_indicators = { "", "", "", "", "", "" },
         color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
-        _separator = "󱗘",
+        _separator = "", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
         no_harpoon = "Harpoon not loaded",
       },
     }

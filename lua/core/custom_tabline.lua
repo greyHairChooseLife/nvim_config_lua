@@ -22,27 +22,27 @@ function MyTabLine()
         s = s ..
             '%' .. i .. 'T' ..
             '%#TabLineGVBg#' ..
-            '%#TabLineGVBg#' .. tabname .. '%#TabLineGVBorder#' .. '%#TabLineFill#'
+            '%#TabLineGVBg#' .. tabname .. '%#TabLineGVBorder#' .. '%#TabLineFill#'
       elseif tabname:find('sp:') or tabname:find('mv:') then
         s = s ..
             '%' .. i .. 'T' ..
             '%#TabLineTempBg#' ..
-            '%#TabLineTempBg#' .. tabname .. '%#TabLineTempBorder#' .. '%#TabLineFill#'
+            '%#TabLineTempBg#' .. tabname .. '%#TabLineTempBorder#' .. '%#TabLineFill#'
       elseif tabname:find('') then
         s = s ..
             '%' .. i .. 'T' ..
             '%#TabLineGVBg#' ..
-            '%#TabLineGVBg#' .. tabname .. '%#TabLineGVBorder#' .. '%#TabLineFill#'
+            '%#TabLineGVBg#' .. tabname .. '%#TabLineGVBorder#' .. '%#TabLineFill#'
       elseif tabname:find('Oil') then
         s = s ..
             '%' .. i .. 'T' ..
             '%#TabLineOilBg#' ..
-            '%#TabLineOilBg#' .. tabname .. '%#TabLineOilBorder#' .. '%#TabLineFill#'
+            '%#TabLineOilBg#' .. tabname .. '%#TabLineOilBorder#' .. '%#TabLineFill#'
       else
         s = s ..
             '%' .. i .. 'T' ..
             '%#TabLineSelBg#' ..
-            '%#TabLineSelBg#' .. tabname .. '%#TabLineSelBorder#' .. '%#TabLineFill#'
+            '%#TabLineSelBg#' .. tabname .. '%#TabLineSelBorder#' .. '%#TabLineFill#'
       end
     else
       -- inactive tab

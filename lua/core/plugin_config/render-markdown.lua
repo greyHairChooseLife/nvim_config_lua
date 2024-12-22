@@ -252,9 +252,9 @@ require('render-markdown').setup({
     -- Turn on / off block quote & callout rendering
     enabled = true,
     -- Replaces '>' of 'block_quote'
-    -- icon = '▋▍',
+    -- icon = '▋▍▏',
     -- icon = '󰍬',
-    icon = '▏',
+    icon = '▐',
     repeat_linebreak = false,
     -- Highlight for the quote icon
     highlight = 'RenderMarkdownQuote',
@@ -331,18 +331,18 @@ require('render-markdown').setup({
     -- Turn on / off inline link icon rendering
     enabled = true,
     -- Inlined with 'image' elements
-    image = '󰥶\'',
+    image = '󰥶 ',
     -- Inlined with 'inline_link' elements
     -- hyperlink = '  󰌹 ',
-    hyperlink = '\'',
+    hyperlink = ' ',
     -- Applies to the inlined icon
     highlight = 'RenderMarkdownDocLink',
     custom = {
       -- web = { pattern = '^http[s]?://(?!www%.youtube%.com)(?!youtu%.be)', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
       -- youtube = { pattern = '^http[s]?://(www%.)?youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
-      file = { pattern = '^file:', icon = '\'', highlight = 'RenderMarkdownFileLink' },
-      youtube = { pattern = '^http[s]?://www%.youtube%.com/.*', icon = '\'', highlight = 'RenderMarkdownYoutubeLink' },
-      web = { pattern = '^http[s]?://', icon = '󰖟\'', highlight = 'RenderMarkdownWebLink' },
+      file = { pattern = '^file:', icon = ' ', highlight = 'RenderMarkdownFileLink' },
+      youtube = { pattern = '^http[s]?://www%.youtube%.com/.*', icon = ' ', highlight = 'RenderMarkdownYoutubeLink' },
+      web = { pattern = '^http[s]?://', icon = '󰖟 ', highlight = 'RenderMarkdownWebLink' },
       -- TODO:
       -- today = { pattern = '^2024%-09%-12', icon = ' ', highlight = 'RenderMarkdownDiaryLink' }, -- today = os.date("%Y-%m-%d") 해서 사용하고싶은데 이게 안되네
       diary = { pattern = '^%d%d%d%d%-%d%d%-%d%d', icon = ' ', highlight = 'RenderMarkdownDiaryLink' },
