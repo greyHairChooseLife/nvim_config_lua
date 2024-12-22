@@ -13,6 +13,7 @@ map("n", ",sx", "<cmd>sp | wincmd w<CR>") -- go to definition in splitted window
 map("n", ",sv", "<cmd>vs<CR>") -- go to definition in splitted window (vertical)
 map("n", "vv", "viw")                                         -- easy visual block for word
 map({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
+map({ 'n', 'v' }, 'zz', 'zz8<C-e>')                                 -- toggle fold uni-key
 map({ 'n', 'v' }, 'gH', '0')                                  -- move cursor
 map({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
 map({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
