@@ -93,7 +93,8 @@ require('render-markdown').setup({
     enabled = true,
     -- Turn on / off any sign column related rendering
     sign = true,
-    border = { false, true, true, false, false },
+    -- border = { false, true, true, false, false },
+    border = { false },
     border_virtual = false,
     border_prefix = false,
     above = '▂',
