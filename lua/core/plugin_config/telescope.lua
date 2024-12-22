@@ -190,7 +190,10 @@ local select_one_or_multi = function(prompt_bufnr, variant)
       actions.select_vertical(prompt_bufnr)
     end
   end
-  NvimTreeResetUI()
+
+  if variant ~= 'T' then
+    NvimTreeResetUI()
+  end
 end
 
 vim.keymap.set('n', ',.gco', function()
