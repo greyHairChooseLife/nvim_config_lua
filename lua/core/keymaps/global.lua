@@ -228,12 +228,8 @@ map("n", "<A-S-Right>", "<cmd>vertical resize +8<CR>", {})
 map("n", "<A-S-Down>", "<cmd>horizontal resize -8<CR>", {})
 map("n", "<A-S-Up>", "<cmd>horizontal resize +8<CR>", {})
 -- BUFFER FOCUS
-map('n', "<Tab>", function()
-  NavBuffAfterCleaning("next")
-end)
-map('n', "<S-Tab>", function()
-  NavBuffAfterCleaning("prev")
-end)
+map('n', "<Tab>", function() NavBuffAfterCleaning("next") end)
+map('n', "<S-Tab>", function() NavBuffAfterCleaning("prev") end)
 
 
 
