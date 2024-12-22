@@ -52,8 +52,7 @@ local function my_on_attach(bufnr)
       else
         vim.cmd('vert rightbelow new')
         vim.cmd('edit ' .. node.absolute_path)
-        vim.cmd('NvimTreeToggle')
-        vim.cmd('NvimTreeToggle')
+        NvimTreeResetUI()
         vim.cmd('NvimTreeFocus')
       end
     end,
@@ -69,9 +68,7 @@ local function my_on_attach(bufnr)
       else
         vim.cmd('vert rightbelow new')
         vim.cmd('edit ' .. node.absolute_path)
-        vim.cmd('NvimTreeToggle')
-        vim.cmd('NvimTreeToggle')
-        vim.cmd('wincmd w')
+        NvimTreeResetUI()
       end
     end,
     opts('action L')

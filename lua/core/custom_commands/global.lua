@@ -59,6 +59,11 @@ function FocusFloatingWindow()
   end
 end
 
+function NvimTreeResetUI()
+  vim.cmd('NvimTreeClose')
+  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+end
+
 -- =========================================================================
 -- =========================================================================
 --                           Telescope

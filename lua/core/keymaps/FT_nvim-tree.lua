@@ -81,9 +81,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.keymap.set({ 'n', 'v' }, '<A-v>', function()
       vim.cmd('vnew')
-      vim.cmd('NvimTreeToggle')
-      vim.cmd('NvimTreeToggle')
-      vim.cmd('wincmd p')
+      NvimTreeResetUI()
     end, opts)
 
     vim.keymap.set({ 'n', 'v' }, 'gq', function()

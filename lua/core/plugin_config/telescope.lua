@@ -190,8 +190,7 @@ local select_one_or_multi = function(prompt_bufnr, variant)
       actions.select_vertical(prompt_bufnr)
     end
   end
-  vim.cmd('NvimTreeToggle')
-  vim.cmd('NvimTreeToggle')
+  NvimTreeResetUI()
 end
 
 vim.keymap.set('n', ',.gco', function()

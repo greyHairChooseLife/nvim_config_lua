@@ -16,10 +16,6 @@ vim.api.nvim_create_autocmd("FileType", {
       if vim.fn.winnr('$') == 1 then vim.cmd('q')
       elseif vim.fn.winnr('$') == 2 and require('nvim-tree.api').tree.is_visible() then vim.cmd('q')
       else vim.cmd('bd!') end
-
-     -- window size 문제가 있다.
-      vim.cmd('NvimTreeToggle')
-      vim.cmd('NvimTreeToggle')
     end, opts ) -- close buffer, saving memory
     vim.keymap.set('n', 'i', function()
       vim.cmd('normal =')
