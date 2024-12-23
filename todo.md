@@ -38,9 +38,6 @@
 - auto-session 복구시 탭 이름도 복구 되도록
 - gq, ge 따위로 버퍼를 제거를 시도하더라도, 만약 다른 탭에 해당 버퍼가 있다면 그냥 window만 닫아야 한다.
 
-- https://github.com/dlvhdr/diffnav
-  ,.gd에다가 그냥 delta 말고 이걸 적용하면 좋을듯
-
 #### 복잡
 
 - aerial.nvim에서,

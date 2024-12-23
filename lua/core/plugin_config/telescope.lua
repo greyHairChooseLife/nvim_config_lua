@@ -34,14 +34,16 @@ end
 -- install git-delta from pacman
 local diff_delta = previewers.new_termopen_previewer({
   get_command = function(entry)
-    -- 새로 추가된 파일
-    if entry.status == 'A ' then return { 'git', 'diff', '--cached', entry.path } end
     -- 추적되지 않은 파일
     if entry.status == '??' then return { 'bash', '-c', 'echo "This is an untracked file. No diff available.\n\nJust stage it, so you can have a look."' } end
 
+    -- staged & unstaged
     return { 'git', 'diff', 'HEAD', '--', entry.path }
     -- 원한다면 아래처럼도 가능
     -- return { 'bash', '-c', 'git diff HEAD -- ' .. entry.path }
+
+    -- -- staged only
+    -- if entry.status == 'A ' then return { 'git', 'diff', '--cached', entry.path } end
   end
 })
 
