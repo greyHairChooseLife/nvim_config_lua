@@ -105,9 +105,10 @@ local function my_on_attach(bufnr)
     if vim.bo.filetype == 'NvimTree' and #vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage()) == 1 then
       require('nvim-tree.api').tree.reload()
     else
-      require('nvim-tree.api').tree.reload()
-      require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-      require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+      -- require('nvim-tree.api').tree.reload()
+      -- require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+      -- require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+      NvimTreeResetUI()
       vim.cmd('AerialToggle')
       vim.cmd('AerialToggle')
       require('quicker').refresh()

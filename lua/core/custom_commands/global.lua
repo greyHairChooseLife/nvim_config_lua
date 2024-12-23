@@ -66,6 +66,10 @@ end
 function NvimTreeResetUI()
   vim.cmd('NvimTreeClose')
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+
+  -- cursor 보임
+  vim.cmd("hi Cursor blend=0")
+  vim.cmd("set guicursor-=a:Cursor/lCursor")
 end
 
 -- =========================================================================
@@ -480,8 +484,7 @@ function ReloadLayout()
     require('nvim-tree.api').tree.reload()
   else
     vim.cmd('wincmd = | echon');
-    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
-    require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+    NvimTreeResetUI();
     vim.cmd('AerialToggle')
     vim.cmd('AerialToggle')
     require('quicker').refresh()
