@@ -64,6 +64,8 @@ local function focus_or_open(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local filepath = entry.path or entry.filename
   local bufnr = entry.bufnr  -- buffers picker의 경우에는 bufnr 필드를 참조합니다.
+  local lnum = entry.lnum or 1
+  local lcol = entry.col or 1
 
   -- 버퍼 리스트에서 filepath에 해당하는것 있는지 확인
   function is_file_in_buffer_list(filepath)
@@ -97,6 +99,8 @@ local function focus_or_open(prompt_bufnr)
   else
     actions.file_edit(prompt_bufnr)
   end
+
+  vim.api.nvim_win_set_cursor(0, {lnum, lcol})
 end
 
 local function focus_or_open_terminal_buffer(prompt_bufnr)
@@ -174,7 +178,8 @@ local select_one_or_multi = function(prompt_bufnr, variant)
         elseif variant == 'V' or variant == 'T' then
           vim.cmd(string.format('%s %s', 'vsplit', filename))
         end
-        vim.cmd(string.format("normal! %dG%d|zz", lnum, lcol))
+        -- vim.cmd(string.format("normal! %dG%d|zz", lnum, lcol))
+        vim.api.nvim_win_set_cursor(0, {lnum, lcol})
       end
     end
 
