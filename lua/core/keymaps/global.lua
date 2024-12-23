@@ -84,23 +84,24 @@ map('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", { noremap = 
 map({ 'n', 'v' }, '<A-Enter><Space>', CloseOtherBuffersInCurrentTab)
 map({ 'n', 'v' }, '<A-Enter>t', TabOnlyAndCloseHiddenBuffers)
 map('n', '<leader>Q', '<cmd>qa!<CR>')
-map('n', 'gq', function()
-  if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then vim.cmd('q')  -- 마지막 탭의 마지막 윈도우라면 걍 끄면 됨
-  elseif vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') ~= 1 then
-    local bufnr = vim.fn.bufnr('%')
-    vim.cmd('q')
-    if vim.api.nvim_buf_is_valid(bufnr) then
-      vim.api.nvim_buf_delete(bufnr, { force = true })
-    end
-  elseif vim.fn.winnr('$') == 2 and require('nvim-tree.api').tree.is_visible() then
-    local bufnr = vim.fn.bufnr('%')
-    vim.cmd('q')
-    if vim.api.nvim_buf_is_valid(bufnr) then
-      vim.api.nvim_buf_delete(bufnr, { force = true })
-    end
-  else vim.cmd('bd!') end
-end) -- close buffer, saving memory
-map('n', 'gQ', '<cmd>q<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다. 희안하게 !를 붙이면 hidden이 아니라 active상태다.
+map('n', 'gq', ManageBuffer_gq)
+-- NOTE: deprecated, 2024-12-24 향후 문제 없으면 제거
+-- map('n', 'gq', function()
+--   if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then vim.cmd('q')  -- 마지막 탭의 마지막 윈도우라면 걍 끄면 됨
+--   elseif vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') ~= 1 then
+--     local bufnr = vim.fn.bufnr('%')
+--     vim.cmd('q')
+--     if vim.api.nvim_buf_is_valid(bufnr) then
+--       vim.api.nvim_buf_delete(bufnr, { force = true })
+--     end
+--   elseif vim.fn.winnr('$') == 2 and require('nvim-tree.api').tree.is_visible() then
+--     local bufnr = vim.fn.bufnr('%')
+--     vim.cmd('q')
+--     if vim.api.nvim_buf_is_valid(bufnr) then
+--       vim.api.nvim_buf_delete(bufnr, { force = true })
+--     end
+--   else vim.cmd('bd!') end
+-- end) -- close buffer, saving memory
 map('n', 'qq', '<cmd>q<CR>') -- 버퍼를 남겨둘 필요가 있는 경우가 오히려 더 적다. 희안하게 !를 붙이면 hidden이 아니라 active상태다.
 map('n', 'g<Tab>', BufferNextDropLast)
 map('n', 'gw', function()
@@ -111,43 +112,47 @@ map('n', 'gW', function()
   vim.cmd('wa')
   vim.notify('Saved all buffers', 3, { render = 'minimal' })
 end)
-map('n', 'ge', function()
-  vim.cmd('w')
-  -- 현재 윈도우가 마지막 윈도우라면 q로 종료
-  if vim.fn.winnr('$') == 1 then vim.cmd('q')
-  else vim.cmd('bd') end
-  vim.notify('Saved last buffers', 3, { render = 'minimal' })
-end)
-map('n', 'gE', function()
-  vim.cmd('wq')
-  vim.notify('Saved last buffers', 3, { render = 'minimal' })
-end)
-map('n', 'gtQ', '<cmd>tabclose!<CR>')
-map('n', 'gtq', function()
-  -- 탭 이름이 'abcd' 라면
-  local tabname = GetCurrentTabName()
-  if tabname == ' Commit' or tabname == ' File' or tabname == 'GV' or tabname == 'Diff' then
-    vim.cmd('tabclose!')
-    return
-  end
 
-  -- 전체 탭의 개수가 1개라면 아무것도 하지 않고 종료
-  if vim.fn.tabpagenr('$') == 1 then
-    vim.notify('Cannot close the last tab page', 4, { render = 'minimal' })
-    return
-  end
+map('n', 'ge', ManageBuffer_ge)
+-- NOTE: deprecated, 2024-12-24 향후 문제 없으면 제거
+-- map('n', 'ge', function()
+--   vim.cmd('w')
+--   -- 현재 윈도우가 마지막 윈도우라면 q로 종료
+--   if vim.fn.winnr('$') == 1 then vim.cmd('q')
+--   else vim.cmd('bd') end
+--   vim.notify('Saved last buffers', 3, { render = 'minimal' })
+-- end)
 
-  -- 현재 탭의 모든 윈도우를 순회하며 버퍼를 닫음
-  -- local tabnr = vim.fn.tabpagenr()  -- 현재 탭 번호 가져오기
-  local tabid = vim.api.nvim_get_current_tabpage()  -- 탭 ID 가져오기
-  local wins = vim.api.nvim_tabpage_list_wins(tabid) -- 현재 탭의 윈도우 목록 가져오기, 인자로 받는 것은 탭 번호가 아니라 탭 ID
+map('n', 'gtq', ManageBuffer_gtq)
+-- NOTE: deprecated, 2024-12-24 향후 문제 없으면 제거
+-- map('n', 'gtq', function()
+--   -- 탭 이름이 'abcd' 라면
+--   local tabname = GetCurrentTabName()
+--   if tabname == ' Commit' or tabname == ' File' or tabname == 'GV' or tabname == 'Diff' then
+--     vim.cmd('tabclose!')
+--     return
+--   end
+--
+--   -- 전체 탭의 개수가 1개라면 아무것도 하지 않고 종료
+--   if vim.fn.tabpagenr('$') == 1 then
+--     vim.notify('Cannot close the last tab page', 4, { render = 'minimal' })
+--     return
+--   end
+--
+--   -- 현재 탭의 모든 윈도우를 순회하며 버퍼를 닫음
+--   -- local tabnr = vim.fn.tabpagenr()  -- 현재 탭 번호 가져오기
+--   local tabid = vim.api.nvim_get_current_tabpage()  -- 탭 ID 가져오기
+--   local wins = vim.api.nvim_tabpage_list_wins(tabid) -- 현재 탭의 윈도우 목록 가져오기, 인자로 받는 것은 탭 번호가 아니라 탭 ID
+--
+--   for _, win in ipairs(wins) do
+--       local bufnr = vim.api.nvim_win_get_buf(win) -- 윈도우에 연결된 버퍼 번호 가져오기
+--       vim.api.nvim_buf_delete(bufnr, { force = true }) -- 버퍼 삭제 (force 옵션으로 강제 종료)
+--   end
+-- end, { noremap = true, silent = true })
 
-  for _, win in ipairs(wins) do
-      local bufnr = vim.api.nvim_win_get_buf(win) -- 윈도우에 연결된 버퍼 번호 가져오기
-      vim.api.nvim_buf_delete(bufnr, { force = true }) -- 버퍼 삭제 (force 옵션으로 강제 종료)
-  end
-end, { noremap = true, silent = true })
-
+map('n', 'gQ', ManageBuffer_gQ)
+map('n', 'gE', ManageBuffer_gE)
+map('n', 'gtQ', ManageBuffer_gtQ)
 
 map('n', 'gcp', Save_current_buffer_path)
 

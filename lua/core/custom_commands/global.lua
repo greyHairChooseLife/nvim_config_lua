@@ -693,3 +693,97 @@ function BufferNextDropLast()
   -- 어쨋든 최근 버퍼는 닫는다.
   vim.cmd('bd ' .. last_buf)
 end
+
+local function is_buffer_active_somewhere(bufnr)
+  -- 모든 창 확인
+  local windows = vim.api.nvim_list_wins()
+  for _, winid in ipairs(windows) do
+    -- 각 창의 버퍼 번호 확인
+    if vim.api.nvim_win_get_buf(winid) == bufnr then
+      return true -- 버퍼가 하나 이상의 창에 활성화됨
+    end
+  end
+  return false -- 어떤 창에도 표시되지 않음
+end
+
+function ManageBuffer_gq()
+  local win_count = vim.fn.winnr('$')
+  local tab_count = vim.fn.tabpagenr('$')
+  local bufnr = vim.fn.bufnr('%')
+
+  if win_count == 1 and tab_count == 1 then
+    -- 마지막 탭, 마지막 윈도우: vim 종료
+    vim.cmd('q')
+  elseif win_count == 1 and tab_count > 1 then
+    -- 현재 탭의 마지막 윈도우: 현재 윈도우에 활성화 된 것 외에도 아무데서도 활성화되지 않은 것이라면 버퍼를 제거한다.
+    vim.cmd('q')
+    if not is_buffer_active_somewhere(bufnr) then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  elseif win_count == 2 and require('nvim-tree.api').tree.is_visible() then
+    vim.cmd('q')
+    if not is_buffer_active_somewhere(bufnr) then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  else
+    vim.cmd('q')
+    if not is_buffer_active_somewhere(bufnr) then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  end
+end
+
+function ManageBuffer_ge()
+  vim.cmd('w') -- 일단 저장
+
+  ManageBuffer_gq()
+
+  vim.notify('Saved last buffers', 3, { render = 'minimal' })
+end
+
+function ManageBuffer_gQ() -- loaded buffer를 모두 닫는다.
+  local bufnr = vim.fn.bufnr('%')
+
+  vim.cmd('q')
+
+  if vim.api.nvim_buf_is_valid(bufnr) then
+    vim.api.nvim_buf_delete(bufnr, { force = true })
+  end
+end
+
+function ManageBuffer_gE() -- 저장 후, loaded buffer를 모두 닫는다.
+  vim.cmd('w')
+
+  ManageBuffer_gQ()
+  vim.notify('Saved last buffers', 3, { render = 'minimal' })
+end
+
+function ManageBuffer_gtq()
+  -- 예외처리: 특수 탭
+  local tabname = GetCurrentTabName()
+  if tabname == ' Commit' or tabname == ' File' or tabname == 'GV' or tabname == 'Diff' then
+    vim.cmd('tabclose!')
+    return
+  end
+
+  -- 예외처리: 전체 탭의 개수가 1개
+  if vim.fn.tabpagenr('$') == 1 then
+    vim.notify('Cannot close the last tab page', 4, { render = 'minimal' })
+    return
+  end
+
+  -- 현재 탭의 모든 윈도우 순회하며 조건에 맞을 때 종료(조건: is_buffer_active_somewhere)
+  local tabid = vim.api.nvim_get_current_tabpage()  -- 탭 ID 가져오기
+  local wins = vim.api.nvim_tabpage_list_wins(tabid) -- 현재 탭의 윈도우 목록 가져오기, 인자로 받는 것은 탭 번호가 아니라 탭 ID
+  for _, win in ipairs(wins) do
+    local bufnr = vim.api.nvim_win_get_buf(win) -- 윈도우에 연결된 버퍼 번호 가져오기
+    vim.cmd('q') -- 일단 꺼
+    if not is_buffer_active_somewhere(bufnr) then -- 다른데 활성화(눈에 보이게) 되어있지 않은것만 꺼
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  end
+end
+
+function ManageBuffer_gtQ()
+  -- 그간의 경험을 돌아보면 딱히 쓴 일, 쓸 일이 없는데?
+end
