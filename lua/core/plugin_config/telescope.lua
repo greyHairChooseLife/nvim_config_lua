@@ -102,7 +102,9 @@ local function focus_or_open(prompt_bufnr)
     actions.file_edit(prompt_bufnr)
   end
 
-  vim.api.nvim_win_set_cursor(0, {lnum, lcol})
+  vim.defer_fn(function()
+    vim.api.nvim_win_set_cursor(0, {lnum, lcol-1})
+  end, 20)
 end
 
 local function focus_or_open_terminal_buffer(prompt_bufnr)
