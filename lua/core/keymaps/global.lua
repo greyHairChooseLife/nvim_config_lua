@@ -245,7 +245,12 @@ map('n', "<S-Tab>", function() NavBuffAfterCleaning("prev") end)
 -- =========================================================================
 -- NVIM-TREE
 map('n', ',,d', function()
-  require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
+  local tree_api = require('nvim-tree.api').tree
+
+  tree_api.toggle({ find_files = true, focus = false })
+  if tree_api.is_visible() then
+    ShowCursor()
+  end
 end)
 map("n", ",d", "<cmd>NvimTreeFocus<CR>") -- focus on nvim-tree right away  -> diffview 쪽이랑 통합했다. 조건부로 동작.
 

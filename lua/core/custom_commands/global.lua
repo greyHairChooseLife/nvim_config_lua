@@ -3,7 +3,7 @@
 --                           general
 -- =========================================================================
 -- =========================================================================
-function ShowCursor()
+function ShareCursor()
   if vim.o.cursorline then
     vim.o.cursorline = false
     vim.o.cursorcolumn = false
@@ -19,7 +19,7 @@ function ShowCursor()
   end
 end
 
-vim.cmd('command! ShowCursor lua ShowCursor()')
+vim.cmd('command! ShareCursor lua ShareCursor()')
 
 function BlinkCursorLine(duration)
   duration = duration or 50 -- 기본값 50ms
@@ -63,13 +63,16 @@ function FocusFloatingWindow()
   end
 end
 
+function ShowCursor()
+  vim.cmd("hi Cursor blend=0")
+  vim.cmd("set guicursor-=a:Cursor/lCursor")
+end
+
 function NvimTreeResetUI()
   vim.cmd('NvimTreeClose')
   require('nvim-tree.api').tree.toggle({ find_files = true, focus = false })
 
-  -- cursor 보임
-  vim.cmd("hi Cursor blend=0")
-  vim.cmd("set guicursor-=a:Cursor/lCursor")
+  ShowCursor()
 end
 
 -- =========================================================================
