@@ -41,6 +41,8 @@
 - searchHL: ' 로 찾으면 화면이 바뀌어버려. 기존을 기억해서 재자리로 돌아가도록 하자.
 - :DEPRECATED 추가
 
+- live_grep에서 enter로 제대로 안찾아감 col, lnum
+
 #### 복잡
 
 - aerial.nvim에서,
