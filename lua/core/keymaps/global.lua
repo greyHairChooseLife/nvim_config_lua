@@ -13,14 +13,15 @@ map("n", ",sx", "<cmd>sp | wincmd w<CR>") -- go to definition in splitted window
 map("n", ",sv", "<cmd>vs<CR>") -- go to definition in splitted window (vertical)
 map("n", "vv", "viw")                                         -- easy visual block for word
 map({ 'n', 'v' }, 'zo', 'za')                                 -- toggle fold uni-key
-map({ 'n', 'v' }, 'zz', 'zz8<C-e>')                                 -- toggle fold uni-key
+map({ 'n', 'v' }, 'zz', 'zz5<C-e>')                                 -- toggle fold uni-key
 map({ 'n', 'v' }, 'gH', '0')                                  -- move cursor
 map({ 'n', 'v' }, 'gh', '^')                                  -- move cursor
 map({ 'n', 'v' }, 'gl', '$')                                  -- move cursor
 map({ 'n', 'v' }, 'gL', '$')                                  -- move cursor
 map({ 'n' }, ',,p', '"*p')                                    -- easy-paste system clipboard
 map('n', "'", ToggleHilightSearch)
-map('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
+-- map('v', "'", '"zy/<C-R>z<CR>N')                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
+map('v', "'", HilightSearch)                              -- 비주얼 모드에서 선택한 텍스트 검색 후 이전 결과로 이동
 map('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 map('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
 

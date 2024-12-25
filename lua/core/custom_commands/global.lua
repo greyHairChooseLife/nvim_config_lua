@@ -506,17 +506,24 @@ function IsCursorOnEmptySpace()
   return char == " " or char == ""
 end
 
+function HilightSearch()
+  local text = GetVisualText()
+  if text and #text > 0 then
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.api.nvim_win_set_cursor(0, { pos[1]-1, 1 })
+
+    local keys = '/' .. text .. '\n'
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), 'n', true)
+  end
+end
+
 function ToggleHilightSearch()
   if vim.v.hlsearch == 1 then
     vim.cmd('nohlsearch | echon')
   else
     if not IsCursorOnEmptySpace() then
       vim.cmd('normal! viw')
-      local text = GetVisualText()
-      if text and #text > 0 then
-        vim.cmd(string.format('/%s', text))
-        vim.cmd('normal! N')
-      end
+      HilightSearch()
     end
   end
 end
