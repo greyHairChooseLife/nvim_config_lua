@@ -2,14 +2,12 @@
 
 -- 날짜 찍기
 vim.keymap.set('i', ',d', function()
-  local result = vim.fn.system('date "+%Y-%m-%d"')
-  result = result:gsub("\n$", "")
-  vim.api.nvim_put({ result }, 'c', false, true)
+  local date_text = vim.fn.system('date "+%Y-%m-%d"'):gsub("\n$", "")
+  vim.api.nvim_put({ date_text }, 'c', false, true)
 end, { noremap = true, silent = true })
 vim.keymap.set('i', ',D', function() -- 2024. 06. 11. (화) 17:52:17 KST
-  local result = vim.fn.system('date')
-  result = result:gsub("\n$", "")
-  vim.api.nvim_put({ result }, 'c', false, true)
+  local date_text = vim.fn.system('date'):gsub("\n$", "")
+  vim.api.nvim_put({ date_text }, 'c', false, true)
 end, { noremap = true, silent = true })
 
 
@@ -31,27 +29,14 @@ vim.keymap.set('i', ',,E', function()
   require('Comment.api').toggle.linewise.current()
   vim.api.nvim_input("<Esc>o")
 end)
-
 vim.keymap.set('i', ',,D', function()
-  -- 두 줄의 DEBUG: 삽입
-  vim.api.nvim_feedkeys("START_debug:\nEND___debug:", "n", true)
+  local comment_text_start = "START_debug:"
+  local comment_text_end = "END___debug:"
+  vim.api.nvim_put({ comment_text_start, comment_text_end }, "c", false, false)
 
-  -- ESC를 눌러 insert 모드에서 나옴
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-
-  -- 두 줄을 모두 주석 처리
-  vim.defer_fn(function()
-    -- 현재 커서 위치에서 두 줄을 주석 처리
-    vim.cmd("normal! k")                                           -- 한 줄 위로 이동
-    vim.cmd("lua require('Comment.api').toggle.linewise.count(2)") -- 두 줄 주석 처리
-
-    -- 커서를 insert 모드로 복귀시키고 커서 위치 설정
-    vim.api.nvim_feedkeys("o", "n", true)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("cc", true, true, true), "n", true)
-  end, 10) -- 두 줄 삽입 후 딜레이
+  require('Comment.api').toggle.linewise.count(2)
+  vim.api.nvim_input("<Esc>o<Esc>cc")
 end)
-
 
 -- console.log
 function Insert_console_log()
