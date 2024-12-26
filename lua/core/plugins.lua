@@ -178,17 +178,14 @@ return require('packer').startup(function(use)
   use { "kristijanhusak/vim-dadbod-ui" }
   use { "kristijanhusak/vim-dadbod-completion" }
 
-  use { "goolord/alpha-nvim" }
-  -- NOTE:: dashboard
+  use { "goolord/alpha-nvim" } -- dashboard
 
   use { 'ryanoasis/vim-devicons' }
   use { 'MeanderingProgrammer/markdown.nvim' }
 
-  use { 'stevearc/quicker.nvim' }
-  -- NOTE:: quickfix superset
+  use { 'stevearc/quicker.nvim' } -- quickfix superset
 
-  use { 'pteroctopus/faster.nvim' }
-  -- NOTE:: handle big big files
+  use { 'pteroctopus/faster.nvim' } -- handle big big files
 
   use {
     "ryanmsnyder/toggleterm-manager.nvim",

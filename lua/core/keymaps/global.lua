@@ -86,7 +86,7 @@ map({ 'n', 'v' }, '<A-Enter><Space>', CloseOtherBuffersInCurrentTab)
 map({ 'n', 'v' }, '<A-Enter>t', TabOnlyAndCloseHiddenBuffers)
 map('n', '<leader>Q', '<cmd>qa!<CR>')
 map('n', 'gq', ManageBuffer_gq)
--- NOTE: deprecated, 2024-12-24 향후 문제 없으면 제거
+-- DEPRECATED::, 2024-12-24 향후 문제 없으면 제거
 -- map('n', 'gq', function()
 --   if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then vim.cmd('q')  -- 마지막 탭의 마지막 윈도우라면 걍 끄면 됨
 --   elseif vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') ~= 1 then
@@ -115,7 +115,7 @@ map('n', 'gW', function()
 end)
 
 map('n', 'ge', ManageBuffer_ge)
--- NOTE: deprecated, 2024-12-24 향후 문제 없으면 제거
+-- DEPRECATED:: 2024-12-24 향후 문제 없으면 제거
 -- map('n', 'ge', function()
 --   vim.cmd('w')
 --   -- 현재 윈도우가 마지막 윈도우라면 q로 종료
@@ -125,7 +125,7 @@ map('n', 'ge', ManageBuffer_ge)
 -- end)
 
 map('n', 'gtq', ManageBuffer_gtq)
--- NOTE: deprecated, 2024-12-24 향후 문제 없으면 제거
+-- DEPRECATED:: 2024-12-24 향후 문제 없으면 제거
 -- map('n', 'gtq', function()
 --   -- 탭 이름이 'abcd' 라면
 --   local tabname = GetCurrentTabName()

@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       end
 
       -- cursor 숨김
-      vim.cmd("hi Cursor blend=100")
+      vim.cmd("hi Cursor blend=100")  -- Cursor 하이라이트 설정
       vim.cmd("set guicursor+=a:Cursor/lCursor")
     end
 
