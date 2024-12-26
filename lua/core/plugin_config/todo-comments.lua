@@ -13,7 +13,7 @@ require("todo-comments").setup {
     START_debug = { icon = " ", color = "error" },
     END___debug = { icon = " ", color = "error" },
     WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-    NOTE = { icon = "󱩼 ", color = "hint", alt = { "INFO" } },
+    MEMO = { icon = "󱩼 ", color = "hint", alt = { "INFO" } },
     PSEUDO_CODE = { icon = " ", color = "pseudo", alt = { "PSEUDO_CODE" } },
   },
   gui_style = {

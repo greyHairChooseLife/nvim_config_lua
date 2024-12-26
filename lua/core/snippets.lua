@@ -13,7 +13,7 @@ vim.keymap.set('i', ',D', function() -- 2024. 06. 11. (화) 17:52:17 KST
 end, { noremap = true, silent = true })
 
 
--- SNIPPET 주석: [ TODO / NOTE / WARN / BUG ]
+-- SNIPPET 주석: [ TODO / MEMO / WARN / BUG ]
 --     
 vim.keymap.set('i', ',,T', function()
   vim.api.nvim_feedkeys("TODO:", "n", true)
@@ -31,8 +31,8 @@ vim.keymap.set('i', ',,P', function()
     vim.api.nvim_feedkeys("A", "n", true)
   end, 1) -- 최소한의 딜레이
 end)
-vim.keymap.set('i', ',,N', function()
-  vim.api.nvim_feedkeys("NOTE:", "n", true)
+vim.keymap.set('i', ',,M', function()
+  vim.api.nvim_feedkeys("MEMO:", "n", true)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
   vim.defer_fn(function()
     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
@@ -47,27 +47,6 @@ vim.keymap.set('i', ',,W', function()
     vim.api.nvim_feedkeys("A", "n", true)
   end, 1) -- 최소한의 딜레이
 end)
--- vim.keymap.set('i', ',,D', function()
---   vim.api.nvim_feedkeys("DEBUG:", "n", true)
---   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
---   vim.defer_fn(function()
---     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
---     vim.api.nvim_feedkeys("A", "n", true)
---   end, 1) -- 최소한의 딜레이
--- end)
--- vim.keymap.set('i', ',,D', function()
---   -- 첫 번째 DEBUG: 삽입
---   vim.api.nvim_feedkeys(" Start  DEBUG:", "n", true)
---
---   -- ESC를 눌러 insert 모드에서 나옴
---   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
---
---   -- 첫 번째 줄을 주석 처리
---   vim.defer_fn(function()
---     vim.cmd("lua require('Comment.api').toggle.linewise.current()")
---   end, 1) -- 첫 번째 줄 주석 처리 후 딜레이
--- end)
-
 
 vim.keymap.set('i', ',,D', function()
   -- 두 줄의 DEBUG: 삽입
