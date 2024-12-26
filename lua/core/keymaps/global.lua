@@ -78,7 +78,7 @@ end, { noremap = true, silent = true })
 
 -- 디버깅
 map('i', 'cl<cr>', Insert_console_log, { noremap = true, silent = true })
-map('v', 'cl<cr>', "<cmd><C-U>lua Insert_console_log_Visual()<CR>", { noremap = true, silent = true })
+map('v', 'cl<cr>', Insert_console_log_Visual, { noremap = true, silent = true })
 
 
 -- BUFFER & WINDOW 관리
