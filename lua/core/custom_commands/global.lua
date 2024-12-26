@@ -482,18 +482,61 @@ function Save_visual_selection_to_register_for_AI_prompt()
 end
 
 function ReloadLayout()
-  -- 현재 윈도우의 파일타입이 NvimTree이면서, 현재 탭의 유일한 윈도우인 경우
-  if vim.bo.filetype == 'NvimTree' and #vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage()) == 1 then
+  local curr_win = vim.api.nvim_get_current_win()
+  local win_count_curr_tab = #vim.api.nvim_tabpage_list_wins(0)
+  local is_tree_open = require('nvim-tree.view').is_visible()
+
+  if win_count_curr_tab == 1 and is_tree_open then
     require('nvim-tree.api').tree.reload()
-  else
-    vim.cmd('wincmd = | echon');
+    return
+  end
+
+  -- 공통
+  vim.cmd('wincmd = | echon');
+
+  -- check nvim-tree
+  if is_tree_open then
     NvimTreeResetUI();
+  end
+
+  -- check FileType for: aerial, avante
+  local function is_ft_open()
+    -- Get all windows in current tab
+    local wins = vim.api.nvim_tabpage_list_wins(0)
+    local is_aerial_open = false
+    local is_avante_open = false
+
+    -- Check each window's buffer filetype
+    for _, win in ipairs(wins) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+      if ft == 'aerial' then is_aerial_open = true end
+      if ft == 'Avante' then is_avante_open = true end
+    end
+
+    return is_aerial_open, is_avante_open
+  end
+  local is_aerial_open, is_avante_open = is_ft_open()
+
+  if is_aerial_open then
     vim.cmd('AerialToggle')
     vim.cmd('AerialToggle')
-    require('quicker').refresh()
+  end
+
+  if is_avante_open then
     vim.cmd('AvanteToggle')
     vim.cmd('AvanteToggle')
   end
+
+  -- WARN:: 문제를 이르키는지 다시 살펴볼 필요가 있음
+  -- require('quicker').refresh()
+
+  -- focus origianal window
+  vim.defer_fn(function()
+    if vim.api.nvim_win_is_valid(curr_win) then -- avante window의 경우 항상 새로운 window가 생성되므로 에러를 이르킬 수 있다.
+      vim.api.nvim_set_current_win(curr_win)
+    end
+  end, 1)
 end
 
 function IsCursorOnEmptySpace()
