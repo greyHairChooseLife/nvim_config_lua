@@ -82,18 +82,6 @@ return require('packer').startup(function(use)
 
   use 'sindrets/winshift.nvim'
 
-  use({
-    "jackMort/ChatGPT.nvim",
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  })
-  -- NOTE: 
-  -- reddit에 보면 아래 대체품이 커스터마이징이 더 쉽고 자유롭다고 한다.
-  -- https://github.com/Robitx/gp.nvim/
-
   use { 'lewis6991/gitsigns.nvim', }
 
   use { "akinsho/toggleterm.nvim" }
