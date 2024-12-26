@@ -18,9 +18,9 @@ function _G.check_back_space()
 end
 
 -- Use Tab for trigger completion with characters ahead and navigate
--- NOTE: There's always a completion item selected by default, you may want to enable
+-- MEMO: There's always a completion item selected by default, you may want to enable
 -- no select by setting `"suggest.noselect": true` in your configuration file
--- NOTE: Use command ':verbose imap <tab>' to make sure Tab is not mapped by
+-- MEMO: Use command ':verbose imap <tab>' to make sure Tab is not mapped by
 -- other plugins before putting this into your config
 local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 -- keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
@@ -139,7 +139,7 @@ keyset("x", ",.are", "<Plug>(coc-codeaction-refactor-selected)", { silent = true
 
 
 -- Map function and class text objects
--- NOTE: Requires 'textDocument.documentSymbol' support from the language server
+-- MEMO: Requires 'textDocument.documentSymbol' support from the language server
 keyset("x", "if", "<Plug>(coc-funcobj-i)", opts)
 keyset("o", "if", "<Plug>(coc-funcobj-i)", opts)
 keyset("x", "af", "<Plug>(coc-funcobj-a)", opts)
@@ -180,7 +180,7 @@ keyset("x", "V", "<Plug>(coc-range-select)", { silent = true })
 vim.api.nvim_create_user_command("OrganizeImport", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 
 -- Add (Neo)Vim's native statusline support
--- NOTE: Please see `:h coc-status` for integrations with external plugins that
+-- MEMO: Please see `:h coc-status` for integrations with external plugins that
 -- provide custom statusline: lightline.vim, vim-airline
 -- vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function','')}")
 

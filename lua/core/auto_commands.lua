@@ -1,4 +1,4 @@
--- NOTE:: 이벤트 종류는 doc에서 아래를 검색하면 나온다.
+-- MEMO:: 이벤트 종류는 doc에서 아래를 검색하면 나온다.
 -- 5. Events					*autocmd-events* *E215* *E216*
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {

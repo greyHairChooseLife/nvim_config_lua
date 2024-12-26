@@ -53,7 +53,7 @@ return require('packer').startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
-  -- NOTE:
+  -- MEMO:
   --
   -- ETC
   --  markdown 파일 작성중에 workflow의 끊김없이 이미지를 캡쳐해오는 방법 https://github.com/kiran94/maim.nvim
@@ -215,7 +215,7 @@ return require('packer').startup(function(use)
       "HakonHarnes/img-clip.nvim",
     },
   }
-  -- NOTE:
+  -- MEMO:
   --
   -- HOW TO INSTALL
   --  https://github.com/yetone/avante.nvim/issues/581#issuecomment-2394807552 packer 전용 플러그인 정의
@@ -255,7 +255,7 @@ return require('packer').startup(function(use)
   }
 
   use {'mistricky/codesnap.nvim', run = 'make'}
-  -- NOTE: code to img
+  -- MEMO: code to img
   --
   -- USAGE
   --  https://github.com/mistricky/codesnap.nvim?tab=readme-ov-file#usage

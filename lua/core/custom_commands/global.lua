@@ -465,7 +465,7 @@ function Save_visual_selection_to_register_for_AI_prompt()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 
   vim.schedule(function()
-    -- NOTE:: '<' 또는 '>' 이놈들은 기본적으로 이전 visual mode의 시작과 끝을 가져온다. 그러니 일단 nomal모드로 돌아간 뒤에 가져와야 정상 순서다.
+    -- MEMO:: '<' 또는 '>' 이놈들은 기본적으로 이전 visual mode의 시작과 끝을 가져온다. 그러니 일단 nomal모드로 돌아간 뒤에 가져와야 정상 순서다.
     local start_line, start_col = unpack(vim.api.nvim_buf_get_mark(0, "<"))
     local end_line, end_col = unpack(vim.api.nvim_buf_get_mark(0, ">"))
 

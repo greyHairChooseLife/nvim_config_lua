@@ -10,7 +10,7 @@ require("core.custom_tabline");
 require("core.temp");
 require("core.floating_window");
 
--- NOTE: 참고 자료들
+-- MEMO: 참고 자료들
 --
 -- https://www.lua.org/manual/5.3/
 -- https://neovim.io/doc/user/options.html
