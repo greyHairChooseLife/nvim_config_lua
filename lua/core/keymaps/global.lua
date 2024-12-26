@@ -27,7 +27,7 @@ map('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true });
 
 map({ 'n', 'v' }, ',U', '<Esc>bvU')                                                                           -- CamelCase
 map({ 'n' }, '<A-space>', FocusFloatingWindow, { noremap = true, silent = true })
-map({ 'n', 'v' }, '<Space>', function()
+map({ 'n' }, '<Space>', function()
   vim.cmd('Twilight')
   BlinkCursorLine()
 end)

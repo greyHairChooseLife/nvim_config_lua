@@ -264,6 +264,16 @@ return require('packer').startup(function(use)
   --  https://github.com/0oAstro/silicon.lua
   --  https://github.com/Aloxaf/silicon
 
+  use {
+    "kelvinauta/focushere.nvim",
+    config = function()
+      require("focushere").setup()
+       -- Optional KeyMap
+      vim.keymap.set("v", "<Space>" , ":FocusHere<CR>" , {noremap=true, silent=true})
+      vim.keymap.set("n", ",<Space>" , ":FocusClear<CR>" , {noremap=true, silent=true})
+    end
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
