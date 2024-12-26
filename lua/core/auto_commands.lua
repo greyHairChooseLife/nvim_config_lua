@@ -1,6 +1,18 @@
 -- MEMO:: 이벤트 종류는 doc에서 아래를 검색하면 나온다.
 -- 5. Events					*autocmd-events* *E215* *E216*
 
+local Cursor = {
+  show = function()
+    vim.cmd("hi Cursor blend=0")
+    vim.cmd("set guicursor-=a:Cursor/lCursor")
+  end,
+
+  hide = function()
+    vim.cmd("hi Cursor blend=100")
+    vim.cmd("set guicursor+=a:Cursor/lCursor")
+  end
+}
+
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   callback = function()
     if vim.bo.filetype == 'NvimTree' then
@@ -12,9 +24,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         api.tree.open()
       end
 
-      -- cursor 숨김
-      vim.cmd("hi Cursor blend=100")  -- Cursor 하이라이트 설정
-      vim.cmd("set guicursor+=a:Cursor/lCursor")
+      Cursor.hide()
     end
 
     if vim.bo.filetype == 'Avante' then
@@ -34,11 +44,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 
 vim.api.nvim_create_autocmd({ 'BufLeave' }, {
   callback = function()
-    if vim.bo.filetype == 'NvimTree' then
-      -- cursor 보임
-      vim.cmd("hi Cursor blend=0")
-      vim.cmd("set guicursor-=a:Cursor/lCursor")
-    end
+    if vim.bo.filetype == 'NvimTree' then Cursor.show() end
   end
 })
 
@@ -151,7 +157,9 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd("CmdlineEnter", {
   callback = function()
     -- -- 명령줄 입력 시에만 활성화
+    -- GUI
     -- vim.opt.cmdheight = 1
+    Cursor.show()
 
     -- KEYMAP
     vim.api.nvim_set_keymap("c", "<Esc>", [[<C-u><Cmd>lua vim.fn.histdel("cmd", 0)<CR><Esc><Cmd>echon<CR>]], { noremap = true, silent = true }) -- 실행하지 않은 명령은 cmd history에 기록 안됨
@@ -161,7 +169,12 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
 vim.api.nvim_create_autocmd("CmdlineLeave", {
   callback = function()
     -- -- 명령줄 입력 시에만 활성화
+    -- GUI
     -- vim.opt.cmdheight = 0
+    vim.schedule(function()
+      -- 이 시점에서는 일반 모드로 전환이 완료되어 버퍼/윈도우 관련 API를 안전하게 사용할 수 있음
+      if vim.bo.filetype == 'NvimTree' then Cursor.hide() end
+    end)
   end,
 })
 
