@@ -15,6 +15,7 @@ require("todo-comments").setup {
     WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
     MEMO = { icon = "󱩼 ", color = "hint", alt = { "INFO" } },
     PSEUDO_CODE = { icon = " ", color = "pseudo", alt = { "PSEUDO_CODE" } },
+    DEPRECATED = { icon = "", color = "depreacted", alt = { "DEPRECATED" } },
   },
   gui_style = {
     fg = "NONE",         -- The gui style to use for the fg highlight group.
@@ -47,6 +48,7 @@ require("todo-comments").setup {
     default = { "Identifier", "#7C3AED" },
     test = { "Identifier", "#FF00FF" },
     pseudo = { "#37D060" },
+    depreacted = { "#000000" },
   },
   search = {
     command = "rg",

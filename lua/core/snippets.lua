@@ -13,39 +13,23 @@ vim.keymap.set('i', ',D', function() -- 2024. 06. 11. (화) 17:52:17 KST
 end, { noremap = true, silent = true })
 
 
--- SNIPPET 주석: [ TODO / MEMO / WARN / BUG ]
---     
-vim.keymap.set('i', ',,T', function()
-  vim.api.nvim_feedkeys("TODO:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("A", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
-vim.keymap.set('i', ',,P', function()
-  vim.api.nvim_feedkeys("PSEUDO_CODE:: ", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("A", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
-vim.keymap.set('i', ',,M', function()
-  vim.api.nvim_feedkeys("MEMO:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("A", "n", true)
-  end, 1) -- 최소한의 딜레이
-end)
-vim.keymap.set('i', ',,W', function()
-  vim.api.nvim_feedkeys("WARN:", "n", true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
-  vim.defer_fn(function()
-    vim.cmd("lua require('Comment.api').toggle.linewise.current()")
-    vim.api.nvim_feedkeys("A", "n", true)
-  end, 1) -- 최소한의 딜레이
+-- 주석
+local function Insert_comment(comment)
+  vim.api.nvim_put({ comment }, 'c', true, false)
+  require('Comment.api').toggle.linewise.current()
+  vim.cmd("startinsert!")
+end
+
+vim.keymap.set('i', ',,T', function() Insert_comment("TODO:: ") end)
+vim.keymap.set('i', ',,P', function() Insert_comment("PSEUDO_CODE:: ") end)
+vim.keymap.set('i', ',,M', function() Insert_comment("MEMO:: ") end)
+vim.keymap.set('i', ',,W', function() Insert_comment("WARN:: ") end)
+vim.keymap.set('i', ',,E', function()
+  local date = vim.fn.system('date "+%Y-%m-%d"'):gsub("\n$", "")
+  local text = string.format("DEPRECATED:: %s", date)
+  vim.api.nvim_put({ text }, 'c', true, false)
+  require('Comment.api').toggle.linewise.current()
+  vim.api.nvim_input("<Esc>o")
 end)
 
 vim.keymap.set('i', ',,D', function()
