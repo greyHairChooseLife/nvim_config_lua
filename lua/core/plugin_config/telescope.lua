@@ -381,7 +381,6 @@ require("telescope").setup {
         ['<A-j>'] = actions.preview_scrolling_down,
         ['<C-u>'] = actions.results_scrolling_up,
         ['<C-d>'] = actions.results_scrolling_down,
-        ["<CR>"] = focus_or_open,
       },
       i = {
         ['<C-r>'] = clear_prompt,
@@ -397,7 +396,6 @@ require("telescope").setup {
         ['<C-d>'] = actions.results_scrolling_down,
         ['<C-a>'] = actions.add_to_qflist,
         ['<A-a>'] = actions.add_selected_to_qflist,
-        ["<CR>"] = focus_or_open,
         ['<C-Enter>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'Enter') end,
         ['<C-x>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'X') end,
         ['<C-v>'] = function(prompt_bufnr) select_one_or_multi(prompt_bufnr, 'V') end,
@@ -420,9 +418,11 @@ require("telescope").setup {
       mappings = {
         n = {
           ['dd'] = "delete_buffer",
+          ["<CR>"] = focus_or_open,
         },
         i = {
-          ['<C-d>'] = "delete_buffer"
+          ['<C-d>'] = "delete_buffer",
+          ["<CR>"] = focus_or_open,
         },
       },
       ignore_current_buffer = false, -- quickfix에 전체 리스트 넣을 때 불편할 수 있겠다.
@@ -432,8 +432,36 @@ require("telescope").setup {
       -- file_ignore_patterns = { '^Term:' }, -- buftype으로 체크가 된다!  ignore buffer
     },
     find_files = {
+      mappings = {
+        n = {
+          ["<CR>"] = focus_or_open,
+        },
+        i = {
+          ["<CR>"] = focus_or_open,
+        },
+      },
       preview = {
         hide_on_startup = true,
+      },
+    },
+    grep_string = {
+      mappings = {
+        n = {
+          ["<CR>"] = focus_or_open,
+        },
+        i = {
+          ["<CR>"] = focus_or_open,
+        },
+      },
+    },
+    live_grep = {
+      mappings = {
+        n = {
+          ["<CR>"] = focus_or_open,
+        },
+        i = {
+          ["<CR>"] = focus_or_open,
+        },
       },
     },
     git_stash = {
