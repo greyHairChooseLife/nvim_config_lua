@@ -775,21 +775,22 @@ function ManageBuffer_gq()
 	local tab_count = vim.fn.tabpagenr("$")
 	local bufnr = vim.fn.bufnr("%")
 
-	vim.cmd("q!")
-
 	if win_count == 1 and tab_count == 1 then
-	-- 마지막 탭, 마지막 윈도우: vim 종료
-	-- vim.cmd('q')
+		-- 마지막 탭, 마지막 윈도우: vim 종료
+		vim.cmd("q!")
 	elseif win_count == 1 and tab_count > 1 then
 		-- 현재 탭의 마지막 윈도우: 현재 윈도우에 활성화 된 것 외에도 아무데서도 활성화되지 않은 것이라면 버퍼를 제거한다.
+		vim.cmd("q!")
 		if not is_buffer_active_somewhere(bufnr) and vim.api.nvim_buf_is_valid(bufnr) then
 			vim.cmd.bdelete(bufnr)
 		end
 	elseif win_count == 2 and require("nvim-tree.api").tree.is_visible() then
+		vim.cmd("q!")
 		if not is_buffer_active_somewhere(bufnr) and vim.api.nvim_buf_is_valid(bufnr) then
 			vim.cmd.bdelete(bufnr)
 		end
 	else
+		vim.cmd("q!")
 		if not is_buffer_active_somewhere(bufnr) and vim.api.nvim_buf_is_valid(bufnr) then
 			vim.cmd.bdelete(bufnr)
 		end
