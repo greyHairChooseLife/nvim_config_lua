@@ -35,5 +35,6 @@ require("core.plugin_config.harpoon")
 require("core.plugin_config.aerial")
 require("core.plugin_config.focus")
 require("core.plugin_config.dressing")
-require("core.plugin_config.nvim-ufo")
+-- DEPRECATED:: 2024-12-28
+-- require("core.plugin_config.nvim-ufo")
 require("core.plugin_config.nvim-cmp")

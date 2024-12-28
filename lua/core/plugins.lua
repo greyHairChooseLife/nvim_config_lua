@@ -118,7 +118,8 @@ return require("packer").startup(function(use)
 	use({ "rafamadriz/friendly-snippets" })
 	use({ "hrsh7th/nvim-cmp" })
 
-	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- folding
+	-- DEPRECATED:: 2024-12-28
+	-- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- folding
 
 	-- DEPRECATED:: 2024-12-28
 	-- use 'pangloss/vim-javascript'    -- JavaScript support
