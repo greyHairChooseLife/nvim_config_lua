@@ -41,8 +41,6 @@ telescope로 파일 열 때, nvim-tree 열려있던거 맞는지 확인해서 �
 
 searchHL 이거 윗줄이 아니라 좌측 단어로 이동 후 해야곘다.
 
-help doc에서 gq하면 invalid buffer number
-
 - lspsaga, lspmapping
 
 
