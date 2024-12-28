@@ -28,13 +28,105 @@ return require('packer').startup(function(use)
   }
   use 'nvim-telescope/telescope-ui-select.nvim'
 
-  use { 'neoclide/coc.nvim', branch = 'release' }
-  -- manually: CocInstall coc-tsserver, coc-pairs, coc-css, coc-html, coc-json, coc-prettier, coc-word, coc-graphql
+  -- DEPRECATED:: 2024-12-28
+  -- LSP with coc
+  -- use { 'neoclide/coc.nvim', branch = 'release' }
+  -- use { 'fannheyward/telescope-coc.nvim' }
 
-  use 'pangloss/vim-javascript'    -- JavaScript support
-  use 'leafgarland/typescript-vim' -- TypeScript syntax
-  use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
-  use 'jparise/vim-graphql'        -- GraphQL syntax
+  -- MEMO:: LSP with mason
+  -- 1. mason
+  -- 2. mason-lspconfig
+  -- 3. nvim-lspconfig
+  use {
+    'williamboman/mason.nvim',
+    config = function()
+      require("mason").setup()
+    end
+  }
+  use {
+    'williamboman/mason-lspconfig.nvim',
+    after = "mason.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "lua_ls",
+          "ts_ls",
+        },
+      })
+    end
+  }
+  use {
+    'neovim/nvim-lspconfig',
+    after = "mason-lspconfig.nvim",
+    config = function()
+      lspconfig = require('lspconfig')
+      lspconfig.lua_ls.setup({})
+      lspconfig.ts_ls.setup({})
+    end
+  }
+
+  -- MEMO:: coc에서 제공하던 것들
+  -- 1. autopair -> windwp/nvim-autopairs
+  use {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = function()
+      require('nvim-autopairs').setup {}
+
+      -- cmp와 함께 사용할 경우 아래 설정 추가
+      -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      -- local cmp = require('cmp')
+      -- cmp.event:on(
+      --   'confirm_done',
+      --   cmp_autopairs.on_confirm_done()
+      -- )
+    end
+  }
+  -- FIX: 이게 되는거야 안되는거야 진짜 화나네!!!!!
+  use({
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          lua = { "stylua", stop_after_first = true  },
+          javascript = { "prettierd", "prettier", stop_after_first = true },
+          typescript = { "prettierd", "prettier", stop_after_first = true  },
+          javascriptreact = { "prettierd", "prettier", stop_after_first = true  },
+          typescriptreact = { "prettierd", "prettier", stop_after_first = true  },
+          json = { "prettier", stop_after_first = true  },
+        },
+        format_on_save = {
+          timeout_ms = 500,
+          lsp_fallback = true,
+        },
+      })
+    end,
+  })
+
+
+  --nvim-cmp with sources
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/cmp-path'}
+  use {'hrsh7th/cmp-cmdline'}
+  use {'hrsh7th/cmp-nvim-lsp'}
+  use({
+    "L3MON4D3/LuaSnip",
+    tag = "v2.*",
+    run = "make install_jsregexp"
+  })
+  use { 'saadparwaiz1/cmp_luasnip' }
+  use {'rafamadriz/friendly-snippets'}
+  use {'hrsh7th/nvim-cmp'}
+
+
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'} -- folding
+
+  -- DEPRECATED:: 2024-12-28
+  -- use 'pangloss/vim-javascript'    -- JavaScript support
+  -- use 'leafgarland/typescript-vim' -- TypeScript syntax
+  -- use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
+  -- use 'jparise/vim-graphql'        -- GraphQL syntax
 
   use 'itchyny/calendar.vim'
 
@@ -60,8 +152,9 @@ return require('packer').startup(function(use)
 
   use "norcalli/nvim-colorizer.lua"
 
-  use "junegunn/goyo.vim"
-  use "junegunn/vim-easy-align"
+  -- DEPRECATED:: 2024-12-28
+  -- use "junegunn/goyo.vim"
+  -- use "junegunn/vim-easy-align"
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
@@ -73,12 +166,13 @@ return require('packer').startup(function(use)
 
   use 'github/copilot.vim'
 
-  use {
-    'akinsho/flutter-tools.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-    },
-  }
+  -- DEPRECATED:: 2024-12-28
+  -- use {
+  --   'akinsho/flutter-tools.nvim',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --   },
+  -- }
 
   use 'sindrets/winshift.nvim'
 
@@ -104,8 +198,9 @@ return require('packer').startup(function(use)
     require('markdowny').setup({ filetypes = { 'markdown' } })
   end }
 
-  -- use 'hedyhli/outline.nvim'  -- react 파일 열어보면 parsing을 너무 못한다.
   use 'stevearc/aerial.nvim'
+  -- MEMO::
+  -- 대체제 -> 'hedyhli/outline.nvim'  -- react 파일 열어보면 parsing을 너무 못한다.
 
   -- https://github.com/numToStr/Comment.nvim?tab=readme-ov-file
   use {
@@ -169,7 +264,6 @@ return require('packer').startup(function(use)
   }
 
   use { 'nvim-telescope/telescope-hop.nvim' }
-  use { 'fannheyward/telescope-coc.nvim' }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- use 'rcarriga/nvim-notify'
 

@@ -32,8 +32,7 @@ map({ 'n' }, '<Space>', function()
   BlinkCursorLine()
 end)
 map('v', 'v', '<Esc>')
-map('n', ',.ai', "<cmd>OrganizeImport<cr>") -- coc code action
-map({ 'n', 'v', 'i', 'c' }, '<leader>t', "<cmd>TTimerlyToggle<cr>") -- coc code action
+map({ 'n', 'v', 'i', 'c' }, '<leader>t', "<cmd>TTimerlyToggle<cr>")
 
 -- map("v", "<", "<gv")
 -- map("v", ">", ">gv")
@@ -170,6 +169,7 @@ map('n', 'zf', 'zf<cmd>mkview<CR>')
 map('n', 'zd', 'zd<cmd>mkview<CR>')
 
 
+-- DEPRECATED:: 2024-12-28
 -- EASY ALIGN
 -- map('x', 'al', '<Plug>(LiveEasyAlign)', {})
 -- map('x', 'tal', '<Plug>(EasyAlign)*||', {})
@@ -183,8 +183,10 @@ map('n', '<A-r>', RenameCurrentTab)
 map('n', '<A-.>', MoveTabRight)
 map('n', '<A-,>', MoveTabLeft)
 
-map('n', '<A-p>', CocScrollUp)
-map('n', '<A-n>', CocScrollDown)
+-- DEPRECATED:: 2024-12-28
+-- map('n', '<A-p>', CocScrollUp)
+-- map('n', '<A-n>', CocScrollDown)
+map('n', '<A-p>', '<cmd>tabnext<CR>')
 -- FOCUS TABS
 map('n', '<A-o>', 'gT')
 map('n', '<A-1>', '1gt')
@@ -198,8 +200,11 @@ map('n', '<A-8>', '8gt')
 map('n', '<A-9>', '9gt')
 -- FOCUS WINDOW
 map('n', '<A-h>', '<cmd>wincmd h<CR>')
-map('n', '<A-j>', CocScrollDown_J)
-map('n', '<A-k>', CocScrollUp_K)
+-- DEPRECATED:: 2024-12-28
+-- map('n', '<A-j>', CocScrollDown_J)
+-- map('n', '<A-k>', CocScrollUp_K)
+map('n', '<A-j>', '<cmd>wincmd j<CR>')
+map('n', '<A-k>', '<cmd>wincmd k<CR>')
 map('n', '<A-l>', '<cmd>wincmd l<CR>')
 -- MOVE WINDOW POSITION
 map('n', '<A-H>', '<Cmd>WinShift left<CR>')
@@ -376,3 +381,48 @@ map("n", "ㅣ", function()
   os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
   vim.api.nvim_input('l')
 end, { noremap = true, silent = true })
+
+
+-- MEMO: lsp
+map('n', ',K', function()
+  vim.lsp.buf.hover()
+end)
+map('n', ',gd', function()
+  vim.lsp.buf.definition()
+end)
+map('n', ',ga', function()
+  vim.lsp.buf.code_action()
+end)
+-- FIX: lsp keymap example
+-- https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmappings.lua
+
+-- START_debug:: LSP에서 하는거 From coc.lua
+-- keyset({ "n" }, "dp", "<Plug>(coc-diagnostic-prev)", { silent = true })
+-- keyset({ "n" }, "dn", "<Plug>(coc-diagnostic-next)", { silent = true })
+--
+-- -- GoTo code navigation
+-- -- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
+-- -- keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
+-- keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true }) -- 내가 클래스를 안/못 쓰니까 이놈의 필요성을 못느낀다.
+-- -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+-- -- Telescope 연계
+-- keyset('n', 'gd', '<cmd>Telescope coc definitions<CR>', { noremap = true, silent = true })
+-- keyset('n', 'gR', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
+-- keyset('n', 'gr', '<cmd>Telescope coc references<CR>', { noremap = true, silent = true })
+-- keyset('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', { noremap = true, silent = true })
+--
+--
+-- -- Use K to show documentation in preview window
+-- function _G.show_docs()
+--   local cw = vim.fn.expand('<cword>')
+--   if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+--     vim.api.nvim_command('h ' .. cw)
+--   elseif vim.api.nvim_eval('coc#rpc#ready()') then
+--     vim.fn.CocActionAsync('doHover')
+--   else
+--     vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+--   end
+-- end
+--
+-- keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
+-- END___debug:

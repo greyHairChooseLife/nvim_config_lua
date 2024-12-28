@@ -50,6 +50,7 @@ keyset("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+-- START_debug:: LSP에서 하는거
 keyset({ "n" }, "dp", "<Plug>(coc-diagnostic-prev)", { silent = true })
 keyset({ "n" }, "dn", "<Plug>(coc-diagnostic-next)", { silent = true })
 
@@ -78,6 +79,7 @@ function _G.show_docs()
 end
 
 keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
+-- END___debug:
 
 
 -- Highlight the symbol and its references on a CursorHold event(cursor is idle)

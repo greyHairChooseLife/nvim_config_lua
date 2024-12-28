@@ -37,6 +37,25 @@
 - `<leader>gg`로 fugitive 진입 후 윈도우 종료하면 커서 위치가 이상해진다. 마지막 윈도우 커서 위치로 가는게 아니라 가장 왼쪽 윈도우로 이동한다.
 - auto-session 복구시 탭 이름도 복구 되도록
 
+telescope로 파일 열 때, nvim-tree 열려있던거 맞는지 확인해서 열어라
+
+searchHL 이거 윗줄이 아니라 좌측 단어로 이동 후 해야곘다.
+
+help doc에서 gq하면 invalid buffer number
+
+- lspsaga, lspmapping
+
+- lsp fuzzy find까지 할지 등 얼마 많은 범위를 가져올지 선택할 수 있다. 지금은 뭐든 다 나오게 되어있는듯? 적당히 조절하자.
+
+
+- cmp가 지금은 C-n / C-j 로 정해진다. 근데 이거보다, 어떤 소스들을 가져올지 C-n/p로 선택하고, 그 안에 선택은 C-j/k로 하면 더 쉽겠다. 
+  - 소스 구성은 3가지인데,
+    - buffer, path
+    - nvim-lsp
+    - luasnip
+
+- cmp 색상도 바꿔야한다.
+
 #### 복잡
 
 - aerial.nvim에서,

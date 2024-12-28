@@ -40,3 +40,5 @@ diag.config({
   signs = true,
   update_in_insert = false,
 })
+
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }

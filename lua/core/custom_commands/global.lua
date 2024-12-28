@@ -673,41 +673,41 @@ function PasteFromHistory()
   end
 end
 
-function CocScrollUp()
-  -- floating 요소에 스크롤이 있는지 확인
-  if vim.fn['coc#float#has_scroll']() == 1 then
-    -- scroll
-    vim.fn['coc#float#scroll'](0)
-  else
-    vim.cmd('tabnext')
-  end
-end
+-- DEPRECATED:: 2024-12-28
+-- function CocScrollUp()
+--   -- floating 요소에 스크롤이 있는지 확인
+--   if vim.fn['coc#float#has_scroll']() == 1 then
+--     -- scroll
+--     vim.fn['coc#float#scroll'](0)
+--   else
+--     vim.cmd('tabnext')
+--   end
+-- end
+-- function CocScrollDown()
+--   if vim.fn['coc#float#has_scroll']() == 1 then
+--     -- scroll
+--     vim.fn['coc#float#scroll'](1)
+--   end
+-- end
 
-function CocScrollDown()
-  if vim.fn['coc#float#has_scroll']() == 1 then
-    -- scroll
-    vim.fn['coc#float#scroll'](1)
-  end
-end
-
-function CocScrollUp_K()
-  -- floating 요소에 스크롤이 있는지 확인
-  if vim.fn['coc#float#has_scroll']() == 1 then
-    -- scroll
-    vim.fn['coc#float#scroll'](0)
-  else
-    vim.cmd('wincmd k')
-  end
-end
-
-function CocScrollDown_J()
-  if vim.fn['coc#float#has_scroll']() == 1 then
-    -- scroll
-    vim.fn['coc#float#scroll'](1)
-  else
-    vim.cmd('wincmd j')
-  end
-end
+-- DEPRECATED:: 2024-12-28
+-- function CocScrollUp_K()
+--   -- floating 요소에 스크롤이 있는지 확인
+--   if vim.fn['coc#float#has_scroll']() == 1 then
+--     -- scroll
+--     vim.fn['coc#float#scroll'](0)
+--   else
+--     vim.cmd('wincmd k')
+--   end
+-- end
+-- function CocScrollDown_J()
+--   if vim.fn['coc#float#has_scroll']() == 1 then
+--     -- scroll
+--     vim.fn['coc#float#scroll'](1)
+--   else
+--     vim.cmd('wincmd j')
+--   end
+-- end
 
 function DiffviewOpenWithVisualHash()
   local hash = GetVisualText()

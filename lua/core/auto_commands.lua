@@ -55,7 +55,8 @@ vim.api.nvim_create_autocmd("TabNew", {
       local tabname = GetCurrentTabName()
       if tabname == ' Commit' or tabname == ' File' then
         vim.cmd('IBLDisable')
-        vim.cmd('silent CocDisable')
+        -- DEPRECATED:: 2024-12-28
+        -- vim.cmd('silent CocDisable')
       end
     end, 50)
   end,
@@ -67,7 +68,8 @@ vim.api.nvim_create_autocmd("TabEnter", {
     local tabname = GetCurrentTabName()
     if tabname == ' Commit' or tabname == ' File' then
       vim.cmd('IBLDisable')
-      vim.cmd('silent CocDisable')
+      -- DEPRECATED:: 2024-12-28
+      -- vim.cmd('silent CocDisable')
     end
   end,
 })
@@ -77,7 +79,8 @@ vim.api.nvim_create_autocmd("TabLeave", {
     local tabname = GetCurrentTabName()
     if tabname == ' Commit' or tabname == ' File' then
       vim.cmd('IBLEnable')
-      vim.cmd('silent CocEnable')
+      -- DEPRECATED:: 2024-12-28
+      -- vim.cmd('silent CocEnable')
     end
   end,
 })
