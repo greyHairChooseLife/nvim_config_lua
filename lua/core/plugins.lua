@@ -127,7 +127,8 @@ return require("packer").startup(function(use)
 	-- use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
 	-- use 'jparise/vim-graphql'        -- GraphQL syntax
 
-	use("itchyny/calendar.vim")
+	-- DEPRECATED:: 2024-12-28
+	-- use("itchyny/calendar.vim")
 
 	use("vimwiki/vimwiki")
 

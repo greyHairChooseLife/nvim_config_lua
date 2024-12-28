@@ -4,7 +4,7 @@ require("core.plugin_config.treesitter")
 require("core.plugin_config.telescope")
 -- DEPRECATED:: 2024-12-28
 -- require("core.plugin_config.coc")
-require("core.plugin_config.calendar")
+-- require("core.plugin_config.calendar")
 require("core.plugin_config.vimwiki")
 require("core.plugin_config.gh")
 require("core.plugin_config.colorizer")
