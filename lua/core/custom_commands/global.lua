@@ -559,8 +559,9 @@ end
 function HilightSearch()
 	local text = GetVisualText()
 	if text and #text > 0 then
-		local pos = vim.api.nvim_win_get_cursor(0)
-		vim.api.nvim_win_set_cursor(0, { pos[1] - 1, 1 })
+		vim.cmd("normal! bh")
+		-- local pos = vim.api.nvim_win_get_cursor(0)
+		-- vim.api.nvim_win_set_cursor(0, { pos[1] - 1, 1 })
 
 		local keys = "/" .. text .. "\n"
 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), "n", true)
