@@ -48,7 +48,7 @@ require("todo-comments").setup({
 		default = { "Identifier", "#7C3AED" },
 		test = { "Identifier", "#FF00FF" },
 		pseudo = { "#37D060" },
-		depreacted = { "#000000" },
+		depreacted = { "#9F9F9F" },
 	},
 	search = {
 		command = "rg",

@@ -142,7 +142,7 @@ vim.cmd([[
   " MEMO:: Gvdiff, diffview
   highlight DiffAdd guibg=#1a472a guifg=NONE " #1e6e40
   highlight DiffChange guibg=#312E03 guifg=NONE
-  highlight DiffText guibg=#ffcc00 guifg=#FF4500 gui=italic
+  highlight DiffText guibg=#605D08 guifg=NONE gui=italic
   highlight DiffDelete guibg=#4f2d3d guifg=NONE
 
 
