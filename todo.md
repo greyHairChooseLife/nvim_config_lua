@@ -48,11 +48,6 @@ help doc에서 gq하면 invalid buffer number
 - lsp fuzzy find까지 할지 등 얼마 많은 범위를 가져올지 선택할 수 있다. 지금은 뭐든 다 나오게 되어있는듯? 적당히 조절하자.
 
 
-- cmp가 지금은 C-n / C-j 로 정해진다. 근데 이거보다, 어떤 소스들을 가져올지 C-n/p로 선택하고, 그 안에 선택은 C-j/k로 하면 더 쉽겠다. 
-  - 소스 구성은 3가지인데,
-    - buffer, path
-    - nvim-lsp
-    - luasnip
 
 #### 복잡
 
