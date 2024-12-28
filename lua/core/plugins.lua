@@ -16,16 +16,8 @@ return require("packer").startup(function(use)
 	use("folke/tokyonight.nvim")
 	use("nvim-tree/nvim-tree.lua")
 	use("nvim-tree/nvim-web-devicons")
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-	use("nvim-lua/plenary.nvim")
-	use({
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "nvim-telescope/telescope.nvim", tag = "0.1.8", requires = { "nvim-lua/plenary.nvim" } })
 	use("nvim-telescope/telescope-ui-select.nvim")
 
 	-- DEPRECATED:: 2024-12-28
@@ -59,7 +51,7 @@ return require("packer").startup(function(use)
 		"neovim/nvim-lspconfig",
 		after = "mason-lspconfig.nvim",
 		config = function()
-			lspconfig = require("lspconfig")
+			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
 			lspconfig.ts_ls.setup({})
 		end,
@@ -67,21 +59,6 @@ return require("packer").startup(function(use)
 
 	-- MEMO:: coc에서 제공하던 것들
 	-- 1. autopair -> windwp/nvim-autopairs
-	use({
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			require("nvim-autopairs").setup({})
-
-			-- cmp와 함께 사용할 경우 아래 설정 추가
-			-- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-			-- local cmp = require('cmp')
-			-- cmp.event:on(
-			--   'confirm_done',
-			--   cmp_autopairs.on_confirm_done()
-			-- )
-		end,
-	})
 	-- FIX: 이게 되는거야 안되는거야 진짜 화나네!!!!!
 	use({
 		"stevearc/conform.nvim",
@@ -109,14 +86,18 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-path" })
 	use({ "hrsh7th/cmp-cmdline" })
 	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({
-		"L3MON4D3/LuaSnip",
-		tag = "v2.*",
-		run = "make install_jsregexp",
-	})
+	use({ "L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp" })
 	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "rafamadriz/friendly-snippets" })
 	use({ "hrsh7th/nvim-cmp" })
+
+	use({
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 
 	-- DEPRECATED:: 2024-12-28
 	-- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- folding
@@ -196,40 +177,35 @@ return require("packer").startup(function(use)
 	use({
 		"antonk52/markdowny.nvim",
 		commit = "9881051", -- 내 나름대로 수정한 버전으로 고정해서 사용. 이후에 딱히 변경도 없다.
-		config = function()
-			require("markdowny").setup({ filetypes = { "markdown" } })
-		end,
+		-- DEPRECATED:: 2024-12-28
+		-- config = function()
+		-- 	require("markdowny").setup({ filetypes = { "markdown" } })
+		-- end,
 	})
 
 	use("stevearc/aerial.nvim")
 	-- MEMO::
 	-- 대체제 -> 'hedyhli/outline.nvim'  -- react 파일 열어보면 parsing을 너무 못한다.
 
-	-- https://github.com/numToStr/Comment.nvim?tab=readme-ov-file
 	use({
 		"numToStr/Comment.nvim",
 		requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
-		config = function()
-			-- import comment plugin safely
-			local comment = require("Comment")
-
-			local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
-
-			-- enable comment
-			comment.setup({
-				-- for commenting tsx, jsx, svelte, html files
-				pre_hook = ts_context_commentstring.create_pre_hook(),
-			})
-		end,
+		-- DEPRECATED:: 2024-12-28
+		-- config = function()
+		-- 	-- import comment plugin safely
+		-- 	local comment = require("Comment")
+		--
+		-- 	local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+		-- 	-- enable comment
+		-- 	comment.setup({
+		-- 		-- for commenting tsx, jsx, svelte, html files
+		-- 		pre_hook = ts_context_commentstring.create_pre_hook(),
+		-- 	})
+		-- end,
 	})
-	--use {'JoosepAlviste/nvim-ts-context-commentstring'}
-	--block comment 달면 되는데 꼭 설치해야할까? 일단 미루자.
 
-	-- https://github.com/ggandor/leap.nvim
 	use({ "ggandor/leap.nvim" })
-	-- require('leap').create_default_mappings()
 
-	-- https://github.com/rmagatti/auto-session
 	use({
 		"rmagatti/auto-session",
 		config = function()
@@ -248,14 +224,16 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- TODO:: WTF is this?
 	use({
 		"rmagatti/session-lens",
 		requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-		config = function()
-			require("session-lens").setup({
-				path_display = { "shorten" },
-			})
-		end,
+		-- DEPRECATED:: 2024-12-28
+		-- config = function()
+		-- 	require("session-lens").setup({
+		-- 		path_display = { "shorten" },
+		-- 	})
+		-- end,
 	})
 	-- 라이브러리 뒤져봤더니, floating 메뉴에서 세션 삭제하는 기본 키맵이 <C-d>다.
 
@@ -322,18 +300,16 @@ return require("packer").startup(function(use)
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		commit = "e76cb03", -- primegin 이양반 버그가 있는데 개선을 안한다. https://github.com/ThePrimeagen/harpoon/issues/577#issuecomment-2275638768
-		requires = { { "nvim-lua/plenary.nvim" } },
+		requires = { "nvim-lua/plenary.nvim" },
 	})
 
 	use({
 		"letieu/harpoon-lualine",
 		opt = false,
-		requires = { { "ThePrimeagen/harpoon" } },
+		requires = { "ThePrimeagen/harpoon" },
 	})
 
 	use({ "metakirby5/codi.vim" })
-
-	use({ "cdmill/focus.nvim" })
 
 	use({
 		"greyhairchooselife/timerly.nvim",
@@ -350,24 +326,25 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({ "mistricky/codesnap.nvim", run = "make" })
-	-- MEMO: code to img
-	--
-	-- USAGE
-	--  https://github.com/mistricky/codesnap.nvim?tab=readme-ov-file#usage
-	--
-	-- ALTERNATIVE
-	--  https://github.com/0oAstro/silicon.lua
-	--  https://github.com/Aloxaf/silicon
+	use({
+		"mistricky/codesnap.nvim",
+		run = "make",
 
+		-- MEMO: code to img
+		-- USAGE
+		--  https://github.com/mistricky/codesnap.nvim?tab=readme-ov-file#usage
+		-- ALTERNATIVE
+		--  https://github.com/0oAstro/silicon.lua
+		--  https://github.com/Aloxaf/silicon
+	})
+
+	use({ "cdmill/focus.nvim" })
 	use({
 		"kelvinauta/focushere.nvim",
-		config = function()
-			require("focushere").setup()
-			-- Optional KeyMap
-			vim.keymap.set("v", "<Space>", ":FocusHere<CR>", { noremap = true, silent = true })
-			vim.keymap.set("n", ",<Space>", ":FocusClear<CR>", { noremap = true, silent = true })
-		end,
+		-- DEPRECATED:: 2024-12-28
+		-- config = function()
+		-- 	require("focushere").setup()
+		-- end,
 	})
 
 	if packer_bootstrap then

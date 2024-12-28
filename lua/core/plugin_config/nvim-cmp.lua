@@ -21,10 +21,6 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-	-- window = {
-	--     completion = cmp.config.window.bordered(),
-	--     documentation = cmp.config.window.bordered(),
-	-- },
 
 	mapping = cmp.mapping.preset.insert({
 		["<A-j>"] = cmp.mapping.scroll_docs(2),
@@ -32,6 +28,7 @@ cmp.setup({
 		-- ['<C-l>'] = cmp.mapping.complete(), -- cmp창 강제 열기
 		-- ['<Esc>'] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<TAB>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if state.is_loading then

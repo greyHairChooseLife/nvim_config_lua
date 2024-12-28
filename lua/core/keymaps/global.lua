@@ -33,6 +33,8 @@ map({ "n" }, "<Space>", function()
 end)
 map("v", "v", "<Esc>")
 map({ "n", "v", "i", "c" }, "<leader>t", "<cmd>TTimerlyToggle<cr>")
+map("v", "<Space>", "<cmd>FocusHere<CR>", { noremap = true, silent = true })
+map("n", ",<Space>", "<cmd>FocusClear<CR>", { noremap = true, silent = true })
 
 -- map("v", "<", "<gv")
 -- map("v", ">", ">gv")

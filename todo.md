@@ -56,6 +56,8 @@ help doc에서 gq하면 invalid buffer number
 
 - cmp 색상도 바꿔야한다.
 
+- fugitive에서 gq하면 ResetUI
+
 #### 복잡
 
 - aerial.nvim에서,
