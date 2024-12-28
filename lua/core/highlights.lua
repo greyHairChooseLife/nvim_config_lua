@@ -33,46 +33,51 @@
 -- #fbe8e8
 -- #fdf2f2
 
-vim.cmd("highlight LineNr guifg=#9ece6a ctermfg=red")
-vim.cmd("highlight TabLine guifg=lightgrey gui=bold guibg=black")
-vim.cmd("highlight TabLineFill guibg=#24283b")
-vim.cmd("highlight TabLineNotSel guibg=#4e4451")
-vim.cmd("highlight TabLineSelBg guibg=#98c379 guifg=#24283b")
-vim.cmd("highlight TabLineSelBorder guifg=#98c379 guifg=#24283b")
-vim.cmd("highlight TabLineGVBg guibg=#FF8C00 guifg=#24283b")
-vim.cmd("highlight TabLineGVBorder guifg=#FF8C00 guifg=#24283b")
-vim.cmd("highlight TabLineOilBg guibg=#BDB80B guifg=#24283b")
-vim.cmd("highlight TabLineOilBorder guifg=#BDB80B guifg=#24283b")
-vim.cmd("highlight TabLineTempBg guibg=#FFFFFF guifg=#24283b")
-vim.cmd("highlight TabLineTempBorder guifg=#FFFFFF guifg=#24283b")
-vim.cmd("highlight Search guibg=#FFFF00 guifg=#1d202f")
-vim.cmd("highlight CurSearch gui=bold guibg=#0000FF guifg=white")
-vim.cmd("highlight Visual guibg=#4d6652 guifg=NONE")
-vim.cmd("highlight CursorLine guibg=#4d6652 guifg=NONE")
-vim.cmd("highlight Folded guibg=#24283b guifg=#4d6652 gui=italic")
-vim.cmd("highlight StatusLine guibg=#24283b")
-vim.cmd("highlight StatusLineNC guibg=#24283b")
-
-vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
-vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])
-vim.cmd([[:highlight CustomSignsChange guifg=#ff007c]])
-vim.cmd([[:highlight CustomSignsChangeBg guibg=#e0af68]])
-vim.cmd([[:highlight CustomSignsDelete guifg=#e06c75]])
-vim.cmd([[:highlight CustomSignsDeleteBg guibg=#e06c75]])
-
-vim.cmd("highlight OutlineCurrent guifg=#e5c07b guibg=#3e4452")
-vim.cmd("highlight MyOutlineNormal guibg=#2e2e2e")
-
 vim.cmd([[
+  " MEMO:: Basic
+  highlight LineNr guifg=#9ece6a ctermfg=red
+  highlight TabLine guifg=lightgrey gui=bold guibg=black
+  highlight TabLineFill guibg=#24283b
+  highlight TabLineNotSel guibg=#4e4451
+  highlight TabLineSelBg guibg=#98c379 guifg=#24283b
+  highlight TabLineSelBorder guifg=#98c379 guifg=#24283b
+  highlight TabLineGVBg guibg=#FF8C00 guifg=#24283b
+  highlight TabLineGVBorder guifg=#FF8C00 guifg=#24283b
+  highlight TabLineOilBg guibg=#BDB80B guifg=#24283b
+  highlight TabLineOilBorder guifg=#BDB80B guifg=#24283b
+  highlight TabLineTempBg guibg=#FFFFFF guifg=#24283b
+  highlight TabLineTempBorder guifg=#FFFFFF guifg=#24283b
+  highlight Search guibg=#FFFF00 guifg=#1d202f
+  highlight CurSearch gui=bold guibg=#0000FF guifg=white
+  highlight Visual guibg=#4d6652 guifg=NONE
+  highlight CursorLine guibg=#4d6652 guifg=NONE
+  highlight Folded guibg=#24283b guifg=#4d6652 gui=italic
+  highlight StatusLine guibg=#24283b
+  highlight StatusLineNC guibg=#24283b
+
+
+  " MEMO:: GitSigns
+  highlight CustomSignsAdd guifg=#1abc9c
+  highlight CustomSignsAddBg guibg=#afccc7
+  highlight CustomSignsChange guifg=#ff007c
+  highlight CustomSignsChangeBg guibg=#e0af68
+  highlight CustomSignsDelete guifg=#e06c75
+  highlight CustomSignsDeleteBg guibg=#e06c75
+
+
+  " MEMO:: Outline
+  highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335
+  highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a
+  highlight MyOutlineNormal guibg=#2e2e2e
+
+
+  " MEMO:: Fugitive
   highlight fugitiveUntrackedHeading guifg=#7f52ff gui=bold
   highlight fugitiveUnstagedHeading guifg=#f1502f gui=bold
   highlight fugitiveStagedHeading guifg=#50cd5a gui=bold
-]])
 
-vim.cmd("highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335")
-vim.cmd("highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a")
 
-vim.cmd([[
+  " MEMO:: NvimTree
   highlight NvimTreeNormal guibg=#333342 guifg=NONE
   highlight NvimTreeNormalNC guibg=#333342 guifg=NONE
   highlight NvimTreeCursorLine guibg=#242024 guifg=NONE
@@ -92,10 +97,10 @@ vim.cmd([[
   highlight NvimTreeGitDeleted guifg=#f1502f
   highlight NvimTreeGitIgnored guifg=#7F848E
   highlight NvimTreeModifiedIcon guifg=#FF3000
-]])
 
--- Vimwiki
-vim.cmd([[
+
+  " MEMO:: Vimwiki
+  "
   " 헤더 색상 설정
   highlight VimwikiHeader1 guifg=#AF4500 guibg=#007F7F gui=bold
   highlight VimwikiHeader2 guifg=#ffffff gui=bold
@@ -103,26 +108,20 @@ vim.cmd([[
   highlight VimwikiHeader4 guifg=#ffffff
   highlight VimwikiHeader5 guifg=#ffffff
   " highlight VimwikiHeader6
-
   " 링크 색상 설정
   highlight VimwikiLink guifg=#FFFF00
-
   " 리스트 항목 색상 설정
   highlight VimwikiList gui=italic
-
   " 코드 블록 색상 설정
   highlight VimwikiCode guibg=#333342 guifg=#ffffff gui=italic
-
   " 강조 텍스트 색상 설정
   highlight VimwikiBold gui=bold,underline
   highlight VimwikiItalic guifg=#DCDCAA gui=italic
-
   " ToDo 항목 색상 설정
   highlight VimwikiTodo guifg=#000000 guibg=#87CEFA gui=bold
-]])
 
--- GitSigns
-vim.cmd([[
+
+  " MEMO:: GitSigns
   highlight GitSignsAdd guifg=#40cd52
   highlight GitSignsChange guifg=#ffcc00
   highlight GitSignsAddLn guibg=#1a472a guifg=NONE
@@ -138,17 +137,17 @@ vim.cmd([[
   highlight GitSignsAddLnInline guibg=#32CD32 guifg=NONE
   highlight GitSignsChangeLnInline guibg=#FFFF00 guifg=NONE
   highlight GitSignsDeleteLnInline guibg=#800000 guifg=NONE
-]])
 
--- Gvdiff, diffview
-vim.cmd([[
+
+  " MEMO:: Gvdiff, diffview
   highlight DiffAdd guibg=#1a472a guifg=NONE " #1e6e40
   highlight DiffChange guibg=#312E03 guifg=NONE
   highlight DiffText guibg=#ffcc00 guifg=#FF4500 gui=italic
   highlight DiffDelete guibg=#4f2d3d guifg=NONE
-]])
 
-vim.cmd([[
+
+  " MEMO:: render-markdown
+  "
   " highlight RenderMarkdownCode guibg=#2c2832 guifg=NONE
   " highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
   highlight RenderMarkdownCode guibg=#242024 guifg=NONE
@@ -158,7 +157,6 @@ vim.cmd([[
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold
   highlight RenderMarkdownUnchecked guifg=#CA4500
   highlight RenderMarkdownChecked guifg=#32CD32
-
 
   highlight RenderMarkdownMyTodo guifg=#CA4500 gui=bold,italic
   highlight RenderMarkdownMyTodoFin guifg=#1e6e40 gui=bold,italic
@@ -209,71 +207,63 @@ vim.cmd([[
   highlight @markup.heading.5.markdown guifg=#FFFFFF
   highlight @markup.heading.6.markdown guifg=#FFFFFF
 
-" @markup.raw.markdown_inline
-" @markup.heading.6.markdown
-" @markup.heading.5.markdown
-" @markup.heading.4.markdown
-" @markup.heading.3.markdown
-" @markup.heading.2.markdown
-" @markup.heading.1.markdown
-" @markup.link.label.symbol
-" @markup.environment.name
-" @markup.list.unchecked
-" @markup.strikethrough
-" @markup.list.markdown
-" @markup.list.checked
-" @markup.environment
-" @markup.link.label
-" @markup.underline
-" @markup.link.url
-" @markup.emphasis
-" @markup.heading
-" @markup.strong
-" @markup.italic
-" @markup.math
-" @markup.list
-" @markup.link
-" @markup.raw
-" @markup
-]])
+  " @markup.raw.markdown_inline
+  " @markup.heading.6.markdown
+  " @markup.heading.5.markdown
+  " @markup.heading.4.markdown
+  " @markup.heading.3.markdown
+  " @markup.heading.2.markdown
+  " @markup.heading.1.markdown
+  " @markup.link.label.symbol
+  " @markup.environment.name
+  " @markup.list.unchecked
+  " @markup.strikethrough
+  " @markup.list.markdown
+  " @markup.list.checked
+  " @markup.environment
+  " @markup.link.label
+  " @markup.underline
+  " @markup.link.url
+  " @markup.emphasis
+  " @markup.heading
+  " @markup.strong
+  " @markup.italic
+  " @markup.math
+  " @markup.list
+  " @markup.link
+  " @markup.raw
+  " @markup
 
--- quickfix
-vim.cmd([[
+
+  " MEMO:: QuickFix
   highlight Delimiter guifg=#9ece6a
-]])
 
--- oil
-vim.cmd([[
+
+  " MEMO:: Oil
   highlight OilDirIcon guifg=#ffcc00
-]])
 
--- telescope
-vim.cmd([[
+
+  " MEMO:: Telescope
   highlight TelescopeSelectionCaret guifg=#FF4500 guibg=#000080
   highlight TelescopeSelection guibg=#000080
   highlight TelescopeMultiSelection guibg=#000060  "bookmark한 것들
   highlight TelescopeMatching guifg=#FF4500
-
   " highlight TelescopePreviewMessageFillchar guibg=#FF4500 "preview에서 빈칸 채우기, 솔직히 뭔 용도인지 모르곘다.
-
   highlight TelescopePreviewLine guibg=#000080
   " highlight TelescopePreviewBorder guifg=#000080 guibg=#000000
   highlight TelescopePreviewNormal guifg=#E0E0E0 guibg=#000000
   highlight TelescopeResultsBorder guifg=#000000 guibg=#000000
   highlight TelescopeResultsTitle guifg=#000000 guibg=#000000
   highlight TelescopeResultsNormal guifg=#E0E0E0 guibg=#000000
-
   highlight TelescopeResultsComment guifg=#FF4500 "버퍼의 a, h, # 등 부가 정보
-]])
 
--- nvim-tree
-vim.cmd([[
+
+  " MEMO:: NvimTree
   highlight NvimTreeOpenedHL guifg=#FF8C00 gui=italic,underline
   highlight NvimTreeIndentMarker guifg=#FF8C00
-]])
 
--- aerial
-vim.cmd([[
+
+  " MEMO:: Aerial
   highlight AerialGuide1 guifg=#FF4500
   highlight AerialGuide2 guifg=#E0E0E0
   highlight AerialGuide3 guifg=#E0E0E0
@@ -281,10 +271,9 @@ vim.cmd([[
   highlight AerialVariable guifg=#DCDCAA gui=italic
   highlight AerialVariableIcon guifg=#DCDCAA
   highlight AerialLine guibg=#4d6652
-]])
 
--- avante
-vim.cmd([[
+
+  " MEMO:: Avante
   highlight AvanteConflictCurrentLabel guifg=#FFA500 guibg=#000000
   highlight AvanteConflictIncomingLabel guifg=#FFA500 guibg=#000000
 ]])
