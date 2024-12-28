@@ -31,6 +31,14 @@
 - smooth scroll without neovide or kitty
     - from reddit
 
+### config 훔치기 [-]
+
+- 전반적으로
+  https://patrick-f.tistory.com/36
+
+- nvim-cmp
+    https://github.com/gennaro-tedesco/dotfiles/blob/bc9acae08a4104ff5f1adbe8eef3ee58e11e1020/nvim/lua/plugins/cmp.lua#L95
+
 ### 개선서항
 
 #### 간단
@@ -41,6 +49,18 @@
 - lspsaga, lspmapping
 
 
+- coc to native LSP
+
+https://www.reddit.com/r/neovim/comments/18hzcok/most_straightforward_way_to_setup_lsp/
+https://www.reddit.com/r/neovim/comments/1fcu79p/does_anyone_have_a_config_with_every_lsp_setup/
+
+
+- coc에서 다 못가져온거 diagnostic 등...
+
+- nvim-cmp 개선 
+  - C-n/p 개선하기.  이게 buf, lsp, snip중에 하나라도 빠지면 걍 멈춰버린다. 셋 다 있을 땐 잘 동작하는데...
+  - 자동완성도 되고 동시에 buf, lsp, snip으로 전환도 되면 좋겠다.
+  - autopair로 function에 () 자동으로 붙여주기
 
 #### 복잡
 
