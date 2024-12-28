@@ -276,4 +276,17 @@ vim.cmd([[
   " MEMO:: Avante
   highlight AvanteConflictCurrentLabel guifg=#FFA500 guibg=#000000
   highlight AvanteConflictIncomingLabel guifg=#FFA500 guibg=#000000
+
+  " MEMO:: Pmenu for completion
+  highlight Pmenu guibg=#000000 guifg=#c8ccd4
+  highlight PmenuSel guibg=#000090 gui=bold
+  highlight PmenuSbar guibg=#000000 " scrollbar bg
+  highlight PmenuThumb guibg=#4d6652
+  highlight PmenuThumbSel guibg=#4d6652
+  highlight PmenuMatch guifg=#FF4500
+  highlight PmenuMatchSel guifg=#FF4500
+  highlight CmpItemAbbrMatch guifg=#FF4500 gui=bold
+  highlight CmpItemAbbrMatchFuzzy guifg=#FF4500 gui=bold
+
+  highlight CmpDocBorder guifg=#24283b guibg=#000000
 ]])

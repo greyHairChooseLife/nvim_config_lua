@@ -22,11 +22,21 @@ cmp.setup({
 		end,
 	},
 
+	window = {
+		completion = { side_padding = 1 },
+		documentation = {
+			border = { "", "", "", "", "", "", "", "▊" },
+			winhighlight = "FloatBorder:CmpDocBorder",
+			max_width = 120,
+			max_height = 50,
+		},
+	},
+
 	mapping = cmp.mapping.preset.insert({
 		["<A-j>"] = cmp.mapping.scroll_docs(2),
 		["<A-k>"] = cmp.mapping.scroll_docs(-2),
 		-- ['<C-l>'] = cmp.mapping.complete(), -- cmp창 강제 열기
-		-- ['<Esc>'] = cmp.mapping.abort(),
+		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<TAB>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 

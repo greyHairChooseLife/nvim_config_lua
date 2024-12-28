@@ -54,8 +54,6 @@ help doc에서 gq하면 invalid buffer number
     - nvim-lsp
     - luasnip
 
-- cmp 색상도 바꿔야한다.
-
 #### 복잡
 
 - aerial.nvim에서,
