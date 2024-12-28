@@ -45,8 +45,6 @@ help doc에서 gq하면 invalid buffer number
 
 - lspsaga, lspmapping
 
-- lsp fuzzy find까지 할지 등 얼마 많은 범위를 가져올지 선택할 수 있다. 지금은 뭐든 다 나오게 되어있는듯? 적당히 조절하자.
-
 
 
 #### 복잡
