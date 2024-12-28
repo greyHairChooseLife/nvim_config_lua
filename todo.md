@@ -37,8 +37,6 @@
 - `<leader>gg`로 fugitive 진입 후 윈도우 종료하면 커서 위치가 이상해진다. 마지막 윈도우 커서 위치로 가는게 아니라 가장 왼쪽 윈도우로 이동한다.
 - auto-session 복구시 탭 이름도 복구 되도록
 
-telescope로 파일 열 때, nvim-tree 열려있던거 맞는지 확인해서 열어라
-
 - lspsaga, lspmapping
 
 

@@ -211,7 +211,7 @@ local select_one_or_multi = function(prompt_bufnr, variant)
 		end
 	end
 
-	if variant ~= "T" then
+	if variant ~= "T" and require("nvim-tree.view").is_visible() then
 		NvimTreeResetUI()
 	end
 end
