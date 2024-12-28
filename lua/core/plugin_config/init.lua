@@ -9,12 +9,10 @@ require("core.plugin_config.vimwiki")
 require("core.plugin_config.gh")
 require("core.plugin_config.colorizer")
 require("core.plugin_config.lualine")
---require("core.plugin_config.spectre")
 require("core.plugin_config.devicons")
 -- DEPRECATED:: 2024-12-28
 -- require("core.plugin_config.flutter-tools")
 require("core.plugin_config.winshift")
---require("core.plugin_config.shade")
 require("core.plugin_config.toggleterm")
 require("core.plugin_config.image")
 -- DEPRECATED:: 2024-12-28
