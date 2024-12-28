@@ -1,1 +1,1 @@
-require('faster').setup()
+require("faster").setup()

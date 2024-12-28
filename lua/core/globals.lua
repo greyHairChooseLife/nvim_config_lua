@@ -11,7 +11,7 @@ opt.swapfile = false
 -- UI settings
 opt.number = true
 opt.relativenumber = true
-opt.fillchars = 'vert:┃'
+opt.fillchars = "vert:┃"
 opt.splitright = true -- Open vertical splits to the right
 
 -- Indentation settings
@@ -25,20 +25,20 @@ opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
 opt.foldmethod = "indent"
 opt.foldenable = false
-opt.formatoptions:remove('f') -- Prevent auto-folding during formatting
+opt.formatoptions:remove("f") -- Prevent auto-folding during formatting
 
 -- Session settings
-opt.sessionoptions="globals,blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = "globals,blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Global variables
 g.mapleader = "\\" -- Set leader key
 
 -- Diagnostic settings
 diag.config({
-  underline = true,
-  virtual_text = false,
-  signs = true,
-  update_in_insert = false,
+	underline = true,
+	virtual_text = false,
+	signs = true,
+	update_in_insert = false,
 })
 
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }

@@ -2,81 +2,92 @@
 vim.g.vimwiki_global_ext = 0
 
 vim.g.vimwiki_list = {
-  {
-    path = "~/Documents/dev-wiki/notes/",
-    -- path_html = "~/Documents/vimwiki/",
-    syntax = "markdown",
-    ext = ".md",
-    links_space_char = "_", -- link에 띄어쓰기를 알아서 '_'로 바꿔줌
-  },
-  {
-    path = "~/Documents/job-wiki/notes/",
-    syntax = "markdown",
-    ext = ".md",
-    links_space_char = "_",
-  }
+	{
+		path = "~/Documents/dev-wiki/notes/",
+		-- path_html = "~/Documents/vimwiki/",
+		syntax = "markdown",
+		ext = ".md",
+		links_space_char = "_", -- link에 띄어쓰기를 알아서 '_'로 바꿔줌
+	},
+	{
+		path = "~/Documents/job-wiki/notes/",
+		syntax = "markdown",
+		ext = ".md",
+		links_space_char = "_",
+	},
 }
 
 vim.g.vimwiki_key_mappings = {
-  global = 0,
-  lists = 0,
-  links = 0,
-  table_format = 0,
+	global = 0,
+	lists = 0,
+	links = 0,
+	table_format = 0,
 }
 
 vim.g.vimwiki_create_link = 0
 
-
 -- 함수를 전역으로 등록
 _G.vimwiki_fold_level_custom = function(lnum)
-  local prev_line = vim.fn.getline(lnum - 1)  -- 헤더라인은 살려야지
-  local curr_line = vim.fn.getline(lnum)
-  local next_line = vim.fn.getline(lnum + 1)
-  local next2_line = vim.fn.getline(lnum + 2)
-  local last_line = vim.fn.line('$')
+	local prev_line = vim.fn.getline(lnum - 1) -- 헤더라인은 살려야지
+	local curr_line = vim.fn.getline(lnum)
+	local next_line = vim.fn.getline(lnum + 1)
+	local next2_line = vim.fn.getline(lnum + 2)
+	local last_line = vim.fn.line("$")
 
-  local is_lv2_header = string.match(prev_line, "^##%s")
-  local is_lv3_header = string.match(prev_line, "^###%s")
-  local is_lv4_header = string.match(prev_line, "^####%s")
+	local is_lv2_header = string.match(prev_line, "^##%s")
+	local is_lv3_header = string.match(prev_line, "^###%s")
+	local is_lv4_header = string.match(prev_line, "^####%s")
 
-  if is_lv2_header then return '1' end
-  if is_lv3_header then return '2' end
-  if is_lv4_header then return '3' end
-  if string.match(curr_line, "^%s*$") and string.match(next_line, "^###%s") then return '1' end
-  if string.match(curr_line, "^%s*$") and string.match(next_line, "^####%s") then return '2' end
-  if curr_line == last_line or string.match(curr_line, "^%s*$") and string.match(next2_line, "^##%s") then return '0' end
+	if is_lv2_header then
+		return "1"
+	end
+	if is_lv3_header then
+		return "2"
+	end
+	if is_lv4_header then
+		return "3"
+	end
+	if string.match(curr_line, "^%s*$") and string.match(next_line, "^###%s") then
+		return "1"
+	end
+	if string.match(curr_line, "^%s*$") and string.match(next_line, "^####%s") then
+		return "2"
+	end
+	if curr_line == last_line or string.match(curr_line, "^%s*$") and string.match(next2_line, "^##%s") then
+		return "0"
+	end
 
-  -- 무엇에도 해당하지 않는 경우 prev_line의 foldlevel을 그대로 사용
-  return '='
+	-- 무엇에도 해당하지 않는 경우 prev_line의 foldlevel을 그대로 사용
+	return "="
 end
 
 -- Vimwiki의 폴딩 방식을 'custom'으로 설정
-vim.g.vimwiki_folding = 'custom'
+vim.g.vimwiki_folding = "custom"
 
 -- autocmd를 Lua 방식으로 설정
 vim.api.nvim_create_augroup("VimwikiFoldingGroup", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = "VimwikiFoldingGroup",
-  pattern = "vimwiki",
-  callback = function()
-    vim.opt_local.foldmethod = 'expr'
-    vim.opt_local.foldenable = true
-    vim.opt_local.foldexpr = 'v:lua.vimwiki_fold_level_custom(v:lnum)'
-    vim.opt_local.foldtext = 'v:lua.custom_fold_text()'
-  end,
+	group = "VimwikiFoldingGroup",
+	pattern = "vimwiki",
+	callback = function()
+		vim.opt_local.foldmethod = "expr"
+		vim.opt_local.foldenable = true
+		vim.opt_local.foldexpr = "v:lua.vimwiki_fold_level_custom(v:lnum)"
+		vim.opt_local.foldtext = "v:lua.custom_fold_text()"
+	end,
 })
 
 vim.api.nvim_create_augroup("MarkdownFoldingGroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  group = "MarkdownFoldingGroup",
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.foldmethod = 'expr'
-    vim.opt_local.foldenable = true
-    vim.opt_local.foldexpr = 'v:lua.vimwiki_fold_level_custom(v:lnum)'
-    vim.opt_local.foldtext = 'v:lua.custom_fold_text()'
-  end,
+	group = "MarkdownFoldingGroup",
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.foldmethod = "expr"
+		vim.opt_local.foldenable = true
+		vim.opt_local.foldexpr = "v:lua.vimwiki_fold_level_custom(v:lnum)"
+		vim.opt_local.foldtext = "v:lua.custom_fold_text()"
+	end,
 })
 
 -- custom_fold_text 함수 정의
@@ -92,21 +103,21 @@ vim.api.nvim_create_autocmd("FileType", {
 -- end
 
 function custom_fold_text()
-  local line_start_icon = " 󱞪 "
-  local line_end_icon = ""
-  local line_icon = "░"
-  local total_width = 100
-  local line_icon_fill = string.rep(line_icon, total_width - (#line_start_icon)/2)
-  local line_fill = line_start_icon .. line_icon_fill .. line_end_icon
+	local line_start_icon = " 󱞪 "
+	local line_end_icon = ""
+	local line_icon = "░"
+	local total_width = 100
+	local line_icon_fill = string.rep(line_icon, total_width - #line_start_icon / 2)
+	local line_fill = line_start_icon .. line_icon_fill .. line_end_icon
 
-  local line_count = vim.v.foldend - vim.v.foldstart + 1
-  local count_text = " 󰜴 " .. line_count
+	local line_count = vim.v.foldend - vim.v.foldstart + 1
+	local count_text = " 󰜴 " .. line_count
 
-  local win_width = vim.fn.winwidth(0)
-  local padding = string.rep(" ", math.max(0, win_width - total_width))
+	local win_width = vim.fn.winwidth(0)
+	local padding = string.rep(" ", math.max(0, win_width - total_width))
 
-  -- 최종 폴드 텍스트 구성
-  return  line_fill .. count_text .. padding
+	-- 최종 폴드 텍스트 구성
+	return line_fill .. count_text .. padding
 end
 
 -- TODO: 편의기능 개선

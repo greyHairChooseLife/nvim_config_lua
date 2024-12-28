@@ -33,7 +33,6 @@
 -- #fbe8e8
 -- #fdf2f2
 
-
 vim.cmd("highlight LineNr guifg=#9ece6a ctermfg=red")
 vim.cmd("highlight TabLine guifg=lightgrey gui=bold guibg=black")
 vim.cmd("highlight TabLineFill guibg=#24283b")
@@ -54,7 +53,6 @@ vim.cmd("highlight Folded guibg=#24283b guifg=#4d6652 gui=italic")
 vim.cmd("highlight StatusLine guibg=#24283b")
 vim.cmd("highlight StatusLineNC guibg=#24283b")
 
-
 vim.cmd([[:highlight CustomSignsAdd guifg=#1abc9c]])
 vim.cmd([[:highlight CustomSignsAddBg guibg=#afccc7]])
 vim.cmd([[:highlight CustomSignsChange guifg=#ff007c]])
@@ -65,16 +63,16 @@ vim.cmd([[:highlight CustomSignsDeleteBg guibg=#e06c75]])
 vim.cmd("highlight OutlineCurrent guifg=#e5c07b guibg=#3e4452")
 vim.cmd("highlight MyOutlineNormal guibg=#2e2e2e")
 
-vim.cmd [[
+vim.cmd([[
   highlight fugitiveUntrackedHeading guifg=#7f52ff gui=bold
   highlight fugitiveUnstagedHeading guifg=#f1502f gui=bold
   highlight fugitiveStagedHeading guifg=#50cd5a gui=bold
-]]
+]])
 
 vim.cmd("highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335")
 vim.cmd("highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a")
 
-vim.cmd [[
+vim.cmd([[
   highlight NvimTreeNormal guibg=#333342 guifg=NONE
   highlight NvimTreeNormalNC guibg=#333342 guifg=NONE
   highlight NvimTreeCursorLine guibg=#242024 guifg=NONE
@@ -94,10 +92,10 @@ vim.cmd [[
   highlight NvimTreeGitDeleted guifg=#f1502f
   highlight NvimTreeGitIgnored guifg=#7F848E
   highlight NvimTreeModifiedIcon guifg=#FF3000
-]]
+]])
 
 -- Vimwiki
-vim.cmd [[
+vim.cmd([[
   " 헤더 색상 설정
   highlight VimwikiHeader1 guifg=#AF4500 guibg=#007F7F gui=bold
   highlight VimwikiHeader2 guifg=#ffffff gui=bold
@@ -121,10 +119,10 @@ vim.cmd [[
 
   " ToDo 항목 색상 설정
   highlight VimwikiTodo guifg=#000000 guibg=#87CEFA gui=bold
-]]
+]])
 
 -- GitSigns
-vim.cmd [[
+vim.cmd([[
   highlight GitSignsAdd guifg=#40cd52
   highlight GitSignsChange guifg=#ffcc00
   highlight GitSignsAddLn guibg=#1a472a guifg=NONE
@@ -140,17 +138,17 @@ vim.cmd [[
   highlight GitSignsAddLnInline guibg=#32CD32 guifg=NONE
   highlight GitSignsChangeLnInline guibg=#FFFF00 guifg=NONE
   highlight GitSignsDeleteLnInline guibg=#800000 guifg=NONE
-]]
+]])
 
 -- Gvdiff, diffview
-vim.cmd [[
+vim.cmd([[
   highlight DiffAdd guibg=#1a472a guifg=NONE " #1e6e40
   highlight DiffChange guibg=#312E03 guifg=NONE
   highlight DiffText guibg=#ffcc00 guifg=#FF4500 gui=italic
   highlight DiffDelete guibg=#4f2d3d guifg=NONE
-]]
+]])
 
-vim.cmd [[
+vim.cmd([[
   " highlight RenderMarkdownCode guibg=#2c2832 guifg=NONE
   " highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
   highlight RenderMarkdownCode guibg=#242024 guifg=NONE
@@ -237,21 +235,20 @@ vim.cmd [[
 " @markup.link
 " @markup.raw
 " @markup
-]]
-
+]])
 
 -- quickfix
-vim.cmd [[
+vim.cmd([[
   highlight Delimiter guifg=#9ece6a
-]]
+]])
 
 -- oil
-vim.cmd [[
+vim.cmd([[
   highlight OilDirIcon guifg=#ffcc00
-]]
+]])
 
 -- telescope
-vim.cmd [[
+vim.cmd([[
   highlight TelescopeSelectionCaret guifg=#FF4500 guibg=#000080
   highlight TelescopeSelection guibg=#000080
   highlight TelescopeMultiSelection guibg=#000060  "bookmark한 것들
@@ -267,16 +264,16 @@ vim.cmd [[
   highlight TelescopeResultsNormal guifg=#E0E0E0 guibg=#000000
 
   highlight TelescopeResultsComment guifg=#FF4500 "버퍼의 a, h, # 등 부가 정보
-]]
+]])
 
 -- nvim-tree
-vim.cmd [[
+vim.cmd([[
   highlight NvimTreeOpenedHL guifg=#FF8C00 gui=italic,underline
   highlight NvimTreeIndentMarker guifg=#FF8C00
-]]
+]])
 
 -- aerial
-vim.cmd [[
+vim.cmd([[
   highlight AerialGuide1 guifg=#FF4500
   highlight AerialGuide2 guifg=#E0E0E0
   highlight AerialGuide3 guifg=#E0E0E0
@@ -284,10 +281,10 @@ vim.cmd [[
   highlight AerialVariable guifg=#DCDCAA gui=italic
   highlight AerialVariableIcon guifg=#DCDCAA
   highlight AerialLine guibg=#4d6652
-]]
+]])
 
 -- avante
-vim.cmd [[
+vim.cmd([[
   highlight AvanteConflictCurrentLabel guifg=#FFA500 guibg=#000000
   highlight AvanteConflictIncomingLabel guifg=#FFA500 guibg=#000000
-]]
+]])
