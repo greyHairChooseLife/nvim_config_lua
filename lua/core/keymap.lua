@@ -374,13 +374,13 @@ map("n", "ㅣ", function()
 end, { noremap = true, silent = true })
 
 -- MEMO: lsp
-map("n", ",K", function()
+map("n", "K", function()
 	vim.lsp.buf.hover()
 end)
-map("n", ",gd", function()
+map("n", "gd", function()
 	vim.lsp.buf.definition()
 end)
-map("n", ",ga", function()
+map("n", "ga", function()
 	vim.lsp.buf.code_action()
 end)
 -- FIX: lsp keymap example

@@ -1,4 +1,3 @@
-require("core.keymaps.global")
 require("core.keymaps.FT_quickfix")
 require("core.keymaps.FT_shell")
 require("core.keymaps.FT_markdown")

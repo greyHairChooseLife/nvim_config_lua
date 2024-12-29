@@ -7,8 +7,9 @@ require("core.snippets")
 require("core.keymaps")
 require("core.highlights")
 require("core.custom_tabline")
-require("core.temp")
 require("core.floating_window")
+require("core.keymap")
+require("core.temp")
 
 -- MEMO: 참고 자료들
 --
