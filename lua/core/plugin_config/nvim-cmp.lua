@@ -7,6 +7,19 @@ local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+-- START_debug:
+local function pp(t) -- print_value_or_keys_if_table
+	if type(t) ~= "table" then
+		print("value: ", t)
+		return
+	end
+	local keys = {}
+	for k in pairs(t) do
+		table.insert(keys, k)
+	end
+	print(table.concat(keys, ", "))
+end
+-- END___debug:
 
 local cmp = require("cmp")
 local state = {
@@ -37,7 +50,9 @@ cmp.setup({
 	},
 
 	matching = {
-		disallow_prefix_unmatching = true,
+		disallow_fuzzy_matching = true, -- 일단 제외해서 단순하게 유지하고, 필요하다고 느끼면 추가해주자
+		disallow_partial_matching = true,
+		-- disallow_prefix_unmatching = true,
 	},
 
 	mapping = cmp.mapping.preset.insert({
@@ -47,6 +62,20 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<TAB>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		--  START_debug:
+		["<C-;>"] = cmp.mapping(function(fallback)
+			local sel = cmp.get_selected_entry()
+
+			if sel then
+				print("sel:")
+				pp(sel.source)
+
+				print("sel.source.kind:")
+				pp(sel.source.source)
+				pp(sel.source.context)
+			end
+		end, { "i", "c" }),
+		-- END___debug:
 
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -77,7 +106,13 @@ cmp.setup({
 				cmp.complete({
 					config = {
 						sources = {
-							{ name = "nvim_lsp", max_item_count = 15 },
+							{
+								name = "nvim_lsp",
+								max_item_count = 15,
+								entry_filter = function(entry, ctx)
+									return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
+								end,
+							},
 						},
 					},
 				})
@@ -116,7 +151,13 @@ cmp.setup({
 				cmp.complete({
 					config = {
 						sources = {
-							{ name = "nvim_lsp", max_item_count = 15 },
+							{
+								name = "nvim_lsp",
+								max_item_count = 15,
+								entry_filter = function(entry, ctx)
+									return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
+								end,
+							},
 						},
 					},
 				})
@@ -184,7 +225,13 @@ cmp.setup({
 				cmp.complete({
 					config = {
 						sources = {
-							{ name = "nvim_lsp", max_item_count = 15 },
+							{
+								name = "nvim_lsp",
+								max_item_count = 15,
+								entry_filter = function(entry)
+									return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
+								end,
+							},
 						},
 					},
 				})
@@ -221,7 +268,15 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources(
-		{ { name = "nvim_lsp", max_item_count = 15 } } -- lsp
+		{
+			{
+				name = "nvim_lsp",
+				max_item_count = 15,
+				entry_filter = function(entry)
+					return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
+				end,
+			},
+		} -- lsp
 		-- { { name = "buffer" } }, -- text within current buffer
 		-- { { name = "path" } } -- file system paths
 		-- { name = "luasnip", max_item_count = 15 }, -- 우선적으로 로드
@@ -241,6 +296,8 @@ cmp.setup.cmdline(":", {
 	completion = {
 		keyword_length = 1, -- 입력한 글자수 이상부터 completion이 작동
 	},
+	matching = {},
+	performance = { max_view_entries = 10 },
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
