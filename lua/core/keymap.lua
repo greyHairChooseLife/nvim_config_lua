@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local opt = { noremap = true, silent = true }
 -- =========================================================================
 -- =========================================================================
 --                           custom shortcuts
@@ -26,15 +27,15 @@ map("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 map("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
 
 map({ "n", "v" }, ",U", "<Esc>bvU") -- CamelCase
-map({ "n" }, "<A-space>", FocusFloatingWindow, { noremap = true, silent = true })
+map({ "n" }, "<A-space>", FocusFloatingWindow, opt)
 map({ "n" }, "<Space>", function()
 	vim.cmd("Twilight")
 	BlinkCursorLine()
 end)
 map("v", "v", "<Esc>")
 map({ "n", "v", "i", "c" }, "<leader>t", "<cmd>TTimerlyToggle<cr>")
-map("v", "<Space>", "<cmd>FocusHere<CR>", { noremap = true, silent = true })
-map("n", ",<Space>", "<cmd>FocusClear<CR>", { noremap = true, silent = true })
+map("v", "<Space>", "<cmd>FocusHere<CR>", opt)
+map("n", ",<Space>", "<cmd>FocusClear<CR>", opt)
 
 -- map("v", "<", "<gv")
 -- map("v", ">", ">gv")
@@ -68,18 +69,18 @@ map("i", "<C-h>", function()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, true, true), "n", true)
 	DeleteAndStore()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
-end, { noremap = true, silent = true })
+end, opt)
 
 -- 삽입 도중 redo
 map("i", "<C-l>", function()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, true, true), "n", true)
 	PasteFromHistory()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", true, true, true), "n", true)
-end, { noremap = true, silent = true })
+end, opt)
 
 -- 디버깅
-map("i", "cl<cr>", Insert_console_log, { noremap = true, silent = true })
-map("v", "cl<cr>", Insert_console_log_Visual, { noremap = true, silent = true })
+map("i", "cl<cr>", Insert_console_log, opt)
+map("v", "cl<cr>", Insert_console_log_Visual, opt)
 
 -- BUFFER & WINDOW 관리
 map({ "n", "v" }, "<A-Enter><Space>", CloseOtherBuffersInCurrentTab)
@@ -149,7 +150,7 @@ map("n", "gtq", ManageBuffer_gtq)
 --       local bufnr = vim.api.nvim_win_get_buf(win) -- 윈도우에 연결된 버퍼 번호 가져오기
 --       vim.api.nvim_buf_delete(bufnr, { force = true }) -- 버퍼 삭제 (force 옵션으로 강제 종료)
 --   end
--- end, { noremap = true, silent = true })
+-- end, opt)
 
 map("n", "gQ", ManageBuffer_gQ)
 map("n", "gE", ManageBuffer_gE)
@@ -353,25 +354,25 @@ map({ "n", "v" }, "<C-p>", "[]%zz")
 
 map({ "n", "v" }, "<C-q>", "<Cmd>Focus<CR>")
 
-map("n", "<leader>y", Save_entire_buffer_to_register_for_AI_prompt, { noremap = true, silent = true })
-map("v", "<leader>y", Save_visual_selection_to_register_for_AI_prompt, { noremap = true, silent = true })
+map("n", "<leader>y", Save_entire_buffer_to_register_for_AI_prompt, opt)
+map("v", "<leader>y", Save_visual_selection_to_register_for_AI_prompt, opt)
 
 map("n", "ㅗ", function()
 	os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
 	vim.api.nvim_input("h")
-end, { noremap = true, silent = true })
+end, opt)
 map("n", "ㅓ", function()
 	os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
 	vim.api.nvim_input("j")
-end, { noremap = true, silent = true })
+end, opt)
 map("n", "ㅏ", function()
 	os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
 	vim.api.nvim_input("k")
-end, { noremap = true, silent = true })
+end, opt)
 map("n", "ㅣ", function()
 	os.execute("xdotool key Escape") -- 영어 입력 모드로 전환 (kime에 ESC 입력 보내기), keyboard layout to English
 	vim.api.nvim_input("l")
-end, { noremap = true, silent = true })
+end, opt)
 
 -- MEMO: lsp
 map("n", "K", function()
@@ -396,10 +397,10 @@ end)
 -- keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true }) -- 내가 클래스를 안/못 쓰니까 이놈의 필요성을 못느낀다.
 -- -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
 -- -- Telescope 연계
--- keyset('n', 'gd', '<cmd>Telescope coc definitions<CR>', { noremap = true, silent = true })
--- keyset('n', 'gR', '<cmd>Telescope coc references_used<CR>', { noremap = true, silent = true })
--- keyset('n', 'gr', '<cmd>Telescope coc references<CR>', { noremap = true, silent = true })
--- keyset('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', { noremap = true, silent = true })
+-- keyset('n', 'gd', '<cmd>Telescope coc definitions<CR>', opt)
+-- keyset('n', 'gR', '<cmd>Telescope coc references_used<CR>', opt)
+-- keyset('n', 'gr', '<cmd>Telescope coc references<CR>', opt)
+-- keyset('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', opt)
 --
 --
 -- -- Use K to show documentation in preview window
