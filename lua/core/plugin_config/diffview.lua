@@ -126,13 +126,13 @@ require("diffview").setup({
 			{ "n", "g<C-x>", actions.cycle_layout, { desc = "Cycle through available layouts." } },
 			{
 				"n",
-				"[x",
+				"cp",
 				actions.prev_conflict,
 				{ desc = "In the merge-tool: jump to the previous conflict" },
 			},
 			{
 				"n",
-				"]x",
+				"cn",
 				actions.next_conflict,
 				{ desc = "In the merge-tool: jump to the next conflict" },
 			},
@@ -199,6 +199,8 @@ require("diffview").setup({
 		diff2 = {
 			-- Mappings in 2-way diff layouts
 			{ "n", "g?", actions.help({ "view", "diff2" }), { desc = "Open the help panel" } },
+			{ "n", "cn", "]c" },
+			{ "n", "cp", "[c" },
 		},
 		diff3 = {
 			-- Mappings in 3-way diff layouts
@@ -444,6 +446,7 @@ require("diffview").setup({
 			{ "n", "za", actions.toggle_fold, { desc = "Toggle fold" } },
 			{ "n", "zR", actions.open_all_folds, { desc = "Expand all folds" } },
 			{ "n", "zM", actions.close_all_folds, { desc = "Collapse all folds" } },
+			{ "n", "df", actions.open_in_diffview, { desc = "Open the entry under the cursor in a diffview" } },
 			{
 				"n",
 				"j",
