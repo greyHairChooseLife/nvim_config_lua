@@ -58,7 +58,6 @@ return require("packer").startup(function(use)
 	})
 
 	-- MEMO:: coc에서 제공하던 것들
-	-- 1. autopair -> windwp/nvim-autopairs
 	-- FIX: 이게 되는거야 안되는거야 진짜 화나네!!!!!
 	use({
 		"stevearc/conform.nvim",
@@ -89,14 +88,14 @@ return require("packer").startup(function(use)
 	use({ "L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp" })
 	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "rafamadriz/friendly-snippets" })
-	use({ "hrsh7th/nvim-cmp" })
-
 	use({
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"windwp/nvim-autopairs",
+			config = function()
+				require("nvim-autopairs").setup()
+			end,
+		},
 	})
 
 	-- DEPRECATED:: 2024-12-28

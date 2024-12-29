@@ -57,10 +57,6 @@ https://www.reddit.com/r/neovim/comments/1fcu79p/does_anyone_have_a_config_with_
 
 - coc에서 다 못가져온거 diagnostic 등...
 
-- nvim-cmp 개선 
-  - ~C-n/p 개선하기.  이게 buf, lsp, snip중에 하나라도 빠지면 걍 멈춰버린다. 셋 다 있을 땐 잘 동작하는데...~
-  - ~자동완성도 되고 동시에 buf, lsp, snip으로 전환도 되면 좋겠다.~
-  - autopair로 function에 () 자동으로 붙여주기
 
 #### 복잡
 
