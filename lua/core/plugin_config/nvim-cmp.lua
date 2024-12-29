@@ -10,7 +10,7 @@ end
 
 local cmp = require("cmp")
 local state = {
-	sort = "buf", -- 'buf', 'lsp' or 'snip', 어떤 completion이 로드되었는지 상태를 저장
+	sort = "lsp", -- 'buf', 'lsp' or 'snip', 어떤 completion이 로드되었는지 상태를 저장
 	is_loading = false, -- completion이 로드되었는지 상태를 저장
 }
 
@@ -32,6 +32,14 @@ cmp.setup({
 		},
 	},
 
+	completion = {
+		keyword_length = 3, -- 입력한 글자수 이상부터 completion이 작동
+	},
+
+	matching = {
+		disallow_prefix_unmatching = true,
+	},
+
 	mapping = cmp.mapping.preset.insert({
 		["<A-j>"] = cmp.mapping.scroll_docs(2),
 		["<A-k>"] = cmp.mapping.scroll_docs(-2),
@@ -42,31 +50,29 @@ cmp.setup({
 
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				-- cmp.select_next_item({ behavior = cmp.SelectBehavior.Select }) -- 선택은 하지만 완성은 안시킨다.
+				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
-		end, { "i" }),
+		end, { "i", "c" }),
 
 		["<C-k>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				-- cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select }) -- 선택은 하지만 완성은 안시킨다.
+				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
 			end
-		end, { "i" }),
+		end, { "i", "c" }),
 
 		["<C-n>"] = cmp.mapping(function(fallback)
-			if state.is_loading then
-				return
-			end
 			if has_words_before() and state.sort == "buf" then
 				cmp.abort()
-				state.is_loading = true
 				state.sort = "lsp"
 				cmp.complete({
 					config = {
@@ -75,14 +81,9 @@ cmp.setup({
 						},
 					},
 				})
-				cmp.event:on("menu_opened", function()
-					state.is_loading = false
-				end)
 				return
 			end
 			if has_words_before() and state.sort == "lsp" then
-				cmp.abort()
-				state.is_loading = true
 				state.sort = "snip"
 				cmp.complete({
 					config = {
@@ -91,14 +92,9 @@ cmp.setup({
 						},
 					},
 				})
-				cmp.event:on("menu_opened", function()
-					state.is_loading = false
-				end)
 				return
 			end
 			if has_words_before() and state.sort == "snip" then
-				cmp.abort()
-				state.is_loading = true
 				state.sort = "buf"
 				cmp.complete({
 					config = {
@@ -108,9 +104,6 @@ cmp.setup({
 						},
 					},
 				})
-				cmp.event:on("menu_opened", function()
-					state.is_loading = false
-				end)
 				return
 			end
 
@@ -118,13 +111,7 @@ cmp.setup({
 		end, { "i", "s" }),
 
 		["<C-p>"] = cmp.mapping(function(fallback)
-			if state.is_loading then
-				return
-			end
-
 			if has_words_before() and state.sort == "snip" then
-				cmp.abort()
-				state.is_loading = true
 				state.sort = "lsp"
 				cmp.complete({
 					config = {
@@ -133,12 +120,40 @@ cmp.setup({
 						},
 					},
 				})
-				cmp.event:on("menu_opened", function()
-					state.is_loading = false
-				end)
 				return
 			end
 			if has_words_before() and state.sort == "lsp" then
+				state.sort = "buf"
+				cmp.complete({
+					config = {
+						sources = {
+							{ name = "buffer" },
+							{ name = "path" },
+						},
+					},
+				})
+				return
+			end
+			if has_words_before() and state.sort == "buf" then
+				state.sort = "snip"
+				cmp.complete({
+					config = {
+						sources = {
+							{ name = "luasnip", max_item_count = 15, keyword_length = 3 },
+						},
+					},
+				})
+				return
+			end
+
+			fallback()
+		end, { "i", "s" }),
+
+		["<C-b>"] = cmp.mapping(function(fallback)
+			if state.is_loading and state.sort == "buf" then
+				return
+			end
+			if has_words_before() and state.sort ~= "buf" then
 				cmp.abort()
 				state.is_loading = true
 				state.sort = "buf"
@@ -155,7 +170,37 @@ cmp.setup({
 				end)
 				return
 			end
-			if has_words_before() and state.sort == "buf" then
+
+			-- fallback()
+		end, { "i", "s" }),
+		["<C-l>"] = cmp.mapping(function(fallback)
+			if state.is_loading and state.sort == "lsp" then
+				return
+			end
+			if has_words_before() and state.sort ~= "lsp" then
+				cmp.abort()
+				state.is_loading = true
+				state.sort = "lsp"
+				cmp.complete({
+					config = {
+						sources = {
+							{ name = "nvim_lsp", max_item_count = 15 },
+						},
+					},
+				})
+				cmp.event:on("menu_opened", function()
+					state.is_loading = false
+				end)
+				return
+			end
+
+			-- fallback()
+		end, { "i", "s" }),
+		["<C-s>"] = cmp.mapping(function(fallback)
+			if state.is_loading and state.sort == "snip" then
+				return
+			end
+			if has_words_before() and state.sort ~= "snip" then
 				cmp.abort()
 				state.is_loading = true
 				state.sort = "snip"
@@ -172,13 +217,13 @@ cmp.setup({
 				return
 			end
 
-			fallback()
+			-- fallback()
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources(
-		-- {{  name = "nvim_lsp", max_item_count = 10 }, }, -- lsp
-		{ { name = "buffer" } }, -- text within current buffer
-		{ { name = "path" } } -- file system paths
+		{ { name = "nvim_lsp", max_item_count = 15 } } -- lsp
+		-- { { name = "buffer" } }, -- text within current buffer
+		-- { { name = "path" } } -- file system paths
 		-- { name = "luasnip", max_item_count = 15 }, -- 우선적으로 로드
 	),
 })
@@ -193,6 +238,9 @@ cmp.setup.cmdline({ "/", "?" }, {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
+	completion = {
+		keyword_length = 1, -- 입력한 글자수 이상부터 completion이 작동
+	},
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
