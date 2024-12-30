@@ -31,6 +31,17 @@
 - smooth scroll without neovide or kitty
     - from reddit
 
+- jremmen/vim-ripgrep	
+```
+"jremmen/vim-ripgrep",
+		cmd = "Rg",
+		init = function()
+			vim.keymap.set("n", "<C-h>", ":Rg<space>")
+			vim.keymap.set("n", "<C-*>", "<cmd>Rg<space><CR>")
+			vim.keymap.set("n", "<C-g>", "<cmd> lua require('utils').replace_grep()<CR>")
+		end,
+```
+
 ### config 훔치기 [-]
 
 - 전반적으로
@@ -54,8 +65,15 @@
 https://www.reddit.com/r/neovim/comments/18hzcok/most_straightforward_way_to_setup_lsp/
 https://www.reddit.com/r/neovim/comments/1fcu79p/does_anyone_have_a_config_with_every_lsp_setup/
 
+https://www.youtube.com/watch?v=NL8D8EkphUw CURRENT!!
+https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmappings.lua CURRENT!!, 여기서는 native lsp 메소드 활용을 참고해보자.
 
-- coc에서 다 못가져온거 diagnostic 등...
+- lsp keymap example
+  https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmappings.lua
+
+- Telescope lsp_references에서 파일명만 보이도록
+
+- keymap: cmdwindow에서 normal mode <Esc> -> cmdline으로 이동하되, 현재 input내용 그대로 살려서
 
 
 #### 복잡

@@ -80,7 +80,8 @@ end, opt)
 
 -- 디버깅
 map("i", "cl<cr>", Insert_console_log, opt)
-map("v", "cl<cr>", Insert_console_log_Visual, opt)
+-- DEPRECATED:: 2024-12-30, 한번 snippet으로 해보자
+-- map("v", "cl<cr>", Insert_console_log_Visual, opt)
 
 -- BUFFER & WINDOW 관리
 map({ "n", "v" }, "<A-Enter><Space>", CloseOtherBuffersInCurrentTab)
@@ -375,21 +376,23 @@ map("n", "ㅣ", function()
 end, opt)
 
 -- MEMO: lsp
-map("n", "K", function()
-	vim.lsp.buf.hover()
-end)
-map("n", "gd", function()
-	vim.lsp.buf.definition()
-end)
-map("n", "ga", function()
-	vim.lsp.buf.code_action()
-end)
--- FIX: lsp keymap example
--- https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmappings.lua
+map("n", "K", vim.lsp.buf.hover, opt)
+map("n", "ga", vim.lsp.buf.code_action, opt)
+
+map("n", "dn", vim.diagnostic.goto_next, opt)
+map("n", "dp", vim.diagnostic.goto_prev, opt)
+-- START_debug:
+-- MEMO: 실시간 확인은 virtual text로 해결하고, 단축키로는 diag내용을 클립보드에 복사하는게 좋을듯
+-- map("n", "dk", vim.diagnostic.open_float, opt)
+-- END___debug:
+
+map("n", "gD", vim.lsp.buf.declaration, opt)
+map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opt) --> 단 1개라도 telescope로 띄워야 한다.
+map("n", "gr", "<cmd>Telescope lsp_references<CR>", opt)
+map("n", "gt", vim.lsp.buf.type_definition, opt)
+map("n", "gi", vim.lsp.buf.implementation, opt)
 
 -- START_debug:: LSP에서 하는거 From coc.lua
--- keyset({ "n" }, "dp", "<Plug>(coc-diagnostic-prev)", { silent = true })
--- keyset({ "n" }, "dn", "<Plug>(coc-diagnostic-next)", { silent = true })
 --
 -- -- GoTo code navigation
 -- -- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
