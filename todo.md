@@ -28,7 +28,7 @@
   - https://www.reddit.com/r/neovim/comments/1gzid9o/browshernvim_create_commit_pinned_githubgitlab/
   - https://github.com/claydugo/browsher.nvim
 
-- smooth scroll without neovide or kitty
+- smooth scroll without neovide or kitty + smear cursor
     - from reddit
 
 - jremmen/vim-ripgrep	
