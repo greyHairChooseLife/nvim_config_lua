@@ -46,13 +46,13 @@ cmp.setup({
 	},
 
 	completion = {
-		keyword_length = 3, -- 입력한 글자수 이상부터 completion이 작동
+		keyword_length = 1, -- 입력한 글자수 이상부터 completion이 작동
 	},
 
 	matching = {
-		disallow_fuzzy_matching = true, -- 일단 제외해서 단순하게 유지하고, 필요하다고 느끼면 추가해주자
-		disallow_partial_matching = true,
-		-- disallow_prefix_unmatching = true,
+		-- disallow_fuzzy_matching = true, -- 일단 제외해서 단순하게 유지하고, 필요하다고 느끼면 추가해주자
+		disallow_partial_matching = false,
+		disallow_prefix_unmatching = true,
 	},
 
 	mapping = cmp.mapping.preset.insert({
@@ -61,7 +61,13 @@ cmp.setup({
 		-- ['<C-l>'] = cmp.mapping.complete(), -- cmp창 강제 열기
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-		["<TAB>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<TAB>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm({ select = true })
+			else
+				fallback()
+			end
+		end, { "i", "s", "c" }),
 		--  START_debug:
 		["<C-;>"] = cmp.mapping(function(fallback)
 			local sel = cmp.get_selected_entry()
