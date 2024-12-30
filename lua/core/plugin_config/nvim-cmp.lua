@@ -285,9 +285,10 @@ cmp.setup({
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
+	-- mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
+		-- { name = "path" },
 	},
 })
 
@@ -298,7 +299,7 @@ cmp.setup.cmdline(":", {
 	},
 	matching = {},
 	performance = { max_view_entries = 10 },
-	mapping = cmp.mapping.preset.cmdline(),
+	-- mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
