@@ -417,3 +417,5 @@ end)
 --
 -- keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 -- END___debug:
+
+map("v", "<leader>s", SearchWithBrowser, { noremap = true, silent = true })

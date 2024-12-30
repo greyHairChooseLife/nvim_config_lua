@@ -59,4 +59,28 @@ M.icons = {
 	},
 }
 
+M.url_encode = function(str)
+	if str then
+		str = string.gsub(str, "\n", "\r\n")
+		str = string.gsub(str, "([^%w %-%_%.%~])", function(c)
+			return string.format("%%%02X", string.byte(c))
+		end)
+		str = string.gsub(str, " ", "+")
+	end
+	return str
+end
+
+M.get_visual_text = function()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg("v")
+	vim.fn.setreg("v", {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ""
+	end
+end
+
 return M

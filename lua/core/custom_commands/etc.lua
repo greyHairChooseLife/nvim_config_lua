@@ -1,3 +1,5 @@
+local utils = require("core.utils")
+
 -- =========================================================================
 -- =========================================================================
 --                           general
@@ -851,4 +853,20 @@ end
 
 function ManageBuffer_gtQ()
 	-- 그간의 경험을 돌아보면 딱히 쓴 일, 쓸 일이 없는데?
+end
+
+function SearchWithBrowser()
+	local selected = utils.get_visual_text()
+	if selected == "" then
+		print("No text selected!")
+		return
+	end
+
+	local encoded_text = utils.url_encode(selected)
+	local search_url = "--app=https://www.google.com/search?q=" .. encoded_text
+
+	vim.fn.system("brave " .. search_url)
+
+	-- 이런것도 가능하다. xdg-open으로 열기!
+	-- vim.ui.open(search_url2)
 end
