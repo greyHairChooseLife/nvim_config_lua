@@ -1,3 +1,5 @@
+local utils = require("core.utils")
+
 -- TODO: 스니펫은 아무래도 ,,로 시작해서 2개 캐릭터 정도로 좁히는게 적절할듯? 통일하자.
 
 -- 날짜 찍기
@@ -72,7 +74,7 @@ function Insert_console_log_Visual()
 	local file_path = vim.fn.expand("%:~:.") -- 상대경로
 	local line_number = vim.fn.line(".")
 
-	local selected_text = GetVisualText()
+	local selected_text = utils.get_visual_text()
 	local log_message =
 		string.format("console.log('At: %s: %d\\n', '%s: ', %s);", file_path, line_number, selected_text, selected_text)
 

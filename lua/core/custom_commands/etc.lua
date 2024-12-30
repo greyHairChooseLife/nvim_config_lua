@@ -82,22 +82,9 @@ end
 --                           Telescope
 -- =========================================================================
 -- =========================================================================
-function GetVisualText()
-	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg("v")
-	vim.fn.setreg("v", {})
-
-	text = string.gsub(text, "\n", "")
-	if #text > 0 then
-		return text
-	else
-		return ""
-	end
-end
-
 -- visual block만 서치하기
 function TelescopeSearchVisual()
-	local text = GetVisualText()
+	local text = utils.get_visual_text()
 	require("telescope.builtin").live_grep({ default_text = text })
 end
 
@@ -559,7 +546,7 @@ function IsCursorOnEmptySpace()
 end
 
 function HilightSearch()
-	local text = GetVisualText()
+	local text = utils.get_visual_text()
 	if text and #text > 0 then
 		vim.cmd("normal! bh")
 		-- local pos = vim.api.nvim_win_get_cursor(0)
@@ -724,7 +711,7 @@ end
 -- end
 
 function DiffviewOpenWithVisualHash()
-	local hash = GetVisualText()
+	local hash = utils.get_visual_text()
 	vim.cmd("DiffviewOpen " .. hash .. "^.." .. hash)
 end
 
