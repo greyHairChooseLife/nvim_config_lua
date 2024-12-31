@@ -300,6 +300,8 @@ function CloseOtherBuffersInCurrentTab()
 			end
 		end
 	end
+
+	vim.api.nvim_command("only")
 end
 
 function TabOnlyAndCloseHiddenBuffers()

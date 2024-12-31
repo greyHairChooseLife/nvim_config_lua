@@ -84,7 +84,16 @@ map("i", "cl<cr>", Insert_console_log, opt)
 -- map("v", "cl<cr>", Insert_console_log_Visual, opt)
 
 -- BUFFER & WINDOW 관리
-map({ "n", "v" }, "<A-Enter><Space>", CloseOtherBuffersInCurrentTab)
+map({ "n", "v" }, "<A-Enter><Space>", function()
+	local utils = require("core.utils")
+	local is_tree_visible = utils.tree:is_visible()
+
+	CloseOtherBuffersInCurrentTab()
+
+	if is_tree_visible then
+		utils.tree:open()
+	end
+end)
 map({ "n", "v" }, "<A-Enter>t", TabOnlyAndCloseHiddenBuffers)
 map("n", "<leader>Q", "<cmd>qa!<CR>")
 map("n", "gq", ManageBuffer_gq)
