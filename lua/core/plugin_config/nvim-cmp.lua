@@ -69,18 +69,18 @@ cmp.setup({
 			end
 		end, { "i", "s", "c" }),
 		--  START_debug:
-		["<C-;>"] = cmp.mapping(function(fallback)
-			local sel = cmp.get_selected_entry()
-
-			if sel then
-				print("sel:")
-				pp(sel.source)
-
-				print("sel.source.kind:")
-				pp(sel.source.source)
-				pp(sel.source.context)
-			end
-		end, { "i", "c" }),
+		-- ["<C-;>"] = cmp.mapping(function(fallback)
+		-- 	local sel = cmp.get_selected_entry()
+		--
+		-- 	if sel then
+		-- 		print("sel:")
+		-- 		pp(sel.source)
+		--
+		-- 		print("sel.source.kind:")
+		-- 		pp(sel.source.source)
+		-- 		pp(sel.source.context)
+		-- 	end
+		-- end, { "i", "c" }),
 		-- END___debug:
 
 		["<C-j>"] = cmp.mapping(function(fallback)
@@ -218,7 +218,7 @@ cmp.setup({
 				return
 			end
 
-			-- fallback()
+			fallback()
 		end, { "i", "s" }),
 		["<C-l>"] = cmp.mapping(function(fallback)
 			if state.is_loading and state.sort == "lsp" then
@@ -247,7 +247,7 @@ cmp.setup({
 				return
 			end
 
-			-- fallback()
+			fallback()
 		end, { "i", "s" }),
 		["<C-s>"] = cmp.mapping(function(fallback)
 			if state.is_loading and state.sort == "snip" then
@@ -270,7 +270,7 @@ cmp.setup({
 				return
 			end
 
-			-- fallback()
+			fallback()
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources(
