@@ -83,4 +83,19 @@ M.get_visual_text = function()
 	end
 end
 
+M.tree = {
+	api = require("nvim-tree.api"),
+	is_visible = function(self)
+		return self.api.tree.is_visible()
+	end,
+	open = function(self)
+		local tree_api = self.api.tree
+
+		tree_api.toggle({ find_files = true, focus = false })
+		if self:is_visible() then
+			ShowCursor()
+		end
+	end,
+}
+
 return M

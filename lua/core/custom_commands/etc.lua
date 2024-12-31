@@ -476,7 +476,7 @@ end
 function ReloadLayout()
 	local curr_win = vim.api.nvim_get_current_win()
 	local win_count_curr_tab = #vim.api.nvim_tabpage_list_wins(0)
-	local is_tree_open = require("nvim-tree.view").is_visible()
+	local is_tree_open = require("core.utils").tree:is_visible()
 
 	if win_count_curr_tab == 1 and is_tree_open then
 		require("nvim-tree.api").tree.reload()
@@ -769,7 +769,7 @@ function ManageBuffer_gq()
 
 	if win_count == 1 and tab_count == 1 then
 	elseif win_count == 1 and tab_count > 1 then
-	elseif win_count == 2 and require("nvim-tree.api").tree.is_visible() then
+	elseif win_count == 2 and require("nvim-tree.view").is_visible() then
 	else
 	end
 

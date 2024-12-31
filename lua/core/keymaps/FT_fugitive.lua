@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "F", "<Cmd>G fetch<CR>", opts)
 		vim.keymap.set("n", "gq", function()
 			vim.cmd("q")
-			if require("nvim-tree.api").tree.is_visible() then
+			if require("core.utils").tree:is_visible() then
 				ReloadLayout()
 			end
 			-- DEPRECATED:: 2024-12-28
