@@ -1,10 +1,7 @@
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
--- 재행무상
--- 재법무아
--- 일체개고
--- Set header
+-- MEMO:: header
 local function header()
 	local cwd = vim.fn.getcwd()
 	-- Git 디렉토리인지 확인
@@ -47,8 +44,16 @@ local function header()
 
 	return result
 end
-
 dashboard.section.header.val = header()
+
+-- MEMO:: footer
+-- local function footer()
+-- 	return {
+-- 		"1. 미루지 않기",
+-- 		"2. 어려운 쪽을 선택하기",
+-- 	}
+-- end
+-- dashboard.section.footer.val = footer()
 
 -- Set menu
 dashboard.section.buttons.val = {
@@ -74,20 +79,13 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "                   ---------  configs   ", ":q<CR>"),
 	dashboard.button("up", "󰂖 plugin update", ":PackerSync<CR>"),
 	dashboard.button("i3", " i3", ":e ~/.i3/config<CR>"),
+	dashboard.button("te", " wezterm", ":e ~/.config/wezterm/wezterm.lua<CR>"),
 	dashboard.button("vi", " vi", ":e ~/.config/nvim<CR>"),
 	dashboard.button("ba", " bash", ":e ~/.config/my-bashrc/<CR>"),
 	dashboard.button(".", "", ""),
 	dashboard.button("-", "                   ---------  sessions   ", ""),
 	dashboard.button("S", "Session", require("auto-session.session-lens").search_session),
 }
-
-local function footer()
-	return {
-		"1. 미루지 않기",
-		"2. 어려운 쪽을 선택하기",
-	}
-end
--- dashboard.section.footer.val = footer()
 
 dashboard.section.header.opts.hl = "AlphaHeaderLabel"
 dashboard.section.buttons.opts.hl = "GitSignsChange"
