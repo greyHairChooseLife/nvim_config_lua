@@ -5,6 +5,9 @@ local utils = require("core.utils")
 --                           general
 -- =========================================================================
 -- =========================================================================
+-- TODO::
+-- 1. 종료 시 relativenumber 하이라이트가 바뀐다.
+-- 2. 버퍼 또는 윈도우마다 별도의 상태를 가지는데, 이럼 안된다.
 function ShareCursor()
 	if vim.o.cursorline then
 		vim.o.cursorline = false
