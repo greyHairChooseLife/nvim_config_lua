@@ -44,7 +44,7 @@ map({ "n" }, "<Space>", function()
 end)
 map("v", "v", "<Esc>")
 map({ "n", "v", "i", "c" }, "<leader>t", "<cmd>TTimerlyToggle<cr>")
-map("v", "<Space>", "<cmd>FocusHere<CR>", opt)
+map("v", "<Space>", ":'<,'>FocusHere<CR>", opt)
 map("n", ",<Space>", "<cmd>FocusClear<CR>", opt)
 
 -- map("v", "<", "<gv")
@@ -396,20 +396,23 @@ end, opt)
 
 -- MEMO: lsp
 map("n", "K", vim.lsp.buf.hover, opt)
-map("n", "ga", vim.lsp.buf.code_action, opt)
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opt)
+map("n", "<leader>re", vim.lsp.buf.rename, opt)
+map("n", "<leader>rs", "<cmd>LspRestart<CR>", opt)
 
 map("n", "dn", vim.diagnostic.goto_next, opt)
 map("n", "dp", vim.diagnostic.goto_prev, opt)
--- START_debug:
--- MEMO: 실시간 확인은 virtual text로 해결하고, 단축키로는 diag내용을 클립보드에 복사하는게 좋을듯
--- map("n", "dk", vim.diagnostic.open_float, opt)
--- END___debug:
+map("n", "d<Space>", vim.diagnostic.open_float, opt)
+map("n", ",.d", "<cmd>Telescope diagnostics bufnr=0<CR>", opt)
+map("n", ",.D", "<cmd>Telescope diagnostics<CR>", opt)
 
 map("n", "gD", vim.lsp.buf.declaration, opt)
-map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opt) --> 단 1개라도 telescope로 띄워야 한다.
+map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opt)
 map("n", "gr", "<cmd>Telescope lsp_references<CR>", opt)
-map("n", "gt", vim.lsp.buf.type_definition, opt)
-map("n", "gi", vim.lsp.buf.implementation, opt)
+map("n", "gi", "<cmd>Telescope lsp_implementation<CR>", opt)
+map("n", "gy", "<cmd>Telescope lsp_type_definition<CR>", opt)
+map("n", "gci", "<cmd>Telescope lsp_incoming_calls<CR>", opt)
+map("n", "gco", "<cmd>Telescope lsp_outgoing_calls<CR>", opt)
 map("n", "<leader>D", my_commands.diagnostics.ToggleVirtualText, opt)
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -430,34 +433,5 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	max_height = 20, -- 최대 높이 제한
 })
 -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
--- START_debug:: LSP에서 하는거 From coc.lua
---
--- -- GoTo code navigation
--- -- keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
--- -- keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
--- keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true }) -- 내가 클래스를 안/못 쓰니까 이놈의 필요성을 못느낀다.
--- -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
--- -- Telescope 연계
--- keyset('n', 'gd', '<cmd>Telescope coc definitions<CR>', opt)
--- keyset('n', 'gR', '<cmd>Telescope coc references_used<CR>', opt)
--- keyset('n', 'gr', '<cmd>Telescope coc references<CR>', opt)
--- keyset('n', 'gy', '<cmd>Telescope coc type_definitions<CR>', opt)
---
---
--- -- Use K to show documentation in preview window
--- function _G.show_docs()
---   local cw = vim.fn.expand('<cword>')
---   if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
---     vim.api.nvim_command('h ' .. cw)
---   elseif vim.api.nvim_eval('coc#rpc#ready()') then
---     vim.fn.CocActionAsync('doHover')
---   else
---     vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
---   end
--- end
---
--- keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
--- END___debug:
 
 map("v", "<leader>s", SearchWithBrowser, { noremap = true, silent = true })
