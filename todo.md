@@ -56,27 +56,19 @@
 
 - `<leader>cc`로 commitmsg 버퍼를 켜면 최종 버퍼의 포키싱 윈도우 범위가 바뀐다.(살짝 올라감)
 - auto-session 복구시 탭 이름도 복구 되도록
-
-- lspsaga, lspmapping
-
-
-- coc to native LSP
-
-https://www.reddit.com/r/neovim/comments/18hzcok/most_straightforward_way_to_setup_lsp/
-https://www.reddit.com/r/neovim/comments/1fcu79p/does_anyone_have_a_config_with_every_lsp_setup/
-
-https://www.youtube.com/watch?v=NL8D8EkphUw CURRENT!!
-https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmappings.lua CURRENT!!, 여기서는 native lsp 메소드 활용을 참고해보자.
-
-- lsp keymap example
-  https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmappings.lua
-
-- Telescope lsp_references에서 파일명만 보이도록
-
+- keymap: telescope 에서 <C-q>로 선택한 파일을 qf에 추가한다. 근데 이거 곧바로 qflist 버퍼를 띄우기보단 그냥 log만 남겨주는게 좋을듯
 - keymap: cmdwindow에서 normal mode <Esc> -> cmdline으로 이동하되, 현재 input내용 그대로 살려서
 
+- `Tab, S-Tab, g-Tab`으로 버퍼 순회할 때 현재 탭의 윈도우에 active인 것은 제외해도 되겠다. 그리고 이것이 시각적으 로표현되도록 하면 좋겠다.
+    [ref](https://www.youtube.com/watch?v=ST_DZ6yIiXY)
+
+- Telescope lsp_references에서 파일명만 보이도록
+- Telescope lsp_definitions에서 결과가 단 1개라도 무조건 telescope로 띄워야 한다.
 
 #### 복잡
+
+- nvim-tree에서 지금 주황색으로 보여주고 표시하는건 loaded buffer인데, 현재탭의 active window만 보는것도 좋을것같다.    
+  정리해보면 not-loaded(기본 트리)/ loaded/ active(cucrent tab) / left(== inactive in current tab)을 한눈에 볼 파악할 수 있는 tree가 있다면 유용하겠다.(ex: avante.nvim selected file에 active 파일들을 모두 추가)
 
 - aerial.nvim에서,
 
@@ -98,3 +90,5 @@ https://github.com/alextricity25/nvim_weekly_plugin_configs/blob/main/lua/lspmap
 - `<leader>gg`로 fugitive 진입 후 윈도우 종료하면 커서 위치가 이상해진다. 마지막 윈도우 커서 위치로 가는게 아니라 가장 왼쪽 윈도우로 이동한다.
 
 ### Deprecated
+
+My "aha!" moment came when watching Josean Martinez' video "How to set up linting and formatting"
