@@ -163,19 +163,21 @@ require("render-markdown").setup({
 		--  language: adds language icon to sign column if enabled and icon + name above code blocks
 		--  full: normal + language
 		style = "full",
+		-- Whether to include the language name next to the icon
+		language_name = true,
 		-- Determines where language icon is rendered:
 		--  right: Right side of code block
 		--  left: Left side of code block
 		position = "right",
 		-- An array of language names for which background highlighting will be disabled
 		-- Likely because that language has background highlights itself
-		disable_background = { "diff" },
+		disable_background = {}, -- "diff"
 		-- Amount of padding to add to the left of code blocks
 		left_pad = 2,
 		-- Amount of padding to add to the right of code blocks when width is 'block'
 		right_pad = 10,
 		left_margin = 0,
-		min_width = 100,
+		min_width = 120,
 		-- Width of the code block background:
 		--  block: width of the code block
 		--  full: full width of the window
@@ -384,7 +386,8 @@ require("render-markdown").setup({
 		},
 		-- showbreak = { default = vim.api.nvim_get_option_value('showbreak', {}), rendered = '  ' },
 		showbreak = { default = vim.api.nvim_get_option_value("showbreak", {}), rendered = "" },
-		breakindent = { default = vim.api.nvim_get_option_value("breakindent", {}), rendered = true },
+		-- breakindent = { default = vim.api.nvim_get_option_value("breakindent", {}), rendered = true },
+		breakindent = { default = vim.api.nvim_get_option_value("breakindent", {}), rendered = false },
 		breakindentopt = { default = vim.api.nvim_get_option_value("breakindentopt", {}), rendered = "" },
 	},
 	-- More granular configuration mechanism, allows different aspects of buffers
@@ -397,6 +400,23 @@ require("render-markdown").setup({
 		buftype = {
 			nofile = {
 				sign = { enabled = false },
+				code = {
+					style = "full",
+					position = "left",
+					language_name = true,
+					language_pad = 0,
+					left_pad = 0,
+					-- Amount of padding to add to the right of code blocks when width is 'block'
+					right_pad = 0,
+					left_margin = 0,
+					min_width = 140,
+					width = "full",
+					border = "thick",
+					highlight = "RenderMarkdownCodeNofile",
+				},
+				quote = {
+					repeat_linebreak = true,
+				},
 			},
 		},
 	},

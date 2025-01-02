@@ -412,6 +412,25 @@ map("n", "gt", vim.lsp.buf.type_definition, opt)
 map("n", "gi", vim.lsp.buf.implementation, opt)
 map("n", "<leader>D", my_commands.diagnostics.ToggleVirtualText, opt)
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	-- border = "none",
+	border = {
+		"▄",
+		"▄",
+		"▄",
+		"█",
+		"▀",
+		"▀",
+		"▀",
+		"█",
+	},
+	-- title = "Hover",
+	focusable = true, -- 포커스 비활성화
+	max_width = 150, -- 최대 너비 제한
+	max_height = 20, -- 최대 높이 제한
+})
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+
 -- START_debug:: LSP에서 하는거 From coc.lua
 --
 -- -- GoTo code navigation

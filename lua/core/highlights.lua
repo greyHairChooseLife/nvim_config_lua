@@ -54,6 +54,7 @@ vim.cmd([[
   highlight Folded guibg=#24283b guifg=#4d6652 gui=italic
   highlight StatusLine guibg=#24283b
   highlight StatusLineNC guibg=#24283b
+  highlight FloatBorder guifg=#000000 guibg=NONE
 
 
   " MEMO:: Outline
@@ -150,6 +151,7 @@ vim.cmd([[
   " highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
   highlight RenderMarkdownCode guibg=#242024 guifg=NONE
   highlight RenderMarkdownCodeInline guibg=#242024 guifg=NONE
+  highlight RenderMarkdownCodeNofile guibg=#181818 guifg=NONE
   highlight RenderMarkdownDash guifg=#FFFFFF
   highlight RenderMarkdownQuote guifg=#007F7F " #5F5F5F
   highlight RenderMarkdownBullet guifg=#007F7F gui=bold

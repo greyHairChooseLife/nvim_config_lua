@@ -38,7 +38,19 @@ cmp.setup({
 	window = {
 		completion = { side_padding = 1 },
 		documentation = {
-			border = { "", "", "", "", "", "", "", "▊" },
+			-- border = { "", "", "", "", "", "", "", "▊" },
+			border = {
+				"▊",
+				" ",
+				" ",
+				" ",
+				" ",
+				" ",
+				"▊",
+				"▊",
+			},
+
+			focusable = true,
 			winhighlight = "FloatBorder:CmpDocBorder",
 			max_width = 120,
 			max_height = 50,
