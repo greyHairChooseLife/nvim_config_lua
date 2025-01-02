@@ -410,6 +410,7 @@ map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opt) --> 단 1개라도 tel
 map("n", "gr", "<cmd>Telescope lsp_references<CR>", opt)
 map("n", "gt", vim.lsp.buf.type_definition, opt)
 map("n", "gi", vim.lsp.buf.implementation, opt)
+map("n", "<leader>D", my_commands.diagnostics.ToggleVirtualText, opt)
 
 -- START_debug:: LSP에서 하는거 From coc.lua
 --
