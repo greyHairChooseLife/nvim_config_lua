@@ -181,11 +181,11 @@ require("nvim-tree").setup({
 					-- untracked = "★",
 					-- deleted = "",
 					-- ignored = "◌",
-					unstaged = "󰅙", --  󱠇
+					unstaged = "󰍶", --  󱠇  󰅙   󰍶
 					staged = "󰗠", --     󰗠 󰗡 󰄲 󰄴 󱤧 󰄵 󰱒
 					unmerged = "",
 					renamed = "", --      
-					untracked = "", --       󰅗 󰅘 󰅙 󰅚 󰅜 󰅝 󱍥 󱍦
+					untracked = "󰋗 ", --       󰅗 󰅘 󰅙 󰅚 󰅜 󰅝 󱍥 󱍦
 					deleted = "", -- 󰗨 󰺝 󰛌
 					ignored = "",
 				},
