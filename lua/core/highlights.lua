@@ -56,15 +56,6 @@ vim.cmd([[
   highlight StatusLineNC guibg=#24283b
 
 
-  " MEMO:: GitSigns
-  highlight CustomSignsAdd guifg=#1abc9c
-  highlight CustomSignsAddBg guibg=#afccc7
-  highlight CustomSignsChange guifg=#ff007c
-  highlight CustomSignsChangeBg guibg=#e0af68
-  highlight CustomSignsDelete guifg=#e06c75
-  highlight CustomSignsDeleteBg guibg=#e06c75
-
-
   " MEMO:: Outline
   highlight OutlineNormal guifg=#a9b1d6 guibg=#1f2335
   highlight OutlineCurrent guifg=#1d202f guibg=#9ece6a
@@ -125,15 +116,20 @@ vim.cmd([[
 
   " MEMO:: GitSigns
   highlight GitSignsAdd guifg=#40cd52
-  highlight GitSignsChange guifg=#ffcc00
+  highlight GitSignsAddNr guifg=#40cd52
   highlight GitSignsAddLn guibg=#1a472a guifg=NONE
+  highlight GitSignsChange guifg=#ffcc00
+  highlight GitSignsChangeNr guifg=#ffcc00
   highlight GitSignsChangeLn guibg=#867300 guifg=NONE
   highlight GitSignsChangedelete guifg=#f1502f
   highlight GitSignsDelete guifg=#f1502f
   highlight GitSignsTopdelete guifg=#f1502f
+  highlight GitSignsChangedeleteNr guifg=#f1502f
+  highlight GitSignsDeleteNr guifg=#f1502f
+  highlight GitSignsTopdeleteNr guifg=#f1502f
   highlight GitSignsUntracked guifg=#7f52ff
 
-  highlight GitSignsAddInline guibg=#ffcc00 guifg=#FF4500 gui=italic
+  highlight GitSignsAddInline guibg=#867300 guifg=NONE gui=italic
   highlight GitSignsChangeInline guibg=#FFFF00 guifg=NONE " useless?
   highlight GitSignsDeleteInline guibg=#800000 guifg=NONE
   highlight GitSignsAddLnInline guibg=#32CD32 guifg=NONE

@@ -5,7 +5,7 @@ require("gitsigns").setup({
 	},
 	auto_attach = true,
 	attach_to_untracked = true,
-	sign_priority = 15,
+	sign_priority = 1, -- dignostics 보다 후순위로 해야
 
 	signs = {
 		add = { text = "+" },
@@ -15,6 +15,7 @@ require("gitsigns").setup({
 		changedelete = { text = "~" },
 		untracked = { text = "?" },
 	},
+	numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
 	signs_staged_enable = true,
 	signs_staged = {
 		add = { hl = "GitSignsAdd", text = "✔" },
