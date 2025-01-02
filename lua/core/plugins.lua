@@ -49,11 +49,20 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"neovim/nvim-lspconfig",
-		after = "mason-lspconfig.nvim",
+		after = { "mason-lspconfig.nvim", "cmp_nvim_lsp" },
 		config = function()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.ts_ls.setup({})
+			local cmp_nvim_lsp = require("cmp_nvim_lsp")
+
+			-- 내장 lsp에 nvim-cmp에서 요구하는 확장 기능을 추가해 준다.
+			local capabilities = cmp_nvim_lsp.default_capabilities()
+
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.ts_ls.setup({
+				capabilities = capabilities,
+			})
 		end,
 	})
 
