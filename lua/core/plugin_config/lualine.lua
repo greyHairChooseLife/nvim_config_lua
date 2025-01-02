@@ -1,10 +1,13 @@
+local utils = require("core.utils")
+
 local colors = {
 	blue = "#61afef",
-	green = "#2F8132",
+	git_add = "#40cd52",
+	git_change = "#ffcc00",
+	git_delete = "#f1502f",
 	greenbg = "#98c379",
 	purple = "#c678dd",
-	red = "#a43838",
-	yellow = "#FF8C00",
+	orange = "#FF8C00",
 	wwhite = "#abb2bf",
 	white = "#ffffff",
 	bblack = "#282c34",
@@ -20,16 +23,16 @@ local colors = {
 
 local my_theme = {
 	normal = {
-		a = { fg = colors.yellow, bg = colors.yellow },
-		b = { fg = colors.yellow, bg = colors.bg },
+		a = { fg = colors.orange, bg = colors.orange },
+		b = { fg = colors.orange, bg = colors.bg },
 		c = { fg = colors.black, bg = colors.greenbg },
-		x = { fg = colors.black, bg = colors.yellow },
+		x = { fg = colors.black, bg = colors.orange },
 		y = { fg = colors.wwhite, bg = colors.bg },
-		z = { fg = colors.bg, bg = colors.yellow },
+		z = { fg = colors.bg, bg = colors.orange },
 	},
 	inactive = {
-		a = { fg = colors.yellow, bg = colors.bg },
-		b = { fg = colors.yellow, bg = colors.bg },
+		a = { fg = colors.orange, bg = colors.bg },
+		b = { fg = colors.orange, bg = colors.bg },
 		c = { fg = colors.grey, bg = colors.grey },
 		x = { fg = colors.grey, bg = colors.grey },
 		y = { fg = colors.grey, bg = colors.grey },
@@ -39,6 +42,10 @@ local my_theme = {
 
 local function empty()
 	return ""
+end
+
+local function this_is_space()
+	return " "
 end
 
 local function get_git_branch()
@@ -104,12 +111,12 @@ local my_nvimTree = {
 		lualine_a = {
 			{
 				get_git_branch,
-				color = { bg = colors.nvimTree, fg = colors.yellow, gui = "bold,italic" },
+				color = { bg = colors.nvimTree, fg = colors.orange, gui = "bold,italic" },
 				padding = { left = 3 },
 			},
 			{
 				harpoon_length,
-				color = { bg = colors.nvimTree, fg = colors.yellow, gui = "bold,italic" },
+				color = { bg = colors.nvimTree, fg = colors.orange, gui = "bold,italic" },
 				padding = { left = 22, right = 3 },
 			},
 		},
@@ -118,14 +125,14 @@ local my_nvimTree = {
 		lualine_a = {
 			{
 				get_git_branch,
-				color = { bg = colors.nvimTree, fg = colors.yellow, gui = "bold,italic" },
+				color = { bg = colors.nvimTree, fg = colors.orange, gui = "bold,italic" },
 				padding = { left = 3 },
 			},
 		},
 		lualine_z = {
 			{
 				harpoon_length,
-				color = { bg = colors.nvimTree, fg = colors.yellow, gui = "bold,italic" },
+				color = { bg = colors.nvimTree, fg = colors.orange, gui = "bold,italic" },
 				padding = { left = 22, right = 4 },
 			},
 		},
@@ -138,24 +145,24 @@ local my_fugitive = {
 		lualine_a = {
 			{
 				get_git_branch,
-				color = { bg = colors.yellow, fg = colors.bblack, gui = "bold,italic" },
+				color = { bg = colors.orange, fg = colors.bblack, gui = "bold,italic" },
 				padding = { left = 3, right = 5 },
-				separator = { right = "" },
+				-- separator = { right = "" },
 			},
 		},
-		lualine_z = { { this_is_fugitive, color = { bg = colors.yellow, fg = colors.bblack } } },
+		lualine_z = { { this_is_fugitive, color = { bg = colors.orange, fg = colors.bblack } } },
 	},
 	inactive_sections = {
 		lualine_a = {
 			{
 				get_git_branch,
-				color = { bg = colors.yellow, fg = colors.bblack, gui = "bold,italic" },
+				color = { bg = colors.orange, fg = colors.bblack, gui = "bold,italic" },
 				padding = { left = 3, right = 5 },
-				separator = { right = "" },
+				-- separator = { right = "" },
 			},
 		},
 		lualine_b = { { empty, color = { bg = colors.grey } } },
-		lualine_z = { { this_is_fugitive, color = { bg = colors.grey, fg = colors.yellow, gui = "italic" } } },
+		lualine_z = { { this_is_fugitive, color = { bg = colors.grey, fg = colors.orange, gui = "italic" } } },
 	},
 }
 
@@ -176,13 +183,16 @@ local my_oil = {
 				"filetype",
 				color = { bg = colors.active_oil, fg = colors.bblack, gui = "bold,italic" },
 				padding = { left = 3, right = 5 },
-				separator = { right = "" },
+				-- separator = { right = " " },
 			},
 		},
 		lualine_b = { { empty, color = { bg = colors.grey } } },
+		lualine_z = { { this_is_space, color = { bg = colors.grey } } },
 	},
 }
 
+-- vim.api.nvim_set_hl(0, "CustomSeparator", { fg = "#98c379", bg = "NONE" })
+--
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
@@ -190,8 +200,8 @@ require("lualine").setup({
 		-- component_separators = { left = '', right = '' },
 		-- section_separators = { left = '', right = '' },
 		-- component_separators = { left = ' 󰪍󰪍 ', right = '' },
-		-- section_separators = { left = '', right = '' },
-		component_separators = { left = " 󰪍󰪍 ", right = "" },
+		-- section_separators = { left = '', right = '' },󰪍󰪍
+		component_separators = { left = "%#CustomSeparator#████", right = "" },
 		section_separators = { left = "", right = " " },
 		disabled_filetypes = {
 			statusline = { "packer", "alpha", "vimwiki", "aerial", "Avante", "AvanteInput" },
@@ -250,18 +260,31 @@ require("lualine").setup({
 			{
 				"diff",
 				diff_color = {
-					added = { fg = colors.green },
-					modified = { fg = colors.yellow },
-					removed = { fg = colors.red },
+					added = { fg = colors.git_add },
+					modified = { fg = colors.git_change },
+					removed = { fg = colors.git_delete },
 				},
 				symbols = {
-					added = "+",
-					-- modified = '󰔷 ',
-					modified = "~",
-					removed = "-",
+					added = utils.icons.git.Add,
+					modified = utils.icons.git.Change,
+					removed = utils.icons.git.Delete,
 				},
 			},
-			{ "diagnostics" },
+			{
+				"diagnostics",
+				diagnostics_color = {
+					error = "DiagnosticError",
+					warn = "DiagnosticWarn",
+					info = "DiagnosticInfo",
+					hint = "DiagnosticHint",
+				},
+				symbols = {
+					error = utils.icons.diagnostics.Error .. " ",
+					warn = utils.icons.diagnostics.Warn .. " ",
+					hint = utils.icons.diagnostics.Hint .. " ",
+					info = utils.icons.diagnostics.Info .. " ",
+				},
+			},
 		},
 		lualine_c = {},
 		lualine_x = {},
@@ -271,7 +294,7 @@ require("lualine").setup({
 				icon = "", -- 󰀱 󰃀 󰃃  󰆡  
 				indicators = { "", "", "", "", "", "" },
 				active_indicators = { "", "", "", "", "", "" },
-				color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
+				color_active = { fg = colors.orange, bg = colors.bg, gui = "bold" },
 				_separator = "", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
 				no_harpoon = "Harpoon not loaded",
 				padding = { left = 1, right = 1 },
@@ -312,7 +335,7 @@ require("lualine").setup({
 				end,
 				padding = { left = 0, right = 1 },
 				color = {
-					fg = colors.yellow,
+					fg = colors.orange,
 				},
 			},
 		},
@@ -320,18 +343,31 @@ require("lualine").setup({
 			{
 				"diff",
 				diff_color = {
-					added = { fg = colors.green },
-					modified = { fg = colors.yellow },
-					removed = { fg = colors.red },
+					added = { fg = colors.git_add },
+					modified = { fg = colors.git_change },
+					removed = { fg = colors.git_delete },
 				},
 				symbols = {
-					added = "+",
-					-- modified = '󰔷 ',
-					modified = "~",
-					removed = "-",
+					added = utils.icons.git.Add,
+					modified = utils.icons.git.Change,
+					removed = utils.icons.git.Delete,
 				},
 			},
-			{ "diagnostics" },
+			{
+				"diagnostics",
+				diagnostics_color = {
+					error = "DiagnosticError",
+					warn = "DiagnosticWarn",
+					info = "DiagnosticInfo",
+					hint = "DiagnosticHint",
+				},
+				symbols = {
+					error = utils.icons.diagnostics.Error .. " ",
+					warn = utils.icons.diagnostics.Warn .. " ",
+					hint = utils.icons.diagnostics.Hint .. " ",
+					info = utils.icons.diagnostics.Info .. " ",
+				},
+			},
 		},
 		lualine_z = {
 			{
@@ -340,7 +376,7 @@ require("lualine").setup({
 				icon = "",
 				indicators = { "", "", "", "", "", "" },
 				active_indicators = { "", "", "", "", "", "" },
-				color_active = { fg = colors.yellow, bg = colors.bg, gui = "bold" },
+				color_active = { fg = colors.orange, bg = colors.bg, gui = "bold" },
 				_separator = "", --  󱋰 󰇜 󰇼 󱗘 󰑅 󱒖 󰩮 󰦟 󰓡    
 				no_harpoon = "Harpoon not loaded",
 			},

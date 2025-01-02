@@ -282,4 +282,8 @@ vim.cmd([[
   highlight CmpItemAbbrMatchFuzzy guifg=#FF4500 gui=bold
 
   highlight CmpDocBorder guifg=#24283b guibg=#000000
+
+
+  " MEMO:: Lualine
+  highlight CustomSeparator guifg=#98c379 guibg=NONE
 ]])

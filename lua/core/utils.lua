@@ -1,7 +1,12 @@
 local M = {}
 
 M.icons = {
-	diagnostics = { Error = "✘", Warn = "", Hint = "i", Info = "i" },
+	diagnostics = {
+		Error = " ",
+		Warn = " ",
+		Hint = " ",
+		Info = " ",
+	},
 	git = {
 		Add = "+",
 		Change = "~",
@@ -52,10 +57,10 @@ M.icons = {
 		Cmdline = "💻",
 	},
 	statusline = {
-		Error = "❗",
-		Warn = "⚠️ ",
-		Hint = "i",
-		Info = "💡",
+		Error = " ",
+		Warn = " ",
+		Hint = " ",
+		Info = " ",
 	},
 }
 

@@ -35,10 +35,17 @@ g.mapleader = "\\" -- Set leader key
 
 -- Diagnostic settings
 diag.config({
+	virtual_text = true, -- 진단 메시지를 줄 안에 표시
 	underline = true,
-	virtual_text = false,
-	signs = true,
-	update_in_insert = false,
+	signs = true, -- sign column에 아이콘 표시
+	update_in_insert = false, -- 입력 모드 중 업데이트 비활성화
+	severity_sort = true, -- 심각도에 따라 정렬
 })
+
+local diag_signs = require("core.utils").icons.diagnostics
+for type, icon in pairs(diag_signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl })
+end
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
