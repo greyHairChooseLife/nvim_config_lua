@@ -15,7 +15,7 @@ require("gitsigns").setup({
 		changedelete = { text = "~" },
 		untracked = { text = "?" },
 	},
-	numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
 	signs_staged_enable = true,
 	signs_staged = {
 		add = { hl = "GitSignsAdd", text = "✔" },

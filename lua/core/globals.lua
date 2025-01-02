@@ -37,7 +37,7 @@ g.mapleader = "\\" -- Set leader key
 diag.config({
 	virtual_text = true, -- 진단 메시지를 줄 안에 표시
 	underline = true,
-	signs = true, -- sign column에 아이콘 표시
+	signs = false, -- sign column에 아이콘 표시
 	update_in_insert = false, -- 입력 모드 중 업데이트 비활성화
 	severity_sort = true, -- 심각도에 따라 정렬
 })
