@@ -543,6 +543,7 @@ require("telescope").setup({
 					["<CR>"] = focus_or_open,
 				},
 			},
+			disable_coordinates = true, -- diable lnum, col
 		},
 		live_grep = {
 			mappings = {
@@ -553,6 +554,7 @@ require("telescope").setup({
 					["<CR>"] = focus_or_open,
 				},
 			},
+			disable_coordinates = true, -- diable lnum, col
 		},
 		git_stash = {
 			mappings = {
