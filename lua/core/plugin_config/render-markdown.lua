@@ -194,6 +194,7 @@ require("render-markdown").setup({
 		highlight = "RenderMarkdownCode",
 		-- Highlight for inline code
 		highlight_inline = "RenderMarkdownCodeInline",
+		inline_pad = 1,
 	},
 	dash = {
 		-- Turn on / off thematic break rendering

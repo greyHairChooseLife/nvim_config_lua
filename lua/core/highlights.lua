@@ -147,10 +147,8 @@ vim.cmd([[
 
   " MEMO:: render-markdown
   "
-  " highlight RenderMarkdownCode guibg=#2c2832 guifg=NONE
-  " highlight RenderMarkdownCodeInline guibg=#2c2832 guifg=NONE
-  highlight RenderMarkdownCode guibg=#242024 guifg=NONE
-  highlight RenderMarkdownCodeInline guibg=#242024 guifg=NONE
+  highlight RenderMarkdownCode guibg=#181818 guifg=NONE
+  highlight RenderMarkdownCodeInline guibg=#181818 guifg=NONE
   highlight RenderMarkdownCodeNofile guibg=#181818 guifg=NONE
   highlight RenderMarkdownDash guifg=#FFFFFF
   highlight RenderMarkdownQuote guifg=#007F7F " #5F5F5F
