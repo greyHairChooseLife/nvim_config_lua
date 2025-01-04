@@ -79,7 +79,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "                   ---------  configs   ", ":q<CR>"),
 	dashboard.button("up", "󰂖 plugin update", ":PackerSync<CR>"),
 	dashboard.button("i3", " i3", ":e ~/.i3/config<CR>"),
-	dashboard.button("te", " wezterm", ":e ~/.config/wezterm/wezterm.lua<CR>"),
+	dashboard.button("te", " term", ":e ~/.config/alacritty/alacritty.toml<CR>"),
 	dashboard.button("vi", " vi", ":e ~/.config/nvim<CR>"),
 	dashboard.button("ba", " bash", ":e ~/.config/my-bashrc/<CR>"),
 	dashboard.button(".", "", ""),
