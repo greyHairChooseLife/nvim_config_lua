@@ -1,11 +1,6 @@
 -- MEMO:: "kelvinauta/focushere.nvim",
 require("focushere").setup()
 
--- MEMO:: "rmagatti/session-lens",
-require("session-lens").setup({
-	path_display = { "shorten" },
-})
-
 -- MEMO:: "numToStr/Comment.nvim",
 local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
 -- enable comment

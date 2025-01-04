@@ -221,29 +221,21 @@ return require("packer").startup(function(use)
 				log_level = "error",
 				auto_session_suppress_dirs = { "~/", "~/test", "~/Downloads", "/*" },
 				session_lens = {
-					-- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
 					buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
 					load_on_setup = true,
-					theme_conf = { border = true },
+					theme_conf = {
+						border = true,
+						layout_config = {
+							width = 1.8, -- Can set width and height as percent of window
+							height = 0.5,
+						},
+					},
 					previewer = false,
 				},
 				auto_save_enabled = false,
 			})
 		end,
 	})
-
-	-- TODO:: WTF is this?
-	use({
-		"rmagatti/session-lens",
-		requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-		-- DEPRECATED:: 2024-12-28
-		-- config = function()
-		-- 	require("session-lens").setup({
-		-- 		path_display = { "shorten" },
-		-- 	})
-		-- end,
-	})
-	-- 라이브러리 뒤져봤더니, floating 메뉴에서 세션 삭제하는 기본 키맵이 <C-d>다.
 
 	use("lukas-reineke/indent-blankline.nvim")
 

@@ -341,9 +341,7 @@ end)
 
 -- AUTO-SESSION
 map("n", "<leader><leader>s", "<cmd>SessionSave<CR>") -- save
-map("n", ",.S", require("auto-session.session-lens").search_session, {
-	noremap = true,
-}) -- search and load
+map("n", ",.S", "<cmd>SessionSearch<CR>", opt) -- search and load
 
 -- LEAP
 map({ "n", "v" }, ",l", "<Plug>(leap-forward)")

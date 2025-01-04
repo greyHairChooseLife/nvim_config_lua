@@ -58,12 +58,14 @@
 - auto-session 복구시 탭 이름도 복구 되도록
 - keymap: telescope 에서 <C-q>로 선택한 파일을 qf에 추가한다. 근데 이거 곧바로 qflist 버퍼를 띄우기보단 그냥 log만 남겨주는게 좋을듯
 - keymap: cmdwindow에서 normal mode <Esc> -> cmdline으로 이동하되, 현재 input내용 그대로 살려서
+- 문자 없이 빈 칸에서 `'`키 입력시 message 지우기
 
 - `Tab, S-Tab, g-Tab`으로 버퍼 순회할 때 현재 탭의 윈도우에 active인 것은 제외해도 되겠다. 그리고 이것이 시각적으 로표현되도록 하면 좋겠다.
     [ref](https://www.youtube.com/watch?v=ST_DZ6yIiXY)
 
-- Telescope lsp_references에서 파일명만 보이도록
-- Telescope lsp_definitions에서 결과가 단 1개라도 무조건 telescope로 띄워야 한다.
+- auto-session에서도 telescope로 ui-select
+
+- winbar의 활용
 
 #### 복잡
 
@@ -76,8 +78,6 @@
   - function, variable, type의 아이콘을 보다 명확하게 변경하기
 
 - (avante 개선) Predefined Propmts [예시자료](https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks)
-
-- coc -> native lsp로 전환
 
 ### 버그
 

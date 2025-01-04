@@ -84,7 +84,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("ba", " bash", ":e ~/.config/my-bashrc/<CR>"),
 	dashboard.button(".", "", ""),
 	dashboard.button("-", "                   ---------  sessions   ", ""),
-	dashboard.button("S", "Session", require("auto-session.session-lens").search_session),
+	dashboard.button("S", "Session", "<cmd>SessionSearch<CR>"),
 }
 
 dashboard.section.header.opts.hl = "AlphaHeaderLabel"

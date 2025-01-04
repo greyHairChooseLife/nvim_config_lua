@@ -353,13 +353,216 @@ vim.keymap.set("n", ",..c", function()
 	})
 end, {})
 
-require("telescope").setup({
-	extensions = {
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown({
-				-- even more opts
-			}),
+local h_pct = 1.00
+local w_pct = 1.00
+local fullscreen_setup = {
+	borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+	preview = { hide_on_startup = false },
+	layout_strategy = "flex",
+	layout_config = {
+		flex = { flip_columns = 100 },
+		horizontal = {
+			mirror = false,
+			prompt_position = "top",
+			width = function(_, cols, _)
+				return math.floor(cols * w_pct)
+			end,
+			height = function(_, _, rows)
+				return math.floor(rows * h_pct)
+			end,
+			preview_cutoff = 10,
+			preview_width = 0.5,
 		},
+		vertical = {
+			mirror = true,
+			prompt_position = "top",
+			width = function(_, cols, _)
+				return math.floor(cols * w_pct)
+			end,
+			height = function(_, _, rows)
+				return math.floor(rows * h_pct)
+			end,
+			preview_cutoff = 10,
+			preview_height = 0.5,
+		},
+	},
+}
+
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			n = {
+				["gq"] = "close",
+				["<C-g>"] = require("telescope").extensions.hop.hop,
+				["<A-Space>"] = focus_preview,
+				["<A-p>"] = action_layout.toggle_preview,
+				["<A-k>"] = actions.preview_scrolling_up,
+				["<A-j>"] = actions.preview_scrolling_down,
+				["<C-u>"] = actions.results_scrolling_up,
+				["<C-d>"] = actions.results_scrolling_down,
+			},
+			i = {
+				["<C-r>"] = clear_prompt,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["gq"] = "close",
+				["<C-g>"] = require("telescope").extensions.hop.hop,
+				["<A-Space>"] = focus_preview,
+				["<A-p>"] = action_layout.toggle_preview,
+				["<A-k>"] = actions.preview_scrolling_up,
+				["<A-j>"] = actions.preview_scrolling_down,
+				["<C-u>"] = actions.results_scrolling_up,
+				["<C-d>"] = actions.results_scrolling_down,
+				["<C-a>"] = actions.add_to_qflist,
+				["<A-a>"] = actions.add_selected_to_qflist,
+				["<C-Enter>"] = function(prompt_bufnr)
+					select_one_or_multi(prompt_bufnr, "Enter")
+				end,
+				["<C-x>"] = function(prompt_bufnr)
+					select_one_or_multi(prompt_bufnr, "X")
+				end,
+				["<C-v>"] = function(prompt_bufnr)
+					select_one_or_multi(prompt_bufnr, "V")
+				end,
+				["<C-t>"] = function(prompt_bufnr)
+					select_one_or_multi(prompt_bufnr, "T")
+				end,
+			},
+		},
+		layout_config = {
+			horizontal = {
+				preview_width = 0.7,
+			},
+			-- preview_width = 0.7
+			prompt_position = "bottom",
+		},
+		sorting_strategy = "descending",
+		prompt_prefix = "  󰭎  ",
+		selection_caret = " 󰜴 ",
+		entry_prefix = "   ",
+		multi_icon = "󰸞 ",
+		-- border = false,
+		-- borderchars = { "▄", "█", "█", "█", "▄", "▄", "█", "█" },
+		borderchars = { "█", "█", "█", "█", "█", "█", "█", "█" },
+		set_env = {
+			LESS = "",
+			DELTA_PAGER = "less",
+		},
+	},
+	pickers = {
+		buffers = {
+			mappings = {
+				n = {
+					["dd"] = "delete_buffer",
+					["<CR>"] = focus_or_open,
+				},
+				i = {
+					["<C-d>"] = "delete_buffer",
+					["<CR>"] = focus_or_open,
+				},
+			},
+			ignore_current_buffer = false, -- quickfix에 전체 리스트 넣을 때 불편할 수 있겠다.
+			preview = {
+				hide_on_startup = true,
+			},
+			-- file_ignore_patterns = { '^Term:' }, -- buftype으로 체크가 된다!  ignore buffer
+		},
+		-- find_files = vim.tbl_extend("error", fullscreen_setup, {
+		--     -- for full screen
+		-- }),
+		find_files = {
+			mappings = {
+				n = {
+					["<CR>"] = focus_or_open,
+				},
+				i = {
+					["<CR>"] = focus_or_open,
+				},
+			},
+			preview = {
+				hide_on_startup = true,
+			},
+		},
+		grep_string = {
+			mappings = {
+				n = {
+					["<CR>"] = focus_or_open,
+				},
+				i = {
+					["<CR>"] = focus_or_open,
+				},
+			},
+			disable_coordinates = true, -- diable lnum, col
+		},
+		live_grep = {
+			mappings = {
+				n = {
+					["<CR>"] = focus_or_open,
+				},
+				i = {
+					["<CR>"] = focus_or_open,
+				},
+			},
+			disable_coordinates = true, -- diable lnum, col
+		},
+		git_stash = {
+			mappings = {
+				n = {
+					["dd"] = function(prompt_bufnr)
+						local selection = action_state.get_selected_entry()
+						vim.cmd("Git stash drop " .. selection.value)
+						actions.close(prompt_bufnr)
+						builtin.git_stash({
+							previewer = stash_delta,
+							layout_config = wide_layout_config,
+						})
+						switch_to_normal_mode()
+					end,
+					["ap"] = function(prompt_bufnr)
+						local selection = action_state.get_selected_entry()
+						vim.cmd("Git stash apply " .. selection.value)
+						actions.close(prompt_bufnr)
+					end,
+					["pp"] = function(prompt_bufnr)
+						local selection = action_state.get_selected_entry()
+						vim.cmd("Git stash pop " .. selection.value)
+						actions.close(prompt_bufnr)
+					end,
+				},
+				i = {
+					["<C-d>"] = function(prompt_bufnr)
+						local selection = action_state.get_selected_entry()
+						vim.cmd("Git stash drop " .. selection.value)
+						actions.close(prompt_bufnr)
+						builtin.git_stash({
+							previewer = stash_delta,
+							layout_config = wide_layout_config,
+						})
+						switch_to_normal_mode()
+					end,
+					["<C-a>"] = function(prompt_bufnr)
+						local selection = action_state.get_selected_entry()
+						vim.cmd("Git stash apply " .. selection.value)
+						actions.close(prompt_bufnr)
+					end,
+					["<C-p>"] = function(prompt_bufnr)
+						local selection = action_state.get_selected_entry()
+						vim.cmd("Git stash pop " .. selection.value)
+						actions.close(prompt_bufnr)
+					end,
+				},
+			},
+		},
+	},
+	extensions = {
+		-- ["ui-select"] = {
+		-- 	require("telescope.themes").get_cursor({
+		-- 		-- even more opts
+		-- 	}),
+		-- },
+		-- ["ui-select"] = vim.tbl_extend("error", fullscreen_setup, {
+		-- 	preview_title = "Sangyeon",
+		-- }),
 		hop = {
 			-- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
 			keys = {
@@ -450,159 +653,6 @@ require("telescope").setup({
 			override_file_sorter = true, -- override the file sorter
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
-		},
-	},
-	defaults = {
-		mappings = {
-			n = {
-				["gq"] = "close",
-				["<C-g>"] = require("telescope").extensions.hop.hop,
-				["<A-Space>"] = focus_preview,
-				["<A-p>"] = action_layout.toggle_preview,
-				["<A-k>"] = actions.preview_scrolling_up,
-				["<A-j>"] = actions.preview_scrolling_down,
-				["<C-u>"] = actions.results_scrolling_up,
-				["<C-d>"] = actions.results_scrolling_down,
-			},
-			i = {
-				["<C-r>"] = clear_prompt,
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
-				["gq"] = "close",
-				["<C-g>"] = require("telescope").extensions.hop.hop,
-				["<A-Space>"] = focus_preview,
-				["<A-p>"] = action_layout.toggle_preview,
-				["<A-k>"] = actions.preview_scrolling_up,
-				["<A-j>"] = actions.preview_scrolling_down,
-				["<C-u>"] = actions.results_scrolling_up,
-				["<C-d>"] = actions.results_scrolling_down,
-				["<C-a>"] = actions.add_to_qflist,
-				["<A-a>"] = actions.add_selected_to_qflist,
-				["<C-Enter>"] = function(prompt_bufnr)
-					select_one_or_multi(prompt_bufnr, "Enter")
-				end,
-				["<C-x>"] = function(prompt_bufnr)
-					select_one_or_multi(prompt_bufnr, "X")
-				end,
-				["<C-v>"] = function(prompt_bufnr)
-					select_one_or_multi(prompt_bufnr, "V")
-				end,
-				["<C-t>"] = function(prompt_bufnr)
-					select_one_or_multi(prompt_bufnr, "T")
-				end,
-			},
-		},
-		layout_config = {
-			horizontal = {
-				preview_width = 0.7,
-			},
-			-- preview_width = 0.7
-		},
-		set_env = {
-			LESS = "",
-			DELTA_PAGER = "less",
-		},
-	},
-	pickers = {
-		buffers = {
-			mappings = {
-				n = {
-					["dd"] = "delete_buffer",
-					["<CR>"] = focus_or_open,
-				},
-				i = {
-					["<C-d>"] = "delete_buffer",
-					["<CR>"] = focus_or_open,
-				},
-			},
-			ignore_current_buffer = false, -- quickfix에 전체 리스트 넣을 때 불편할 수 있겠다.
-			preview = {
-				hide_on_startup = true,
-			},
-			-- file_ignore_patterns = { '^Term:' }, -- buftype으로 체크가 된다!  ignore buffer
-		},
-		find_files = {
-			mappings = {
-				n = {
-					["<CR>"] = focus_or_open,
-				},
-				i = {
-					["<CR>"] = focus_or_open,
-				},
-			},
-			preview = {
-				hide_on_startup = true,
-			},
-		},
-		grep_string = {
-			mappings = {
-				n = {
-					["<CR>"] = focus_or_open,
-				},
-				i = {
-					["<CR>"] = focus_or_open,
-				},
-			},
-			disable_coordinates = true, -- diable lnum, col
-		},
-		live_grep = {
-			mappings = {
-				n = {
-					["<CR>"] = focus_or_open,
-				},
-				i = {
-					["<CR>"] = focus_or_open,
-				},
-			},
-			disable_coordinates = true, -- diable lnum, col
-		},
-		git_stash = {
-			mappings = {
-				n = {
-					["dd"] = function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						vim.cmd("Git stash drop " .. selection.value)
-						actions.close(prompt_bufnr)
-						builtin.git_stash({
-							previewer = stash_delta,
-							layout_config = wide_layout_config,
-						})
-						switch_to_normal_mode()
-					end,
-					["ap"] = function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						vim.cmd("Git stash apply " .. selection.value)
-						actions.close(prompt_bufnr)
-					end,
-					["pp"] = function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						vim.cmd("Git stash pop " .. selection.value)
-						actions.close(prompt_bufnr)
-					end,
-				},
-				i = {
-					["<C-d>"] = function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						vim.cmd("Git stash drop " .. selection.value)
-						actions.close(prompt_bufnr)
-						builtin.git_stash({
-							previewer = stash_delta,
-							layout_config = wide_layout_config,
-						})
-						switch_to_normal_mode()
-					end,
-					["<C-a>"] = function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						vim.cmd("Git stash apply " .. selection.value)
-						actions.close(prompt_bufnr)
-					end,
-					["<C-p>"] = function(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						vim.cmd("Git stash pop " .. selection.value)
-						actions.close(prompt_bufnr)
-					end,
-				},
-			},
 		},
 	},
 })

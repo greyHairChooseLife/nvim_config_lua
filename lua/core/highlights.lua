@@ -18,7 +18,7 @@
 --
 -- #000080   #0000FF   #3a0ff9   #4169E1   #87CEFA   #ADD8E6   #B0C4DE
 
--- #1c2d5f   #404000   #242024  #60603a
+-- #1c2d5f   #404000   #242024  #60603a  #181d5f
 
 -- #a43838  #3a1f1f  #6A6709  #4E733F  #0d0d0d
 -- #db4b4b  #442424  #605D08  #435F36  #111111
@@ -247,13 +247,17 @@ vim.cmd([[
   highlight TelescopeMultiSelection guibg=#000060  "bookmark한 것들
   highlight TelescopeMatching guifg=#FF4500
   " highlight TelescopePreviewMessageFillchar guibg=#FF4500 "preview에서 빈칸 채우기, 솔직히 뭔 용도인지 모르곘다.
-  highlight TelescopePreviewLine guibg=#000080
-  " highlight TelescopePreviewBorder guifg=#000080 guibg=#000000
-  highlight TelescopePreviewNormal guifg=#E0E0E0 guibg=#000000
+  highlight TelescopePreviewLine guibg=#181d5f
+  highlight TelescopePreviewTitle guifg=#000000 guibg=#000000
+  highlight TelescopePreviewBorder guifg=#181818 guibg=#000000
+  highlight TelescopePreviewNormal guifg=NONE guibg=#181818
   highlight TelescopeResultsBorder guifg=#000000 guibg=#000000
   highlight TelescopeResultsTitle guifg=#000000 guibg=#000000
   highlight TelescopeResultsNormal guifg=#E0E0E0 guibg=#000000
   highlight TelescopeResultsComment guifg=#FF4500 "버퍼의 a, h, # 등 부가 정보
+  highlight TelescopePromptNormal guibg=#181d5f
+  highlight TelescopePromptBorder guifg=#181d5f
+  highlight TelescopePromptTitle guibg=#181d5f
 
 
   " MEMO:: Aerial
