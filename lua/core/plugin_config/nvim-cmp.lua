@@ -58,7 +58,7 @@ cmp.setup({
 	},
 
 	completion = {
-		keyword_length = 1, -- 입력한 글자수 이상부터 completion이 작동
+		keyword_length = 2, -- 입력한 글자수 이상부터 completion이 작동
 	},
 
 	matching = {
@@ -286,16 +286,16 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources(
-		{
-			{
-				name = "nvim_lsp",
-				max_item_count = 15,
-				entry_filter = function(entry)
-					return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
-				end,
-			},
-		} -- lsp
-		-- { { name = "buffer" } }, -- text within current buffer
+		-- {
+		-- 	{
+		-- 		name = "nvim_lsp",
+		-- 		max_item_count = 15,
+		-- 		entry_filter = function(entry)
+		-- 			return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
+		-- 		end,
+		-- 	},
+		-- } -- lsp
+		{ { name = "buffer" } } -- text within current buffer
 		-- { { name = "path" } } -- file system paths
 		-- { name = "luasnip", max_item_count = 15 }, -- 우선적으로 로드
 	),
