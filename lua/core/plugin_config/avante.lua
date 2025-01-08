@@ -87,7 +87,7 @@ require("avante").setup({
 	file_selector = {
 		-- e.g native, fzf, telescope
 		-- native for vim.ui.select
-		-- provider = "telescope",
+		provider = "telescope",
 		-- Options override for custom providers
 		provider_opts = {},
 	},
