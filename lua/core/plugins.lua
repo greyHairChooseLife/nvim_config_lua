@@ -347,6 +347,12 @@ return require("packer").startup(function(use)
 		-- end,
 	})
 
+	-- LOL
+	-- run this with `:lua require("let-it-snow.snow")._let_it_snow()`
+	-- use({
+	-- 	"marcussimonsen/let-it-snow.nvim",
+	-- })
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
