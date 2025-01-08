@@ -23,7 +23,7 @@ end
 
 local cmp = require("cmp")
 local state = {
-	sort = "lsp", -- 'buf', 'lsp' or 'snip', 어떤 completion이 로드되었는지 상태를 저장
+	sort = "buf", -- 'buf', 'lsp' or 'snip', 어떤 completion이 로드되었는지 상태를 저장
 	is_loading = false, -- completion이 로드되었는지 상태를 저장
 }
 
