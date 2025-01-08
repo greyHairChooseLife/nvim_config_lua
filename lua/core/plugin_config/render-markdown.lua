@@ -111,14 +111,28 @@ require("render-markdown").setup({
 		-- icons = { '󰲡 ', '󰲣', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' }, 󰨑
 		-- icons = { ' 󰑣 ', ' 󰬺 ', '   󰬻 ', '     󰬼 ', '     ##### ', '       ###### ' },
 		-- icons = { ' ', '    ', '      ', '         ', '     ##### ', '       ###### ' },
-		icons = {
-			"",
-			"",
-			"",
-			" ",
-			" ",
-			" ",
-		},
+		-- icons = {
+		-- 	"",
+		-- 	"",
+		-- 	"",
+		-- 	" ",
+		-- 	" ",
+		-- 	" ",
+		-- },
+		-- icons = function(sections)
+		-- 	return table.concat(sections, ".") .. ". "
+		-- end,
+		icons = function(sections)
+			table.remove(sections, 1)
+			if #sections > 0 then
+				if #sections == 3 then
+					return " "
+						.. table.concat(sections, ".")
+						.. ". "
+				end
+				return table.concat(sections, ".") .. ". "
+			end
+		end,
 		--󰻃󰻂󰑊󰨑
 		-- Added to the sign column if enabled
 		-- The 'level' is used to index into the array using a cycle
