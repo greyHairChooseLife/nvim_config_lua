@@ -150,7 +150,7 @@ require("nvim-tree").setup({
 			git_placement = "before",
 			modified_placement = "after",
 			padding = " ",
-			symlink_arrow = "",
+			symlink_arrow = "  ",
 			show = {
 				file = true,
 				folder = true,

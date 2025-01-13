@@ -2,6 +2,13 @@ local opt = vim.opt
 local g = vim.g
 local diag = vim.diagnostic
 
+opt.background = "dark"
+
+-- 'true color' for tmux with alacritty
+-- ref: https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
+opt.termguicolors = true
+-- vim.cmd'colorscheme yourfavcolorscheme'
+
 -- General editor settings
 opt.clipboard = "unnamedplus"
 opt.mouse = ""

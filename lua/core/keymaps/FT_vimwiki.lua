@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_set_hl(0, "LineNr", { fg = "#24283B" })
 		vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#24283B" })
 		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#24283B" })
+		vim.opt.textwidth = 100
 
 		-- SNIPPET
 		vim.keymap.set("i", ",,h2", function()
