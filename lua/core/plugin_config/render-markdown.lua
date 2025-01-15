@@ -434,6 +434,10 @@ require("render-markdown").setup({
 				},
 			},
 		},
+		-- https://github.com/MeanderingProgrammer/render-markdown.nvim/discussions/285
+		-- https://github.com/MeanderingProgrammer/render-markdown.nvim/commit/873bdee
+		-- floating window에선 기능하지 않도록
+		buflisted = { [false] = { enabled = false } },
 	},
 	-- Mapping from treesitter language to user defined handlers
 	-- See 'Custom Handlers' document for more info

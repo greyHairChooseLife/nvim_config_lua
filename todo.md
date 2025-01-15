@@ -42,6 +42,10 @@
 		end,
 ```
 
+- [scope.nvim](https://github.com/tiagovla/scope.nvim)
+  원래는 tab과 buffer는 별 관련이 없다. 근데 텝마다 별도의 buffer그룹을 가졌으면... 하고 생각할 때가 있다. 이런 아이디어를 구현한 플러그인
+
+
 ### config 훔치기 [-]
 
 - 전반적으로
@@ -87,7 +91,8 @@
 
 - (avante 개선) Predefined Propmts [예시자료](https://github.com/yetone/avante.nvim/wiki/Recipe-and-Tricks)
 
-- 현재 tab에서 loaded / inactive / active 버퍼 리스트를 얻을 수 있는 나만의 utils를 만들어두면 좋겠다.
+- 현재 tab에서 loaded / inactive / active 버퍼 리스트를 얻을 수 있는 나만의 utils를 만들어두면 좋겠다. 
+  -> scope.nvim
 
 ### 버그
 

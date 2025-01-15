@@ -328,6 +328,9 @@ vim.keymap.set("n", ",.T", "<cmd>TodoTelescope<CR>", {})
 vim.keymap.set("n", ",.gst", builtin.git_status, {})
 vim.keymap.set("n", ",.gbr", builtin.git_branches, {})
 -- 현재 버퍼에 열린 파일에서만 검색
+vim.keymap.set("n", ",.z", function()
+	builtin.current_buffer_fuzzy_find()
+end) -- Regex search current file
 vim.keymap.set("n", ",..w", function()
 	local scope = vim.fn.expand("%:p")
 	builtin.live_grep({
@@ -356,14 +359,14 @@ end, {})
 local h_pct = 1.00
 local w_pct = 1.00
 local fullscreen_setup = {
-	borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-	preview = { hide_on_startup = false },
+	-- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+	preview = { hide_on_startup = true },
 	layout_strategy = "flex",
 	layout_config = {
 		flex = { flip_columns = 100 },
 		horizontal = {
 			mirror = false,
-			prompt_position = "top",
+			prompt_position = "bottom",
 			width = function(_, cols, _)
 				return math.floor(cols * w_pct)
 			end,
@@ -467,6 +470,10 @@ require("telescope").setup({
 			},
 			-- file_ignore_patterns = { '^Term:' }, -- buftype으로 체크가 된다!  ignore buffer
 		},
+		current_buffer_fuzzy_find = vim.tbl_extend("error", fullscreen_setup, {
+			prompt_title = "Current Buffer",
+			sorting_strategy = "ascending",
+		}),
 		-- find_files = vim.tbl_extend("error", fullscreen_setup, {
 		--     -- for full screen
 		-- }),

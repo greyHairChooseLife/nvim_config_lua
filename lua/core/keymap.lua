@@ -299,7 +299,7 @@ map("n", "<leader>cc", "<cmd>silent G commit<CR>", { silent = true })
 map("n", "<leader>ce", "<cmd>silent G commit --amend<CR>", { silent = true })
 -- 현재 버퍼 gitdiff 확인
 map("n", ",vd", VDiffSplitOnTab)
-map("n", ",vD", "<cmd>vert diffsplit ")
+map("n", ",vD", ":vert diffsplit ")
 -- git review
 -- TODO:
 -- workflow를 고려해서 재구성할 필요가 있다.
